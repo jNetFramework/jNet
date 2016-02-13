@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jNet.min.js"></script>
+    <script type="text/javascript" src="cookie.js"></script>
+
+    <script type="text/javascript">
+
+        jNet.ready(function () {
+
+            $ = jNet.jNDocQuery;
+
+            dQuery = new $('body');
+            dQTest = new $('#test-qs').append('jNet').text('jNet').append(' - alpha');
+
+            $('#test-toggle').click(function () {
+                $(this).toggleClass('c');
+            });
+
+            $(jNet.querySelectorAll('li')).click(function () {
+                $(this).text(Number($(this).text()) + 1);
+            });
+
+            console.log($('.li-2'));
+
+            console.log(dQuery.querySelector('[id^="test-"]'));
+            console.log(dQuery._d.querySelector('[id^="test-"]'));
+
+            console.log((new jNet.jNDocQuery(document)).classList());
+
+
+            console.log(dQuery.classList());
+            dQuery.addClass('c');
+            console.log(dQuery.classList());
+
+            dQuery.cleanClass();
+
+            console.log(dQuery.classList());
+
+            dQuery.addClass('b');
+            dQuery.removeClass('vc');
+
+            console.log(dQuery.querySelector('#test-qs1'));
+            console.log(dQuery.querySelector('#test-qs1').text());
+            console.log(dQuery.querySelector('#test-qs1').text('Hello World'));
+            console.log(dQuery.querySelector('#test-qs1').text());
+
+            console.log(dQuery.querySelector('#test-qs1').outerHTML());
+            console.log(dQuery.querySelector('#test-qs1').outerHTML('<h1>Hello World</h1>'));
+
+            jNet.ajax({
+                url: 'https://hm.babichev.net/api/v1.1/currencies',
+                data: {
+                    q: 'rub=x'
+                },
+                success: function (http) {
+                    json = JSON.parse(http.target.response);
+                    $('#ajax-test').innerHTML('<h1>[' + jNet.now() + '] RUB=X: ' + json.data.query.results.row.col1 + '</h1>');
+                }
+            });
+
+            cookie.set('hello', 'world');
+
+        });
+    </script>
+
+    <style>
+        .b {
+            background-color: #ccc;
+        }
+
+        .vc {
+            background: #cdcaff;
+        }
+
+        .c {
+            background: green;
+        }
+
+        [id^="test-"] {
+            font-size: 25px;
+        }
+
+        [class^="test-"] {
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="b vc">
+<div id="test-qs">000</div>
+<div id="test-qs1"></div>
+<div class="test-qs">111</div>
+<div class="test-qs">222</div>
+<a id="test-toggle">Toggle</a>
+<ul>
+    <li>1</li>
+    <li class="li-2">2</li>
+    <li>3</li>
+</ul>
+
+<div id="ajax-test"></div>
+
+</body>
+</html>
