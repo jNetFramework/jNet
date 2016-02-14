@@ -10,9 +10,23 @@ var jNet = new (function () {
     /**
      * @returns {Document}
      */
-    String.prototype.toDocument = function () {
+    String.prototype.jNToDocument = function () {
+        /**
+         * @type {DOMParser}
+         */
         domParser = new DOMParser();
         return domParser.parseFromString(this, "text/html");
+    };
+
+    /**
+     * @param regex
+     * @returns {string}
+     */
+    String.prototype.jNTrim = function (regex) {
+        if (typeof regex == 'undefined') {
+            return this.trim();
+        }
+        return this.replace(new RegExp('/^' + regex + '|' + regex + '$/gm'), '');
     };
 
     /**
@@ -581,18 +595,18 @@ var jNet = new (function () {
 
             html = obj.html;
             if (typeof html == 'string') {
-                html = html.toDocument();
+                html = html.jNToDocument();
             }
             else {
                 switch (html.toString()) {
                     case this.toString():
-                        html = html._outerHTML().toDocument();
+                        html = html._outerHTML().jNToDocument();
                         break;
                 }
             }
 
             if (typeof html.outerHTML != 'undefined') {
-                html = html.outerHTML.toDocument();
+                html = html.outerHTML.jNToDocument();
             }
 
             if (typeof html.body.firstChild != 'undefined') {
@@ -912,8 +926,127 @@ var jNet = new (function () {
 
     };
 
-    this.cookie = function() {
-        // todo
+    /**
+     * @returns {*}
+     */
+    this.cookie = function () {
+
+        /**
+         * @type {Window.jNArray}
+         * @private
+         */
+        this._cookies = new jNet.jNArray();
+
+        /**
+         * @returns {{}}
+         * @private
+         */
+        this._decode = function () {
+            var rDecode = /(%[0-9A-Z]{2})+/g;
+            var temp = {};
+            this._cookies.forEach(function (line) {
+                var parts = line.split('=');
+                var name = parts[0].replace(rDecode, decodeURIComponent);
+                var cookie = parts.slice(1).join('=');
+                cookie = cookie.jNTrim('["]+');
+                cookie = cookie.replace(rDecode, decodeURIComponent);
+                temp[name] = cookie;
+            });
+            return temp;
+        };
+
+        /**
+         * @param key
+         * @returns {boolean}
+         */
+        this.remove = function (key) {
+            this.set(key, '', {expires: -1});
+            return typeof this.get(key) == "undefined";
+        };
+
+        /**
+         * @param key
+         * @param value
+         * @param attributes
+         * @returns {boolean}
+         */
+        this.set = function (key, value, attributes) {
+
+            if (typeof attributes == "undefined") {
+                /**
+                 * @type {{}}
+                 */
+                attributes = {};
+            }
+
+            if (typeof attributes.expires === 'number') {
+                /**
+                 * @type {Date}
+                 */
+                var expires = new Date();
+                expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+
+                /**
+                 * @type {Date}
+                 */
+                attributes.expires = expires;
+            }
+
+            if (typeof attributes.path == "undefined") {
+                /**
+                 * @type {string}
+                 */
+                attributes.path = '/';
+            }
+
+            try {
+                result = JSON.stringify(value);
+                if (/^[\{\[]/.test(result)) {
+                    value = result;
+                }
+            }
+            catch (e) {
+            }
+
+            /**
+             * @type {string}
+             */
+            value = encodeURIComponent(String(value))
+                .replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+
+            /**
+             * @type {string}
+             */
+            key = encodeURIComponent(String(key));
+            key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+            key = key.replace(/[\(\)]/g, encodeURI);
+
+            return (document.cookie = [
+                    key, '=', value,
+                    attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+                    attributes.path && '; path=' + attributes.path,
+                    attributes.domain && '; domain=' + attributes.domain,
+                    attributes.secure ? '; secure' : ''
+                ].join('')).length > 0;
+
+        };
+
+        /**
+         * @param key
+         * @returns {*}
+         */
+        this.get = function (key) {
+            if (document.cookie.length) {
+                this._cookies._array = document.cookie.split('; ');
+                obj = this._decode();
+                if (typeof key == "undefined") {
+                    return obj;
+                }
+                return obj[key];
+            }
+            return {};
+        };
+
         return this;
     };
 

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="jNet.min.js"></script>
-    <script type="text/javascript" src="cookie.js"></script>
+    <script type="text/javascript" src="jNet.js"></script>
 
     <script type="text/javascript">
 
@@ -58,15 +57,31 @@
                 success: function (http) {
                     json = JSON.parse(http.target.response);
                     $('#ajax-test').innerHTML('<h1>[' + jNet.now() + '] RUB=X: ' + json.data.query.results.row.col1 + '</h1>');
+
+
+                    $divs = new jNet.querySelectorAll('div');
+
+                    $($divs).addClass('border-dev');
+
+                    console.log($($divs).width());
+                    console.log($($divs).height());
                 }
             });
 
-            cookie.set('hello', 'world');
+            cookie = new jNet.cookie();
+            console.log(cookie.get());
+            console.log(cookie.set('h', 'w'));
+            console.log(cookie.get());
+            console.log(cookie.remove('h'));
+            console.log(cookie.get());
 
         });
     </script>
 
     <style>
+        .border-dev {
+            border: 2px solid firebrick;
+        }
         .b {
             background-color: #ccc;
         }
