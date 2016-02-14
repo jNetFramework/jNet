@@ -59,11 +59,11 @@ var jNet = new (function () {
         }
 
         /**
-         * @param index
+         * @param key
          * @returns {*}
          */
-        this.at = function (index) {
-            return this._array[index];
+        this.at = function (key) {
+            return this._array[key];
         };
 
         /**
@@ -489,6 +489,31 @@ var jNet = new (function () {
         };
 
         /**
+         * @param name
+         * @param value
+         */
+        this.css = function (name, value) {
+            return this._call.call(this, {
+                callback: '_css',
+                name: name,
+                value: value
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._css = function (obj) {
+            if (typeof obj.value == 'undefined') {
+                return this._d.style.getPropertyValue(obj.name);
+            }
+            this._d.style.setProperty(obj.name, obj.value);
+            return this;
+        };
+
+        /**
          * @returns {*}
          */
         this.parent = function () {
@@ -795,6 +820,28 @@ var jNet = new (function () {
             return this;
         };
 
+        /**
+         * @param type
+         * @param listener
+         * @param useCapture
+         */
+        this.removeEventListener = function (type, listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_removeEventListener',
+                type: type,
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         */
+        this._removeEventListener = function (obj) {
+            this._d.removeEventListener(obj.type, obj.listener, obj.useCapture);
+            return this;
+        };
+
         return this;
 
     };
@@ -929,7 +976,7 @@ var jNet = new (function () {
     /**
      * @returns {*}
      */
-    this.cookie = function () {
+    this.jNCookie = function () {
 
         /**
          * @type {Window.jNArray}
@@ -1048,6 +1095,7 @@ var jNet = new (function () {
         };
 
         return this;
+
     };
 
     /**

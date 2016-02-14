@@ -22,8 +22,6 @@
                 $(this).text(Number($(this).text()) + 1);
             });
 
-            console.log($('.li-2'));
-
             console.log(dQuery.querySelector('[id^="test-"]'));
             console.log(dQuery._d.querySelector('[id^="test-"]'));
 
@@ -65,20 +63,30 @@
 
                     console.log($($divs).width());
                     console.log($($divs).height());
+
+                    console.log($('div').css('border'));
+                    console.log($('div').css('border', '21px solid red'));
+                    console.log($('div').css('border'));
+
                 }
             });
 
-            cookie = new jNet.cookie();
-            console.log(cookie.get());
-            console.log(cookie.set('h', 'w'));
-            console.log(cookie.get());
-            console.log(cookie.remove('h'));
-            console.log(cookie.get());
+            jNCookie = new jNet.jNCookie();
+            console.log(jNCookie.get());
+            console.log(jNCookie.set('h', 'w'));
+            console.log(jNCookie.get());
+            console.log(jNCookie.remove('h'));
+            console.log(jNCookie.get());
 
         });
     </script>
 
     <style>
+        .quad {
+            position: relative;
+            cursor: pointer;
+        }
+
         .border-dev {
             border: 2px solid firebrick;
         }
@@ -104,6 +112,7 @@
     </style>
 </head>
 <body class="b vc">
+
 <div id="test-qs">000</div>
 <div id="test-qs1"></div>
 <div class="test-qs">111</div>
@@ -114,7 +123,9 @@
     <li class="li-2">2</li>
     <li>3</li>
 </ul>
-
+<div id="main">
+    <div class="quad" style="width: 50px; height: 50px; border: 2px solid yellow"></div>
+</div>
 <div id="ajax-test"></div>
 
 </body>
