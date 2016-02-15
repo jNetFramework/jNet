@@ -5,9 +5,14 @@
  *  @version 0.4
  */
 
+/**
+ * jNet Framework
+ * @constructor
+ */
 var jNet = new (function () {
 
     /**
+     * jNToDocument, Converts a line in object (Document)
      * @returns {Document}
      */
     String.prototype.jNToDocument = function () {
@@ -327,6 +332,10 @@ var jNet = new (function () {
 
         }
 
+        /**
+         * @returns {*}
+         * @private
+         */
         this._call = function () {
             if (this._array.length()) {
                 var args = arguments[0];
@@ -386,6 +395,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {jNDocQuery}
+         * @private
          */
         this._querySelector = function (obj) {
             _tmp = new jNet.jNDocQuery(this._d);
@@ -411,6 +421,7 @@ var jNet = new (function () {
 
         /**
          * @returns {Array}
+         * @private
          */
         this._classList = function () {
             _classList = this._d.classList;
@@ -436,6 +447,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._addClass = function (obj) {
             this._d.classList.add(obj.newClass);
@@ -456,6 +468,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._removeClass = function (obj) {
             this._d.classList.remove(obj.className);
@@ -476,6 +489,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {boolean}
+         * @private
          */
         this._hasClass = function (obj) {
             return this.classList().contains(obj.className);
@@ -495,6 +509,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._toggleClass = function (obj) {
             this._d.classList.toggle(obj.className);
@@ -512,6 +527,7 @@ var jNet = new (function () {
 
         /**
          * @returns {*}
+         * @private
          */
         this._cleanClass = function () {
             var self = this;
@@ -557,6 +573,7 @@ var jNet = new (function () {
 
         /**
          * @returns {*}
+         * @private
          */
         this._parent = function () {
             if (typeof this._d.parentNode != "undefined") {
@@ -579,6 +596,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns string|{*}
+         * @private
          */
         this._text = function (obj) {
             if (typeof obj.value != "undefined") {
@@ -602,6 +620,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns string|{*}
+         * @private
          */
         this._innerHTML = function (obj) {
             if (typeof obj.value != "undefined") {
@@ -625,6 +644,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns string|{*}
+         * @private
          */
         this._outerHTML = function (obj) {
             if (typeof obj.value != "undefined") {
@@ -648,6 +668,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._append = function (obj) {
 
@@ -688,6 +709,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {boolean}
+         * @private
          */
         this._hasAttribute = function (obj) {
             return this._d.hasAttribute(obj.nameAttribute);
@@ -709,6 +731,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._addAttribute = function (obj) {
             this._d.setAttribute(obj.nameAttribute, obj.valueAttribute);
@@ -726,6 +749,7 @@ var jNet = new (function () {
 
         /**
          * @returns {number}
+         * @private
          */
         this._width = function () {
             return this._d.clientWidth;
@@ -742,6 +766,7 @@ var jNet = new (function () {
 
         /**
          * @returns {number}
+         * @private
          */
         this._height = function () {
             return this._d.clientHeight;
@@ -750,6 +775,7 @@ var jNet = new (function () {
         /**
          * @param nameAttribute
          * @returns {*}
+         * @private
          */
         this.removeAttribute = function (nameAttribute) {
             return this._call.call(this, {
@@ -761,6 +787,7 @@ var jNet = new (function () {
         /**
          * @param obj
          * @returns {*}
+         * @private
          */
         this._removeAttribute = function (obj) {
             if (this._hasAttribute(obj.nameAttribute)) {
@@ -780,6 +807,7 @@ var jNet = new (function () {
 
         /**
          * @returns {*}
+         * @private
          */
         this._remove = function () {
             if (typeof this.parentNode == 'undefined') {
@@ -805,6 +833,7 @@ var jNet = new (function () {
 
         /**
          * @param obj
+         * @private
          */
         this._ready = function (obj) {
             this._addEventListener("DOMContentLoaded", obj.listener, obj.useCapture);
@@ -825,6 +854,7 @@ var jNet = new (function () {
 
         /**
          * @param obj
+         * @private
          */
         this._click = function (obj) {
             this.addEventListener('click', obj.listener, obj.useCapture);
@@ -847,6 +877,7 @@ var jNet = new (function () {
 
         /**
          * @param obj
+         * @private
          */
         this._addEventListener = function (obj) {
             this._d.addEventListener(obj.type, obj.listener, obj.useCapture);
@@ -869,6 +900,7 @@ var jNet = new (function () {
 
         /**
          * @param obj
+         * @private
          */
         this._removeEventListener = function (obj) {
             this._d.removeEventListener(obj.type, obj.listener, obj.useCapture);
