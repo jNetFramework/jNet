@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jNet Framework</title>
+
+    <link rel="stylesheet" href="/demo/icon.css">
+    <link rel="stylesheet" href="/demo/demo.css">
+    <link rel="stylesheet" href="/demo/material.indigo-pink.min.css">
+    <script defer src="/demo/material.min.js"></script>
+
     <script type="text/javascript" src="jNet.js"></script>
 
     <script type="text/javascript">
@@ -21,30 +29,60 @@
                 return new jNet.jNDocQuery(arg);
             }
 
+            return undefined;
+
         };
 
         $(function () {
 
-            $body = $('body');
-            $body.append('<h1>jNet Framework!</h1>');
+            $('body').append('<div></div>');
+            $layout = $('div');
 
-            $h1 = $body.querySelector('h1');
-            $h1.css('color', '#fdd000');
+            'demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100'.split(' ')
+                    .forEach(function (divClass) {
+                        $layout.addClass(divClass);
+                    });
 
-            $body.append('<p>При написании нативного веб-приложения легко начать ' +
+            $layout.append('<div></div>').find('div').addClass('demo-ribbon');
+
+            $main = $layout.append('<main></main>').find('main');
+
+            'demo-main mdl-layout__content'.split(' ')
+                    .forEach(function (mainClass) {
+                        $main.addClass(mainClass);
+                    });
+
+            $main = $main.append('<div></div>').find('div');
+
+            'demo-container mdl-grid'.split(' ')
+                    .forEach(function (mainClass) {
+                        $main.addClass(mainClass);
+                    });
+
+            $main.append('<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>');
+            $main.append('<div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">');
+
+            $main = $main.findAll('div').last();
+
+            $main.append('<h3>jNet Framework!</h3>');
+
+            $h3 = $main.find('h3');
+            $h3.css('color', '#fdd000');
+
+            $main.append('<p>При написании нативного веб-приложения легко начать ' +
                     'чувствовать себя богом, способным работать просто с библиотекой работы ' +
                     'с DOM (такой как jQuery) и горсткой сервисных плагинов. Вскоре возникает проблема в ' +
                     'виде груды вложенных возвратных функций jQuery и разбросанных DOM-элементов без всякой ' +
                     'структуры вместо приложения.</p>');
 
-            $body.append('<h3>Что такое MVC или, лучше сказать, MV*?</h3>');
+            $main.append('<h3>Что такое MVC или, лучше сказать, MV*?</h3>');
 
-            $body.append('<p>Эти современные библиотеки дают разработчикам простой ' +
+            $main.append('<p>Эти современные библиотеки дают разработчикам простой ' +
                     'путь к организации кода, используя вариации паттерна проектирования, ' +
                     'известного как MVC (Model-View-Controller). ' +
                     'MVC разделяет задачи в приложении на 3 части:</p>');
 
-            $ol = $body.append('<ol></ol>');
+            $ol = $main.append('<ol></ol>');
 
             $ol.append('<li>Модель (логика) представляют проблемно-ориентированные знания и ' +
                     'данные в приложении. Думайте о них как о типе данных, которые сможете ' +
@@ -60,15 +98,15 @@
                     'Когда Контроллер меняет состояние Модели (например, редактирование заголовка на фото), ' +
                     'он прямо не меняет Представление. Это — случай, где работают отношения Модели и Представления.</li>');
 
-            $p = $body.querySelectorAll('p');
+            $p = $main.findAll('p');
             $p.css('font-size', '20px');
             $p.css('color', 'gray');
 
-            $li = $body.querySelectorAll('li');
+            $li = $main.findAll('li');
             $li.css('font-size', '18px');
 
-            $body.append('<h3>Ajax Testing</h3>');
-            $body.append('<div id="ajax-test"></div>');
+            $main.append('<h3>Ajax Testing</h3>');
+            $main.append('<div id="ajax-test"></div>');
 
             jNet.ajax({
                 url: 'https://hm.babichev.net/api/v1.1/currencies',
@@ -80,6 +118,9 @@
                     $('#ajax-test').innerHTML('<p>[' + jNet.now() + '] RUB=X: ' + json.data.query.results.row.col1 + '</p>');
                 }
             });
+
+            $form = $main.append('<form></form>');
+
 
         });
 

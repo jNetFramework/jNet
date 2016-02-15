@@ -64,6 +64,20 @@ var jNet = new (function () {
         }
 
         /**
+         * @returns {*}
+         */
+        this.first = function () {
+            return this.at(0);
+        };
+
+        /**
+         * @returns {*}
+         */
+        this.last = function () {
+            return this.at(this.length() - 1);
+        };
+
+        /**
          * @param key
          * @returns {*}
          */
@@ -315,7 +329,7 @@ var jNet = new (function () {
                 toStringArr = doc.toString().split(',');
                 if (toStringArr.length) {
                     switch (toStringArr[0]) {
-                        case this.toString():
+                        case jNet.jNDocQuery().toString():
                             return doc;
 
                         case jNet.jNArray().toString():
@@ -337,32 +351,56 @@ var jNet = new (function () {
          * @private
          */
         this._call = function () {
+            var args = arguments[0];
             if (this._array.length()) {
-                var args = arguments[0];
                 if (typeof this._array._array[0] != "undefined" && typeof this._array._array[0].diff != "undefined") {
-                    var array = this._array;
-                    return new jNet.jNArray(array.map(function (element) {
-                        return new jNet.jNArray(element.map(function (el) {
+                    return this._array.map(function (element) {
+                        return element.map(function (el) {
                             return el[args.callback].call(el, args);
-                        }));
-                    }));
+                        });
+                    });
                 }
                 return new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
             }
-            else {
-                return this[arguments[0].callback].call(this, arguments[0]);
+            return this[args.callback].call(this, args);
+        };
+
+        this.first = function () {
+            if (this._array.length()) {
+                var first = this._array;
+                do {
+                    first = first.first();
+                }
+                while (first.toString() != this.toString());
+                return first;
             }
+            return this;
+        };
+
+        /**
+         * @returns {*}
+         */
+        this.last = function () {
+            if (this._array.length()) {
+                var last = this._array;
+                do {
+                    last = last.last();
+                }
+                while (last.toString() != this.toString());
+                return last;
+            }
+            return this;
         };
 
         /**
          * @param selector
          * @returns {jNDocQuery}
          */
-        this.querySelectorAll = function (selector) {
+        this.findAll = function (selector) {
             return new jNet.jNDocQuery(this._call.call(this, {
-                callback: '_querySelectorAll',
+                callback: '_findAll',
                 selector: selector
             }));
         };
@@ -372,7 +410,7 @@ var jNet = new (function () {
          * @returns {Window.jNArray|*}
          * @private
          */
-        this._querySelectorAll = function (obj) {
+        this._findAll = function (obj) {
             _tmp = new jNet.jNArray();
             _arr = this._d.querySelectorAll(obj.selector);
             for (var i = 0; i < _arr.length; ++i) {
@@ -385,9 +423,9 @@ var jNet = new (function () {
          * @param selector
          * @returns {jNDocQuery}
          */
-        this.querySelector = function (selector) {
+        this.find = function (selector) {
             return new jNet.jNDocQuery(this._call.call(this, {
-                callback: '_querySelector',
+                callback: '_find',
                 selector: selector
             }));
         };
@@ -397,7 +435,7 @@ var jNet = new (function () {
          * @returns {jNDocQuery}
          * @private
          */
-        this._querySelector = function (obj) {
+        this._find = function (obj) {
             _tmp = new jNet.jNDocQuery(this._d);
             _tmp._d = this._d.querySelector(obj.selector);
             return _tmp;
@@ -693,6 +731,7 @@ var jNet = new (function () {
             }
 
             return this;
+
         };
 
         /**
