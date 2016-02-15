@@ -356,7 +356,7 @@ var jNet = new (function () {
 
             if (this._array.length()) {
 
-                _arr =  new jNet.jNArray(this._array.map(function (element) {
+                _arr = new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
 
@@ -376,7 +376,7 @@ var jNet = new (function () {
          * @param index
          * @returns {*}
          */
-        this.at = function(index) {
+        this.at = function (index) {
             if (this._array.length()) {
                 return this._array.at(index);
             }
@@ -906,6 +906,27 @@ var jNet = new (function () {
          */
         this._click = function (obj) {
             this.addEventListener('click', obj.listener, obj.useCapture);
+            return this;
+        };
+
+
+        /**
+         * @param listener
+         */
+        this.submit = function (listener) {
+            return new jNet.jNDocQuery(this._call.call(this, {
+                callback: '_submit',
+                listener: listener
+            }));
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._submit = function (obj) {
+            this._d.onsubmit = obj.listener;
             return this;
         };
 

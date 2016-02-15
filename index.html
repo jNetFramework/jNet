@@ -121,14 +121,13 @@
                 }
             });
 
-
             $form = $main.append('<form></form>').find('form');
             $form.append('<div class="mdl-grid"></div>');
             
             $div = $form.find('div');
             $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
 
-            $div.append('<input class="mdl-textfield__input" rows="18" id="test-input"/>');
+            $div.append('<input class="mdl-textfield__input" id="test-input"/>');
             $div.append('<label class="mdl-textfield__label" for="test-input">Text...</label>');
 
             $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
@@ -137,6 +136,11 @@
             $div.append('<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">submit</button>');
 
             $body.findAll('li').at(1).css('color', 'red');
+
+            $form.submit(function (event) {
+                console.log(event);
+                return false;
+            });
 
         });
 
