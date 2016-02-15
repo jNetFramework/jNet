@@ -351,30 +351,44 @@ var jNet = new (function () {
          * @private
          */
         this._call = function () {
+
             var args = arguments[0];
+
             if (this._array.length()) {
-                if (typeof this._array._array[0] != "undefined" && typeof this._array._array[0].diff != "undefined") {
-                    return this._array.map(function (element) {
-                        return element.map(function (el) {
-                            return el[args.callback].call(el, args);
-                        });
-                    });
-                }
-                return new jNet.jNArray(this._array.map(function (element) {
+
+                _arr =  new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
+
+                if (_arr.length() == 1) {
+                    return _arr.first();
+                }
+
+                return _arr;
+
             }
+
             return this[args.callback].call(this, args);
+
         };
 
+        /**
+         * @param index
+         * @returns {*}
+         */
+        this.at = function(index) {
+            if (this._array.length()) {
+                return this._array.at(index);
+            }
+            return this;
+        };
+
+        /**
+         * @returns {*}
+         */
         this.first = function () {
             if (this._array.length()) {
-                var first = this._array;
-                do {
-                    first = first.first();
-                }
-                while (first.toString() != this.toString());
-                return first;
+                return this._array.first();
             }
             return this;
         };
@@ -384,12 +398,7 @@ var jNet = new (function () {
          */
         this.last = function () {
             if (this._array.length()) {
-                var last = this._array;
-                do {
-                    last = last.last();
-                }
-                while (last.toString() != this.toString());
-                return last;
+                return this._array.last();
             }
             return this;
         };

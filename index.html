@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jNet Framework</title>
 
-    <link rel="stylesheet" href="/demo/icon.css">
-    <link rel="stylesheet" href="/demo/demo.css">
-    <link rel="stylesheet" href="/demo/material.indigo-pink.min.css">
-    <script defer src="/demo/material.min.js"></script>
+    <link rel="stylesheet" href="demo/icon.css">
+    <link rel="stylesheet" href="demo/demo.css">
+    <link rel="stylesheet" href="demo/material.indigo-pink.min.css">
+    <script defer src="demo/material.min.js"></script>
 
     <script type="text/javascript" src="jNet.js"></script>
 
@@ -35,7 +35,8 @@
 
         $(function () {
 
-            $('body').append('<div></div>');
+            $body = $('body');
+            $body.append('<div></div>');
             $layout = $('div');
 
             'demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100'.split(' ')
@@ -68,6 +69,7 @@
 
             $h3 = $main.find('h3');
             $h3.css('color', '#fdd000');
+            $h3.css('text-align', 'center');
 
             $main.append('<p>При написании нативного веб-приложения легко начать ' +
                     'чувствовать себя богом, способным работать просто с библиотекой работы ' +
@@ -119,8 +121,22 @@
                 }
             });
 
-            $form = $main.append('<form></form>');
 
+            $form = $main.append('<form></form>').find('form');
+            $form.append('<div class="mdl-grid"></div>');
+            
+            $div = $form.find('div');
+            $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
+
+            $div.append('<input class="mdl-textfield__input" rows="18" id="test-input"/>');
+            $div.append('<label class="mdl-textfield__label" for="test-input">Text...</label>');
+
+            $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
+            $div = $div.append('<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"></div>').find('div');
+            
+            $div.append('<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">submit</button>');
+
+            $body.findAll('li').at(1).css('color', 'red');
 
         });
 
