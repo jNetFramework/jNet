@@ -328,8 +328,16 @@ var jNet = new (function () {
         }
 
         this._call = function () {
-            if (typeof this._array != "undefined" && this._array.length()) {
+            if (this._array.length()) {
                 var args = arguments[0];
+                if (typeof this._array._array[0] != "undefined" && typeof this._array._array[0].length != "undefined") {
+                    var array = this._array;
+                    return new jNet.jNArray(array.map(function (element) {
+                        return new jNet.jNArray(element.map(function (el) {
+                            return el[args.callback].call(el, args);
+                        }));
+                    }));
+                }
                 return new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
@@ -343,11 +351,36 @@ var jNet = new (function () {
          * @param selector
          * @returns {jNDocQuery}
          */
+        this.querySelectorAll = function (selector) {
+            return new jNet.jNDocQuery(this._call.call(this, {
+                callback: '_querySelectorAll',
+                selector: selector
+            }));
+        };
+
+        /**
+         * @param obj
+         * @returns {Window.jNArray|*}
+         * @private
+         */
+        this._querySelectorAll = function (obj) {
+            _tmp = new jNet.jNArray();
+            _arr = this._d.querySelectorAll(obj.selector);
+            for (var i = 0; i < _arr.length; ++i) {
+                _tmp.push(new jNet.jNDocQuery(_arr[i]));
+            }
+            return _tmp;
+        };
+
+        /**
+         * @param selector
+         * @returns {jNDocQuery}
+         */
         this.querySelector = function (selector) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_querySelector',
                 selector: selector
-            });
+            }));
         };
 
         /**
@@ -517,9 +550,9 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.parent = function () {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_parent'
-            });
+            }));
         };
 
         /**
@@ -606,10 +639,10 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.append = function (html) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_append',
                 html: html
-            });
+            }));
         };
 
         /**
@@ -763,11 +796,11 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.ready = function (listener, useCapture) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_ready',
                 listener: listener,
                 useCapture: useCapture
-            });
+            }));
         };
 
         /**
@@ -783,11 +816,11 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.click = function (listener, useCapture) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_click',
                 listener: listener,
                 useCapture: useCapture
-            });
+            }));
         };
 
         /**
@@ -804,12 +837,12 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.addEventListener = function (type, listener, useCapture) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_addEventListener',
                 type: type,
                 listener: listener,
                 useCapture: useCapture
-            });
+            }));
         };
 
         /**
@@ -826,12 +859,12 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.removeEventListener = function (type, listener, useCapture) {
-            return this._call.call(this, {
+            return new jNet.jNDocQuery(this._call.call(this, {
                 callback: '_removeEventListener',
                 type: type,
                 listener: listener,
                 useCapture: useCapture
-            });
+            }));
         };
 
         /**
@@ -1118,6 +1151,7 @@ var jNet = new (function () {
      */
     this.ready = function (listener, useCapture) {
         document.addEventListener("DOMContentLoaded", listener, useCapture);
+        return this;
     };
 
     return this;
