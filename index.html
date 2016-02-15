@@ -138,7 +138,8 @@
             $body.findAll('li').at(1).css('color', 'red');
 
             $form.submit(function (event) {
-                console.log(event);
+                $inputs = event.target.elements;
+                console.log($inputs);
                 return false;
             });
 
