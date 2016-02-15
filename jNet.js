@@ -339,7 +339,7 @@ var jNet = new (function () {
         this._call = function () {
             if (this._array.length()) {
                 var args = arguments[0];
-                if (typeof this._array._array[0] != "undefined" && typeof this._array._array[0].length != "undefined") {
+                if (typeof this._array._array[0] != "undefined" && typeof this._array._array[0].diff != "undefined") {
                     var array = this._array;
                     return new jNet.jNArray(array.map(function (element) {
                         return new jNet.jNArray(element.map(function (el) {
