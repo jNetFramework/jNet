@@ -7,7 +7,7 @@
 
     <script type="text/javascript">
 
-        var $ = function(arg) {
+        var $ = function (arg) {
 
             if (typeof arg == "function") {
                 return jNet.ready(arg);
@@ -20,8 +20,6 @@
             if (typeof arg == "object") {
                 return new jNet.jNDocQuery(arg);
             }
-
-            return jNet;
 
         };
 
@@ -68,6 +66,21 @@
 
             $li = $body.querySelectorAll('li');
             $li.css('font-size', '18px');
+
+            $body.append('<h3>Ajax Testing</h3>');
+            $body.append('<div id="ajax-test"></div>');
+
+            jNet.ajax({
+                url: 'https://hm.babichev.net/api/v1.1/currencies',
+                data: {
+                    q: 'rub=x'
+                },
+                success: function (http) {
+                    json = JSON.parse(http.target.response);
+                    $('#ajax-test').innerHTML('<p>[' + jNet.now() + '] RUB=X: ' + json.data.query.results.row.col1 + '</p>');
+                }
+            });
+
         });
 
     </script>
