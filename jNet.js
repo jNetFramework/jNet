@@ -647,10 +647,15 @@ var jNet = new (function () {
          */
         this._text = function (obj) {
             if (typeof obj.value != "undefined") {
-                this._d.innerText = obj.value;
+                try {
+                    this._d.innerText = obj.value;
+                }
+                catch (e) {
+                    this._d.value = obj.value;
+                }
                 return this;
             }
-            return this._d.innerText;
+            return this._d.innerText || this._d.value;
         };
 
         /**
@@ -741,6 +746,26 @@ var jNet = new (function () {
 
             return this;
 
+        };
+
+        /**
+         * @param nameAttribute
+         * @returns {boolean}
+         */
+        this.getAttribute = function (nameAttribute) {
+            return this._call.call(this, {
+                callback: '_getAttribute',
+                nameAttribute: nameAttribute
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {boolean}
+         * @private
+         */
+        this._getAttribute = function (obj) {
+            return this._d.getAttribute(obj.nameAttribute);
         };
 
         /**
