@@ -11,6 +11,8 @@
  */
 var jNet = new (function () {
 
+    'use strict';
+
     /**
      * jNToDocument, Converts a line in object (Document)
      * @returns {Document}
@@ -19,7 +21,7 @@ var jNet = new (function () {
         /**
          * @type {DOMParser}
          */
-        domParser = new DOMParser();
+        var domParser = new DOMParser();
         return domParser.parseFromString(this, "text/html");
     };
 
@@ -39,8 +41,8 @@ var jNet = new (function () {
      * @returns {Array}
      */
     this.querySelectorAll = function (selector) {
-        _tmp = new jNet.jNArray();
-        _arr = document.querySelectorAll(selector);
+        var _tmp = new jNet.jNArray();
+        var _arr = document.querySelectorAll(selector);
         for (var i = 0; i < _arr.length; ++i) {
             _tmp.push(new jNet.jNDocQuery(_arr[i]));
         }
@@ -326,7 +328,7 @@ var jNet = new (function () {
         switch (typeof doc) {
 
             case 'object':
-                toStringArr = doc.toString().split(',');
+                var toStringArr = doc.toString().split(',');
                 if (toStringArr.length) {
                     switch (toStringArr[0]) {
                         case jNet.jNDocQuery().toString():
@@ -356,7 +358,7 @@ var jNet = new (function () {
 
             if (this._array.length()) {
 
-                _arr = new jNet.jNArray(this._array.map(function (element) {
+                var _arr = new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
 
@@ -437,8 +439,8 @@ var jNet = new (function () {
          * @private
          */
         this._findAll = function (obj) {
-            _tmp = new jNet.jNArray();
-            _arr = this._d.querySelectorAll(obj.selector);
+            var _tmp = new jNet.jNArray();
+            var _arr = this._d.querySelectorAll(obj.selector);
             for (var i = 0; i < _arr.length; ++i) {
                 _tmp.push(new jNet.jNDocQuery(_arr[i]));
             }
@@ -462,7 +464,7 @@ var jNet = new (function () {
          * @private
          */
         this._find = function (obj) {
-            _tmp = new jNet.jNDocQuery(this._d);
+            var _tmp = new jNet.jNDocQuery(this._d);
             _tmp._d = this._d.querySelector(obj.selector);
             return _tmp;
         };
@@ -488,7 +490,7 @@ var jNet = new (function () {
          * @private
          */
         this._classList = function () {
-            _classList = this._d.classList;
+            var _classList = this._d.classList;
             if (typeof _classList == 'undefined') {
                 return new jNet.jNArray();
             }
@@ -741,13 +743,13 @@ var jNet = new (function () {
          */
         this._append = function (obj) {
 
-            html = obj.html;
+            var html = obj.html;
             if (typeof html == 'string') {
                 html = html.jNToDocument();
             }
             else {
                 switch (html.toString()) {
-                    case this.toString():
+                    case jNet.jNDocQuery().toString():
                         html = html._outerHTML().jNToDocument();
                         break;
                 }
@@ -1033,123 +1035,6 @@ var jNet = new (function () {
     };
 
     /**
-     * @param options
-     */
-    this.ajax = function (options) {
-
-        /**
-         * @type {XMLHttpRequest}
-         */
-        var http = new XMLHttpRequest();
-
-        if (typeof options.data == "undefined") {
-            /**
-             * @type {{}}
-             */
-            options.data = {};
-        }
-
-        if (typeof options.method == "undefined") {
-            /**
-             * @type {string}
-             */
-            options.method = "GET";
-        }
-
-        if (typeof options.contentType == "undefined") {
-            /**
-             * @type {string}
-             */
-            options.contentType = 'application/x-www-form-urlencoded';
-        }
-
-        if (typeof options.async == "undefined") {
-            /**
-             * @type {boolean}
-             */
-            options.async = true
-        }
-
-        if (typeof options.success != "function") {
-            /**
-             * @param response
-             */
-            options.success = function (response) {
-            }
-        }
-
-        if (typeof options.stateChange != "function") {
-            /**
-             * @param response
-             */
-            options.stateChange = function (response) {
-            }
-        }
-
-        if (typeof options.progress != "function") {
-            /**
-             * @param response
-             */
-            options.progress = function (response) {
-            }
-        }
-
-        if (typeof options.fail != "function") {
-            /**
-             * @param response
-             */
-            options.fail = function (response) {
-            }
-        }
-
-        /**
-         * @type {options.stateChange|*}
-         */
-        http.onreadystatechange = options.stateChange;
-
-        /**
-         * @type {options.success|*}
-         */
-        http.onload = options.success;
-
-        /**
-         * @type {options.fail|*}
-         */
-        http.onerror = options.fail;
-
-        /**
-         * @type {options.progress|*}
-         */
-        http.onprogress = options.progress;
-
-        if (options.method == "GET") {
-            /**
-             * @type {string}
-             */
-            url = options.url + "?" + this.serialize(options.data);
-        }
-        else {
-            /**
-             * @type {string|string}
-             */
-            url = options.url
-        }
-
-        http.open(options.method, url, options.async);
-        http.setRequestHeader('Content-Type', options.contentType);
-
-        if (options.method == "GET") {
-            http.send();
-        }
-        else {
-            http.send(this.serialize(options.data));
-        }
-
-        return http;
-
-    };
-
-    /**
      * @returns {*}
      */
     this.jNCookie = function () {
@@ -1223,7 +1108,7 @@ var jNet = new (function () {
             }
 
             try {
-                result = JSON.stringify(value);
+                var result = JSON.stringify(value);
                 if (/^[\{\[]/.test(result)) {
                     value = result;
                 }
@@ -1261,7 +1146,7 @@ var jNet = new (function () {
         this.get = function (key) {
             if (document.cookie.length) {
                 this._cookies._array = document.cookie.split('; ');
-                obj = this._decode();
+                var obj = this._decode();
                 if (typeof key == "undefined") {
                     return obj;
                 }
@@ -1295,6 +1180,141 @@ var jNet = new (function () {
     this.ready = function (listener, useCapture) {
         document.addEventListener("DOMContentLoaded", listener, useCapture);
         return this;
+    };
+
+    /**
+     * @param options
+     * @returns {XMLHttpRequest}
+     */
+    this.ajax = function (options) {
+
+        /**
+         * @type {XMLHttpRequest}
+         */
+        var http = new XMLHttpRequest();
+
+        /**
+         * @type {{}}
+         */
+        options.data = options.data || {};
+
+        /**
+         * @type {{}}
+         */
+        options.files = options.files || {};
+
+        /**
+         * @type {string}
+         */
+        options.method = options.method || "GET";
+
+        /**
+         * @type {string}
+         */
+        options.contentType = options.contentType || 'application/x-www-form-urlencoded';
+
+        if (typeof options.async == "undefined") {
+            /**
+             * @type {boolean}
+             */
+            options.async = true
+        }
+
+        if (typeof options.success != "function") {
+            /**
+             * @param response
+             */
+            options.success = function (response) {
+            };
+        }
+
+        if (typeof options.stateChange != "function") {
+            /**
+             * @param response
+             */
+            options.stateChange = function (response) {
+            };
+        }
+
+        if (typeof options.progress != "function") {
+            /**
+             * @param response
+             */
+            options.progress = function (response) {
+            };
+        }
+
+        if (typeof options.fail != "function") {
+            /**
+             * @param response
+             */
+            options.fail = function (response) {
+            };
+        }
+
+        /**
+         * @type {options.stateChange|*}
+         */
+        http.onreadystatechange = options.stateChange;
+
+        /**
+         * @type {options.success|*}
+         */
+        http.onload = options.success;
+
+        /**
+         * @type {options.fail|*}
+         */
+        http.onerror = options.fail;
+
+        /**
+         * @type {options.progress|*}
+         */
+        http.onprogress = options.progress;
+
+        var url;
+
+        if (options.method == "GET") {
+            /**
+             * @type {string}
+             */
+            url = options.url + "?" + this.serialize(options.data);
+        }
+        else {
+            /**
+             * @type {string|string}
+             */
+            url = options.url
+        }
+
+        http.open(options.method, url, options.async);
+
+        if (options.method == "POST" && Object.keys(options.files).length) {
+            var formData = new FormData();
+            for (var keyFile in options.files) {
+                if (options.files.hasOwnProperty(keyFile)) {
+                    formData.append('files[]', options.files[keyFile]);
+                }
+            }
+            for (var keyData in options.data) {
+                if (options.data.hasOwnProperty(keyData)) {
+                    formData.append(keyData, options.data[keyData]);
+                }
+            }
+            http.send(formData);
+        }
+        else {
+            http.setRequestHeader('Content-Type', options.contentType);
+            if (options.method == "GET") {
+                http.send();
+            }
+            else {
+                http.send(this.serialize(options.data));
+            }
+        }
+
+        return http;
+
     };
 
     return this;
