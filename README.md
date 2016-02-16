@@ -3,6 +3,21 @@
 JavaScript Framework
 
 ```javascript
+var $ = function (arg) {
+    if (typeof arg == "function") {
+        return jNet.ready(arg);
+    }
+    if (typeof arg == "string") {
+        return new jNet.jNDocQuery(new jNet.querySelectorAll(arg));
+    }
+    if (typeof arg == "object") {
+        return new jNet.jNDocQuery(arg);
+    }
+    return undefined;
+};
+```
+
+```javascript
 $(function () {
     $('#auth-form').submit(function (event) {
         $login = $(event.target).find('[name="name"]').text();
@@ -26,3 +41,4 @@ $(function () {
         return false;
     });
 });
+```
