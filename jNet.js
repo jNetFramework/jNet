@@ -444,10 +444,10 @@ var jNet = new (function () {
          * @returns {jNDocQuery}
          */
         this.find = function (selector) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_find',
                 selector: selector
-            }));
+            });
         };
 
         /**
@@ -909,11 +909,11 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.ready = function (listener, useCapture) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_ready',
                 listener: listener,
                 useCapture: useCapture
-            }));
+            });
         };
 
         /**
@@ -930,11 +930,11 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.click = function (listener, useCapture) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_click',
                 listener: listener,
                 useCapture: useCapture
-            }));
+            });
         };
 
         /**
@@ -951,10 +951,10 @@ var jNet = new (function () {
          * @param listener
          */
         this.submit = function (listener) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_submit',
                 listener: listener
-            }));
+            });
         };
 
         /**
@@ -973,12 +973,12 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.addEventListener = function (type, listener, useCapture) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_addEventListener',
                 type: type,
                 listener: listener,
                 useCapture: useCapture
-            }));
+            });
         };
 
         /**
@@ -996,12 +996,12 @@ var jNet = new (function () {
          * @param useCapture
          */
         this.removeEventListener = function (type, listener, useCapture) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_removeEventListener',
                 type: type,
                 listener: listener,
                 useCapture: useCapture
-            }));
+            });
         };
 
         /**
