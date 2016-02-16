@@ -353,25 +353,17 @@ var jNet = new (function () {
          * @private
          */
         this._call = function () {
-
             var args = arguments[0];
-
             if (this._array.length()) {
-
                 var _arr = new jNet.jNArray(this._array.map(function (element) {
                     return element[args.callback].call(element, args);
                 }));
-
                 if (_arr.length() == 1) {
                     return _arr.first();
                 }
-
                 return _arr;
-
             }
-
             return this[args.callback].call(this, args);
-
         };
 
         /**
@@ -632,9 +624,9 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.parent = function () {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_parent'
-            }));
+            });
         };
 
         /**
@@ -643,7 +635,8 @@ var jNet = new (function () {
          */
         this._parent = function () {
             if (typeof this._d.parentNode != "undefined") {
-                return jNet.jNDocQuery(this._d.parentNode);
+                this._d = this._d.parentNode;
+                return this;
             }
             return undefined;
         };
@@ -730,10 +723,10 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.append = function (html) {
-            return new jNet.jNDocQuery(this._call.call(this, {
+            return this._call.call(this, {
                 callback: '_append',
                 html: html
-            }));
+            });
         };
 
         /**
