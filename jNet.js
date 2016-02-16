@@ -404,6 +404,23 @@ var jNet = new (function () {
         };
 
         /**
+         * @returns {Window.jNDocQuery}
+         */
+        this.files = function () {
+            return this._call.call(this, {
+                callback: '_files'
+            });
+        };
+
+        /**
+         * @returns {files|*|FileList}
+         * @private
+         */
+        this._files = function () {
+            return this._d.files;
+        };
+
+        /**
          * @param selector
          * @returns {jNDocQuery}
          */
