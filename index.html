@@ -165,7 +165,7 @@
                         .last();
 
                 $div.append('<input class="mdl-textfield__input" id="' + element + '-kbEvent-input"/>');
-                $div.append('<label class="mdl-textfield__label" for="' + element + '-kbEvent-input">Text...</label>');
+                $div.append('<label class="mdl-textfield__label" for="' + element + '-kbEvent-input">' + element + '...</label>');
                 $("#" + element + "-kbEvent-input")[element](function (event) {
                     console.log([element, event]);
                 });
