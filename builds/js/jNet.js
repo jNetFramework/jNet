@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.419
+ *  @version 0.421
  */
 
 /**
@@ -922,6 +922,167 @@ var jNet = new (function () {
          */
         this._ready = function (obj) {
             this._addEventListener("DOMContentLoaded", obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.mousemove = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_mousemove',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._mousemove = function(obj) {
+            this.addEventListener('mousemove', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.mouseover = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_mouseover',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._mouseover = function(obj) {
+            this.addEventListener('mouseover', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.mouseout = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_mouseout',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._mouseout = function(obj) {
+            this.addEventListener('mouseout', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.mousedown = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_mousedown',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._mousedown = function(obj) {
+            this.addEventListener('mousedown', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.mouseup = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_mouseup',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._mouseup = function(obj) {
+            this.addEventListener('mouseup', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.dblclick = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_dblclick',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._dblclick = function(obj) {
+            this.addEventListener('dblclick', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.contextmenu = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_contextmenu',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._contextmenu = function(obj) {
+            this.addEventListener('contextmenu', obj.listener, obj.useCapture);
             return this;
         };
 

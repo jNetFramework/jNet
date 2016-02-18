@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="demo/material.indigo-pink.min.css">
     <script defer src="demo/material.min.js"></script>
 
-    <script type="text/javascript" src="src/js/jNet.js"></script>
+    <script type="text/javascript" src="builds/js/jNet.js"></script>
 
     <script type="text/javascript">
 
@@ -141,6 +141,17 @@
                 $inputs = event.target.elements;
                 console.log($inputs);
                 return false;
+            });
+
+            $main.append('<h3>Events</h3>');
+            $main.append('<ol id="events"></ol>');
+            $olEvents = $('#events');
+            'contextmenu dblclick mouseup mousedown mouseout mouseover mousemove'.split(' ').forEach(function(element) {
+                $olEvents.append('<li><a href="#" id="test-' + element + '">' + element + '</a></li>');
+                $element = $('#test-' + element);
+                $element[element](function (event) {
+                    console.log([element, event]);
+                });
             });
 
         });
