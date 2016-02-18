@@ -1,0 +1,17 @@
+{
+  "[settings]": {
+    "from": "src/",
+    "to": "builds/",
+    "cache": "cache/",
+    "header": "src/header"
+  },
+  "jNet": {
+    "type": "js",
+    "data": [
+      "jNet.js"
+    ],
+    "noMin": [
+      "jNet.js"
+    ]
+  }
+}
