@@ -923,6 +923,75 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
+        this.keypress = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_keypress',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._keypress = function(obj) {
+            this.addEventListener('keypress', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.keydown = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_keydown',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._keydown = function(obj) {
+            this.addEventListener('keydown', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.keyup = function(listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_keyup',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._keyup = function(obj) {
+            this.addEventListener('keyup', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
         this.mousemove = function(listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mousemove',
