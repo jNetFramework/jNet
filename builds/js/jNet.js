@@ -933,7 +933,12 @@ var jNet = new (function () {
                 document.selection.empty();
             }
             else {
-                window.getSelection().removeAllRanges();
+                if (typeof window.getSelection().empty == "function") {
+                    window.getSelection().empty();
+                }
+                else if (typeof window.getSelection().removeAllRanges == "function") {
+                    window.getSelection().removeAllRanges();
+                }
             }
             return this;
         };
