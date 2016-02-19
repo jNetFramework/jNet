@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.475
- *  @build 1078
+ *  @version 0.477
+ *  @build 1081
  */
 
 /**
@@ -39,6 +39,13 @@ var jNet = new (function () {
     };
 
     /**
+     * @returns {String}
+     */
+    String.prototype.selectorReplaceId = function () {
+        return this.replace(/#([-_\w\d]+)/g, "[id=$1]");
+    };
+
+    /**
      * @param min {int}
      * @param max {int}
      * @returns {*}
@@ -53,7 +60,7 @@ var jNet = new (function () {
      */
     this.querySelectorAll = function (selector) {
         var _tmp = new jNet.jNArray();
-        var _arr = document.querySelectorAll(selector);
+        var _arr = document.querySelectorAll(selector.selectorReplaceId());
         for (var i = 0; i < _arr.length; ++i) {
             _tmp.push(new jNet.jNDocQuery(_arr[i]));
         }
@@ -374,7 +381,7 @@ var jNet = new (function () {
                 break;
 
             case 'string':
-                this._d = document.querySelector(doc);
+                this._d = document.querySelector(doc.selectorReplaceId());
                 break;
 
         }
@@ -523,7 +530,7 @@ var jNet = new (function () {
          */
         this._findAll = function (obj) {
             var _tmp = new jNet.jNArray();
-            var _arr = this._d.querySelectorAll(obj.selector);
+            var _arr = this._d.querySelectorAll(obj.selector.selectorReplaceId());
             for (var i = 0; i < _arr.length; ++i) {
                 _tmp.push(new jNet.jNDocQuery(_arr[i]));
             }
@@ -548,7 +555,7 @@ var jNet = new (function () {
          */
         this._find = function (obj) {
             var _tmp = new jNet.jNDocQuery(this._d);
-            _tmp._d = this._d.querySelector(obj.selector);
+            _tmp._d = this._d.querySelector(obj.selector.selectorReplaceId());
             return _tmp;
         };
 
