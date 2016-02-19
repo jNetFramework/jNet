@@ -23,13 +23,13 @@
 
             if (typeof arg == "string") {
                 if (typeof only != "undefined") {
-                    return new jNet.jNDocQuery(arg);
+                    return new jNDocQuery(arg);
                 }
-                return new jNet.jNDocQuery(new jNet.querySelectorAll(arg));
+                return new jNDocQuery(new jNet.querySelectorAll(arg));
             }
 
             if (typeof arg == "object") {
-                return new jNet.jNDocQuery(arg);
+                return new jNDocQuery(arg);
             }
 
             return undefined;
@@ -199,6 +199,11 @@
                     return false;
                 }
 
+            });
+
+            $('input.mdl-textfield__input').each(function ($element) {
+                $element.attr('name', $element.attr('id'));
+                $element.attr('type', 'text');
             });
 
         });
