@@ -3,7 +3,7 @@
  *  @site https://babichev.net
  *  @year 2013 - 2016
  *  @version 0.477
- *  @build 1081
+ *  @build 1082
  */
 
 /**
@@ -42,7 +42,7 @@ var jNet = new (function () {
      * @returns {String}
      */
     String.prototype.selectorReplaceId = function () {
-        return this.replace(/#([-_\w\d]+)/g, "[id=$1]");
+        return this.replace(/#([-\w]+)/g, "[id=$1]");
     };
 
     /**

@@ -34,7 +34,7 @@ var jNet = new (function () {
      * @returns {String}
      */
     String.prototype.selectorReplaceId = function () {
-        return this.replace(/#([-_\w\d]+)/g, "[id=$1]");
+        return this.replace(/#([-\w]+)/g, "[id=$1]");
     };
 
     /**
