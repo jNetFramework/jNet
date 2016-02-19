@@ -374,6 +374,26 @@ var jNet = new (function () {
         };
 
         /**
+         * @returns {*}
+         */
+        this.reverse = function() {
+            if (this._array.length()) {
+                return this._array.reverse();
+            }
+            return this;
+        };
+
+        /**
+         * Alias at
+         *
+         * @param index
+         * @returns {*}
+         */
+        this.eq = function (index) {
+            return this.at(index);
+        };
+
+        /**
          * @param index
          * @returns {*}
          */
