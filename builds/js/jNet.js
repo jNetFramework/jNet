@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.473
- *  @build 1073
+ *  @version 0.474
+ *  @build 1074
  */
 
 /**
@@ -908,6 +908,18 @@ var jNet = new (function () {
 
         /**
          * @param nameAttribute
+         * @param valueAttribute
+         * @returns {*}
+         */
+        this.attr = function (nameAttribute, valueAttribute) {
+            if (typeof valueAttribute == "undefined") {
+                return this.getAttribute(nameAttribute);
+            }
+            return this.setAttribute(nameAttribute, valueAttribute);
+        };
+
+        /**
+         * @param nameAttribute
          * @returns {boolean}
          */
         this.getAttribute = function (nameAttribute) {
@@ -951,9 +963,9 @@ var jNet = new (function () {
          * @param valueAttribute
          * @returns {*}
          */
-        this.addAttribute = function (nameAttribute, valueAttribute) {
+        this.setAttribute = function (nameAttribute, valueAttribute) {
             return this._call.call(this, {
-                callback: '_addAttribute',
+                callback: '_setAttribute',
                 nameAttribute: nameAttribute,
                 valueAttribute: valueAttribute
             });
@@ -964,7 +976,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._addAttribute = function (obj) {
+        this._setAttribute = function (obj) {
             this._d.setAttribute(obj.nameAttribute, obj.valueAttribute);
             return this;
         };
