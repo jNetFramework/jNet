@@ -84,7 +84,7 @@ var jNet = new (function () {
          * @returns {Array.<T>|*}
          */
         this.clone = function() {
-            return this.splice();
+            return new jNet.jNArray(this.splice());
         };
 
         /**
