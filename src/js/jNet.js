@@ -48,6 +48,8 @@ var jNet = new (function () {
      */
     this.jNArray = function (data) {
 
+        'use strict';
+
         /**
          * @type {Array}
          * @private
@@ -320,6 +322,8 @@ var jNet = new (function () {
      * @returns {*}
      */
     this.jNDocQuery = function (doc) {
+
+        'use strict';
 
         /**
          * @type {Window.jNArray}
@@ -1552,6 +1556,8 @@ var jNet = new (function () {
      * @returns {XMLHttpRequest}
      */
     this.ajax = function (options) {
+
+        'use strict';
 
         /**
          * @type {XMLHttpRequest}
