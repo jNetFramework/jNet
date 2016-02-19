@@ -180,9 +180,15 @@
                     'для многих студентов такая программа является первым опытом при изучении нового языка.</p>');
 
             $('#test-selectstart').selectstart(function(event) {
+
                 console.log(event);
             }).copy(function(event) {
+
                 console.log(event);
+            }).mouseup(function (event) {
+
+                console.log(event);
+                $(event.target).cleanSelection();
             });
 
         });
