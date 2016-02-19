@@ -297,7 +297,8 @@ var jNet = new (function () {
          * @param thisArg
          */
         this.forEach = function (callback, thisArg) {
-            return this._array.forEach(callback, thisArg);
+            this._array.forEach(callback, thisArg);
+            return this;
         };
 
         /**
@@ -385,6 +386,18 @@ var jNet = new (function () {
                 return _arr;
             }
             return this[args.callback].call(this, args);
+        };
+
+        /**
+         * @param callback
+         * @returns {*}
+         */
+        this.each = function (callback) {
+            if (this._array.length()) {
+                return this._array.forEach(callback);
+            }
+            callback(this, null);
+            return this;
         };
 
         /**
