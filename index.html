@@ -15,13 +15,16 @@
 
     <script type="text/javascript">
 
-        var $ = function (arg) {
+        var $ = function (arg, only) {
 
             if (typeof arg == "function") {
                 return jNet.ready(arg);
             }
 
             if (typeof arg == "string") {
+                if (typeof only != "undefined") {
+                    return new jNet.jNDocQuery(arg);
+                }
                 return new jNet.jNDocQuery(new jNet.querySelectorAll(arg));
             }
 
