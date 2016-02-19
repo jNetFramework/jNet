@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.47
+ *  @version 0.472
  */
 
 /**
@@ -813,19 +813,10 @@ var jNet = new (function () {
         this.insertAfter = function ($element) {
             $element = new jNet.jNDocQuery($element);
             return this._call.call(this, {
-                callback: '_insertAfter',
-                element: $element.first()
+                callback: '_insertAfterBefore',
+                element: $element.first(),
+                insertBefore: false
             });
-        };
-
-        /**
-         * @param obj
-         * @returns {*}
-         * @private
-         */
-        this._insertAfter = function (obj) {
-            obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
-            return this;
         };
 
         /**
@@ -835,8 +826,9 @@ var jNet = new (function () {
         this.insertBefore = function ($element) {
             $element = new jNet.jNDocQuery($element);
             return this._call.call(this, {
-                callback: '_insertBefore',
-                element: $element.first()
+                callback: '_insertAfterBefore',
+                element: $element.first(),
+                insertBefore: true
             });
         };
 
@@ -845,9 +837,11 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._insertBefore = function (obj) {
+        this._insertAfterBefore = function (obj) {
             obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
-            this._d.parentNode.insertBefore(obj.element._d, this._d.nextSibling);
+            if (obj.insertBefore) {
+                this._d.parentNode.insertBefore(obj.element._d, this._d.nextSibling);
+            }
             return this;
         };
 
