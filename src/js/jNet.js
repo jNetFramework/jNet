@@ -1406,24 +1406,6 @@ var jNet = new (function () {
         this._cookies = new jNet.jNArray();
 
         /**
-         * @returns {{}}
-         * @private
-         */
-        this._decode = function () {
-            var rDecode = /(%[0-9A-Z]{2})+/g;
-            var temp = {};
-            this._cookies.forEach(function (line) {
-                var parts = line.split('=');
-                var name = parts[0].replace(rDecode, decodeURIComponent);
-                var cookie = parts.slice(1).join('=');
-                cookie = cookie.jNTrim('["]+');
-                cookie = cookie.replace(rDecode, decodeURIComponent);
-                temp[name] = cookie;
-            });
-            return temp;
-        };
-
-        /**
          * @param key
          * @returns {boolean}
          */
@@ -1506,7 +1488,16 @@ var jNet = new (function () {
         this.get = function (key) {
             if (document.cookie.length) {
                 this._cookies._array = document.cookie.split('; ');
-                var obj = this._decode();
+                var rDecode = /(%[0-9A-Z]{2})+/g;
+                var obj = {};
+                this._cookies.forEach(function (line) {
+                    var parts = line.split('=');
+                    var name = parts[0].replace(rDecode, decodeURIComponent);
+                    var cookie = parts.slice(1).join('=');
+                    cookie = cookie.jNTrim('["]+');
+                    cookie = cookie.replace(rDecode, decodeURIComponent);
+                    obj[name] = cookie;
+                });
                 if (typeof key == "undefined") {
                     return obj;
                 }
