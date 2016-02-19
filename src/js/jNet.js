@@ -1,10 +1,10 @@
+'use strict';
+
 /**
  * jNet Framework
  * @constructor
  */
 var jNet = new (function () {
-
-    'use strict';
 
     /**
      * jNToDocument, Converts a line in object (Document)
@@ -355,15 +355,13 @@ var jNCookie = function () {
  */
 var jNArray = function (data) {
 
-    'use strict';
-
     /**
      * @type {Array}
      * @private
      */
-    this._array = [];
+    this._array = new Array(0);
 
-    if (typeof data != "undefined") {
+    if (typeof data !== "undefined") {
         this._array = data;
     }
 
@@ -636,8 +634,6 @@ var jNArray = function (data) {
  */
 var jNDocQuery = function (doc) {
 
-    'use strict';
-
     /**
      * @type {Window.jNArray}
      * @private
@@ -658,7 +654,7 @@ var jNDocQuery = function (doc) {
                     case this.toString():
                         return doc;
 
-                    case jNArray().toString():
+                    case this._array.toString():
                         this._array = doc;
                         this._d = null;
                         break;
