@@ -848,7 +848,7 @@ var jNet = new (function () {
 
             if (typeof html.body.firstChild != 'undefined') {
                 if (obj.type == 'prepend') {
-                    this._d.insertBefore(html.body.firstChild, this._d.firstChild);
+                    this._d.insertBefore(html.body.firstChild, null);
                 }
                 else if (obj.type == 'append') {
                     this._d.appendChild(html.body.firstChild);
