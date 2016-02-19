@@ -1428,6 +1428,251 @@ var jNet = new (function () {
             return this;
         };
 
+        /**
+         * @returns {*}
+         * @private
+         */
+        this._easing = function () {
+
+            /**
+             * @param progress
+             * @returns {*}
+             */
+            this.linear = function (progress) {
+                return progress;
+            };
+
+            /**
+             * @param progress
+             * @returns {number}
+             */
+            this.quadratic = function (progress) {
+                return Math.pow(progress, 2);
+            };
+
+            /**
+             * @param progress
+             * @returns {number}
+             */
+            this.swing = function (progress) {
+                return 0.5 - Math.cos(progress * Math.PI) / 2;
+            };
+
+            /**
+             * @param progress
+             * @returns {number}
+             */
+            this.circ = function (progress) {
+                return 1 - Math.sin(Math.acos(progress));
+            };
+
+            /**
+             * @param progress
+             * @param x
+             * @returns {number}
+             */
+            this.back = function (progress, x) {
+                return Math.pow(progress, 2) * ((x + 1) * progress - x);
+            };
+
+            /**
+             * @param progress
+             * @returns {number}
+             */
+            this.bounce = function (progress) {
+                for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
+                    if (progress >= (7 - 4 * a) / 11) {
+                        return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
+                    }
+                }
+            };
+
+            /**
+             * @param progress
+             * @param x
+             * @returns {number}
+             */
+            this.elastic = function (progress, x) {
+                return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * x / 3 * progress);
+            };
+
+            return this;
+
+        };
+
+        /**
+         * @param options
+         * @returns {number}
+         */
+        this.animate = function (options) {
+
+            /**
+             * @type {Date}
+             */
+            var start = new Date;
+
+            /**
+             * @type {number}
+             */
+            var id = setInterval(function () {
+
+                /**
+                 * @type {number}
+                 */
+                var timePassed = new Date - start;
+
+                /**
+                 * @type {number}
+                 */
+                var progress = timePassed / options.duration;
+
+                if (progress > 1) {
+                    progress = 1;
+                }
+
+                /**
+                 * @type {number}
+                 */
+                options.progress = progress;
+                var delta = options.delta(progress);
+                options.step(delta);
+
+                if (progress == 1) {
+                    clearInterval(id);
+                    options.complete();
+                }
+
+            }, options.delay || 10);
+
+            return id;
+
+        };
+
+        /**
+         * @param duration
+         * @returns {*}
+         */
+        this.show = function (duration) {
+            return this._call.call(this, {
+                callback: '_show',
+                duration: duration
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*|{opacity}}
+         * @private
+         */
+        this._show = function (obj) {
+            var self = this;
+            if (self._d.style.display !== 'none') {
+                return this;
+            }
+            return this.fadeIn({
+                duration: obj.duration,
+                complete: function () {
+                    self._d.style.display = '';
+                }
+            });
+        };
+
+        /**
+         * @param duration
+         * @returns {*}
+         */
+        this.hide = function (duration) {
+            return this._call.call(this, {
+                callback: '_hide',
+                duration: duration
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*|{opacity}}
+         * @private
+         */
+        this._hide = function (obj) {
+            var self = this;
+            if (self._d.style.display === 'none') {
+                return this;
+            }
+            return this.fadeOut({
+                duration: obj.duration,
+                complete: function () {
+                    self._d.style.display = 'none';
+                }
+            });
+        };
+
+        /**
+         * @param options
+         * @returns {*}
+         */
+        this.fadeIn = function (options) {
+            return this._call.call(this, {
+                callback: '_fadeUniversal',
+                options: options,
+                to: 0
+            });
+        };
+
+        /**
+         * @param options
+         * @returns {*}
+         */
+        this.fadeOut = function (options) {
+            return this._call.call(this, {
+                callback: '_fadeUniversal',
+                options: options,
+                to: 1
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._fadeUniversal = function (obj) {
+
+            var self = this;
+
+            if (typeof obj.options !== "object") {
+                obj.options = {};
+            }
+
+            if (typeof obj.options.duration !== "number") {
+                obj.options.duration = 400;
+            }
+
+            if (typeof obj.options.complete !== "function") {
+                obj.options.complete = function () {
+                }
+            }
+
+            this.animate({
+                duration: obj.options.duration,
+                delta: function (progress) {
+                    progress = this.progress;
+                    return self._easing().swing(progress);
+                },
+                complete: obj.options.complete,
+                step: function (delta) {
+                    if (obj.to) { // Out
+                        self._d.style.opacity = obj.to - delta;
+                    }
+                    else { // In
+                        self._d.style.opacity = obj.to + delta;
+                    }
+                }
+            });
+
+            return this;
+
+        };
+
         return this;
 
     };
