@@ -971,8 +971,7 @@ var jNet = new (function () {
          * @private
          */
         this._select = function (obj) {
-            this._d.onselect = obj.listener;
-            //this.addEventListener('select', obj.listener, obj.useCapture);
+            this.addEventListener('select', obj.listener, obj.useCapture);
             return this;
         };
 
@@ -995,7 +994,7 @@ var jNet = new (function () {
          * @private
          */
         this._selectionchange = function (obj) {
-            this._d.onselectionchange = obj.listener;
+            this.addEventListener('selectionchange', obj.listener, obj.useCapture);
             return this;
         };
 
