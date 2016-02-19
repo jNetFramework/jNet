@@ -922,16 +922,12 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.cleanSelection = function () {
-            if (typeof window.getSelection == "undefined") {
-                document.selection.empty();
+            var $selection = this.getSelection();
+            if (typeof $selection.empty == "function") {
+                $selection.empty();
             }
-            else {
-                if (typeof window.getSelection().empty == "function") {
-                    window.getSelection().empty();
-                }
-                else if (typeof window.getSelection().removeAllRanges == "function") {
-                    window.getSelection().removeAllRanges();
-                }
+            else if (typeof $selection.removeAllRanges == "function") {
+                $selection.removeAllRanges();
             }
             return this;
         };
@@ -940,10 +936,59 @@ var jNet = new (function () {
          * @returns {Selection}
          */
         this.getSelection = function () {
-            if (typeof window.getSelection == "undefined") {
-                return document.selection;
+            if (typeof window.getSelection == "function") {
+                return window.getSelection();
             }
-            return window.getSelection();
+            else if (typeof document.getSelection == "function") {
+                return document.getSelection();
+            }
+            return document.selection.createRange().text;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.select = function (listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_select',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._select = function (obj) {
+            this.addEventListener('select', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.selectionchange = function (listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_selectionchange',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._selectionchange = function (obj) {
+            this.addEventListener('selectionchange', obj.listener, obj.useCapture);
+            return this;
         };
 
         /**

@@ -179,17 +179,20 @@
                     'например, «Hello World». Обычно это первый пример программы в учебниках по программированию, и ' +
                     'для многих студентов такая программа является первым опытом при изучении нового языка.</p>');
 
-            $('#test-selectstart').selectstart(function(event) {
-
+            $('#test-selectstart').selectstart(function (event) {
                 console.log(event);
-            }).copy(function(event) {
-
+            }).copy(function (event) {
                 console.log(event);
-            }).mouseup(function (event) {
+            }).mousedown(function (event) {
 
-                console.log(event);
-                $(event.target).cleanSelection();
-            });
+                if (event.button == 1) { // Middle Button
+                    $element = $(event.target);
+                    console.log({event: event, getSelection: $element.getSelection()});
+                    $element.cleanSelection();
+                    return false;
+                }
+
+            })
 
         });
 
