@@ -902,8 +902,8 @@ var jNet = new (function () {
          * @private
          */
         this._remove = function () {
-            if (typeof this.parentNode == 'undefined') {
-                this._outerHTML("");
+            if (typeof this._d.parentNode == 'undefined') {
+                this.outerHTML("");
             }
             else {
                 this._d.parentNode.removeChild(this._d);
