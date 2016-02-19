@@ -942,7 +942,10 @@ var jNet = new (function () {
             else if (typeof document.getSelection == "function") {
                 return document.getSelection();
             }
-            return document.selection.createRange().text;
+            else if (typeof document.selection != "undefined") {
+                return document.selection;
+            }
+            return undefined;
         };
 
         /**

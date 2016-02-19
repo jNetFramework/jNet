@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f327653e-33a6-4334-ac8c-3857a97869dd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build" afterPath="$PROJECT_DIR$/build" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.js" afterPath="$PROJECT_DIR$/builds/js/jNet.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.min.js" afterPath="$PROJECT_DIR$/builds/js/jNet.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/jNet.js" afterPath="$PROJECT_DIR$/src/js/jNet.js" />
     </list>
     <ignored path="bNet.iws" />
@@ -32,8 +27,8 @@
       <file leaf-file-name="jNet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1472603">
-              <caret line="990" column="24" selection-start-line="990" selection-start-column="24" selection-end-line="990" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.7979452">
+              <caret line="936" column="11" selection-start-line="936" selection-start-column="11" selection-end-line="936" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -530,20 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1686" column="0" selection-start-line="1686" selection-start-column="0" selection-end-line="1686" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="829" column="0" selection-start-line="829" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/out/scripts/linenumber.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -647,10 +628,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321918">
+          <caret line="686" column="0" selection-start-line="686" selection-start-column="0" selection-end-line="686" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMCore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321918">
+          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1472603">
-          <caret line="990" column="24" selection-start-line="990" selection-start-column="24" selection-end-line="990" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.7979452">
+          <caret line="936" column="11" selection-start-line="936" selection-start-column="11" selection-end-line="936" selection-end-column="11" />
           <folding />
         </state>
       </provider>
