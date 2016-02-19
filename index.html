@@ -124,7 +124,7 @@
 
             $form = $main.append('<form></form>').find('form');
             $form.append('<div class="mdl-grid"></div>');
-            
+
             $div = $form.find('div');
             $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
 
@@ -133,7 +133,7 @@
 
             $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
             $div = $div.append('<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"></div>').find('div');
-            
+
             $div.append('<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">submit</button>');
 
             $body.findAll('li').at(1).css('color', 'red');
@@ -147,7 +147,7 @@
             $main.append('<h3>Events</h3>');
             $main.append('<ol id="events"></ol>');
             $olEvents = $('#events');
-            'contextmenu dblclick mouseup mousedown mouseout mouseover mousemove'.split(' ').forEach(function(element) {
+            'contextmenu dblclick mouseup mousedown mouseout mouseover mousemove'.split(' ').forEach(function (element) {
                 $olEvents.append('<li><a href="#" id="test-' + element + '">' + element + '</a></li>');
                 $element = $('#test-' + element);
                 $element[element](function (event) {
@@ -158,7 +158,7 @@
             $main.append('<h3>Keyboard</h3>');
             $main.append('<form id="event-keyboard"></form>');
             $kbEvents = $('#event-keyboard');
-            'keypress keydown keyup'.split(' ').forEach(function(element) {
+            'keypress keydown keyup'.split(' ').forEach(function (element) {
                 $kbEvents.append('<div class="mdl-grid"></div>');
                 $div = $kbEvents.findAll('div').last();
                 $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>')
@@ -170,6 +170,19 @@
                 $("#" + element + "-kbEvent-input")[element](function (event) {
                     console.log([element, event]);
                 });
+            });
+
+            $main.append('<p id="test-selectstart">«Hello, world!» — программа, результатом работы которой является ' +
+                    'вывод на экран или иное устройство фразы «Hello, world!» (в дословном переводе с английского ' +
+                    '— «Привет, мир!»; представляет собой распространённое неформальное приветствие, близкое к ' +
+                    'русскому «всем привет!»). Также используются вариации с другой пунктуацией или регистром — ' +
+                    'например, «Hello World». Обычно это первый пример программы в учебниках по программированию, и ' +
+                    'для многих студентов такая программа является первым опытом при изучении нового языка.</p>');
+
+            $('#test-selectstart').selectstart(function(event) {
+                console.log(event);
+            }).copy(function(event) {
+                console.log(event);
             });
 
         });

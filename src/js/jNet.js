@@ -919,11 +919,80 @@ var jNet = new (function () {
         };
 
         /**
+         * @returns {*}
+         */
+        this.cleanSelection = function () {
+            if (typeof window.getSelection == "undefined") {
+                document.selection.empty();
+            }
+            else {
+                window.getSelection().removeAllRanges();
+            }
+            return this;
+        };
+
+        /**
+         * @returns {Selection}
+         */
+        this.getSelection = function () {
+            if (typeof window.getSelection == "undefined") {
+                return document.selection;
+            }
+            return window.getSelection();
+        };
+
+        /**
          * @param listener
          * @param useCapture
          * @returns {*}
          */
-        this.keypress = function(listener, useCapture) {
+        this.selectstart = function (listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_selectstart',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._selectstart = function (obj) {
+            this.addEventListener('selectstart', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.copy = function (listener, useCapture) {
+            return this._call.call(this, {
+                callback: '_copy',
+                listener: listener,
+                useCapture: useCapture
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._copy = function (obj) {
+            this.addEventListener('copy', obj.listener, obj.useCapture);
+            return this;
+        };
+
+        /**
+         * @param listener
+         * @param useCapture
+         * @returns {*}
+         */
+        this.keypress = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_keypress',
                 listener: listener,
@@ -936,7 +1005,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._keypress = function(obj) {
+        this._keypress = function (obj) {
             this.addEventListener('keypress', obj.listener, obj.useCapture);
             return this;
         };
@@ -946,7 +1015,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.keydown = function(listener, useCapture) {
+        this.keydown = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_keydown',
                 listener: listener,
@@ -959,7 +1028,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._keydown = function(obj) {
+        this._keydown = function (obj) {
             this.addEventListener('keydown', obj.listener, obj.useCapture);
             return this;
         };
@@ -969,7 +1038,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.keyup = function(listener, useCapture) {
+        this.keyup = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_keyup',
                 listener: listener,
@@ -982,7 +1051,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._keyup = function(obj) {
+        this._keyup = function (obj) {
             this.addEventListener('keyup', obj.listener, obj.useCapture);
             return this;
         };
@@ -992,7 +1061,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.mousemove = function(listener, useCapture) {
+        this.mousemove = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mousemove',
                 listener: listener,
@@ -1005,7 +1074,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._mousemove = function(obj) {
+        this._mousemove = function (obj) {
             this.addEventListener('mousemove', obj.listener, obj.useCapture);
             return this;
         };
@@ -1015,7 +1084,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.mouseover = function(listener, useCapture) {
+        this.mouseover = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mouseover',
                 listener: listener,
@@ -1028,7 +1097,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._mouseover = function(obj) {
+        this._mouseover = function (obj) {
             this.addEventListener('mouseover', obj.listener, obj.useCapture);
             return this;
         };
@@ -1038,7 +1107,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.mouseout = function(listener, useCapture) {
+        this.mouseout = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mouseout',
                 listener: listener,
@@ -1051,7 +1120,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._mouseout = function(obj) {
+        this._mouseout = function (obj) {
             this.addEventListener('mouseout', obj.listener, obj.useCapture);
             return this;
         };
@@ -1061,7 +1130,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.mousedown = function(listener, useCapture) {
+        this.mousedown = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mousedown',
                 listener: listener,
@@ -1074,7 +1143,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._mousedown = function(obj) {
+        this._mousedown = function (obj) {
             this.addEventListener('mousedown', obj.listener, obj.useCapture);
             return this;
         };
@@ -1084,7 +1153,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.mouseup = function(listener, useCapture) {
+        this.mouseup = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_mouseup',
                 listener: listener,
@@ -1097,7 +1166,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._mouseup = function(obj) {
+        this._mouseup = function (obj) {
             this.addEventListener('mouseup', obj.listener, obj.useCapture);
             return this;
         };
@@ -1107,7 +1176,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.dblclick = function(listener, useCapture) {
+        this.dblclick = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_dblclick',
                 listener: listener,
@@ -1120,7 +1189,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._dblclick = function(obj) {
+        this._dblclick = function (obj) {
             this.addEventListener('dblclick', obj.listener, obj.useCapture);
             return this;
         };
@@ -1130,7 +1199,7 @@ var jNet = new (function () {
          * @param useCapture
          * @returns {*}
          */
-        this.contextmenu = function(listener, useCapture) {
+        this.contextmenu = function (listener, useCapture) {
             return this._call.call(this, {
                 callback: '_contextmenu',
                 listener: listener,
@@ -1143,7 +1212,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._contextmenu = function(obj) {
+        this._contextmenu = function (obj) {
             this.addEventListener('contextmenu', obj.listener, obj.useCapture);
             return this;
         };
