@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f327653e-33a6-4334-ac8c-3857a97869dd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build" afterPath="$PROJECT_DIR$/build" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.js" afterPath="$PROJECT_DIR$/builds/js/jNet.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.min.js" afterPath="$PROJECT_DIR$/builds/js/jNet.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/jNet.js" afterPath="$PROJECT_DIR$/src/js/jNet.js" />
     </list>
     <ignored path="bNet.iws" />
@@ -27,8 +31,8 @@
       <file leaf-file-name="jNet.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15753424">
-              <caret line="1321" column="57" selection-start-line="1321" selection-start-column="57" selection-end-line="1321" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.5068493">
+              <caret line="1330" column="29" selection-start-line="1330" selection-start-column="13" selection-end-line="1330" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -646,8 +650,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15753424">
-          <caret line="1321" column="57" selection-start-line="1321" selection-start-column="57" selection-end-line="1321" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.5068493">
+          <caret line="1330" column="29" selection-start-line="1330" selection-start-column="13" selection-end-line="1330" selection-end-column="29" />
           <folding />
         </state>
       </provider>
