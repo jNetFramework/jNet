@@ -1565,7 +1565,7 @@ var jNet = new (function () {
          * @type {string}
          */
         options.method = options.method || "GET";
-        
+
         /**
          * @type {string|null}
          */
