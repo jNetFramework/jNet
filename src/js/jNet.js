@@ -102,9 +102,11 @@ var jNet = new (function () {
          * @returns {*}
          */
         this.shuffle = function () {
-            return this.clone().sort(function (a, b) {
+            var shuffle = this.clone();
+            shuffle.sort(function (a, b) {
                 return Math.random() - 0.5;
             });
+            return shuffle;
         };
 
         /**
