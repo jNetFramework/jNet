@@ -1632,22 +1632,26 @@ var jNet = new (function () {
 
         var url;
 
-        if (options.method == "GET") {
-            /**
-             * @type {string}
-             */
-            url = options.url + "?" + this.serialize(options.data);
+        var query = this.serialize(options.data);
+        if (query && (options.method === 'GET' || options.method === 'DELETE')) {
+            if (options.url.indexOf('?') === -1) {
+                options.url += '?' + query;
+            }
+            else {
+                options.url += '&' + query;
+            }
+            query = null;
         }
         else {
             /**
-             * @type {string|string}
+             * @type {string|*}
              */
             url = options.url
         }
 
         http.open(options.method, url, options.async);
 
-        if (options.method == "POST" && Object.keys(options.files).length) {
+        if (options.method === 'POST' && Object.keys(options.files).length) {
             var formData = new FormData();
             for (var keyFile in options.files) {
                 if (options.files.hasOwnProperty(keyFile)) {
@@ -1663,11 +1667,11 @@ var jNet = new (function () {
         }
         else {
             http.setRequestHeader('Content-Type', options.contentType);
-            if (options.method == "GET") {
+            if (options.method === 'GET' || options.method === 'DELETE') {
                 http.send();
             }
             else {
-                http.send(this.serialize(options.data));
+                http.send(query);
             }
         }
 
