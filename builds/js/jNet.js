@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.452
+ *  @version 0.453
  */
 
 /**
@@ -810,52 +810,23 @@ var jNet = new (function () {
          * @param html
          * @returns {*}
          */
-        this.prepend = function (html) {
+        this.append = function (html) {
             return this._call.call(this, {
-                callback: '_prepend',
-                html: html
+                callback: '_prependAppend',
+                html: html,
+                type: 'append'
             });
-        };
-
-        /**
-         * @param obj
-         * @returns {*}
-         * @private
-         */
-        this._prepend = function (obj) {
-
-            var html = obj.html;
-            if (typeof html == 'string') {
-                html = html.jNToDocument();
-            }
-            else {
-                switch (html.toString()) {
-                    case jNet.jNDocQuery().toString():
-                        html = html._outerHTML().jNToDocument();
-                        break;
-                }
-            }
-
-            if (typeof html.outerHTML != 'undefined') {
-                html = html.outerHTML.jNToDocument();
-            }
-
-            if (typeof html.body.firstChild != 'undefined') {
-                this._d.insertBefore(html.body.firstChild, this._d.firstChild);
-            }
-
-            return this;
-
         };
 
         /**
          * @param html
          * @returns {*}
          */
-        this.append = function (html) {
+        this.prepend = function (html) {
             return this._call.call(this, {
-                callback: '_append',
-                html: html
+                callback: '_prependAppend',
+                html: html,
+                type: 'prepend'
             });
         };
 
@@ -864,7 +835,7 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._append = function (obj) {
+        this._prependAppend = function (obj) {
 
             var html = obj.html;
             if (typeof html == 'string') {
@@ -883,7 +854,12 @@ var jNet = new (function () {
             }
 
             if (typeof html.body.firstChild != 'undefined') {
-                this._d.appendChild(html.body.firstChild);
+                if (obj.type == 'prepend') {
+                    this._d.insertBefore(html.body.firstChild, this._d.firstChild);
+                }
+                else if (obj.type == 'append') {
+                    this._d.appendChild(html.body.firstChild);
+                }
             }
 
             return this;
