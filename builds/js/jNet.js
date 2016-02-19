@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.433
+ *  @version 0.434
  */
 
 /**
@@ -96,6 +96,20 @@ var jNet = new (function () {
                 ko[item] = 1;
             });
             return Object.keys(ko);
+        };
+
+        /**
+         * @returns {*}
+         */
+        this.shuffle = function() {
+            function get(index) {
+                return Math.floor(Math.random() * index);
+            }
+            for (var i = this._array.length, j; i;) {
+                j = get(i--);
+                this._array[j] = [this._array[i], this._array[i] = this._array[j]][0];
+            }
+            return this;
         };
 
         /**

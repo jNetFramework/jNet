@@ -92,6 +92,20 @@ var jNet = new (function () {
         };
 
         /**
+         * @returns {*}
+         */
+        this.shuffle = function() {
+            function get(index) {
+                return Math.floor(Math.random() * index);
+            }
+            for (var i = this._array.length, j; i;) {
+                j = get(i--);
+                this._array[j] = [this._array[i], this._array[i] = this._array[j]][0];
+            }
+            return this;
+        };
+
+        /**
          * @param a
          * @returns {Array.<T>|*}
          */
