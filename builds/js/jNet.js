@@ -1320,6 +1320,17 @@ var jNet = new (function () {
         };
 
         /**
+         * Alias addEventListener
+         *
+         * @param type
+         * @param listener
+         * @param useCapture
+         */
+        this.on = function (type, listener, useCapture) {
+            return this.addEventListener(type, listener, useCapture);
+        };
+
+        /**
          * @param type
          * @param listener
          * @param useCapture
@@ -1340,6 +1351,17 @@ var jNet = new (function () {
         this._addEventListener = function (obj) {
             this._d.addEventListener(obj.type, obj.listener, obj.useCapture);
             return this;
+        };
+
+        /**
+         * Alias removeEventListener
+         *
+         * @param type
+         * @param listener
+         * @param useCapture
+         */
+        this.off = function (type, listener, useCapture) {
+            return this.removeEventListener(type, listener, useCapture);
         };
 
         /**
