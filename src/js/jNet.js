@@ -30,6 +30,15 @@ var jNet = new (function () {
     };
 
     /**
+     * @param min {int}
+     * @param max {int}
+     * @returns {*}
+     */
+    Math.rand = function (min, max) {
+        return this.floor(this.random() * (max - min + 1)) + min;
+    };
+
+    /**
      * @param selector
      * @returns {Array}
      */
@@ -83,8 +92,8 @@ var jNet = new (function () {
         /**
          * @returns {Array.<T>|*}
          */
-        this.clone = function() {
-            return new jNet.jNArray(this.splice());
+        this.clone = function () {
+            return new jNet.jNArray(this.slice());
         };
 
         /**
@@ -115,7 +124,7 @@ var jNet = new (function () {
          */
         this.diff = function (a) {
             return this.filter(function (i) {
-                return a.indexOf(i) < 0;
+                return a.indexOf(i) === -1;
             });
         };
 
@@ -124,6 +133,7 @@ var jNet = new (function () {
          */
         this.remove = function (item) {
             this.splice(this.indexOf(item), 1);
+            return this;
         };
 
         /**
@@ -131,7 +141,7 @@ var jNet = new (function () {
          * @returns {boolean}
          */
         this.contains = function (item) {
-            return (this.indexOf(item) != -1);
+            return this.indexOf(item) !== -1;
         };
 
         /**
@@ -200,7 +210,7 @@ var jNet = new (function () {
          * @returns {boolean}
          */
         this.sort = function (compareFn) {
-            return this._array.some(compareFn);
+            return this._array.sort(compareFn);
         };
 
         /**
