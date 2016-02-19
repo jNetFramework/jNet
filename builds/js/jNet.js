@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.43
+ *  @version 0.432
  */
 
 /**
@@ -1565,6 +1565,16 @@ var jNet = new (function () {
          * @type {string}
          */
         options.method = options.method || "GET";
+        
+        /**
+         * @type {string|null}
+         */
+        options.user = options.user || null;
+
+        /**
+         * @type {string|null}
+         */
+        options.password = options.password || null;
 
         /**
          * @type {string}
@@ -1630,8 +1640,6 @@ var jNet = new (function () {
          */
         http.onprogress = options.progress;
 
-        var url;
-
         var query = this.serialize(options.data);
         if (query && (options.method === 'GET' || options.method === 'DELETE')) {
             if (options.url.indexOf('?') === -1) {
@@ -1642,14 +1650,8 @@ var jNet = new (function () {
             }
             query = null;
         }
-        else {
-            /**
-             * @type {string|*}
-             */
-            url = options.url
-        }
 
-        http.open(options.method, url, options.async, options.user, options.password);
+        http.open(options.method, options.url, options.async, options.user, options.password);
 
         if (options.method === 'POST' && Object.keys(options.files).length) {
             var formData = new FormData();
