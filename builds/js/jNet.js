@@ -1667,9 +1667,6 @@ var jNet = new (function () {
         }
         else {
             http.setRequestHeader('Content-Type', options.contentType);
-            if (options.method === 'GET' || options.method === 'DELETE') {
-                query = null;
-            }
         }
 
         http.send(query);
