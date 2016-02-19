@@ -129,6 +129,7 @@ try {
 
     $header = file_get_contents($settins['header']);
     $header = str_replace("{version}", $sbversion, $header);
+    $header = str_replace("{build}", build(), $header);
     $header = str_replace("{year}", '2013 - ' . date('Y'), $header);
 
     echo PHP_EOL, $header, PHP_EOL;
