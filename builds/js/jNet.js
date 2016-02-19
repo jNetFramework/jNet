@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.449
+ *  @version 0.452
  */
 
 /**
@@ -305,7 +305,6 @@ var jNet = new (function () {
          */
         this.forEach = function (callback, thisArg) {
             this._array.forEach(callback, thisArg);
-            return this;
         };
 
         /**
@@ -401,9 +400,11 @@ var jNet = new (function () {
          */
         this.each = function (callback) {
             if (this._array.length()) {
-                return this._array.forEach(callback);
+                this._array.forEach(callback);
             }
-            callback(this);
+            else {
+                callback(this, null);
+            }
             return this;
         };
 
@@ -455,6 +456,32 @@ var jNet = new (function () {
             if (this._array.length()) {
                 return this._array.last();
             }
+            return this;
+        };
+
+        /**
+         * @param callback
+         * @returns {*}
+         */
+        this.odd = function (callback) {
+            this.each(function ($element, key) {
+                if (key % 2) {
+                    callback($element);
+                }
+            });
+            return this;
+        };
+
+        /**
+         * @param callback
+         * @returns {*}
+         */
+        this.even = function (callback) {
+            this.each(function ($element, key) {
+                if (!(key % 2)) {
+                    callback($element);
+                }
+            });
             return this;
         };
 

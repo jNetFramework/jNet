@@ -155,6 +155,10 @@
                 });
             });
 
+            $olEvents.findAll('li').odd(function ($e) {
+                $e.css('background', '#ccc');
+            });
+
             $main.append('<h3>Keyboard</h3>');
             $main.append('<form id="event-keyboard"></form>');
             $kbEvents = $('#event-keyboard');
@@ -192,7 +196,7 @@
                     return false;
                 }
 
-            })
+            });
 
         });
 
