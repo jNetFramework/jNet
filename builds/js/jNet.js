@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.474
- *  @build 1074
+ *  @version 0.475
+ *  @build 1078
  */
 
 /**
@@ -16,6 +16,7 @@ var jNet = new (function () {
 
     /**
      * jNToDocument, Converts a line in object (Document)
+     *
      * @returns {Document}
      */
     String.prototype.jNToDocument = function () {
@@ -27,7 +28,7 @@ var jNet = new (function () {
     };
 
     /**
-     * @param regex
+     * @param regex {string}
      * @returns {string}
      */
     String.prototype.jNTrim = function (regex) {
@@ -47,7 +48,7 @@ var jNet = new (function () {
     };
 
     /**
-     * @param selector
+     * @param selector {string}
      * @returns {Array}
      */
     this.querySelectorAll = function (selector) {
@@ -60,7 +61,7 @@ var jNet = new (function () {
     };
 
     /**
-     * @param data
+     * @param data {Array.<T>|undefined}
      * @returns {*}
      */
     this.jNArray = function (data) {
@@ -90,7 +91,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param key
+         * @param key {int}
          * @returns {*}
          */
         this.at = function (key) {
@@ -105,14 +106,14 @@ var jNet = new (function () {
         };
 
         /**
-         * @returns {Array}
+         * @returns {*}
          */
         this.unique = function () {
             var ko = {};
             this.forEach(function (item) {
                 ko[item] = 1;
             });
-            return Object.keys(ko);
+            return new jNet.jNArray(Object.keys(ko));
         };
 
         /**
@@ -127,17 +128,18 @@ var jNet = new (function () {
         };
 
         /**
-         * @param a
+         * @param array {Array.<T>|*}
          * @returns {Array.<T>|*}
          */
-        this.diff = function (a) {
+        this.diff = function (array) {
             return this.filter(function (i) {
-                return a.indexOf(i) === -1;
+                return array.indexOf(i) === -1;
             });
         };
 
         /**
-         * @param item
+         * @param item {string}
+         * @returns {*}
          */
         this.remove = function (item) {
             this.splice(this.indexOf(item), 1);
@@ -145,7 +147,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param item
+         * @param item {Array.<T>}
          * @returns {boolean}
          */
         this.contains = function (item) {
@@ -160,7 +162,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param items
+         * @param items {Array.<T>}
          * @returns {Array.<T>}
          */
         this.concat = function (items) {
@@ -168,7 +170,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param separator
+         * @param separator {string}
          * @returns {string}
          */
         this.join = function (separator) {
@@ -183,7 +185,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param items
+         * @param items {Array.<T>}
          * @returns {Number}
          */
         this.push = function (items) {
@@ -205,8 +207,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param start
-         * @param end
+         * @param start {Number}
+         * @param end {Number}
          * @returns {Array.<T>}
          */
         this.slice = function (start, end) {
@@ -214,7 +216,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param compareFn
+         * @param compareFn {function}
          * @returns {boolean}
          */
         this.sort = function (compareFn) {
@@ -222,9 +224,9 @@ var jNet = new (function () {
         };
 
         /**
-         * @param start
-         * @param deleteCount
-         * @param items
+         * @param start {Number}
+         * @param deleteCount {Number}
+         * @param items {Array}
          * @returns {Array.<T>}
          */
         this.splice = function (start, deleteCount, items) {
@@ -232,7 +234,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param items
+         * @param items {Array}
          * @returns {Number}
          */
         this.unshift = function (items) {
@@ -247,8 +249,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param initialValue
+         * @param callback {function}
+         * @param initialValue {*}
          * @returns {*}
          */
         this.reduce = function (callback, initialValue) {
@@ -256,8 +258,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param initialValue
+         * @param callback {function}
+         * @param initialValue {*}
          * @returns {*}
          */
         this.reduceRight = function (callback, initialValue) {
@@ -265,8 +267,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param searchElement
-         * @param fromIndex
+         * @param searchElement {T}
+         * @param fromIndex {number}
          * @returns {number}
          */
         this.indexOf = function (searchElement, fromIndex) {
@@ -274,8 +276,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param searchElement
-         * @param fromIndex
+         * @param searchElement {T}
+         * @param fromIndex {number}
          * @returns {number}
          */
         this.lastIndexOf = function (searchElement, fromIndex) {
@@ -283,8 +285,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param thisArg
+         * @param callback {function}
+         * @param thisArg {*}
          * @returns {boolean}
          */
         this.every = function (callback, thisArg) {
@@ -292,8 +294,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param thisArg
+         * @param callback {function}
+         * @param thisArg {*}
          * @returns {Array.<T>}
          */
         this.filter = function (callback, thisArg) {
@@ -301,16 +303,16 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param thisArg
+         * @param callback {function}
+         * @param thisArg {*}
          */
         this.forEach = function (callback, thisArg) {
             this._array.forEach(callback, thisArg);
         };
 
         /**
-         * @param callback
-         * @param thisArg
+         * @param callback {function}
+         * @param thisArg {*}
          * @returns {Array}
          */
         this.map = function (callback, thisArg) {
@@ -318,8 +320,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
-         * @param thisArg
+         * @param callback {function}
+         * @param thisArg {*}
          * @returns {boolean}
          */
         this.some = function (callback, thisArg) {
@@ -396,7 +398,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
+         * @param callback {function}
          * @returns {*}
          */
         this.each = function (callback) {
@@ -422,7 +424,7 @@ var jNet = new (function () {
         /**
          * Alias at
          *
-         * @param index
+         * @param index {int}
          * @returns {*}
          */
         this.eq = function (index) {
@@ -430,7 +432,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param index
+         * @param index {int}
          * @returns {*}
          */
         this.at = function (index) {
@@ -461,7 +463,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
+         * @param callback {function}
          * @returns {*}
          */
         this.odd = function (callback) {
@@ -474,7 +476,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param callback
+         * @param callback {function}
          * @returns {*}
          */
         this.even = function (callback) {
@@ -515,7 +517,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {Window.jNArray|*}
          * @private
          */
@@ -540,7 +542,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {jNDocQuery}
          * @private
          */
@@ -581,7 +583,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param newClass
+         * @param newClass {string}
          * @returns {*}
          */
         this.addClass = function (newClass) {
@@ -592,7 +594,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -602,7 +604,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param className
+         * @param className {string}
          * @returns {*}
          */
         this.removeClass = function (className) {
@@ -613,7 +615,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -623,7 +625,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param className
+         * @param className {string}
          * @returns {boolean}
          */
         this.hasClass = function (className) {
@@ -634,7 +636,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {boolean}
          * @private
          */
@@ -643,7 +645,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param className
+         * @param className {string}
          * @returns {*}
          */
         this.toggleClass = function (className) {
@@ -654,7 +656,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -678,15 +680,15 @@ var jNet = new (function () {
          */
         this._cleanClass = function () {
             var self = this;
-            this.classList().forEach(function (element) {
-                self.removeClass(element);
+            this.classList().forEach(function (className) {
+                self.removeClass(className);
             });
             return self;
         };
 
         /**
-         * @param name
-         * @param value
+         * @param name {string}
+         * @param value {string}
          */
         this.css = function (name, value) {
             return this._call.call(this, {
@@ -697,7 +699,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -731,7 +733,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param value
+         * @param value {string}
          * @returns string|{*}
          */
         this.text = function (value) {
@@ -742,7 +744,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns string|{*}
          * @private
          */
@@ -760,7 +762,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param value
+         * @param value {string}
          * @returns string|{*}
          */
         this.innerHTML = function (value) {
@@ -771,7 +773,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns string|{*}
          * @private
          */
@@ -784,7 +786,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param value
+         * @param value {string}
          * @returns string|{*}
          */
         this.outerHTML = function (value) {
@@ -795,7 +797,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns string|{*}
          * @private
          */
@@ -808,7 +810,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param $element
+         * @param $element {string|jNet.jNDocQuery}
          * @returns {*}
          */
         this.insertAfter = function ($element) {
@@ -821,7 +823,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param $element
+         * @param $element {string|jNet.jNDocQuery}
          * @returns {*}
          */
         this.insertBefore = function ($element) {
@@ -834,7 +836,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -847,7 +849,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param html
+         * @param html {string|jNet.jNDocQuery}
          * @returns {*}
          */
         this.append = function (html) {
@@ -859,7 +861,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param html
+         * @param html {string|jNet.jNDocQuery}
          * @returns {*}
          */
         this.prepend = function (html) {
@@ -871,7 +873,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -907,8 +909,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param nameAttribute
-         * @param valueAttribute
+         * @param nameAttribute {string}
+         * @param valueAttribute {string}
          * @returns {*}
          */
         this.attr = function (nameAttribute, valueAttribute) {
@@ -919,7 +921,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param nameAttribute
+         * @param nameAttribute {string}
          * @returns {boolean}
          */
         this.getAttribute = function (nameAttribute) {
@@ -930,7 +932,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {boolean}
          * @private
          */
@@ -939,7 +941,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param nameAttribute
+         * @param nameAttribute {string}
          * @returns {boolean}
          */
         this.hasAttribute = function (nameAttribute) {
@@ -950,7 +952,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {boolean}
          * @private
          */
@@ -959,8 +961,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param nameAttribute
-         * @param valueAttribute
+         * @param nameAttribute {string}
+         * @param valueAttribute {string}
          * @returns {*}
          */
         this.setAttribute = function (nameAttribute, valueAttribute) {
@@ -972,7 +974,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1016,7 +1018,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param nameAttribute
+         * @param nameAttribute {string}
          * @returns {*}
          * @private
          */
@@ -1028,7 +1030,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1054,7 +1056,7 @@ var jNet = new (function () {
          */
         this._remove = function () {
             if (typeof this._d.parentNode == 'undefined') {
-                this.outerHTML("");
+                this.outerHTML('');
             }
             else {
                 this._d.parentNode.removeChild(this._d);
@@ -1063,8 +1065,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          */
         this.ready = function (listener, useCapture) {
             return this._call.call(this, {
@@ -1075,7 +1077,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @private
          */
         this._ready = function (obj) {
@@ -1114,8 +1116,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.select = function (listener, useCapture) {
@@ -1127,7 +1129,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1137,8 +1139,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.selectionchange = function (listener, useCapture) {
@@ -1150,7 +1152,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1160,8 +1162,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.selectstart = function (listener, useCapture) {
@@ -1173,7 +1175,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1183,8 +1185,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.copy = function (listener, useCapture) {
@@ -1196,7 +1198,12 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
+         * @returns {*}
+         * @private
+         */
+        /**
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1206,8 +1213,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.keypress = function (listener, useCapture) {
@@ -1219,7 +1226,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1229,8 +1236,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.keydown = function (listener, useCapture) {
@@ -1242,7 +1249,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1252,8 +1259,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.keyup = function (listener, useCapture) {
@@ -1265,7 +1272,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1275,8 +1282,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.mousemove = function (listener, useCapture) {
@@ -1288,7 +1295,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1298,8 +1305,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.mouseover = function (listener, useCapture) {
@@ -1311,7 +1318,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1321,8 +1328,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.mouseout = function (listener, useCapture) {
@@ -1334,7 +1341,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1344,8 +1351,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.mousedown = function (listener, useCapture) {
@@ -1357,7 +1364,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1367,8 +1374,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.mouseup = function (listener, useCapture) {
@@ -1380,7 +1387,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1390,8 +1397,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.dblclick = function (listener, useCapture) {
@@ -1403,7 +1410,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1413,8 +1420,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
          * @returns {*}
          */
         this.contextmenu = function (listener, useCapture) {
@@ -1426,7 +1433,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1436,8 +1443,9 @@ var jNet = new (function () {
         };
 
         /**
-         * @param listener
-         * @param useCapture
+         * @param listener {function}
+         * @param useCapture {boolean}
+         * @returns {*}
          */
         this.click = function (listener, useCapture) {
             return this._call.call(this, {
@@ -1448,7 +1456,8 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
+         * @returns {*}
          * @private
          */
         this._click = function (obj) {
@@ -1456,9 +1465,9 @@ var jNet = new (function () {
             return this;
         };
 
-
         /**
-         * @param listener
+         * @param listener {function}
+         * @returns {*}
          */
         this.submit = function (listener) {
             return this._call.call(this, {
@@ -1468,7 +1477,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1480,18 +1489,18 @@ var jNet = new (function () {
         /**
          * Alias addEventListener
          *
-         * @param type
-         * @param listener
-         * @param useCapture
+         * @param type {string}
+         * @param listener {function}
+         * @param useCapture {boolean}
          */
         this.on = function (type, listener, useCapture) {
             return this.addEventListener(type, listener, useCapture);
         };
 
         /**
-         * @param type
-         * @param listener
-         * @param useCapture
+         * @param type {string}
+         * @param listener {function}
+         * @param useCapture {boolean}
          */
         this.addEventListener = function (type, listener, useCapture) {
             return this._call.call(this, {
@@ -1503,7 +1512,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @private
          */
         this._addEventListener = function (obj) {
@@ -1514,18 +1523,19 @@ var jNet = new (function () {
         /**
          * Alias removeEventListener
          *
-         * @param type
-         * @param listener
-         * @param useCapture
+         * @param type {string}
+         * @param listener {function}
+         * @param useCapture {boolean}
          */
         this.off = function (type, listener, useCapture) {
             return this.removeEventListener(type, listener, useCapture);
         };
 
         /**
-         * @param type
-         * @param listener
-         * @param useCapture
+         * @param type {string}
+         * @param listener {function}
+         * @param useCapture {boolean}
+         * @returns {*}
          */
         this.removeEventListener = function (type, listener, useCapture) {
             return this._call.call(this, {
@@ -1537,7 +1547,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @private
          */
         this._removeEventListener = function (obj) {
@@ -1552,7 +1562,7 @@ var jNet = new (function () {
         this._easing = function () {
 
             /**
-             * @param progress
+             * @param progress {number}
              * @returns {*}
              */
             this.linear = function (progress) {
@@ -1560,7 +1570,7 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
+             * @param progress {number}
              * @returns {number}
              */
             this.quadratic = function (progress) {
@@ -1568,7 +1578,7 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
+             * @param progress {number}
              * @returns {number}
              */
             this.swing = function (progress) {
@@ -1576,7 +1586,7 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
+             * @param progress {number}
              * @returns {number}
              */
             this.circ = function (progress) {
@@ -1584,8 +1594,8 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
-             * @param x
+             * @param progress {number}
+             * @param x {number}
              * @returns {number}
              */
             this.back = function (progress, x) {
@@ -1593,7 +1603,7 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
+             * @param progress {number}
              * @returns {number}
              */
             this.bounce = function (progress) {
@@ -1605,8 +1615,8 @@ var jNet = new (function () {
             };
 
             /**
-             * @param progress
-             * @param x
+             * @param progress {number}
+             * @param x {number}
              * @returns {number}
              */
             this.elastic = function (progress, x) {
@@ -1618,7 +1628,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param options
+         * @param options {{}}
          * @returns {number}
          */
         this.animate = function (options) {
@@ -1666,7 +1676,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param duration
+         * @param duration {int}
          * @returns {*}
          */
         this.show = function (duration) {
@@ -1677,7 +1687,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*|{opacity}}
          * @private
          */
@@ -1695,7 +1705,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param duration
+         * @param duration {int}
          * @returns {*}
          */
         this.hide = function (duration) {
@@ -1706,7 +1716,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*|{opacity}}
          * @private
          */
@@ -1724,7 +1734,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param options
+         * @param options {{}}
          * @returns {*}
          */
         this.fadeIn = function (options) {
@@ -1736,7 +1746,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param options
+         * @param options {{}}
          * @returns {*}
          */
         this.fadeOut = function (options) {
@@ -1748,7 +1758,7 @@ var jNet = new (function () {
         };
 
         /**
-         * @param obj
+         * @param obj {{}}
          * @returns {*}
          * @private
          */
@@ -1799,7 +1809,7 @@ var jNet = new (function () {
     };
 
     /**
-     * @param objData
+     * @param objData {{}}
      * @returns {string}
      */
     this.serialize = function (objData) {
@@ -1820,7 +1830,7 @@ var jNet = new (function () {
         this._cookies = new jNet.jNArray();
 
         /**
-         * @param key
+         * @param key {string}
          * @returns {boolean}
          */
         this.remove = function (key) {
@@ -1829,9 +1839,9 @@ var jNet = new (function () {
         };
 
         /**
-         * @param key
-         * @param value
-         * @param attributes
+         * @param key {string}
+         * @param value {string}
+         * @param attributes {string}
          * @returns {boolean}
          */
         this.set = function (key, value, attributes) {
@@ -1932,7 +1942,8 @@ var jNet = new (function () {
     };
 
     /**
-     * @param obj
+     * @param obj {{}}
+     * @returns {Array.<T>|*}
      */
     this.clone = function (obj) {
         if (Array.isArray(obj)) {
@@ -1942,8 +1953,9 @@ var jNet = new (function () {
     };
 
     /**
-     * @param listener
-     * @param useCapture
+     * @param listener {function}
+     * @param useCapture {boolean}
+     * @returns {*}
      */
     this.ready = function (listener, useCapture) {
         document.addEventListener("DOMContentLoaded", listener, useCapture);
@@ -1951,7 +1963,7 @@ var jNet = new (function () {
     };
 
     /**
-     * @param options
+     * @param options {{}}
      * @returns {XMLHttpRequest}
      */
     this.ajax = function (options) {
