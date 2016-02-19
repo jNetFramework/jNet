@@ -803,11 +803,11 @@ var jNet = new (function () {
          * @param $element
          * @returns {*}
          */
-        this.insertBefore = function ($element) {
+        this.insertAfter = function ($element) {
             $element = new jNet.jNDocQuery($element);
             return this._call.call(this, {
-                callback: '_insertBefore',
-                element: $element
+                callback: '_insertAfter',
+                element: $element.first()
             });
         };
 
@@ -816,7 +816,29 @@ var jNet = new (function () {
          * @returns {*}
          * @private
          */
-        this._insertBefore = function(obj) {
+        this._insertAfter = function (obj) {
+            obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
+            return this;
+        };
+
+        /**
+         * @param $element
+         * @returns {*}
+         */
+        this.insertBefore = function ($element) {
+            $element = new jNet.jNDocQuery($element);
+            return this._call.call(this, {
+                callback: '_insertBefore',
+                element: $element.first()
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._insertBefore = function (obj) {
             obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
             this._d.parentNode.insertBefore(obj.element._d, this._d.nextSibling);
             return this;
