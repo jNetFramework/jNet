@@ -800,6 +800,29 @@ var jNet = new (function () {
         };
 
         /**
+         * @param $element
+         * @returns {*}
+         */
+        this.insertBefore = function ($element) {
+            $element = new jNet.jNDocQuery($element);
+            return this._call.call(this, {
+                callback: '_insertBefore',
+                element: $element
+            });
+        };
+
+        /**
+         * @param obj
+         * @returns {*}
+         * @private
+         */
+        this._insertBefore = function(obj) {
+            obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
+            this._d.parentNode.insertBefore(obj.element._d, this._d.nextSibling);
+            return this;
+        };
+
+        /**
          * @param html
          * @returns {*}
          */
@@ -848,7 +871,7 @@ var jNet = new (function () {
 
             if (typeof html.body.firstChild != 'undefined') {
                 if (obj.type == 'prepend') {
-                    this._d.insertBefore(html.body.firstChild, null);
+                    this._d.insertBefore(html.body.firstChild, this._d.firstChild);
                 }
                 else if (obj.type == 'append') {
                     this._d.appendChild(html.body.firstChild);
