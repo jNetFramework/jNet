@@ -1659,11 +1659,15 @@ var jNet = new (function () {
                 }
             }
 
+            if (typeof obj.options.easing !== "string") {
+                obj.options.easing = "swing";
+            }
+
             this.animate({
                 duration: obj.options.duration,
                 delta: function (progress) {
                     progress = this.progress;
-                    return self._easing().swing(progress);
+                    return self._easing()[obj.options.easing](progress, 0);
                 },
                 complete: obj.options.complete,
                 step: function (delta) {
