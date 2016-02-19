@@ -1507,7 +1507,7 @@ var jNet = new (function () {
 
             return (document.cookie = [
                     key, '=', value,
-                    attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+                    attributes.expires && '; expires=' + attributes.expires.toUTCString(),
                     attributes.path && '; path=' + attributes.path,
                     attributes.domain && '; domain=' + attributes.domain,
                     attributes.secure ? '; secure' : ''

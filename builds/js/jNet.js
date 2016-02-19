@@ -2,7 +2,7 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.435
+ *  @version 0.436
  */
 
 /**
@@ -1514,7 +1514,7 @@ var jNet = new (function () {
 
             return (document.cookie = [
                     key, '=', value,
-                    attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+                    attributes.expires && '; expires=' + attributes.expires.toUTCString(),
                     attributes.path && '; path=' + attributes.path,
                     attributes.domain && '; domain=' + attributes.domain,
                     attributes.secure ? '; secure' : ''
