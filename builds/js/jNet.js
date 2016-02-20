@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.494
- *  @build 1120
+ *  @version 0.495
+ *  @build 1123
  */
 
 'use strict';
@@ -130,6 +130,7 @@ var jNet = new (function () {
          * @type {string}
          */
         options.method = options.method || 'GET';
+        options.method = options.method.toUpperCase();
 
         /**
          * @type {{}}
@@ -1381,6 +1382,67 @@ var jNDocQuery = function (doc) {
      */
     this._height = function () {
         return this._d.clientHeight;
+    };
+
+    /**
+     * @param options
+     * @returns {*}
+     */
+    this.get = function (options) {
+        return this._call.call(this, {
+            callback: '_get',
+            options: options
+        });
+    };
+
+    /**
+     * @param obj
+     * @private
+     */
+    this._get = function(obj) {
+        obj.options.method = 'GET';
+        obj.options.data = this;
+        jNet.ajax(obj.options);
+    };
+
+    /**
+     * @param options
+     * @returns {*}
+     */
+    this.post = function (options) {
+        return this._call.call(this, {
+            callback: '_post',
+            options: options
+        });
+    };
+
+    /**
+     * @param obj
+     * @private
+     */
+    this._post = function(obj) {
+        obj.options.method = 'POST';
+        obj.options.data = this;
+        jNet.ajax(obj.options);
+    };
+
+    /**
+     * @returns {number}
+     */
+    this.ajax = function (options) {
+        return this._call.call(this, {
+            callback: '_ajax',
+            options: options
+        });
+    };
+
+    /**
+     * @param obj
+     * @private
+     */
+    this._ajax = function(obj) {
+        obj.options.data = this;
+        jNet.ajax(obj.options);
     };
 
     /**

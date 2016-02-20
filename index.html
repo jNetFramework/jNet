@@ -140,6 +140,17 @@
             $div.append('<input type="file" name="files[]" multiple />');
 
             $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
+            $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
+
+            $div.append('<select size="3" multiple name="hero[]">' +
+                '<option disabled>Выберите героя</option>' +
+                '<option value="Чебурашка">Чебурашка</option>' +
+                '<option selected value="Крокодил Гена">Крокодил Гена</option>' +
+                '<option value="Шапокляк">Шапокляк</option>' +
+                '<option value="Крыса Лариса">Крыса Лариса</option>' +
+            '</select>');
+
+            $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
             $div = $div.append('<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"></div>').find('div');
 
             $div.append('<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">submit</button>');
@@ -147,23 +158,21 @@
             $body.findAll('li').at(1).css('color', 'red');
 
             $form.submit(function (event) {
-                jNet.ajax({
-                    data: $(event.target),
+
+                $(event.target).get({
                     url: "https://rez1dent3.github.io/jNet/",
-                    method: "POST",
+                    success: function (http) {
+                        console.log(['GET', JSON.parse(http.target.response)]);
+                    }
+                });
+
+                $(event.target).post({
+                    url: "https://rez1dent3.github.io/jNet/",
                     success: function (http) {
                         console.log(['POST', JSON.parse(http.target.response)]);
                     }
                 });
 
-                jNet.ajax({
-                    data: $(event.target),
-                    url: "https://rez1dent3.github.io/jNet/",
-                    method: "GET",
-                    success: function (http) {
-                        console.log(['GET', JSON.parse(http.target.response)]);
-                    }
-                });
                 return false;
             });
 
