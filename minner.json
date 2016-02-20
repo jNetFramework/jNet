@@ -8,10 +8,20 @@
   "jNet": {
     "type": "js",
     "data": [
-      "jNet.js"
+      "String.js",
+      "Math.js",
+      "jNet.js",
+      "jNArray.js",
+      "jNCookie.js",
+      "jNDocQuery.js"
     ],
     "noMin": [
-      "jNet.js"
+      "String.js",
+      "Math.js",
+      "jNet.js",
+      "jNArray.js",
+      "jNCookie.js",
+      "jNDocQuery.js"
     ]
   }
 }
