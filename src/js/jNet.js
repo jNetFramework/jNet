@@ -1,4 +1,4 @@
-!function (document, _array, fn) {
+!function (document, fn) {
 
     function jNetFramework(parameter) {
         this._document = document;
@@ -27,10 +27,13 @@
                 return this;
             }
             else {
+                while (this.length) {
+                    delete this[this.length - 1];
+                }
                 var parameter = [];
                 if (typeof this._selector.toString == "string") {
                     if (this._selector.toString == this.toString) {
-                        _array.push.apply(this, this._selector);
+                        Array.prototype.push.apply(this, this._selector);
                         this._find = true;
                         return this;
                     }
@@ -49,8 +52,7 @@
                     this._selector = this._selector.selectorReplaceId();
                     parameter = this._document.querySelectorAll(this._selector);
                 }
-                _array.splice();
-                _array.push.apply(this, parameter);
+                Array.prototype.push.apply(this, parameter);
                 this._find = true;
                 return this;
             }
@@ -72,16 +74,23 @@
         },
 
         _call: function () {
+
             var args = arguments[0];
             var res = [];
+
             this.each(function (key, element) {
                 args.document = element;
                 args.docInd = key;
                 var temp = args.callback.call(this, args);
                 if (typeof temp !== "undefined") {
                     if (typeof temp.length !== "undefined") {
-                        for (var i = 0; i < temp.length; ++i) {
-                            res.push(temp[i]);
+                        if (Array.isArray(temp)) {
+                            Array.prototype.push.apply(res, temp);
+                        }
+                        else {
+                            for (var i = 0; i < temp.length; ++i) {
+                                res.push(temp[i]);
+                            }
                         }
                     }
                     else {
@@ -89,6 +98,19 @@
                     }
                 }
             });
+
+            if (typeof args.value === "undefined" && typeof args.jNetToType !== "undefined") {
+                switch (args.jNetToType) {
+                    case "string":
+                        if (res.length == 1) {
+                            return res[0];
+                        }
+                        return res.join("\n");
+
+                    case "array":
+                        return res;
+                }
+            }
             return jNet(res);
         },
 
@@ -194,7 +216,8 @@
             return this._call.call(this, {
                 callback: function (obj) {
                     return obj.document.classList;
-                }
+                },
+                jNetToType: "array"
             });
         },
 
@@ -203,7 +226,8 @@
                 callback: function (obj) {
                     return obj.document.classList.contains(obj.className);
                 },
-                className: className
+                className: className,
+                jNetToType: "array"
             });
         },
 
@@ -244,7 +268,8 @@
                     return obj.document;
                 },
                 name: name,
-                value: value
+                value: value,
+                jNetToType: "array"
             });
         },
 
@@ -262,8 +287,56 @@
                     }
                     return obj.document.innerText || obj.document.value;
                 },
-                value: value
+                value: value,
+                jNetToType: "array"
             });
+        },
+
+        append: function (html) {
+            return this._call.call(this, {
+                callback: this._prependAppend,
+                html: html,
+                type: 'append'
+            });
+        },
+
+        prepend: function (html) {
+            return this._call.call(this, {
+                callback: this._prependAppend,
+                html: html,
+                type: 'prepend'
+            });
+        },
+
+        _prependAppend: function (obj) {
+
+            var html = obj.html;
+            if (typeof html == 'string') {
+                html = html.jNToDocument();
+            }
+            else {
+                switch (html.toString()) {
+                    case this.toString():
+                        html = html._outerHTML().jNToDocument();
+                        break;
+                }
+            }
+
+            if (typeof html.outerHTML != 'undefined') {
+                html = html.outerHTML.jNToDocument();
+            }
+
+            if (typeof html.body.firstChild != 'undefined') {
+                if (obj.type == 'prepend') {
+                    obj.document.insertBefore(html.body.firstChild, obj.document.firstChild);
+                }
+                else if (obj.type == 'append') {
+                    obj.document.appendChild(html.body.firstChild);
+                }
+            }
+
+            return this;
+
         },
 
         innerHTML: function (value) {
@@ -275,7 +348,8 @@
                     }
                     return obj.document.innerHTML;
                 },
-                value: value
+                value: value,
+                jNetToType: "array"
             });
         },
 
@@ -288,8 +362,151 @@
                     }
                     return obj.document.outerHTML;
                 },
-                value: value
+                value: value,
+                jNetToType: "array"
             });
+        },
+        
+        attr: function (nameAttribute, valueAttribute) {
+            if (typeof valueAttribute == "undefined") {
+                return this.getAttribute(nameAttribute);
+            }
+            return this.setAttribute(nameAttribute, valueAttribute);
+        },
+
+        getAttribute: function (nameAttribute) {
+            return this._call.call(this, {
+                callback: this._getAttribute,
+                nameAttribute: nameAttribute
+            });
+        },
+
+        _getAttribute: function (obj) {
+            return obj.document.getAttribute(obj.nameAttribute);
+        },
+
+        hasAttribute: function (nameAttribute) {
+            return this._call.call(this, {
+                callback: this._hasAttribute,
+                nameAttribute: nameAttribute
+            });
+        },
+
+        _hasAttribute: function (obj) {
+            return obj.document.hasAttribute(obj.nameAttribute);
+        },
+
+        setAttribute: function (nameAttribute, valueAttribute) {
+            return this._call.call(this, {
+                callback: this._setAttribute,
+                nameAttribute: nameAttribute,
+                valueAttribute: valueAttribute
+            });
+        },
+
+        _setAttribute: function (obj) {
+            obj.document.setAttribute(obj.nameAttribute, obj.valueAttribute);
+            return this;
+        },
+
+        removeAttribute: function (nameAttribute) {
+            return this._call.call(this, {
+                callback: this._removeAttribute,
+                nameAttribute: nameAttribute
+            });
+        },
+
+        _removeAttribute: function (obj) {
+            if (this._hasAttribute(obj.nameAttribute)) {
+                obj.document.removeAttribute(obj.nameAttribute);
+            }
+            return this;
+        },
+
+        width: function () {
+            return this._call.call(this, {
+                callback: this._width
+            });
+        },
+
+        _width: function () {
+            return obj.document.clientWidth;
+        },
+
+        height: function () {
+            return this._call.call(this, {
+                callback: this._height
+            });
+        },
+
+        _height: function () {
+            return obj.document.clientHeight;
+        },
+
+        get: function (options) {
+            return this._call.call(this, {
+                callback: this._get,
+                options: options
+            });
+        },
+
+        _get: function (obj) {
+            obj.options.method = 'GET';
+            obj.options.data = this;
+            this.ajax(obj.options);
+        },
+
+        post: function (options) {
+            return this._call.call(this, {
+                callback: this._post,
+                options: options
+            });
+        },
+
+        _post: function (obj) {
+            obj.options.method = 'POST';
+            obj.options.data = this;
+            this.ajax(obj.options);
+        },
+
+        remove: function () {
+            return this._call.call(this, {
+                callback: this._remove
+            });
+        },
+
+        _remove: function () {
+            if (typeof obj.document.parentNode == 'undefined') {
+                this.outerHTML('');
+            }
+            else {
+                obj.document.parentNode.removeChild(obj.document);
+            }
+            return this;
+        },
+
+        cleanSelection: function () {
+            var $selection = this.getSelection();
+            if (typeof $selection.empty == "function") {
+                $selection.empty();
+            }
+            else if (typeof $selection.removeAllRanges == "function") {
+                $selection.removeAllRanges();
+            }
+            return this;
+        },
+
+        getSelection: function () {
+            if (typeof window.getSelection == "function") {
+                return window.getSelection();
+            }
+            else if (typeof document.getSelection == "function") {
+                return document.getSelection();
+            }
+            else if (typeof document.selection != "undefined") {
+                return document.selection;
+            }
+            return undefined;
         },
 
         insertAfter: function (element) {
@@ -325,6 +542,16 @@
             return this;
         },
 
+        submit: function (listener) {
+            return this._call.call(this, {
+                callback: function (obj) {
+                    obj.document.onsubmit = obj.listener;
+                    return this;
+                },
+                listener: listener
+            });
+        },
+
         on: function (type, listener, useCapture) {
             this.each(function (index, element) {
                 element.addEventListener(type, listener, useCapture);
@@ -339,6 +566,153 @@
 
         ready: function (listener, useCapture) {
             return this.on("DOMContentLoaded", listener, useCapture);
+        },
+
+        _easing: function () {
+            this.linear = function (progress) {
+                return progress;
+            };
+
+            this.quadratic = function (progress) {
+                return Math.pow(progress, 2);
+            };
+
+            this.swing = function (progress) {
+                return 0.5 - Math.cos(progress * Math.PI) / 2;
+            };
+
+            this.circ = function (progress) {
+                return 1 - Math.sin(Math.acos(progress));
+            };
+
+            this.back = function (progress, x) {
+                return Math.pow(progress, 2) * ((x + 1) * progress - x);
+            };
+
+            this.bounce = function (progress) {
+                for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
+                    if (progress >= (7 - 4 * a) / 11) {
+                        return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
+                    }
+                }
+            };
+
+            this.elastic = function (progress, x) {
+                return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * x / 3 * progress);
+            };
+
+            return this;
+        },
+
+        animate: function (options) {
+            var start = new Date;
+            var id = setInterval(function () {
+                var timePassed = new Date - start;
+                var progress = timePassed / options.duration;
+                if (progress > 1) {
+                    progress = 1;
+                }
+                options.progress = progress;
+                var delta = options.delta(progress);
+                options.step(delta);
+                if (progress == 1) {
+                    clearInterval(id);
+                    options.complete();
+                }
+            }, options.delay || 10);
+            return id;
+        },
+
+        show: function (duration) {
+            return this._call.call(this, {
+                callback: function (obj) {
+                    if (obj.document.style.display !== 'none') {
+                        return this;
+                    }
+                    return this.fadeIn({
+                        duration: obj.duration,
+                        complete: function () {
+                            obj.document.style.display = '';
+                        }
+                    });
+                },
+                duration: duration
+            });
+        },
+
+        hide: function (duration) {
+            return this._call.call(this, {
+                callback: function (obj) {
+                    if (obj.document.style.display === 'none') {
+                        return this;
+                    }
+                    return this.fadeOut({
+                        duration: obj.duration,
+                        complete: function () {
+                            obj.document.style.display = 'none';
+                        }
+                    });
+                },
+                duration: duration
+            });
+        },
+
+        fadeIn: function (options) {
+            return this._call.call(this, {
+                callback: this._fadeUniversal,
+                options: options,
+                to: 0
+            });
+        },
+
+        fadeOut: function (options) {
+            return this._call.call(this, {
+                callback: this._fadeUniversal,
+                options: options,
+                to: 1
+            });
+        },
+
+        _fadeUniversal: function (obj) {
+
+            var self = this;
+
+            if (typeof obj.options !== "object") {
+                obj.options = {};
+            }
+
+            if (typeof obj.options.duration !== "number") {
+                obj.options.duration = 400;
+            }
+
+            if (typeof obj.options.complete !== "function") {
+                obj.options.complete = function () {
+                }
+            }
+
+            if (typeof obj.options.easing !== "string") {
+                obj.options.easing = "swing";
+            }
+
+            this.animate({
+                duration: obj.options.duration,
+                delta: function (progress) {
+                    progress = this.progress;
+                    return self._easing()[obj.options.easing](progress, 0);
+                },
+                complete: obj.options.complete,
+                step: function (delta) {
+                    if (obj.to) { // Out
+                        obj.document.style.opacity = obj.to - delta;
+                    }
+                    else { // In
+                        obj.document.style.opacity = obj.to + delta;
+                    }
+                }
+            });
+
+            return this;
+
         },
 
         ajax: function (options) {
@@ -387,7 +761,7 @@
 
             if (typeof options.data == "object") {
 
-                if (options.data.toString() === '[jNDocQuery]') {
+                if (options.data.toString === this.toString) {
                     options.data = options.data.first().objSerialize(options.method);
                 }
                 else {
@@ -443,4 +817,25 @@
 
     window.jNet = document.jNet = jNet;
 
-}(document, [], 'prototype');
+}(document, 'prototype');
+
+var jNet = window.jNet || document.jNet;
+
+var props = [
+
+    'click', 'contextmenu', 'dblclick',
+
+    'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
+
+    'keyup', 'keydown', 'keypress',
+
+    'copy',
+
+    'selectstart', 'selectionchange', 'select'
+];
+
+props.forEach(function (prop, index) {
+    jNet.prototype[prop] = function (listener, useCapture) {
+        return this.on(prop, listener, useCapture);
+    };
+});
