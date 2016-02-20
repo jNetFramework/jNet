@@ -3,17 +3,25 @@
 JavaScript Framework
 
 ```javascript
-var $ = function (arg) {
+var $ = function (arg, only) {
+
     if (typeof arg == "function") {
         return jNet.ready(arg);
     }
+
     if (typeof arg == "string") {
-        return new jNet.jNDocQuery(new jNet.querySelectorAll(arg));
+        if (typeof only != "undefined") {
+            return new jNDocQuery(arg);
+        }
+        return new jNDocQuery(new jNet.querySelectorAll(arg));
     }
+
     if (typeof arg == "object") {
-        return new jNet.jNDocQuery(arg);
+        return new jNDocQuery(arg);
     }
+
     return undefined;
+
 };
 ```
 
