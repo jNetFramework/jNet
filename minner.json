@@ -12,14 +12,16 @@
       "Math.js",
       "Array.js",
       "Object.js",
-      "jNet.js"
+      "jNet.js",
+      "Ajax.js"
     ],
     "noMin": [
       "String.js",
       "Math.js",
       "Array.js",
       "Object.js",
-      "jNet.js"
+      "jNet.js",
+      "Ajax.js"
     ]
   }
 }

@@ -1,5 +1,7 @@
 !function (document, fn) {
 
+    'use strict';
+
     function jNetFramework(parameter) {
         this._document = document;
         this._selector = parameter;
@@ -62,13 +64,6 @@
             return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
         },
 
-        objSerialize: function (objData) {
-            var self = this;
-            return Object.keys(objData).map(function (key) {
-                return self.toQuery(key, objData[key]);
-            }).join('&');
-        },
-
         now: function () {
             return Math.floor((new Date()).getTime() / 1000);
         },
@@ -116,6 +111,10 @@
 
         eq: function (index) {
             return jNet(this[index]);
+        },
+
+        at: function (index) {
+            return this.eq(index);
         },
 
         first: function () {
@@ -315,8 +314,8 @@
                 html = html.jNToDocument();
             }
             else {
-                switch (html.toString()) {
-                    case this.toString():
+                switch (html.toString) {
+                    case this.toString:
                         html = html._outerHTML().jNToDocument();
                         break;
                 }
@@ -335,7 +334,7 @@
                 }
             }
 
-            return this;
+            return jNet(obj.document);
 
         },
 
@@ -366,7 +365,7 @@
                 jNetToType: "array"
             });
         },
-        
+
         attr: function (nameAttribute, valueAttribute) {
             if (typeof valueAttribute == "undefined") {
                 return this.getAttribute(nameAttribute);
@@ -453,7 +452,7 @@
         _get: function (obj) {
             obj.options.method = 'GET';
             obj.options.data = this;
-            this.ajax(obj.options);
+            jNet.ajax(obj.options);
         },
 
         post: function (options) {
@@ -466,7 +465,7 @@
         _post: function (obj) {
             obj.options.method = 'POST';
             obj.options.data = this;
-            this.ajax(obj.options);
+            jNet.ajax(obj.options);
         },
 
         remove: function () {
@@ -555,13 +554,15 @@
         on: function (type, listener, useCapture) {
             this.each(function (index, element) {
                 element.addEventListener(type, listener, useCapture);
-            })
+            });
+            return this;
         },
 
         off: function (type, listener, useCapture) {
             this.each(function (index, element) {
                 element.removeEventListener(type, listener, useCapture);
-            })
+            });
+            return this;
         },
 
         ready: function (listener, useCapture) {
@@ -605,6 +606,7 @@
         },
 
         animate: function (options) {
+            var self = this;
             var start = new Date;
             var id = setInterval(function () {
                 var timePassed = new Date - start;
@@ -617,57 +619,43 @@
                 options.step(delta);
                 if (progress == 1) {
                     clearInterval(id);
-                    options.complete();
+                    options.complete(self);
                 }
             }, options.delay || 10);
             return id;
         },
 
         show: function (duration) {
-            return this._call.call(this, {
-                callback: function (obj) {
-                    if (obj.document.style.display !== 'none') {
-                        return this;
-                    }
-                    return this.fadeIn({
-                        duration: obj.duration,
-                        complete: function () {
-                            obj.document.style.display = '';
-                        }
-                    });
-                },
-                duration: duration
+            return this.fadeIn({
+                duration: duration,
+                complete: function (target) {
+                    target._document.style.display = '';
+                }
             });
         },
 
         hide: function (duration) {
-            return this._call.call(this, {
-                callback: function (obj) {
-                    if (obj.document.style.display === 'none') {
-                        return this;
-                    }
-                    return this.fadeOut({
-                        duration: obj.duration,
-                        complete: function () {
-                            obj.document.style.display = 'none';
-                        }
-                    });
-                },
-                duration: duration
+            return this.fadeOut({
+                duration: duration,
+                complete: function (target) {
+                    target._document.style.display = 'none';
+                }
             });
         },
 
         fadeIn: function (options) {
+            var self = this;
             return this._call.call(this, {
-                callback: this._fadeUniversal,
+                callback: self._fadeUniversal,
                 options: options,
                 to: 0
             });
         },
 
         fadeOut: function (options) {
+            var self = this;
             return this._call.call(this, {
-                callback: this._fadeUniversal,
+                callback: self._fadeUniversal,
                 options: options,
                 to: 1
             });
@@ -675,7 +663,7 @@
 
         _fadeUniversal: function (obj) {
 
-            var self = this;
+            var self = jNet(this);
 
             if (typeof obj.options !== "object") {
                 obj.options = {};
@@ -694,7 +682,7 @@
                 obj.options.easing = "swing";
             }
 
-            this.animate({
+            self.animate({
                 duration: obj.options.duration,
                 delta: function (progress) {
                     progress = this.progress;
@@ -712,103 +700,6 @@
             });
 
             return this;
-
-        },
-
-        ajax: function (options) {
-
-            var http = new XMLHttpRequest();
-
-            options.method = options.method || 'GET';
-            options.method = options.method.toUpperCase();
-
-            options.data = options.data || {};
-
-            options.files = options.files || {};
-
-            options.user = options.user || null;
-
-            options.password = options.password || null;
-
-            if (typeof options.async == "undefined") {
-                options.async = true;
-            }
-
-            if (typeof options.success != "function") {
-                options.success = function (response) {
-                };
-            }
-
-            if (typeof options.stateChange != "function") {
-                options.stateChange = function (response) {
-                };
-            }
-
-            if (typeof options.progress != "function") {
-                options.progress = function (response) {
-                };
-            }
-
-            if (typeof options.fail != "function") {
-                options.fail = function (response) {
-                };
-            }
-
-            http.onerror = options.fail;
-            http.onload = options.success;
-            http.onprogress = options.progress;
-            http.onreadystatechange = options.stateChange;
-
-            if (typeof options.data == "object") {
-
-                if (options.data.toString === this.toString) {
-                    options.data = options.data.first().objSerialize(options.method);
-                }
-                else {
-                    switch (options.method) {
-                        case 'GET':
-                        case 'DELETE':
-                            options.data = this.objSerialize(options.data);
-                            break;
-
-                        case 'PUT':
-                        case 'HEAD':
-                        case 'POST':
-                        case 'OPTIONS':
-                            var formData = new FormData();
-                            for (var keyFile in options.files) {
-                                if (options.files.hasOwnProperty(keyFile)) {
-                                    formData.append(keyFile, options.files[keyFile]);
-                                }
-                            }
-
-                            for (var keyData in options.data) {
-                                if (options.data.hasOwnProperty(keyData)) {
-                                    formData.append(keyData, options.data[keyData]);
-                                }
-                            }
-
-                            options.data = formData;
-                            break;
-
-                    }
-                }
-            }
-
-            if (typeof options.data == "string") {
-                if (options.url.indexOf('?') === -1) {
-                    options.url += '?' + options.data;
-                }
-                else {
-                    options.url += '&' + options.data;
-                }
-                options.data = null;
-            }
-
-            http.open(options.method, options.url, options.async, options.user, options.password);
-            http.send(options.data);
-            return http;
-
         },
 
         toString: "jNet"
@@ -822,15 +713,10 @@
 var jNet = window.jNet || document.jNet;
 
 var props = [
-
     'click', 'contextmenu', 'dblclick',
-
     'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
-
     'keyup', 'keydown', 'keypress',
-
     'copy',
-
     'selectstart', 'selectionchange', 'select'
 ];
 
