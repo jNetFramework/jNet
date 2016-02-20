@@ -3,7 +3,7 @@
  *  @site https://babichev.net
  *  @year 2013 - 2016
  *  @version 0.493
- *  @build 1118
+ *  @build 1119
  */
 
 'use strict';
