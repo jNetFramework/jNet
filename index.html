@@ -15,26 +15,9 @@
 
     <script type="text/javascript">
 
-        var $ = function (arg, only) {
+        var $ = window.jNet;
 
-            if (typeof arg == "function") {
-                return jNet.ready(arg);
-            }
-
-            if (typeof arg == "string") {
-                if (typeof only != "undefined") {
-                    return new jNDocQuery(arg);
-                }
-                return new jNDocQuery(new jNet.querySelectorAll(arg));
-            }
-
-            if (typeof arg == "object") {
-                return new jNDocQuery(arg);
-            }
-
-            return undefined;
-
-        };
+        console.log($);
 
         $(function () {
 

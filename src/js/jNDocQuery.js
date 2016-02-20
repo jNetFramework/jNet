@@ -5,558 +5,6 @@
 var jNDocQuery = function (doc) {
 
     /**
-     * @type {Window.jNArray}
-     * @private
-     */
-    this._array = new jNArray();
-
-    /**
-     * @private
-     */
-    this._d = doc;
-
-    switch (typeof doc) {
-
-        case 'object':
-            var toStringArr = doc.toString().split(',');
-            if (toStringArr.length) {
-                switch (toStringArr[0]) {
-                    case this.toString():
-                        return doc;
-
-                    case this._array.toString():
-                        this._array = doc;
-                        this._d = null;
-                        break;
-                }
-            }
-            break;
-
-        case 'string':
-            this._d = document.querySelector(doc.selectorReplaceId());
-            break;
-
-    }
-
-    /**
-     * @returns {*}
-     * @private
-     */
-    this._call = function () {
-        var args = arguments[0];
-        if (this._array.length()) {
-            var _arr = new jNArray(this._array.map(function (element) {
-                return element[args.callback].call(element, args);
-            }));
-            if (_arr.length() == 1) {
-                return _arr.first();
-            }
-            return _arr;
-        }
-        return this[args.callback].call(this, args);
-    };
-
-    /**
-     * @param callback {function}
-     * @returns {*}
-     */
-    this.each = function (callback) {
-        if (this._array.length()) {
-            this._array.forEach(callback);
-        }
-        else {
-            callback(this, null);
-        }
-        return this;
-    };
-
-    /**
-     * @returns {*}
-     */
-    this.reverse = function () {
-        if (this._array.length()) {
-            return this._array.reverse();
-        }
-        return this;
-    };
-
-    /**
-     * Alias at
-     *
-     * @param index {int}
-     * @returns {*}
-     */
-    this.eq = function (index) {
-        return this.at(index);
-    };
-
-    /**
-     * @param index {int}
-     * @returns {*}
-     */
-    this.at = function (index) {
-        if (this._array.length()) {
-            return this._array.at(index);
-        }
-        return this;
-    };
-
-    /**
-     * @returns {*}
-     */
-    this.first = function () {
-        if (this._array.length()) {
-            return this._array.first();
-        }
-        return this;
-    };
-
-    /**
-     * @returns {*}
-     */
-    this.last = function () {
-        if (this._array.length()) {
-            return this._array.last();
-        }
-        return this;
-    };
-
-    /**
-     * @param callback {function}
-     * @returns {*}
-     */
-    this.odd = function (callback) {
-        if (this._array.length()) {
-            for (var i = 1; i < this._array.length(); i += 2) {
-                callback(this.at(i));
-            }
-        }
-        return this;
-    };
-
-    /**
-     * @param callback {function}
-     * @returns {*}
-     */
-    this.even = function (callback) {
-        if (this._array.length()) {
-            for (var i = 0; i < this._array.length(); i += 2) {
-                callback(this.at(i));
-            }
-        }
-        else {
-            callback(this, null);
-        }
-        return this;
-    };
-
-    /**
-     * @param method
-     * @returns {*}
-     */
-    this.serialize = function (method) {
-        return this._call.call(this, {
-            callback: '_serialize',
-            method: method
-        });
-    };
-
-    /**
-     * @returns {string}
-     */
-    this._serialize = function (obj) {
-        var query = [];
-        var form = this._d;
-        var method = obj.method || 'GET';
-        if (method === 'GET' || method === 'DELETE') {
-            if (typeof form == 'object' && form.nodeName == "FORM") {
-                for (var i = 0; i < form.elements.length; ++i) {
-                    var field = form.elements[i];
-                    if (['reset', 'submit', 'button', 'file'].indexOf(field.type) !== -1) {
-                        continue;
-                    }
-                    if (field.name) {
-                        if (field.type == 'select-multiple') {
-                            for (var j = 0; j < form.elements[i].options.length; ++j) {
-                                if (field.options[j].selected) {
-                                    query.push(jNet.toQuery(field.name, field.options[j].value));
-                                }
-                            }
-                        }
-                        else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
-                            query.push(jNet.toQuery(field.name, field.value));
-                        }
-                    }
-                }
-            }
-            return query.join('&');
-        }
-        else {
-            return new FormData(form);
-        }
-    };
-
-    /**
-     * @returns {Window.jNDocQuery}
-     */
-    this.files = function () {
-        return this._call.call(this, {
-            callback: '_files'
-        });
-    };
-
-    /**
-     * @returns {files|*|FileList}
-     * @private
-     */
-    this._files = function () {
-        return this._d.files;
-    };
-
-    /**
-     * @param selector
-     * @returns {jNDocQuery}
-     */
-    this.findAll = function (selector) {
-        return new jNDocQuery(this._call.call(this, {
-            callback: '_findAll',
-            selector: selector
-        }));
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {Window.jNArray|*}
-     * @private
-     */
-    this._findAll = function (obj) {
-        var _tmp = new jNArray();
-        var _arr = this._d.querySelectorAll(obj.selector.selectorReplaceId());
-        for (var i = 0; i < _arr.length; ++i) {
-            _tmp.push(new jNDocQuery(_arr[i]));
-        }
-        return _tmp;
-    };
-
-    /**
-     * @param selector
-     * @returns {jNDocQuery}
-     */
-    this.find = function (selector) {
-        return this._call.call(this, {
-            callback: '_find',
-            selector: selector
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {jNDocQuery}
-     * @private
-     */
-    this._find = function (obj) {
-        var _tmp = new jNDocQuery(this._d);
-        _tmp._d = this._d.querySelector(obj.selector.selectorReplaceId());
-        return _tmp;
-    };
-
-    /**
-     * @returns {string}
-     */
-    this.toString = function () {
-        return '[jNDocQuery]';
-    };
-
-    /**
-     * @returns {Array}
-     */
-    this.classList = function () {
-        return this._call.call(this, {
-            callback: '_classList'
-        });
-    };
-
-    /**
-     * @returns {Array}
-     * @private
-     */
-    this._classList = function () {
-        var _classList = this._d.classList;
-        if (typeof _classList == 'undefined') {
-            return new jNArray();
-        }
-        return new jNArray(Object.keys(_classList).map(function (key) {
-            return _classList[key]
-        }));
-    };
-
-    /**
-     * @param newClass {string}
-     * @returns {*}
-     */
-    this.addClass = function (newClass) {
-        return this._call.call(this, {
-            callback: '_addClass',
-            newClass: newClass
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {*}
-     * @private
-     */
-    this._addClass = function (obj) {
-        this._d.classList.add(obj.newClass);
-        return this;
-    };
-
-    /**
-     * @param className {string}
-     * @returns {*}
-     */
-    this.removeClass = function (className) {
-        return this._call.call(this, {
-            callback: '_removeClass',
-            className: className
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {*}
-     * @private
-     */
-    this._removeClass = function (obj) {
-        this._d.classList.remove(obj.className);
-        return this;
-    };
-
-    /**
-     * @param className {string}
-     * @returns {boolean}
-     */
-    this.hasClass = function (className) {
-        return this._call.call(this, {
-            callback: '_hasClass',
-            className: className
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {boolean}
-     * @private
-     */
-    this._hasClass = function (obj) {
-        return this.classList().contains(obj.className);
-    };
-
-    /**
-     * @param className {string}
-     * @returns {*}
-     */
-    this.toggleClass = function (className) {
-        return this._call.call(this, {
-            callback: '_toggleClass',
-            className: className
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {*}
-     * @private
-     */
-    this._toggleClass = function (obj) {
-        this._d.classList.toggle(obj.className);
-        return this;
-    };
-
-    /**
-     * @returns {*}
-     */
-    this.cleanClass = function () {
-        return this._call.call(this, {
-            callback: '_cleanClass'
-        });
-    };
-
-    /**
-     * @returns {*}
-     * @private
-     */
-    this._cleanClass = function () {
-        var self = this;
-        this.classList().forEach(function (className) {
-            self.removeClass(className);
-        });
-        return self;
-    };
-
-    /**
-     * @param name {string}
-     * @param value {string}
-     */
-    this.css = function (name, value) {
-        return this._call.call(this, {
-            callback: '_css',
-            name: name,
-            value: value
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {*}
-     * @private
-     */
-    this._css = function (obj) {
-        if (typeof obj.value == 'undefined') {
-            return this._d.style.getPropertyValue(obj.name);
-        }
-        this._d.style.setProperty(obj.name, obj.value);
-        return this;
-    };
-
-    /**
-     * @returns {*}
-     */
-    this.parent = function () {
-        return this._call.call(this, {
-            callback: '_parent'
-        });
-    };
-
-    /**
-     * @returns {*}
-     * @private
-     */
-    this._parent = function () {
-        if (typeof this._d.parentNode != "undefined") {
-            this._d = this._d.parentNode;
-            return this;
-        }
-        return undefined;
-    };
-
-    /**
-     * @param value {string}
-     * @returns string|{*}
-     */
-    this.text = function (value) {
-        return this._call.call(this, {
-            callback: '_text',
-            value: value
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns string|{*}
-     * @private
-     */
-    this._text = function (obj) {
-        if (typeof obj.value != "undefined") {
-            try {
-                this._d.innerText = obj.value;
-            }
-            catch (e) {
-                this._d.value = obj.value;
-            }
-            return this;
-        }
-        return this._d.innerText || this._d.value;
-    };
-
-    /**
-     * @param value {string}
-     * @returns string|{*}
-     */
-    this.innerHTML = function (value) {
-        return this._call.call(this, {
-            callback: '_innerHTML',
-            value: value
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns string|{*}
-     * @private
-     */
-    this._innerHTML = function (obj) {
-        if (typeof obj.value != "undefined") {
-            this._d.innerHTML = obj.value;
-            return this;
-        }
-        return this._d.innerHTML;
-    };
-
-    /**
-     * @param value {string}
-     * @returns string|{*}
-     */
-    this.outerHTML = function (value) {
-        return this._call.call(this, {
-            callback: '_outerHTML',
-            value: value
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns string|{*}
-     * @private
-     */
-    this._outerHTML = function (obj) {
-        if (typeof obj.value != "undefined") {
-            this._d.outerHTML = obj.value;
-            return this;
-        }
-        return this._d.outerHTML;
-    };
-
-    /**
-     * @param $element {string|jNDocQuery}
-     * @returns {*}
-     */
-    this.insertAfter = function ($element) {
-        $element = new jNDocQuery($element);
-        return this._call.call(this, {
-            callback: '_insertAfterBefore',
-            element: $element.first(),
-            insertBefore: false
-        });
-    };
-
-    /**
-     * @param $element {string|jNDocQuery}
-     * @returns {*}
-     */
-    this.insertBefore = function ($element) {
-        $element = new jNDocQuery($element);
-        return this._call.call(this, {
-            callback: '_insertAfterBefore',
-            element: $element.first(),
-            insertBefore: true
-        });
-    };
-
-    /**
-     * @param obj {{}}
-     * @returns {*}
-     * @private
-     */
-    this._insertAfterBefore = function (obj) {
-        obj.element._d.parentNode.insertBefore(this._d, obj.element._d.nextSibling);
-        if (obj.insertBefore) {
-            this._d.parentNode.insertBefore(obj.element._d, this._d.nextSibling);
-        }
-        return this;
-    };
-
-    /**
      * @param html {string|jNDocQuery}
      * @returns {*}
      */
@@ -605,10 +53,10 @@ var jNDocQuery = function (doc) {
 
         if (typeof html.body.firstChild != 'undefined') {
             if (obj.type == 'prepend') {
-                this._d.insertBefore(html.body.firstChild, this._d.firstChild);
+                obj.document.insertBefore(html.body.firstChild, obj.document.firstChild);
             }
             else if (obj.type == 'append') {
-                this._d.appendChild(html.body.firstChild);
+                obj.document.appendChild(html.body.firstChild);
             }
         }
 
@@ -645,7 +93,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._getAttribute = function (obj) {
-        return this._d.getAttribute(obj.nameAttribute);
+        return obj.document.getAttribute(obj.nameAttribute);
     };
 
     /**
@@ -665,7 +113,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._hasAttribute = function (obj) {
-        return this._d.hasAttribute(obj.nameAttribute);
+        return obj.document.hasAttribute(obj.nameAttribute);
     };
 
     /**
@@ -687,7 +135,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._setAttribute = function (obj) {
-        this._d.setAttribute(obj.nameAttribute, obj.valueAttribute);
+        obj.document.setAttribute(obj.nameAttribute, obj.valueAttribute);
         return this;
     };
 
@@ -705,7 +153,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._width = function () {
-        return this._d.clientWidth;
+        return obj.document.clientWidth;
     };
 
     /**
@@ -722,7 +170,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._height = function () {
-        return this._d.clientHeight;
+        return obj.document.clientHeight;
     };
 
     /**
@@ -805,7 +253,7 @@ var jNDocQuery = function (doc) {
      */
     this._removeAttribute = function (obj) {
         if (this._hasAttribute(obj.nameAttribute)) {
-            this._d.removeAttribute(obj.nameAttribute);
+            obj.document.removeAttribute(obj.nameAttribute);
         }
         return this;
     };
@@ -824,11 +272,11 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._remove = function () {
-        if (typeof this._d.parentNode == 'undefined') {
+        if (typeof obj.document.parentNode == 'undefined') {
             this.outerHTML('');
         }
         else {
-            this._d.parentNode.removeChild(this._d);
+            obj.document.parentNode.removeChild(obj.document);
         }
         return this;
     };
@@ -1251,7 +699,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._submit = function (obj) {
-        this._d.onsubmit = obj.listener;
+        obj.document.onsubmit = obj.listener;
         return this;
     };
 
@@ -1285,7 +733,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._addEventListener = function (obj) {
-        this._d.addEventListener(obj.type, obj.listener, obj.useCapture);
+        obj.document.addEventListener(obj.type, obj.listener, obj.useCapture);
         return this;
     };
 
@@ -1320,7 +768,7 @@ var jNDocQuery = function (doc) {
      * @private
      */
     this._removeEventListener = function (obj) {
-        this._d.removeEventListener(obj.type, obj.listener, obj.useCapture);
+        obj.document.removeEventListener(obj.type, obj.listener, obj.useCapture);
         return this;
     };
 
