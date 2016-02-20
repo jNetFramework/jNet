@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.493
- *  @build 1119
+ *  @version 0.494
+ *  @build 1120
  */
 
 'use strict';

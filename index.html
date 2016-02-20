@@ -149,7 +149,7 @@
             $form.submit(function (event) {
                 jNet.ajax({
                     data: $(event.target),
-                    url: "http://forms/test.php",
+                    url: "https://rez1dent3.github.io/jNet/",
                     method: "POST",
                     success: function (http) {
                         console.log(['POST', JSON.parse(http.target.response)]);
@@ -158,7 +158,7 @@
 
                 jNet.ajax({
                     data: $(event.target),
-                    url: "https://babichev.net/test.php",
+                    url: "https://rez1dent3.github.io/jNet/",
                     method: "GET",
                     success: function (http) {
                         console.log(['GET', JSON.parse(http.target.response)]);
