@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.488
- *  @build 1106
+ *  @version 0.493
+ *  @build 1118
  */
 
 'use strict';
@@ -68,12 +68,22 @@ var jNet = new (function () {
     };
 
     /**
+     * @param name
+     * @param value
+     * @returns {string}
+     */
+    this.toQuery = function (name, value) {
+        return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
+    };
+
+    /**
      * @param objData {{}}
      * @returns {string}
      */
     this.serialize = function (objData) {
+        var self = this;
         return Object.keys(objData).map(function (key) {
-            return encodeURIComponent(key) + '=' + encodeURIComponent(objData[key]);
+            return self.toQuery(key, objData[key]);
         }).join('&');
     };
 
@@ -117,6 +127,11 @@ var jNet = new (function () {
         var http = new XMLHttpRequest();
 
         /**
+         * @type {string}
+         */
+        options.method = options.method || 'GET';
+
+        /**
          * @type {{}}
          */
         options.data = options.data || {};
@@ -125,11 +140,6 @@ var jNet = new (function () {
          * @type {{}}
          */
         options.files = options.files || {};
-
-        /**
-         * @type {string}
-         */
-        options.method = options.method || "GET";
 
         /**
          * @type {string|null}
@@ -141,16 +151,11 @@ var jNet = new (function () {
          */
         options.password = options.password || null;
 
-        /**
-         * @type {string}
-         */
-        options.contentType = options.contentType || 'application/x-www-form-urlencoded';
-
         if (typeof options.async == "undefined") {
             /**
              * @type {boolean}
              */
-            options.async = true
+            options.async = true;
         }
 
         if (typeof options.success != "function") {
@@ -186,9 +191,9 @@ var jNet = new (function () {
         }
 
         /**
-         * @type {options.stateChange|*}
+         * @type {options.fail|*}
          */
-        http.onreadystatechange = options.stateChange;
+        http.onerror = options.fail;
 
         /**
          * @type {options.success|*}
@@ -196,48 +201,63 @@ var jNet = new (function () {
         http.onload = options.success;
 
         /**
-         * @type {options.fail|*}
-         */
-        http.onerror = options.fail;
-
-        /**
          * @type {options.progress|*}
          */
         http.onprogress = options.progress;
 
-        var query = this.serialize(options.data);
-        if (query && (options.method === 'GET' || options.method === 'DELETE')) {
-            if (options.url.indexOf('?') === -1) {
-                options.url += '?' + query;
+        /**
+         * @type {options.stateChange|*}
+         */
+        http.onreadystatechange = options.stateChange;
+
+        if (typeof options.data == "object") {
+
+            if (options.data.toString() === '[jNDocQuery]') {
+                options.data = options.data.first().serialize(options.method);
             }
             else {
-                options.url += '&' + query;
+                switch (options.method) {
+                    case 'GET':
+                    case 'DELETE':
+                        options.data = this.serialize(options.data);
+                        break;
+
+                    case 'PUT':
+                    case 'HEAD':
+                    case 'POST':
+                    case 'OPTIONS':
+                        var formData = new FormData();
+                        for (var keyFile in options.files) {
+                            if (options.files.hasOwnProperty(keyFile)) {
+                                formData.append(keyFile, options.files[keyFile]);
+                            }
+                        }
+
+                        for (var keyData in options.data) {
+                            if (options.data.hasOwnProperty(keyData)) {
+                                formData.append(keyData, options.data[keyData]);
+                            }
+                        }
+
+                        options.data = formData;
+                        break;
+                    
+                }
             }
-            query = null;
+        }
+
+        if (typeof options.data == "string") {
+            if (options.url.indexOf('?') === -1) {
+                options.url += '?' + options.data;
+            }
+            else {
+                options.url += '&' + options.data;
+            }
+            options.data = null;
         }
 
         http.open(options.method, options.url, options.async, options.user, options.password);
-
-        if (options.method === 'POST' && Object.keys(options.files).length) {
-            var formData = new FormData();
-            for (var keyFile in options.files) {
-                if (options.files.hasOwnProperty(keyFile)) {
-                    formData.append('files[]', options.files[keyFile]);
-                }
-            }
-            for (var keyData in options.data) {
-                if (options.data.hasOwnProperty(keyData)) {
-                    formData.append(keyData, options.data[keyData]);
-                }
-            }
-            query = formData;
-        }
-        else {
-            http.setRequestHeader('Content-Type', options.contentType);
-        }
-
-        http.send(query);
-
+        http.send(options.data);
         return http;
 
     };
@@ -789,51 +809,49 @@ var jNDocQuery = function (doc) {
     };
 
     /**
+     * @param method
      * @returns {*}
      */
-    this.serialize = function () {
+    this.serialize = function (method) {
         return this._call.call(this, {
-            callback: '_serialize'
+            callback: '_serialize',
+            method: method
         });
     };
 
     /**
      * @returns {string}
      */
-    this._serialize = function () {
-
-        function toQuery(name, value) {
-            return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
-        }
-
+    this._serialize = function (obj) {
         var query = [];
         var form = this._d;
-        if (typeof form == 'object' && form.nodeName == "FORM") {
-
-            for (var i = 0; i < form.elements.length; ++i) {
-
-                var field = form.elements[i];
-                if (['reset', 'submit', 'button'].indexOf(field.type) !== -1) {
-                    continue;
-                }
-
-                if (field.name) {
-                    if (field.type == 'select-multiple') {
-                        for (var j = 0; j < form.elements[i].options.length; ++j) {
-                            if (field.options[j].selected) {
-                                query.push(toQuery(field.name, field.options[j].value));
+        var method = obj.method || 'GET';
+        if (method === 'GET' || method === 'DELETE') {
+            if (typeof form == 'object' && form.nodeName == "FORM") {
+                for (var i = 0; i < form.elements.length; ++i) {
+                    var field = form.elements[i];
+                    if (['reset', 'submit', 'button', 'file'].indexOf(field.type) !== -1) {
+                        continue;
+                    }
+                    if (field.name) {
+                        if (field.type == 'select-multiple') {
+                            for (var j = 0; j < form.elements[i].options.length; ++j) {
+                                if (field.options[j].selected) {
+                                    query.push(jNet.toQuery(field.name, field.options[j].value));
+                                }
                             }
                         }
-                    }
-                    else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
-                        query.push(toQuery(field.name, field.value));
+                        else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
+                            query.push(jNet.toQuery(field.name, field.value));
+                        }
                     }
                 }
             }
+            return query.join('&');
         }
-
-        return query.join('&');
-
+        else {
+            return new FormData(form);
+        }
     };
 
     /**
