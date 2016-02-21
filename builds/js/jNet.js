@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.577
- *  @build 1308
+ *  @version 0.589
+ *  @build 1335
  */
 
 String.prototype.jNToDocument = function () {
@@ -139,14 +139,6 @@ Object.prototype.clone = function () {
             }
         },
 
-        toQuery: function (name, value) {
-            return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
-        },
-
-        now: function () {
-            return Math.floor((new Date()).getTime() / 1000);
-        },
-
         _call: function () {
 
             var args = arguments[0];
@@ -160,6 +152,9 @@ Object.prototype.clone = function () {
                     if (typeof temp.length !== "undefined") {
                         if (Array.isArray(temp)) {
                             Array.prototype.push.apply(res, temp);
+                        }
+                        else if (typeof temp == "string") {
+                            res.push(temp);
                         }
                         else {
                             for (var i = 0; i < temp.length; ++i) {
@@ -182,6 +177,9 @@ Object.prototype.clone = function () {
                         return res.join("\n");
 
                     case "array":
+                        if (res.length == 1) {
+                            return res[0];
+                        }
                         return res;
                 }
             }
@@ -229,6 +227,10 @@ Object.prototype.clone = function () {
         serialize: function (method) {
             return this._call.call(this, {
                 callback: function (obj) {
+                    function toQuery(name, value) {
+                        return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
+                    }
+
                     var query = [];
                     var form = obj.document;
                     var method = obj.method || 'GET';
@@ -243,12 +245,12 @@ Object.prototype.clone = function () {
                                     if (field.type == 'select-multiple') {
                                         for (var j = 0; j < form.elements[i].options.length; ++j) {
                                             if (field.options[j].selected) {
-                                                query.push(jNet.toQuery(field.name, field.options[j].value));
+                                                query.push(toQuery(field.name, field.options[j].value));
                                             }
                                         }
                                     }
                                     else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
-                                        query.push(jNet.toQuery(field.name, field.value));
+                                        query.push(this.toQuery(field.name, field.value));
                                     }
                                 }
                             }
@@ -257,7 +259,8 @@ Object.prototype.clone = function () {
                     }
                     return new FormData(form);
                 },
-                method: method
+                method: method,
+                jNetToType: "array"
             });
         },
 
@@ -265,7 +268,8 @@ Object.prototype.clone = function () {
             return this._call.call(this, {
                 callback: function (obj) {
                     return obj.document.files;
-                }
+                },
+                jNetToType: "array"
             });
         },
 
@@ -446,121 +450,94 @@ Object.prototype.clone = function () {
         },
 
         attr: function (nameAttribute, valueAttribute) {
+
             if (typeof valueAttribute == "undefined") {
-                return this.getAttribute(nameAttribute);
+                return this._call.call(this, {
+                    callback: function (obj) {
+                        return obj.document.getAttribute(obj.nameAttribute);
+                    },
+                    nameAttribute: nameAttribute,
+                    jNetToType: "array"
+                })
             }
-            return this.setAttribute(nameAttribute, valueAttribute);
-        },
 
-        getAttribute: function (nameAttribute) {
+            if (valueAttribute == null || valueAttribute == '') {
+                return this._call.call(this, {
+                    callback: function (obj) {
+                        if (this._hasAttribute(obj.nameAttribute)) {
+                            obj.document.removeAttribute(obj.nameAttribute);
+                        }
+                        return this;
+                    },
+                    nameAttribute: nameAttribute
+                });
+            }
+
             return this._call.call(this, {
-                callback: this._getAttribute,
-                nameAttribute: nameAttribute
-            });
-        },
-
-        _getAttribute: function (obj) {
-            return obj.document.getAttribute(obj.nameAttribute);
-        },
-
-        hasAttribute: function (nameAttribute) {
-            return this._call.call(this, {
-                callback: this._hasAttribute,
-                nameAttribute: nameAttribute
-            });
-        },
-
-        _hasAttribute: function (obj) {
-            return obj.document.hasAttribute(obj.nameAttribute);
-        },
-
-        setAttribute: function (nameAttribute, valueAttribute) {
-            return this._call.call(this, {
-                callback: this._setAttribute,
+                callback: function (obj) {
+                    obj.document.setAttribute(obj.nameAttribute, obj.valueAttribute);
+                    return this;
+                },
                 nameAttribute: nameAttribute,
                 valueAttribute: valueAttribute
             });
-        },
 
-        _setAttribute: function (obj) {
-            obj.document.setAttribute(obj.nameAttribute, obj.valueAttribute);
-            return this;
-        },
-
-        removeAttribute: function (nameAttribute) {
-            return this._call.call(this, {
-                callback: this._removeAttribute,
-                nameAttribute: nameAttribute
-            });
-        },
-
-        _removeAttribute: function (obj) {
-            if (this._hasAttribute(obj.nameAttribute)) {
-                obj.document.removeAttribute(obj.nameAttribute);
-            }
-            return this;
         },
 
         width: function () {
             return this._call.call(this, {
-                callback: this._width
+                callback: function (obj) {
+                    return obj.document.clientWidth;
+                },
+                jNetToType: "array"
             });
-        },
-
-        _width: function () {
-            return obj.document.clientWidth;
         },
 
         height: function () {
             return this._call.call(this, {
-                callback: this._height
+                callback: function (obj) {
+                    return obj.document.clientHeight;
+                },
+                jNetToType: "array"
             });
-        },
-
-        _height: function () {
-            return obj.document.clientHeight;
         },
 
         get: function (options) {
             return this._call.call(this, {
-                callback: this._get,
-                options: options
+                callback: function (obj) {
+                    obj.options.method = 'GET';
+                    obj.options.data = jNet(this);
+                    return jNet.ajax(obj.options);
+                },
+                options: options,
+                jNetToType: "array"
             });
-        },
-
-        _get: function (obj) {
-            obj.options.method = 'GET';
-            obj.options.data = this;
-            jNet.ajax(obj.options);
         },
 
         post: function (options) {
             return this._call.call(this, {
-                callback: this._post,
-                options: options
+                callback: function (obj) {
+                    obj.options.method = 'POST';
+                    obj.options.data = jNet(this);
+                    return jNet.ajax(obj.options);
+                },
+                options: options,
+                jNetToType: "array"
             });
-        },
-
-        _post: function (obj) {
-            obj.options.method = 'POST';
-            obj.options.data = this;
-            jNet.ajax(obj.options);
         },
 
         remove: function () {
             return this._call.call(this, {
-                callback: this._remove
+                callback: function (obj) {
+                    if (typeof obj.document.parentNode == 'undefined') {
+                        this.outerHTML('');
+                    }
+                    else {
+                        obj.document.parentNode.removeChild(obj.document);
+                    }
+                    return this;
+                }
             });
-        },
-
-        _remove: function () {
-            if (typeof obj.document.parentNode == 'undefined') {
-                this.outerHTML('');
-            }
-            else {
-                obj.document.parentNode.removeChild(obj.document);
-            }
-            return this;
         },
 
         cleanSelection: function () {
@@ -617,7 +594,6 @@ Object.prototype.clone = function () {
             for (var i = 0; i < length; ++i) {
                 callback.call(arr[i], i, arr[i]);
             }
-            return this;
         },
 
         submit: function (listener) {
@@ -648,6 +624,7 @@ Object.prototype.clone = function () {
             return this.on("DOMContentLoaded", listener, useCapture);
         },
 
+        // fixme
         _easing: function () {
             this.linear = function (progress) {
                 return progress;
@@ -684,8 +661,8 @@ Object.prototype.clone = function () {
             return this;
         },
 
+        // fixme
         animate: function (options) {
-            var self = this;
             var start = new Date;
             var id = setInterval(function () {
                 var timePassed = new Date - start;
@@ -698,30 +675,33 @@ Object.prototype.clone = function () {
                 options.step(delta);
                 if (progress == 1) {
                     clearInterval(id);
-                    options.complete(self);
+                    options.complete(options.document);
                 }
             }, options.delay || 10);
             return id;
         },
 
+        // fixme
         show: function (duration) {
             return this.fadeIn({
                 duration: duration,
-                complete: function (target) {
-                    target._document.style.display = '';
+                complete: function (doc) {
+                    doc.style.display = '';
                 }
             });
         },
 
+        // fixme
         hide: function (duration) {
             return this.fadeOut({
                 duration: duration,
-                complete: function (target) {
-                    target._document.style.display = 'none';
+                complete: function (doc) {
+                    doc.style.display = 'none';
                 }
             });
         },
 
+        // fixme
         fadeIn: function (options) {
             var self = this;
             return this._call.call(this, {
@@ -731,6 +711,7 @@ Object.prototype.clone = function () {
             });
         },
 
+        // fixme
         fadeOut: function (options) {
             var self = this;
             return this._call.call(this, {
@@ -740,6 +721,7 @@ Object.prototype.clone = function () {
             });
         },
 
+        // fixme
         _fadeUniversal: function (obj) {
 
             var self = jNet(this);
@@ -762,6 +744,7 @@ Object.prototype.clone = function () {
             }
 
             self.animate({
+                document: obj.document,
                 duration: obj.options.duration,
                 delta: function (progress) {
                     progress = this.progress;
@@ -805,6 +788,11 @@ props.forEach(function (prop, index) {
     };
 });
 
+jNet.each = jNet.fn.each;
+
+jNet.now = function () {
+    return Math.floor((new Date()).getTime() / 1000);
+};
 jNet.ajax = function (options) {
 
     function serialize(objData) {
@@ -858,7 +846,7 @@ jNet.ajax = function (options) {
     if (typeof options.data == "object") {
 
         if (options.data.toString === "jNet") {
-            options.data = options.data.first().serialize(options.method);
+            options.data = options.data.serialize(options.method);
         }
         else {
             switch (options.method) {

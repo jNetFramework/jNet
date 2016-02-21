@@ -51,7 +51,7 @@ jNet.ajax = function (options) {
     if (typeof options.data == "object") {
 
         if (options.data.toString === "jNet") {
-            options.data = options.data.first().serialize(options.method);
+            options.data = options.data.serialize(options.method);
         }
         else {
             switch (options.method) {
