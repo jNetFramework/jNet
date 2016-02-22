@@ -303,14 +303,14 @@
                         return obj.document.innerText || obj.document.value;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 
             append: function (html) {
                 return this._call.call(this, {
                     callback: this._prependAppend,
-                    html: html,
+                    _html: html,
                     type: 'append'
                 });
             },
@@ -318,14 +318,14 @@
             prepend: function (html) {
                 return this._call.call(this, {
                     callback: this._prependAppend,
-                    html: html,
+                    _html: html,
                     type: 'prepend'
                 });
             },
 
             _prependAppend: function (obj) {
 
-                var html = obj.html;
+                var html = obj._html;
                 if (typeof html == 'string') {
                     html = html.jNToDocument();
                 }
@@ -364,7 +364,7 @@
                         return obj.document.innerHTML;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 
@@ -378,7 +378,7 @@
                         return obj.document.outerHTML;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <script type="text/javascript" src="builds/js/jNet.min.js"></script>
+    <script>var $ = jNet;</script>
+</head>
+<body>
+<div id="test">
+    <h1>User {{user.login}}</h1>
+    <div>
+        <div>{{user.lastname}} {{user.name}}</div>
+    </div>
+    <ul id="ajax"></ul>
+</div>
+<script>
+    $(function () {
+        var $test = $('html');
+        var $smpl = $.smpl($test);
+        $test.innerHTML($smpl.render({
+            title: 'jNet - Sample Framework',
+            user: {
+                login: "REZ1DENT3",
+                lastname: "Babichev",
+                name: "Maxim"
+            }
+        }));
+        var $template = $.smpl('<li>{{time}}, GET: {{GET}}</li>');
+        $ulAjax = $('#ajax');
+        setInterval(function () {
+            var dataForAjax = {};
+            dataForAjax.a = Math.rand(1, 1000000);
+            dataForAjax.b = Math.rand(dataForAjax.a, 1000000);
+            dataForAjax.c = Math.rand(1, dataForAjax.b);
+            dataForAjax.d = Math.rand(dataForAjax.c, 1000000);
+            dataForAjax.e = Math.rand(1, dataForAjax.d);
+            dataForAjax.f = Math.rand(dataForAjax.e, 1000000);
+            $.ajax({
+                url: "https://babichev.net/test.php",
+                data: dataForAjax,
+                success: function (http) {
+                    var data = JSON.parse(http.target.response);
+                    data['time'] = jNet.now();
+                    $ulAjax.prepend($template.render(data)).find('li')
+                            .css('color', 'black')
+                            .odd()
+                            .css('color', 'red');
+                }
+            });
+        }, 400);
+    });
+</script>
+</body>
+</html>

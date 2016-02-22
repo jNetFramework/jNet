@@ -13,3 +13,12 @@ String.prototype.jNTrim = function (regex) {
 String.prototype.selectorReplaceId = function () {
     return this.replace(/#([-\w]+)/g, "[id=$1]");
 };
+
+String.prototype.isHTML = function () {
+    var a = document.createElement('div');
+    a.innerHTML = this;
+    for (var c = a.childNodes, i = c.length; i--;) {
+        if (c[i].nodeType == 1) return true;
+    }
+    return false;
+};

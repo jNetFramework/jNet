@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.604
- *  @build 1369
+ *  @version 0.632
+ *  @build 1433
  */
 
 String.prototype.jNToDocument = function () {
@@ -20,6 +20,15 @@ String.prototype.jNTrim = function (regex) {
 
 String.prototype.selectorReplaceId = function () {
     return this.replace(/#([-\w]+)/g, "[id=$1]");
+};
+
+String.prototype.isHTML = function () {
+    var a = document.createElement('div');
+    a.innerHTML = this;
+    for (var c = a.childNodes, i = c.length; i--;) {
+        if (c[i].nodeType == 1) return true;
+    }
+    return false;
 };
 
 Math.rand = function (min, max) {
@@ -382,14 +391,14 @@ Object.prototype.clone = function () {
                         return obj.document.innerText || obj.document.value;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 
             append: function (html) {
                 return this._call.call(this, {
                     callback: this._prependAppend,
-                    html: html,
+                    _html: html,
                     type: 'append'
                 });
             },
@@ -397,14 +406,14 @@ Object.prototype.clone = function () {
             prepend: function (html) {
                 return this._call.call(this, {
                     callback: this._prependAppend,
-                    html: html,
+                    _html: html,
                     type: 'prepend'
                 });
             },
 
             _prependAppend: function (obj) {
 
-                var html = obj.html;
+                var html = obj._html;
                 if (typeof html == 'string') {
                     html = html.jNToDocument();
                 }
@@ -443,7 +452,7 @@ Object.prototype.clone = function () {
                         return obj.document.innerHTML;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 
@@ -457,7 +466,7 @@ Object.prototype.clone = function () {
                         return obj.document.outerHTML;
                     },
                     value: value,
-                    jNetToType: "array"
+                    jNetToType: "string"
                 });
             },
 
@@ -1006,3 +1015,56 @@ jNet.cookie = function (document) {
     return this;
 
 }(document);
+
+jNet.smpl = function (selectorOrHTML) {
+
+    var _html = [];
+
+    if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
+        _html.push(selectorOrHTML);
+    }
+    else {
+        jNet.each(jNet(selectorOrHTML), function (key, value) {
+            if (typeof value.innerHTML !== "undefined") {
+                value = value.innerHTML;
+            }
+            _html.push(value);
+        });
+    }
+
+    return new (function (_html) {
+
+        this._html = _html;
+        this._cache = {};
+
+        this._get = function (vars, key) {
+            if (typeof this._cache[key] != "undefined") {
+                return this._cache[key];
+            }
+            var param = vars;
+            jNet.each(key.split('.'), function (key, value) {
+                param = param[value];
+            });
+            if (typeof param == "object") {
+                param = JSON.stringify(param);
+            }
+            return this._cache[key] = param;
+        };
+
+        this.render = function (vars) {
+            this._cache = {};
+            var self = this;
+            var html = [];
+            jNet.each(self._html, function (key, value) {
+                html[key] = value.replace(/\{\{([\w\s\t.]+)\}\}/g, function () {
+                    return self._get(vars, arguments[1].jNTrim('\t\n\s'));
+                });
+            });
+            return html.join('\n');
+        };
+
+        return this;
+
+    })(_html);
+
+};
