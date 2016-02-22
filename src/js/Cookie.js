@@ -1,21 +1,10 @@
-/**
- * @returns {jNCookie}
- */
-var jNCookie = function () {
-
-    /**
-     * @type {Window.jNArray}
-     * @private
-     */
-    this._cookies = new jNArray();
+jNet.cookie = function () {
 
     /**
      * @param key {string}
-     * @returns {boolean}
      */
     this.remove = function (key) {
         this.set(key, '', {expires: -1});
-        return typeof this.get(key) == "undefined";
     };
 
     /**
@@ -81,15 +70,14 @@ var jNCookie = function () {
     };
 
     /**
-     * @param key
+     * @param key {string}
      * @returns {*}
      */
     this.get = function (key) {
+        var obj = {};
         if (document.cookie.length) {
-            this._cookies._array = document.cookie.split('; ');
             var rDecode = /(%[0-9A-Z]{2})+/g;
-            var obj = {};
-            this._cookies.forEach(function (line) {
+            document.cookie.split('; ').forEach(function (line) {
                 var parts = line.split('=');
                 var name = parts[0].replace(rDecode, decodeURIComponent);
                 var cookie = parts.slice(1).join('=');
@@ -97,14 +85,13 @@ var jNCookie = function () {
                 cookie = cookie.replace(rDecode, decodeURIComponent);
                 obj[name] = cookie;
             });
-            if (typeof key == "undefined") {
-                return obj;
-            }
-            return obj[key];
         }
-        return {};
+        if (typeof key == "undefined") {
+            return obj;
+        }
+        return obj[key];
     };
 
     return this;
 
-};
+}();
