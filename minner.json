@@ -10,18 +10,18 @@
     "data": [
       "String.js",
       "Math.js",
+      "Array.js",
+      "Object.js",
       "jNet.js",
-      "jNArray.js",
-      "jNCookie.js",
-      "jNDocQuery.js"
+      "Ajax.js"
     ],
     "noMin": [
       "String.js",
       "Math.js",
+      "Array.js",
+      "Object.js",
       "jNet.js",
-      "jNArray.js",
-      "jNCookie.js",
-      "jNDocQuery.js"
+      "Ajax.js"
     ]
   }
 }

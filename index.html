@@ -15,26 +15,7 @@
 
     <script type="text/javascript">
 
-        var $ = function (arg, only) {
-
-            if (typeof arg == "function") {
-                return jNet.ready(arg);
-            }
-
-            if (typeof arg == "string") {
-                if (typeof only != "undefined") {
-                    return new jNDocQuery(arg);
-                }
-                return new jNDocQuery(new jNet.querySelectorAll(arg));
-            }
-
-            if (typeof arg == "object") {
-                return new jNDocQuery(arg);
-            }
-
-            return undefined;
-
-        };
+        var $ = window.jNet;
 
         $(function () {
 
@@ -66,7 +47,7 @@
             $main.append('<div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>');
             $main.append('<div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">');
 
-            $main = $main.findAll('div').last();
+            $main = $main.find('div').last();
 
             $main.append('<h3>jNet Framework!</h3>');
             $main.append('<a class="demo-gh mdl-button mdl-js-button mdl-button--fab mdl-button--colored" href="https://github.com/REZ1DENT3/jNet"><i class="material-icons">link</i></a>');
@@ -104,11 +85,11 @@
                     'Когда Контроллер меняет состояние Модели (например, редактирование заголовка на фото), ' +
                     'он прямо не меняет Представление. Это — случай, где работают отношения Модели и Представления.</li>');
 
-            $p = $main.findAll('p');
+            $p = $main.find('p');
             $p.css('font-size', '20px');
             $p.css('color', 'gray');
 
-            $li = $main.findAll('li');
+            $li = $main.find('li');
             $li.css('font-size', '18px');
 
             $main.append('<h3>Ajax Testing</h3>');
@@ -134,12 +115,12 @@
             $div.append('<input class="mdl-textfield__input" id="test-input"/>');
             $div.append('<label class="mdl-textfield__label" for="test-input">Text...</label>');
 
-            $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
+            $div = $form.append('<div class="mdl-grid"></div>').find('div').last();
             $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
 
             $div.append('<input type="file" name="files[]" multiple />');
 
-            $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
+            $div = $form.append('<div class="mdl-grid"></div>').find('div').last();
             $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
 
             $div.append('<select size="3" multiple name="hero[]">' +
@@ -150,24 +131,24 @@
                 '<option value="Крыса Лариса">Крыса Лариса</option>' +
             '</select>');
 
-            $div = $form.append('<div class="mdl-grid"></div>').findAll('div').last();
+            $div = $form.append('<div class="mdl-grid"></div>').find('div').last();
             $div = $div.append('<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"></div>').find('div');
 
             $div.append('<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">submit</button>');
 
-            $body.findAll('li').at(1).css('color', 'red');
+            $body.find('li').at(1).css('color', 'red');
 
             $form.submit(function (event) {
 
                 $(event.target).get({
-                    url: "https://rez1dent3.github.io/jNet/",
+                    url: "http://forms/test.php",
                     success: function (http) {
                         console.log(['GET', JSON.parse(http.target.response)]);
                     }
                 });
 
                 $(event.target).post({
-                    url: "https://rez1dent3.github.io/jNet/",
+                    url: "http://forms/test.php",
                     success: function (http) {
                         console.log(['POST', JSON.parse(http.target.response)]);
                     }
@@ -187,7 +168,7 @@
                 });
             });
 
-            $olEvents.findAll('li').odd(function ($e) {
+            $olEvents.find('li').odd(function ($e) {
                 $e.css('background', '#ccc');
             });
 
@@ -196,9 +177,9 @@
             $kbEvents = $('#event-keyboard');
             'keypress keydown keyup'.split(' ').forEach(function (element) {
                 $kbEvents.append('<div class="mdl-grid"></div>');
-                $div = $kbEvents.findAll('div').last();
+                $div = $kbEvents.find('div').last();
                 $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>')
-                        .findAll('div')
+                        .find('div')
                         .last();
 
                 $div.append('<input class="mdl-textfield__input" id="' + element + '-kbEvent-input"/>');
@@ -230,13 +211,13 @@
 
             });
 
-            $('input.mdl-textfield__input').each(function ($element) {
+            $('input.mdl-textfield__input').each(function (element) {
+                $element = $(element);
                 $element.attr('name', $element.attr('id'));
                 $element.attr('type', 'text');
             });
 
-        })
-        ;
+        });
 
     </script>
 </head>
