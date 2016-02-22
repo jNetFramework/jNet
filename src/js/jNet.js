@@ -708,8 +708,6 @@
 
 });
 
-var jNet = window.jNet || document.jNet;
-
 var props = [
     'click', 'contextmenu', 'dblclick',
     'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',

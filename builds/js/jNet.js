@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.603
- *  @build 1367
+ *  @version 0.604
+ *  @build 1369
  */
 
 String.prototype.jNToDocument = function () {
@@ -786,8 +786,6 @@ Object.prototype.clone = function () {
     }(document, 'prototype')
 
 });
-
-var jNet = window.jNet || document.jNet;
 
 var props = [
     'click', 'contextmenu', 'dblclick',
