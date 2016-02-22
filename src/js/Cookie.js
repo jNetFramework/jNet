@@ -1,4 +1,4 @@
-jNet.cookie = function () {
+jNet.cookie = function (document) {
 
     /**
      * @param key {string}
@@ -94,4 +94,4 @@ jNet.cookie = function () {
 
     return this;
 
-}();
+}(document);

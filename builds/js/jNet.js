@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.6
- *  @build 1361
+ *  @version 0.601
+ *  @build 1363
  */
 
 String.prototype.jNToDocument = function () {
@@ -794,6 +794,7 @@ jNet.each = jNet.fn.each;
 jNet.now = function () {
     return Math.floor((new Date()).getTime() / 1000);
 };
+
 jNet.ajax = function (options) {
 
     function serialize(objData) {
@@ -896,7 +897,7 @@ jNet.ajax = function (options) {
 
 };
 
-jNet.cookie = function () {
+jNet.cookie = function (document) {
 
     /**
      * @param key {string}
@@ -992,4 +993,4 @@ jNet.cookie = function () {
 
     return this;
 
-}();
+}(document);
