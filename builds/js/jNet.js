@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.601
- *  @build 1363
+ *  @version 0.602
+ *  @build 1364
  */
 
 String.prototype.jNToDocument = function () {
@@ -769,7 +769,15 @@ Object.prototype.clone = function () {
 
     };
 
-    window.jNet = document.jNet = jNet;
+    if (typeof define === 'function' && define.amd) {
+        define([], jNet);
+    }
+    else if (typeof exports === 'object') {
+        module.exports = jNet;
+    }
+    else {
+        window.jNet = document.jNet = jNet
+    }
 
 }(document, 'prototype');
 

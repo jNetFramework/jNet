@@ -690,7 +690,16 @@
 
     };
 
-    window.jNet = document.jNet = jNet;
+    // todo
+    if (typeof define === 'function' && define.amd) {
+        define([], jNet);
+    }
+    else if (typeof exports === 'object') {
+        module.exports = jNet;
+    }
+    else {
+        window.jNet = document.jNet = jNet
+    }
 
 }(document, 'prototype');
 
