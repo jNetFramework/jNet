@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.589
- *  @build 1335
+ *  @version 0.596
+ *  @build 1352
  */
 
 String.prototype.jNToDocument = function () {
@@ -661,7 +661,6 @@ Object.prototype.clone = function () {
             return this;
         },
 
-        // fixme
         animate: function (options) {
             var start = new Date;
             var id = setInterval(function () {
@@ -675,33 +674,30 @@ Object.prototype.clone = function () {
                 options.step(delta);
                 if (progress == 1) {
                     clearInterval(id);
-                    options.complete(options.document);
+                    options.complete(options.jNetDoc);
                 }
             }, options.delay || 10);
             return id;
         },
 
-        // fixme
         show: function (duration) {
             return this.fadeIn({
                 duration: duration,
-                complete: function (doc) {
-                    doc.style.display = '';
+                after: function (self, obj) {
+                    self.css('display', '');
                 }
             });
         },
 
-        // fixme
         hide: function (duration) {
             return this.fadeOut({
                 duration: duration,
-                complete: function (doc) {
-                    doc.style.display = 'none';
+                complete: function (self) {
+                    self.css('display', 'none');
                 }
             });
         },
 
-        // fixme
         fadeIn: function (options) {
             var self = this;
             return this._call.call(this, {
@@ -711,7 +707,6 @@ Object.prototype.clone = function () {
             });
         },
 
-        // fixme
         fadeOut: function (options) {
             var self = this;
             return this._call.call(this, {
@@ -721,7 +716,6 @@ Object.prototype.clone = function () {
             });
         },
 
-        // fixme
         _fadeUniversal: function (obj) {
 
             var self = jNet(this);
@@ -739,12 +733,19 @@ Object.prototype.clone = function () {
                 }
             }
 
+            if (typeof obj.options.after !== "function") {
+                obj.options.after = function (self, obj) {
+                };
+            }
+
             if (typeof obj.options.easing !== "string") {
                 obj.options.easing = "swing";
             }
 
+            obj.options.after(self, obj);
+
             self.animate({
-                document: obj.document,
+                jNetDoc: self,
                 duration: obj.options.duration,
                 delta: function (progress) {
                     progress = this.progress;
@@ -752,16 +753,16 @@ Object.prototype.clone = function () {
                 },
                 complete: obj.options.complete,
                 step: function (delta) {
+                    var value = obj.to + delta;
                     if (obj.to) { // Out
-                        obj.document.style.opacity = obj.to - delta;
+                        value = obj.to - delta;
                     }
-                    else { // In
-                        obj.document.style.opacity = obj.to + delta;
-                    }
+                    self.css('opacity', value);
                 }
             });
 
             return this;
+
         },
 
         toString: "jNet"
