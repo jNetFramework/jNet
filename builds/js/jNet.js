@@ -2,13 +2,18 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.632
- *  @build 1433
+ *  @version 0.69
+ *  @build 1564
  */
 
 String.prototype.jNToDocument = function () {
     var domParser = new DOMParser();
     return domParser.parseFromString(this, "text/html");
+};
+
+String.prototype.parseXML = function () {
+    var domParser = new DOMParser();
+    return domParser.parseFromString(this, "text/xml");
 };
 
 String.prototype.jNTrim = function (regex) {
@@ -204,7 +209,9 @@ Object.prototype.clone = function () {
                             return res;
                     }
                 }
+
                 return jNet(res);
+
             },
 
             eq: function (index) {
@@ -415,28 +422,29 @@ Object.prototype.clone = function () {
 
                 var html = obj._html;
                 if (typeof html == 'string') {
-                    html = html.jNToDocument();
+                    html = [html.jNToDocument()];
                 }
-                else {
-                    switch (html.toString) {
-                        case this.toString:
-                            html = html._outerHTML().jNToDocument();
-                            break;
+                else if (typeof html == "object" && html.toString !== 'jNet') {
+                    html = [html];
+                }
+
+                jNet.each(html, function (key, _html) {
+
+                    var data = _html;
+                    if (typeof _html.body != 'undefined' && typeof _html.body.firstChild != 'undefined') {
+                        data = _html.body.firstChild;
                     }
-                }
+                    else if (typeof _html.body != 'undefined') {
+                        data = _html.body;
+                    }
 
-                if (typeof html.outerHTML != 'undefined') {
-                    html = html.outerHTML.jNToDocument();
-                }
-
-                if (typeof html.body.firstChild != 'undefined') {
                     if (obj.type == 'prepend') {
-                        obj.document.insertBefore(html.body.firstChild, obj.document.firstChild);
+                        obj.document.insertBefore(data, obj.document.firstChild);
                     }
                     else if (obj.type == 'append') {
-                        obj.document.appendChild(html.body.firstChild);
+                        obj.document.appendChild(data);
                     }
-                }
+                });
 
                 return jNet(obj.document);
 
@@ -485,7 +493,7 @@ Object.prototype.clone = function () {
                 if (valueAttribute == null || valueAttribute == '') {
                     return this._call.call(this, {
                         callback: function (obj) {
-                            if (this._hasAttribute(obj.nameAttribute)) {
+                            if (this.hasAttribute(obj.nameAttribute)) {
                                 obj.document.removeAttribute(obj.nameAttribute);
                             }
                             return this;
@@ -599,21 +607,33 @@ Object.prototype.clone = function () {
                 element = jNet(element);
                 return this._call.call(this, {
                     callback: function (obj) {
-                        obj.element[0].parentNode.insertBefore(obj.document, obj.element[0].nextSibling);
-                        obj.document.parentNode.insertBefore(obj.element[0], obj.document.nextSibling);
+                        obj.element[0].parentNode.insertBefore(obj.document, obj.element[0]);
                     },
                     element: element.first()
                 });
             },
 
             each: function (arr, callback) {
+
+                var isArray = Array.isArray(arr) ||
+                    (typeof arr.toString == "string" && arr.toString == "jNet");
+
                 if (typeof callback == "undefined") {
                     callback = arr;
                     arr = this.getDocuments();
+                    isArray = true;
                 }
-                var length = arr.length;
-                for (var i = 0; i < length; ++i) {
-                    callback.call(arr[i], i, arr[i]);
+
+                if (isArray) {
+                    var length = arr.length;
+                    for (var i = 0; i < length; ++i) {
+                        callback.call(arr[i], i, arr[i]);
+                    }
+                }
+                else {
+                    Object.keys(arr).forEach(function (key, value) {
+                        callback.call(value, key, value);
+                    });
                 }
             },
 
@@ -645,7 +665,6 @@ Object.prototype.clone = function () {
                 return this.on("DOMContentLoaded", listener, useCapture);
             },
 
-            // fixme
             _easing: function () {
                 this.linear = function (progress) {
                     return progress;
@@ -796,25 +815,24 @@ Object.prototype.clone = function () {
 
 });
 
-var props = [
-    'click', 'contextmenu', 'dblclick',
-    'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
-    'keyup', 'keydown', 'keypress',
-    'copy',
-    'selectstart', 'selectionchange', 'select'
-];
-
-props.forEach(function (prop, index) {
-    jNet.prototype[prop] = function (listener, useCapture) {
-        return this.on(prop, listener, useCapture);
-    };
-});
-
 jNet.each = jNet.fn.each;
 
 jNet.now = function () {
     return Math.floor((new Date()).getTime() / 1000);
 };
+
+jNet.each([
+    'click', 'contextmenu', 'dblclick',
+    'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
+    'keyup', 'keydown', 'keypress',
+    'copy',
+    'selectstart', 'selectionchange', 'select'
+], function (index, prop) {
+
+    jNet.fn[prop] = function (listener, useCapture) {
+        return this.on(prop, listener, useCapture);
+    };
+});
 
 jNet.ajax = function (options) {
 
@@ -1021,13 +1039,10 @@ jNet.smpl = function (selectorOrHTML) {
     var _html = [];
 
     if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
-        _html.push(selectorOrHTML);
+        _html.push(selectorOrHTML.jNToDocument().body);
     }
     else {
         jNet.each(jNet(selectorOrHTML), function (key, value) {
-            if (typeof value.innerHTML !== "undefined") {
-                value = value.innerHTML;
-            }
             _html.push(value);
         });
     }
@@ -1037,30 +1052,59 @@ jNet.smpl = function (selectorOrHTML) {
         this._html = _html;
         this._cache = {};
 
+        this.fn = this.prototype = {
+            method: {}
+
+        };
+
         this._get = function (vars, key) {
-            if (typeof this._cache[key] != "undefined") {
-                return this._cache[key];
-            }
             var param = vars;
             jNet.each(key.split('.'), function (key, value) {
                 param = param[value];
             });
-            if (typeof param == "object") {
-                param = JSON.stringify(param);
-            }
-            return this._cache[key] = param;
+            return param;
         };
 
         this.render = function (vars) {
-            this._cache = {};
+
             var self = this;
             var html = [];
             jNet.each(self._html, function (key, value) {
-                html[key] = value.replace(/\{\{([\w\s\t.]+)\}\}/g, function () {
-                    return self._get(vars, arguments[1].jNTrim('\t\n\s'));
-                });
+
+                value = jNet(value);
+
+                function _render(_html, vars) {
+                    return _html.replace(/%[\s\t]*([._\w]+)[\s\t]*%/g, function () {
+                        return self._get(vars, arguments[1].jNTrim('\t\n\s'));
+                    });
+                }
+
+                var $attr = value.attr('data-smpl-for');
+                var data = self._get(vars, $attr);
+
+                var _html = value.attr('data-smpl-for', null)
+                                    .attr('data-smpl', '').outerHTML();
+
+                value.attr('data-smpl', 'jNet');
+                value.attr('data-smpl-for', $attr);
+
+                if (typeof data == "object") {
+                    html[key] = [];
+                    jNet.each(data, function (k, v) {
+                        html[key].push(_render(_html, {
+                            '_': v
+                        }));
+                    });
+                    html[key] = html[key].join('\n');
+                }
+                else {
+                    html[key] = _render(_html, vars);
+                }
+
             });
-            return html.join('\n');
+
+            return html;
+
         };
 
         return this;
@@ -1068,3 +1112,5 @@ jNet.smpl = function (selectorOrHTML) {
     })(_html);
 
 };
+
+//'data-smpl-for'

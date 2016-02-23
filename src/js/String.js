@@ -3,6 +3,11 @@ String.prototype.jNToDocument = function () {
     return domParser.parseFromString(this, "text/html");
 };
 
+String.prototype.parseXML = function () {
+    var domParser = new DOMParser();
+    return domParser.parseFromString(this, "text/xml");
+};
+
 String.prototype.jNTrim = function (regex) {
     if (typeof regex == 'undefined') {
         return this.trim();

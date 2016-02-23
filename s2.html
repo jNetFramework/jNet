@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="builds/js/jNet.min.js"></script>
+    <script>var $ = jNet;</script>
+    <style>
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+        <td>e</td>
+        <td>f</td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr data-smpl="jNet" data-smpl-for="data">
+            <td>%_.a%</td>
+            <td>%_.b%</td>
+            <td>%_.c%</td>
+            <td>%_.d%</td>
+            <td>%_.e%</td>
+            <td>%_.f%</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+<script>
+    var forRender = {};
+    forRender.data = [];
+    for (var i = 0; i < 1000; ++i) {
+        var _data = {};
+        _data.a = Math.rand(1, 1000000);
+        _data.b = Math.rand(_data.a, 1000000);
+        _data.c = Math.rand(1, _data.b);
+        _data.d = Math.rand(_data.c, 1000000);
+        _data.e = Math.rand(1, _data.d);
+        _data.f = Math.rand(_data.e, 1000000);
+        forRender.data.push(_data);
+    }
+    $elements = $('[data-smpl="jNet"]');
+    var $template = $.smpl($elements);
+    $data = $template.render(forRender);
+    $elements.each(function (key, value) {
+        jNet(value).prepend($data[key])
+//        jNet(value).parent().append($data[key]);
+    });
+</script>
+</html>

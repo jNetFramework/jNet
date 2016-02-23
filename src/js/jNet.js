@@ -116,7 +116,9 @@
                             return res;
                     }
                 }
+
                 return jNet(res);
+
             },
 
             eq: function (index) {
@@ -327,28 +329,29 @@
 
                 var html = obj._html;
                 if (typeof html == 'string') {
-                    html = html.jNToDocument();
+                    html = [html.jNToDocument()];
                 }
-                else {
-                    switch (html.toString) {
-                        case this.toString:
-                            html = html._outerHTML().jNToDocument();
-                            break;
+                else if (typeof html == "object" && html.toString !== 'jNet') {
+                    html = [html];
+                }
+
+                jNet.each(html, function (key, _html) {
+
+                    var data = _html;
+                    if (typeof _html.body != 'undefined' && typeof _html.body.firstChild != 'undefined') {
+                        data = _html.body.firstChild;
                     }
-                }
+                    else if (typeof _html.body != 'undefined') {
+                        data = _html.body;
+                    }
 
-                if (typeof html.outerHTML != 'undefined') {
-                    html = html.outerHTML.jNToDocument();
-                }
-
-                if (typeof html.body.firstChild != 'undefined') {
                     if (obj.type == 'prepend') {
-                        obj.document.insertBefore(html.body.firstChild, obj.document.firstChild);
+                        obj.document.insertBefore(data, obj.document.firstChild);
                     }
                     else if (obj.type == 'append') {
-                        obj.document.appendChild(html.body.firstChild);
+                        obj.document.appendChild(data);
                     }
-                }
+                });
 
                 return jNet(obj.document);
 
@@ -397,7 +400,7 @@
                 if (valueAttribute == null || valueAttribute == '') {
                     return this._call.call(this, {
                         callback: function (obj) {
-                            if (this._hasAttribute(obj.nameAttribute)) {
+                            if (this.hasAttribute(obj.nameAttribute)) {
                                 obj.document.removeAttribute(obj.nameAttribute);
                             }
                             return this;
@@ -511,21 +514,33 @@
                 element = jNet(element);
                 return this._call.call(this, {
                     callback: function (obj) {
-                        obj.element[0].parentNode.insertBefore(obj.document, obj.element[0].nextSibling);
-                        obj.document.parentNode.insertBefore(obj.element[0], obj.document.nextSibling);
+                        obj.element[0].parentNode.insertBefore(obj.document, obj.element[0]);
                     },
                     element: element.first()
                 });
             },
 
             each: function (arr, callback) {
+
+                var isArray = Array.isArray(arr) ||
+                    (typeof arr.toString == "string" && arr.toString == "jNet");
+
                 if (typeof callback == "undefined") {
                     callback = arr;
                     arr = this.getDocuments();
+                    isArray = true;
                 }
-                var length = arr.length;
-                for (var i = 0; i < length; ++i) {
-                    callback.call(arr[i], i, arr[i]);
+
+                if (isArray) {
+                    var length = arr.length;
+                    for (var i = 0; i < length; ++i) {
+                        callback.call(arr[i], i, arr[i]);
+                    }
+                }
+                else {
+                    Object.keys(arr).forEach(function (key, value) {
+                        callback.call(value, key, value);
+                    });
                 }
             },
 
@@ -557,7 +572,6 @@
                 return this.on("DOMContentLoaded", listener, useCapture);
             },
 
-            // fixme
             _easing: function () {
                 this.linear = function (progress) {
                     return progress;
@@ -708,22 +722,21 @@
 
 });
 
-var props = [
-    'click', 'contextmenu', 'dblclick',
-    'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
-    'keyup', 'keydown', 'keypress',
-    'copy',
-    'selectstart', 'selectionchange', 'select'
-];
-
-props.forEach(function (prop, index) {
-    jNet.prototype[prop] = function (listener, useCapture) {
-        return this.on(prop, listener, useCapture);
-    };
-});
-
 jNet.each = jNet.fn.each;
 
 jNet.now = function () {
     return Math.floor((new Date()).getTime() / 1000);
 };
+
+jNet.each([
+    'click', 'contextmenu', 'dblclick',
+    'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
+    'keyup', 'keydown', 'keypress',
+    'copy',
+    'selectstart', 'selectionchange', 'select'
+], function (index, prop) {
+
+    jNet.fn[prop] = function (listener, useCapture) {
+        return this.on(prop, listener, useCapture);
+    };
+});
