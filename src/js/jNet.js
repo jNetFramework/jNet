@@ -81,7 +81,7 @@
                     args.document = element;
                     args.docInd = key;
                     var temp = args.callback.call(this, args);
-                    if (typeof temp !== "undefined") {
+                    if (typeof temp !== "undefined" && temp != null) {
                         if (typeof temp.length !== "undefined") {
                             if (Array.isArray(temp)) {
                                 Array.prototype.push.apply(res, temp);
@@ -221,6 +221,9 @@
             },
 
             find: function (selector) {
+                if (typeof selector == "undefined") {
+                    selector = '*';
+                }
                 return this._call.call(this, {
                     callback: function (obj) {
                         return obj.document.querySelectorAll(selector)
@@ -385,6 +388,24 @@
                 });
             },
 
+            data: function (nameAttribute, valueAttribute) {
+                return this._call.call(this, {
+                    callback: function (obj) {
+                        if (typeof obj.nameAttribute == "undefined") {
+                            return obj.document.dataset;
+                        }
+                        if (typeof obj.valueAttribute == "undefined") {
+                            return obj.document.dataset[obj.nameAttribute];
+                        }
+                        obj.document.dataset[obj.nameAttribute] = obj.valueAttribute;
+                        return this;
+                    },
+                    nameAttribute: nameAttribute,
+                    valueAttribute: valueAttribute,
+                    jNetToType: typeof valueAttribute
+                });
+            },
+
             attr: function (nameAttribute, valueAttribute) {
 
                 if (typeof valueAttribute == "undefined") {
@@ -393,7 +414,7 @@
                             return obj.document.getAttribute(obj.nameAttribute);
                         },
                         nameAttribute: nameAttribute,
-                        jNetToType: "array"
+                        jNetToType: "string"
                     })
                 }
 
