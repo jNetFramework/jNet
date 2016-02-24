@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.728
- *  @build 1651
+ *  @version 0.729
+ *  @build 1653
  */
 
 String.prototype.parseHTML = function (context) {
@@ -1130,7 +1130,7 @@ jNet.smpl = function (selectorOrHTML) {
             return param;
         };
 
-        this.render = function (vars) {
+        this.render = function (vars, autorender) {
 
             var self = this;
             var html = [];
@@ -1174,6 +1174,12 @@ jNet.smpl = function (selectorOrHTML) {
 
             });
 
+            if (typeof autorender != "undefined") {
+                jNet.each(self._html, function (key, value) {
+                    jNet(value).outerHTML(html[key]);
+                });
+            }
+
             return html;
 
         };
@@ -1186,6 +1192,10 @@ jNet.smpl = function (selectorOrHTML) {
 
     if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
         selectorOrHTML = jNet(selectorOrHTML.parseHTML()).find();
+    }
+
+    if (typeof selectorOrHTML == "undefined") {
+        selectorOrHTML = jNet('[data-smpl="jNet"]');
     }
 
     jNet.each(jNet(selectorOrHTML), function (key, value) {

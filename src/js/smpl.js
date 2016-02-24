@@ -20,7 +20,7 @@ jNet.smpl = function (selectorOrHTML) {
             return param;
         };
 
-        this.render = function (vars) {
+        this.render = function (vars, autorender) {
 
             var self = this;
             var html = [];
@@ -64,6 +64,12 @@ jNet.smpl = function (selectorOrHTML) {
 
             });
 
+            if (typeof autorender != "undefined") {
+                jNet.each(self._html, function (key, value) {
+                    jNet(value).outerHTML(html[key]);
+                });
+            }
+
             return html;
 
         };
@@ -76,6 +82,10 @@ jNet.smpl = function (selectorOrHTML) {
 
     if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
         selectorOrHTML = jNet(selectorOrHTML.parseHTML()).find();
+    }
+
+    if (typeof selectorOrHTML == "undefined") {
+        selectorOrHTML = jNet('[data-smpl="jNet"]');
     }
 
     jNet.each(jNet(selectorOrHTML), function (key, value) {

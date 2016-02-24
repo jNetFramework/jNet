@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>%title%</title>
+    <title data-smpl="jNet">%title%</title>
     <script type="text/javascript" src="builds/js/jNet.min.js"></script>
     <script>var $ = jNet;</script>
 </head>
 <body>
 <div id="test">
-    <h1>User %user.login%</h1>
+    <h1 data-smpl="jNet">User %user.login%</h1>
     <div>
-        <div>%user.lastname% %user.name%</div>
+        <div data-smpl="jNet">%user.lastname% %user.name%</div>
     </div>
     <ul id="ajax"></ul>
 </div>
 <script>
     $(function () {
-        var $test = $('html');
-        var $smpl = $.smpl($test);
-        $test.innerHTML($smpl.render({
+
+        $.smpl().render({
             title: 'jNet - Sample Framework',
             user: {
                 login: "REZ1DENT3",
                 lastname: "Babichev",
                 name: "Maxim"
             }
-        }));
+        }, true);
+
         var $template = $.smpl('<li>%time%, GET: %GET%</li>');
         $ulAjax = $('#ajax');
         setInterval(function () {
