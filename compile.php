@@ -136,8 +136,11 @@ try {
     foreach ($allFiles as $type => $dataFiles) {
         $typePath = mb_strtolower($type);
         $maxLength = 0;
-        foreach ($dataFiles as $fileName => $data) {
+        foreach ($dataFiles as $fileName => &$data) {
             $fileName = $settins['to'] . $typePath . '/' . $fileName . '.min.' . $typePath;
+            file_put_contents($fileName, $data);
+            exec('java -jar ' . __DIR__ . '/yuicompressor.jar ' . $fileName . ' -o ' . $fileName);
+            $data = file_get_contents($fileName);
             file_put_contents($fileName, $header . $data);
             $maxLength = max($maxLength, mb_strlen(mb_strlen($data)));
         }

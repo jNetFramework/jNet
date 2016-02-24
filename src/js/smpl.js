@@ -33,6 +33,7 @@ jNet.smpl = function (selectorOrHTML) {
 
                 var $attr = value.data('smplFor');
                 if ($attr.length) {
+
                     var data = self._get(vars, $attr);
 
                     var _html = value.data('for', null)

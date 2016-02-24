@@ -389,21 +389,35 @@
             },
 
             data: function (nameAttribute, valueAttribute) {
+
+                if (typeof nameAttribute == "undefined") {
+                    return this._call.call(this, {
+                        callback: function (obj) {
+                            return obj.document.dataset;
+                        },
+                        jNetToType: "array"
+                    });
+                }
+
+                if (typeof valueAttribute == "undefined") {
+                    return this._call.call(this, {
+                        callback: function (obj) {
+                            return obj.document.dataset[obj.nameAttribute];
+                        },
+                        nameAttribute: nameAttribute,
+                        jNetToType: "array"
+                    })
+                }
+
                 return this._call.call(this, {
                     callback: function (obj) {
-                        if (typeof obj.nameAttribute == "undefined") {
-                            return obj.document.dataset;
-                        }
-                        if (typeof obj.valueAttribute == "undefined") {
-                            return obj.document.dataset[obj.nameAttribute];
-                        }
                         obj.document.dataset[obj.nameAttribute] = obj.valueAttribute;
                         return this;
                     },
                     nameAttribute: nameAttribute,
-                    valueAttribute: valueAttribute,
-                    jNetToType: typeof valueAttribute
+                    valueAttribute: valueAttribute
                 });
+
             },
 
             attr: function (nameAttribute, valueAttribute) {

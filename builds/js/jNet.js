@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.718
- *  @build 1629
+ *  @version 0.727
+ *  @build 1648
  */
 
 String.prototype.parseHTML = function (context) {
@@ -521,21 +521,35 @@ Object.prototype.clone = function () {
             },
 
             data: function (nameAttribute, valueAttribute) {
+
+                if (typeof nameAttribute == "undefined") {
+                    return this._call.call(this, {
+                        callback: function (obj) {
+                            return obj.document.dataset;
+                        },
+                        jNetToType: "array"
+                    });
+                }
+
+                if (typeof valueAttribute == "undefined") {
+                    return this._call.call(this, {
+                        callback: function (obj) {
+                            return obj.document.dataset[obj.nameAttribute];
+                        },
+                        nameAttribute: nameAttribute,
+                        jNetToType: "array"
+                    })
+                }
+
                 return this._call.call(this, {
                     callback: function (obj) {
-                        if (typeof obj.nameAttribute == "undefined") {
-                            return obj.document.dataset;
-                        }
-                        if (typeof obj.valueAttribute == "undefined") {
-                            return obj.document.dataset[obj.nameAttribute];
-                        }
                         obj.document.dataset[obj.nameAttribute] = obj.valueAttribute;
                         return this;
                     },
                     nameAttribute: nameAttribute,
-                    valueAttribute: valueAttribute,
-                    jNetToType: typeof valueAttribute
+                    valueAttribute: valueAttribute
                 });
+
             },
 
             attr: function (nameAttribute, valueAttribute) {
@@ -1127,15 +1141,16 @@ jNet.smpl = function (selectorOrHTML) {
                     });
                 }
 
-                var $attr = value.attr('data-smpl-for');
+                var $attr = value.data('smplFor');
                 if ($attr.length) {
+
                     var data = self._get(vars, $attr);
 
-                    var _html = value.attr('data-smpl-for', null)
-                        .attr('data-smpl', '').outerHTML();
+                    var _html = value.data('for', null)
+                        .data('smpl', '').outerHTML();
 
-                    value.attr('data-smpl', 'jNet');
-                    value.attr('data-smpl-for', $attr);
+                    value.data('smpl', 'jNet');
+                    value.data('smplFor', $attr);
 
                     if (typeof data == "object") {
                         html[key] = [];
