@@ -6,6 +6,9 @@
     <script type="text/javascript" src="builds/js/jNet.min.js"></script>
     <script>var $ = jNet;</script>
     <style>
+        [data-smpl="jNet"] {
+            display: none;
+        }
         td {
             border: 1px solid black;
         }
@@ -52,8 +55,7 @@
     var $template = $.smpl($elements);
     $data = $template.render(forRender);
     $elements.each(function (key, value) {
-        jNet(value).prepend($data[key])
-//        jNet(value).parent().append($data[key]);
+        jNet(value).parent().append($data[key]);
     });
 </script>
 </html>

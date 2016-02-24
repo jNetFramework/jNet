@@ -3,7 +3,7 @@ jNet.smpl = function (selectorOrHTML) {
     var _html = [];
 
     if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
-        _html.push(selectorOrHTML.jNToDocument().body);
+        _html.push(selectorOrHTML.parseHTML().body);
     }
     else {
         jNet.each(jNet(selectorOrHTML), function (key, value) {

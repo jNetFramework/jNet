@@ -329,7 +329,7 @@
 
                 var html = obj._html;
                 if (typeof html == 'string') {
-                    html = [html.jNToDocument()];
+                    html = [html.parseHTML()];
                 }
                 else if (typeof html == "object" && html.toString !== 'jNet') {
                     html = [html];
