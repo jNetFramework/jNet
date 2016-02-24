@@ -1,20 +1,8 @@
 jNet.smpl = function (selectorOrHTML) {
 
-    var _html = [];
-
-    if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
-        _html.push(selectorOrHTML.parseHTML().body);
-    }
-    else {
-        jNet.each(jNet(selectorOrHTML), function (key, value) {
-            _html.push(value);
-        });
-    }
-
-    return new (function (_html) {
+    function SMPLFramework(_html) {
 
         this._html = _html;
-        this._cache = {};
 
         this.fn = this.prototype = {
             method: {}
@@ -44,25 +32,30 @@ jNet.smpl = function (selectorOrHTML) {
                 }
 
                 var $attr = value.attr('data-smpl-for');
-                var data = self._get(vars, $attr);
+                if ($attr.length) {
+                    var data = self._get(vars, $attr);
 
-                var _html = value.attr('data-smpl-for', null)
-                                    .attr('data-smpl', '').outerHTML();
+                    var _html = value.attr('data-smpl-for', null)
+                        .attr('data-smpl', '').outerHTML();
 
-                value.attr('data-smpl', 'jNet');
-                value.attr('data-smpl-for', $attr);
+                    value.attr('data-smpl', 'jNet');
+                    value.attr('data-smpl-for', $attr);
 
-                if (typeof data == "object") {
-                    html[key] = [];
-                    jNet.each(data, function (k, v) {
-                        html[key].push(_render(_html, {
-                            '_': v
-                        }));
-                    });
-                    html[key] = html[key].join('\n');
+                    if (typeof data == "object") {
+                        html[key] = [];
+                        jNet.each(data, function (k, v) {
+                            html[key].push(_render(_html, {
+                                '_': v
+                            }));
+                        });
+                        html[key] = html[key].join('\n');
+                    }
+                    else {
+                        html[key] = _render(_html, vars);
+                    }
                 }
                 else {
-                    html[key] = _render(_html, vars);
+                    html[key] = _render(value.outerHTML(), vars);
                 }
 
             });
@@ -73,7 +66,19 @@ jNet.smpl = function (selectorOrHTML) {
 
         return this;
 
-    })(_html);
+    }
+
+    var _html = [];
+
+    if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
+        selectorOrHTML = jNet(selectorOrHTML.parseHTML()).find();
+    }
+
+    jNet.each(jNet(selectorOrHTML), function (key, value) {
+        _html.push(value);
+    });
+
+    return new SMPLFramework(_html);
 
 };
 

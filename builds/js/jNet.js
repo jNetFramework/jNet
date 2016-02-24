@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.693
- *  @build 1571
+ *  @version 0.718
+ *  @build 1629
  */
 
 String.prototype.parseHTML = function (context) {
@@ -213,7 +213,7 @@ Object.prototype.clone = function () {
                     args.document = element;
                     args.docInd = key;
                     var temp = args.callback.call(this, args);
-                    if (typeof temp !== "undefined") {
+                    if (typeof temp !== "undefined" && temp != null) {
                         if (typeof temp.length !== "undefined") {
                             if (Array.isArray(temp)) {
                                 Array.prototype.push.apply(res, temp);
@@ -353,6 +353,9 @@ Object.prototype.clone = function () {
             },
 
             find: function (selector) {
+                if (typeof selector == "undefined") {
+                    selector = '*';
+                }
                 return this._call.call(this, {
                     callback: function (obj) {
                         return obj.document.querySelectorAll(selector)
@@ -517,6 +520,24 @@ Object.prototype.clone = function () {
                 });
             },
 
+            data: function (nameAttribute, valueAttribute) {
+                return this._call.call(this, {
+                    callback: function (obj) {
+                        if (typeof obj.nameAttribute == "undefined") {
+                            return obj.document.dataset;
+                        }
+                        if (typeof obj.valueAttribute == "undefined") {
+                            return obj.document.dataset[obj.nameAttribute];
+                        }
+                        obj.document.dataset[obj.nameAttribute] = obj.valueAttribute;
+                        return this;
+                    },
+                    nameAttribute: nameAttribute,
+                    valueAttribute: valueAttribute,
+                    jNetToType: typeof valueAttribute
+                });
+            },
+
             attr: function (nameAttribute, valueAttribute) {
 
                 if (typeof valueAttribute == "undefined") {
@@ -525,7 +546,7 @@ Object.prototype.clone = function () {
                             return obj.document.getAttribute(obj.nameAttribute);
                         },
                         nameAttribute: nameAttribute,
-                        jNetToType: "array"
+                        jNetToType: "string"
                     })
                 }
 
@@ -1075,21 +1096,9 @@ jNet.cookie = function (document) {
 
 jNet.smpl = function (selectorOrHTML) {
 
-    var _html = [];
-
-    if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
-        _html.push(selectorOrHTML.parseHTML().body);
-    }
-    else {
-        jNet.each(jNet(selectorOrHTML), function (key, value) {
-            _html.push(value);
-        });
-    }
-
-    return new (function (_html) {
+    function SMPLFramework(_html) {
 
         this._html = _html;
-        this._cache = {};
 
         this.fn = this.prototype = {
             method: {}
@@ -1119,25 +1128,30 @@ jNet.smpl = function (selectorOrHTML) {
                 }
 
                 var $attr = value.attr('data-smpl-for');
-                var data = self._get(vars, $attr);
+                if ($attr.length) {
+                    var data = self._get(vars, $attr);
 
-                var _html = value.attr('data-smpl-for', null)
-                                    .attr('data-smpl', '').outerHTML();
+                    var _html = value.attr('data-smpl-for', null)
+                        .attr('data-smpl', '').outerHTML();
 
-                value.attr('data-smpl', 'jNet');
-                value.attr('data-smpl-for', $attr);
+                    value.attr('data-smpl', 'jNet');
+                    value.attr('data-smpl-for', $attr);
 
-                if (typeof data == "object") {
-                    html[key] = [];
-                    jNet.each(data, function (k, v) {
-                        html[key].push(_render(_html, {
-                            '_': v
-                        }));
-                    });
-                    html[key] = html[key].join('\n');
+                    if (typeof data == "object") {
+                        html[key] = [];
+                        jNet.each(data, function (k, v) {
+                            html[key].push(_render(_html, {
+                                '_': v
+                            }));
+                        });
+                        html[key] = html[key].join('\n');
+                    }
+                    else {
+                        html[key] = _render(_html, vars);
+                    }
                 }
                 else {
-                    html[key] = _render(_html, vars);
+                    html[key] = _render(value.outerHTML(), vars);
                 }
 
             });
@@ -1148,7 +1162,19 @@ jNet.smpl = function (selectorOrHTML) {
 
         return this;
 
-    })(_html);
+    }
+
+    var _html = [];
+
+    if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
+        selectorOrHTML = jNet(selectorOrHTML.parseHTML()).find();
+    }
+
+    jNet.each(jNet(selectorOrHTML), function (key, value) {
+        _html.push(value);
+    });
+
+    return new SMPLFramework(_html);
 
 };
 

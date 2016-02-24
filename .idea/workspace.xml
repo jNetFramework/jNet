@@ -6,8 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build" afterPath="$PROJECT_DIR$/build" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.js" afterPath="$PROJECT_DIR$/builds/js/jNet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/builds/js/jNet.min.js" afterPath="$PROJECT_DIR$/builds/js/jNet.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/s2.html" afterPath="$PROJECT_DIR$/s2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/String.js" afterPath="$PROJECT_DIR$/src/js/String.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smpl.html" afterPath="$PROJECT_DIR$/smpl.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/jNet.js" afterPath="$PROJECT_DIR$/src/js/jNet.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/smpl.js" afterPath="$PROJECT_DIR$/src/js/smpl.js" />
     </list>
@@ -34,51 +33,38 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-46.423077">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="s2.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="s2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/s2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6953405">
-              <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+            <state vertical-scroll-proportion="-13.307693">
+              <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="smpl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="smpl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/smpl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.3030822">
+              <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jNet.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
+      <file leaf-file-name="smpl.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/smpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8965516">
-              <caret line="331" column="36" selection-start-line="331" selection-start-column="36" selection-end-line="331" selection-end-column="36" />
-              <folding>
-                <element signature="e#4507#4557#0" expanded="false" />
-                <element signature="e#4590#4654#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="String.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/js/String.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-14.923077">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -110,7 +96,6 @@
         <option value="$PROJECT_DIR$/jNet.js" />
         <option value="$PROJECT_DIR$/build" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/.urls" />
         <option value="$PROJECT_DIR$/compile.php" />
         <option value="$PROJECT_DIR$/builds/js/jNet.min.js" />
         <option value="$PROJECT_DIR$/src/js/jNArray.js" />
@@ -128,12 +113,13 @@
         <option value="$PROJECT_DIR$/src/js/sample.js" />
         <option value="$PROJECT_DIR$/minner.json" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/smpl.html" />
         <option value="$PROJECT_DIR$/demo/demo.css" />
-        <option value="$PROJECT_DIR$/src/js/jNet.js" />
-        <option value="$PROJECT_DIR$/src/js/smpl.js" />
         <option value="$PROJECT_DIR$/src/js/String.js" />
         <option value="$PROJECT_DIR$/s2.html" />
+        <option value="$PROJECT_DIR$/.urls" />
+        <option value="$PROJECT_DIR$/src/js/jNet.js" />
+        <option value="$PROJECT_DIR$/smpl.html" />
+        <option value="$PROJECT_DIR$/src/js/smpl.js" />
       </list>
     </option>
   </component>
@@ -177,6 +163,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,7 +248,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -333,10 +319,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22541603" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22844176" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -373,6 +359,25 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="331" column="36" selection-start-line="331" selection-start-column="36" selection-end-line="331" selection-end-column="36" />
+          <folding>
+            <element signature="e#4523#4573#0" expanded="false" />
+            <element signature="e#4606#4670#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/String.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -499,13 +504,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.urls">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20376712">
@@ -594,13 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/Cookie.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54849887">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/demo/material.indigo-pink.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -659,34 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smpl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47318235">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="37" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-46.423077">
-          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/underscore-contrib/test/vendor/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="6020" column="60" selection-start-line="6020" selection-start-column="60" selection-end-line="6020" selection-end-column="64" />
-          <folding>
-            <marker date="1456155297648" expanded="true" signature="35054:35085" placeholder="..." />
-            <marker date="1456155297648" expanded="true" signature="41014:41047" placeholder="..." />
-            <marker date="1456155297648" expanded="true" signature="42025:42040" placeholder="..." />
-            <marker date="1456155297648" expanded="true" signature="43747:43757" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-184.39897">
@@ -701,37 +664,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
+    <entry file="file://$PROJECT_DIR$/.urls">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8965516">
-          <caret line="331" column="36" selection-start-line="331" selection-start-column="36" selection-end-line="331" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.02910959">
+          <caret line="1" column="122" selection-start-line="1" selection-start-column="122" selection-end-line="1" selection-end-column="122" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/underscore-contrib/test/vendor/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321918">
+          <caret line="5851" column="4" selection-start-line="5851" selection-start-column="4" selection-end-line="5851" selection-end-column="4" />
           <folding>
-            <element signature="e#4507#4557#0" expanded="false" />
-            <element signature="e#4590#4654#0" expanded="false" />
+            <marker date="1456155297648" expanded="true" signature="35054:35085" placeholder="..." />
+            <marker date="1456155297648" expanded="true" signature="41014:41047" placeholder="..." />
+            <marker date="1456155297648" expanded="true" signature="42025:42040" placeholder="..." />
+            <marker date="1456155297648" expanded="true" signature="43747:43757" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/String.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.46575344">
+          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/smpl.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
+          <caret line="71" column="54" selection-start-line="71" selection-start-column="54" selection-end-line="71" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/Cookie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/s2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6953405">
-          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+        <state vertical-scroll-proportion="-13.307693">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/jNet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47773972">
+          <caret line="404" column="53" selection-start-line="404" selection-start-column="53" selection-end-line="404" selection-end-column="53" />
+          <folding>
+            <element signature="e#4523#4573#0" expanded="false" />
+            <element signature="e#4606#4670#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/smpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.923077">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/smpl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3030822">
+          <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
           <folding />
         </state>
       </provider>
