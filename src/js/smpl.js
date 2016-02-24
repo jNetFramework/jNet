@@ -31,15 +31,15 @@ jNet.smpl = function (selectorOrHTML) {
                     });
                 }
 
-                var $attr = value.attr('data-smpl-for');
+                var $attr = value.data('smplFor');
                 if ($attr.length) {
                     var data = self._get(vars, $attr);
 
-                    var _html = value.attr('data-smpl-for', null)
-                        .attr('data-smpl', '').outerHTML();
+                    var _html = value.data('for', null)
+                        .data('smpl', '').outerHTML();
 
-                    value.attr('data-smpl', 'jNet');
-                    value.attr('data-smpl-for', $attr);
+                    value.data('smpl', 'jNet');
+                    value.data('smplFor', $attr);
 
                     if (typeof data == "object") {
                         html[key] = [];
