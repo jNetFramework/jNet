@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.727
- *  @build 1649
+ *  @version 0.728
+ *  @build 1651
  */
 
 String.prototype.parseHTML = function (context) {
@@ -1122,6 +1122,9 @@ jNet.smpl = function (selectorOrHTML) {
         this._get = function (vars, key) {
             var param = vars;
             jNet.each(key.split('.'), function (key, value) {
+                if (typeof param[value] == "undefined") {
+                    return [];
+                }
                 param = param[value];
             });
             return param;
@@ -1146,7 +1149,7 @@ jNet.smpl = function (selectorOrHTML) {
 
                     var data = self._get(vars, $attr);
 
-                    var _html = value.data('for', null)
+                    var _html = value.data('smplFor', '')
                         .data('smpl', '').outerHTML();
 
                     value.data('smpl', 'jNet');

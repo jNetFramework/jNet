@@ -12,6 +12,9 @@ jNet.smpl = function (selectorOrHTML) {
         this._get = function (vars, key) {
             var param = vars;
             jNet.each(key.split('.'), function (key, value) {
+                if (typeof param[value] == "undefined") {
+                    return [];
+                }
                 param = param[value];
             });
             return param;
@@ -36,7 +39,7 @@ jNet.smpl = function (selectorOrHTML) {
 
                     var data = self._get(vars, $attr);
 
-                    var _html = value.data('for', null)
+                    var _html = value.data('smplFor', '')
                         .data('smpl', '').outerHTML();
 
                     value.data('smpl', 'jNet');
