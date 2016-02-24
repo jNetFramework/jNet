@@ -47,7 +47,7 @@
                 var $template = $.smpl($elements);
                 $data = $template.render(JSON.parse(http.target.response));
                 $elements.each(function (key, value) {
-                    jNet(value).parent().append($data[key]);
+                    jNet(value).parent().prepend($data[key]);
                 });
                 $('tbody tr').css('background', 'none').even().css('background', '#0cc');
             }
