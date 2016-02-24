@@ -139,7 +139,7 @@ try {
         foreach ($dataFiles as $fileName => &$data) {
             $fileName = $settins['to'] . $typePath . '/' . $fileName . '.min.' . $typePath;
             file_put_contents($fileName, $data);
-            exec('java -jar ' . __DIR__ . '/yuicompressor.jar ' . $fileName . ' -o ' . $fileName);
+            exec('java -jar ' . __DIR__ . '/yuicompressor.jar ' . $fileName . ' -o ' . $fileName . ' --charset utf-8');
             $data = file_get_contents($fileName);
             file_put_contents($fileName, $header . $data);
             $maxLength = max($maxLength, mb_strlen(mb_strlen($data)));

@@ -3,7 +3,7 @@
  *  @site https://babichev.net
  *  @year 2013 - 2016
  *  @version 0.727
- *  @build 1648
+ *  @build 1649
  */
 
 String.prototype.parseHTML = function (context) {
