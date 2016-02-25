@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.729
- *  @build 1653
+ *  @version 0.6.8.31
+ *  @build 1662
  */
 
 String.prototype.parseHTML = function (context) {

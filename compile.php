@@ -9,7 +9,10 @@ function build()
 
 function version()
 {
-    return round(0.000441 * build(), 3);
+    $version = round(0.000411 * build(), 4);
+    $version = preg_replace('~(\.\d)~', '$1.', $version);
+    $version = preg_replace('~(\.\d\.\d)~', '$1.', $version);
+    return $version;
 }
 
 function nextBuild()
