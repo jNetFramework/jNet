@@ -168,9 +168,7 @@
                 });
             });
 
-            $olEvents.find('li').odd(function ($e) {
-                $e.css('background', '#ccc');
-            });
+            $olEvents.find('li').odd().css('background', '#ccc');;
 
             $main.append('<h3>Keyboard</h3>');
             $main.append('<form id="event-keyboard"></form>');

@@ -37,22 +37,21 @@
             _find: false,
 
             getDocuments: function () {
+
                 if (this._find) {
                     return this;
                 }
-                else {
-                    while (this.length) {
-                        delete this[this.length - 1];
-                    }
-                    var parameter = [];
-                    if (typeof this._selector.toString == "string") {
-                        if (this._selector.toString == this.toString) {
-                            Array.prototype.push.apply(this, this._selector);
-                            this._find = true;
-                            return this;
-                        }
-                    }
 
+                while (this.length) {
+                    delete this[this.length - 1];
+                }
+
+                var parameter = [];
+                if (typeof this._selector.toString == "string" &&
+                    this._selector.toString == this.toString) {
+                    parameter = this._selector;
+                }
+                else {
                     if (this._selector && this._selector.nodeType) {
                         parameter = [this._selector];
                         if (typeof this._selector.parentNode !== "undefined") {
@@ -66,10 +65,12 @@
                         this._selector = this._selector.selectorReplaceId();
                         parameter = this._document.querySelectorAll(this._selector);
                     }
-                    Array.prototype.push.apply(this, parameter);
-                    this._find = true;
-                    return this;
                 }
+
+                Array.prototype.push.apply(this, parameter);
+                this._find = true;
+                return this;
+
             },
 
             _call: function () {

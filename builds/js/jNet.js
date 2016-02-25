@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.728
- *  @build 1651
+ *  @version 0.6.8.39
+ *  @build 1664
  */
 
 String.prototype.parseHTML = function (context) {
@@ -169,22 +169,21 @@ Object.prototype.clone = function () {
             _find: false,
 
             getDocuments: function () {
+
                 if (this._find) {
                     return this;
                 }
-                else {
-                    while (this.length) {
-                        delete this[this.length - 1];
-                    }
-                    var parameter = [];
-                    if (typeof this._selector.toString == "string") {
-                        if (this._selector.toString == this.toString) {
-                            Array.prototype.push.apply(this, this._selector);
-                            this._find = true;
-                            return this;
-                        }
-                    }
 
+                while (this.length) {
+                    delete this[this.length - 1];
+                }
+
+                var parameter = [];
+                if (typeof this._selector.toString == "string" &&
+                    this._selector.toString == this.toString) {
+                    parameter = this._selector;
+                }
+                else {
                     if (this._selector && this._selector.nodeType) {
                         parameter = [this._selector];
                         if (typeof this._selector.parentNode !== "undefined") {
@@ -198,10 +197,12 @@ Object.prototype.clone = function () {
                         this._selector = this._selector.selectorReplaceId();
                         parameter = this._document.querySelectorAll(this._selector);
                     }
-                    Array.prototype.push.apply(this, parameter);
-                    this._find = true;
-                    return this;
                 }
+
+                Array.prototype.push.apply(this, parameter);
+                this._find = true;
+                return this;
+
             },
 
             _call: function () {
@@ -1130,7 +1131,7 @@ jNet.smpl = function (selectorOrHTML) {
             return param;
         };
 
-        this.render = function (vars) {
+        this.render = function (vars, autorender) {
 
             var self = this;
             var html = [];
@@ -1174,6 +1175,12 @@ jNet.smpl = function (selectorOrHTML) {
 
             });
 
+            if (typeof autorender != "undefined") {
+                jNet.each(self._html, function (key, value) {
+                    jNet(value).outerHTML(html[key]);
+                });
+            }
+
             return html;
 
         };
@@ -1186,6 +1193,10 @@ jNet.smpl = function (selectorOrHTML) {
 
     if (typeof selectorOrHTML == "string" && selectorOrHTML.isHTML()) {
         selectorOrHTML = jNet(selectorOrHTML.parseHTML()).find();
+    }
+
+    if (typeof selectorOrHTML == "undefined") {
+        selectorOrHTML = jNet('[data-smpl="jNet"]');
     }
 
     jNet.each(jNet(selectorOrHTML), function (key, value) {
