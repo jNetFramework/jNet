@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.6.8.39
- *  @build 1664
+ *  @version 0.6.9.21
+ *  @build 1684
  */
 
 String.prototype.parseHTML = function (context) {
@@ -179,28 +179,30 @@ Object.prototype.clone = function () {
                 }
 
                 var parameter = [];
-                if (typeof this._selector.toString == "string" &&
-                    this._selector.toString == this.toString) {
-                    parameter = this._selector;
-                }
-                else {
-                    if (this._selector && this._selector.nodeType) {
-                        parameter = [this._selector];
-                        if (typeof this._selector.parentNode !== "undefined") {
-                            this._document = this._selector.parentNode;
-                        }
-                    }
-                    else if (Array.isArray(this._selector)) {
+                if (typeof this._selector !== "undefined") {
+                    if (typeof this._selector.toString == "string" &&
+                        this._selector.toString == this.toString) {
                         parameter = this._selector;
                     }
-                    else if (typeof this._selector === "string") {
-                        this._selector = this._selector.selectorReplaceId();
-                        parameter = this._document.querySelectorAll(this._selector);
+                    else {
+                        if (this._selector && this._selector.nodeType) {
+                            parameter = [this._selector];
+                            if (typeof this._selector.parentNode !== "undefined") {
+                                this._document = this._selector.parentNode;
+                            }
+                        }
+                        else if (Array.isArray(this._selector)) {
+                            parameter = this._selector;
+                        }
+                        else if (typeof this._selector === "string") {
+                            this._selector = this._selector.selectorReplaceId();
+                            parameter = this._document.querySelectorAll(this._selector);
+                        }
                     }
                 }
 
                 Array.prototype.push.apply(this, parameter);
-                this._find = true;
+                this._find = this.length > 0;
                 return this;
 
             },
@@ -1208,3 +1210,82 @@ jNet.smpl = function (selectorOrHTML) {
 };
 
 //'data-smpl-for'
+window.requestAnimationFrame = window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+    };
+
+window.cancelAnimationFrame = window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    function (callback) {
+        window.clearTimeout(callback);
+    };
+
+jNet.Canvas = function (canvas) {
+
+    this._canvas = jNet(canvas);
+    this._context = undefined;
+    this._id = undefined;
+
+    this.getCanvas = function () {
+        return this._canvas[0];
+    };
+
+    this.getContext = function () {
+        return this._context;
+    };
+
+    this.setContext2D = function () {
+        this._context = this.getCanvas().getContext('2d');
+        return this;
+    };
+
+    this.setContext3D = function () {
+        this._context = this.getCanvas().getContext('3d');
+        return this;
+    };
+
+    this.setWidth = function (width) {
+        this.getCanvas().width = width;
+    };
+
+    this.setHeight = function (height) {
+        this.getCanvas().height = height;
+    };
+
+    this.setSize = function (width, height) {
+        this.setWidth(width);
+        this.setHeight(height);
+    };
+
+    this.start = function () {
+        var self = this;
+        this._id = requestAnimationFrame(function () {
+            return self.start();
+        });
+        this.draw();
+    };
+
+    this.stop = function () {
+        if (this._id) {
+            cancelAnimationFrame(this._id);
+            this._id = undefined;
+        }
+    };
+
+    this.draw = function () {
+    };
+
+    if (!this._canvas._find) {
+        this._canvas = jNet(document.createElement('canvas'));
+        jNet(document.body).append(this._canvas);
+        this.setSize(256, 256);
+        this.setContext2D();
+    }
+
+    return this;
+
+};

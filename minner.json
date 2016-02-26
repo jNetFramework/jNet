@@ -15,7 +15,8 @@
       "jNet.js",
       "Ajax.js",
       "cookie.js",
-      "smpl.js"
+      "smpl.js",
+      "Canvas.js"
     ],
     "noMin": [
       "String.js",
@@ -25,7 +26,8 @@
       "jNet.js",
       "Ajax.js",
       "cookie.js",
-      "smpl.js"
+      "smpl.js",
+      "Canvas.js"
     ]
   }
 }

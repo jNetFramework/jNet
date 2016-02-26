@@ -47,28 +47,30 @@
                 }
 
                 var parameter = [];
-                if (typeof this._selector.toString == "string" &&
-                    this._selector.toString == this.toString) {
-                    parameter = this._selector;
-                }
-                else {
-                    if (this._selector && this._selector.nodeType) {
-                        parameter = [this._selector];
-                        if (typeof this._selector.parentNode !== "undefined") {
-                            this._document = this._selector.parentNode;
-                        }
-                    }
-                    else if (Array.isArray(this._selector)) {
+                if (typeof this._selector !== "undefined") {
+                    if (typeof this._selector.toString == "string" &&
+                        this._selector.toString == this.toString) {
                         parameter = this._selector;
                     }
-                    else if (typeof this._selector === "string") {
-                        this._selector = this._selector.selectorReplaceId();
-                        parameter = this._document.querySelectorAll(this._selector);
+                    else {
+                        if (this._selector && this._selector.nodeType) {
+                            parameter = [this._selector];
+                            if (typeof this._selector.parentNode !== "undefined") {
+                                this._document = this._selector.parentNode;
+                            }
+                        }
+                        else if (Array.isArray(this._selector)) {
+                            parameter = this._selector;
+                        }
+                        else if (typeof this._selector === "string") {
+                            this._selector = this._selector.selectorReplaceId();
+                            parameter = this._document.querySelectorAll(this._selector);
+                        }
                     }
                 }
 
                 Array.prototype.push.apply(this, parameter);
-                this._find = true;
+                this._find = this.length > 0;
                 return this;
 
             },
