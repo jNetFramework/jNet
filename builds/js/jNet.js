@@ -2,8 +2,8 @@
  *  @author REZ1DENT3, Babichev Maxim
  *  @site https://babichev.net
  *  @year 2013 - 2016
- *  @version 0.6.9.21
- *  @build 1684
+ *  @version 0.6.9.34
+ *  @build 1687
  */
 
 String.prototype.parseHTML = function (context) {
@@ -76,7 +76,7 @@ String.prototype.selectorReplaceId = function () {
     return this.replace(/#([-\w]+)/g, "[id=$1]");
 };
 Math.rand = function (min, max) {
-    return this.floor(this.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 Array.prototype.first = function () {
@@ -105,9 +105,13 @@ Array.prototype.unique = function () {
 
 Array.prototype.shuffle = function () {
     var shuffle = this.clone();
-    shuffle.sort(function (a, b) {
-        return Math.random() - 0.5;
-    });
+    var n = this.length;
+    while (n) {
+        var i = Math.random() * n-- | 0;
+        var t = shuffle[n];
+        shuffle[n] = shuffle[i];
+        shuffle[i] = t;
+    }
     return shuffle;
 };
 
@@ -125,11 +129,6 @@ Array.prototype.remove = function (item) {
 Array.prototype.contains = function (item) {
     return this.indexOf(item) !== -1;
 };
-
-Object.prototype.clone = function () {
-    return JSON.parse(JSON.stringify(this));
-};
-
 !function (window, document, module) {
 
     if (typeof define === "function" && define.amd) {
@@ -215,7 +214,7 @@ Object.prototype.clone = function () {
                 this.each(function (key, element) {
                     args.document = element;
                     args.docInd = key;
-                    var temp = args.callback.call(this, args);
+                    var temp = args.callback.apply(this, [args]);
                     if (typeof temp !== "undefined" && temp != null) {
                         if (typeof temp.length !== "undefined") {
                             if (Array.isArray(temp)) {

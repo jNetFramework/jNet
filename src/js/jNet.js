@@ -83,7 +83,7 @@
                 this.each(function (key, element) {
                     args.document = element;
                     args.docInd = key;
-                    var temp = args.callback.call(this, args);
+                    var temp = args.callback.apply(this, [args]);
                     if (typeof temp !== "undefined" && temp != null) {
                         if (typeof temp.length !== "undefined") {
                             if (Array.isArray(temp)) {

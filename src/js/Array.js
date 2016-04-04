@@ -24,9 +24,13 @@ Array.prototype.unique = function () {
 
 Array.prototype.shuffle = function () {
     var shuffle = this.clone();
-    shuffle.sort(function (a, b) {
-        return Math.random() - 0.5;
-    });
+    var n = this.length;
+    while (n) {
+        var i = Math.random() * n-- | 0;
+        var t = shuffle[n];
+        shuffle[n] = shuffle[i];
+        shuffle[i] = t;
+    }
     return shuffle;
 };
 
