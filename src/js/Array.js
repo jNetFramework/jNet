@@ -14,6 +14,13 @@ Array.prototype.clone = function () {
     return this.slice();
 };
 
+Array.prototype.swap = function (i, j) {
+    var b = this[i];
+    this[i] = this[j];
+    this[j] = b;
+    return this;
+};
+
 Array.prototype.unique = function () {
     var ko = {};
     this.forEach(function (item) {
@@ -27,9 +34,7 @@ Array.prototype.shuffle = function () {
     var n = this.length;
     while (n) {
         var i = Math.random() * n-- | 0;
-        var t = shuffle[n];
-        shuffle[n] = shuffle[i];
-        shuffle[i] = t;
+        shuffle = shuffle.swap(i, n);
     }
     return shuffle;
 };
