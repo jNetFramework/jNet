@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/jNet.iml" filepath="$PROJECT_DIR$/.idea/jNet.iml" />
+      <module fileurl="file://O:/OpenServer/domains/jnet2/.idea/jst.iml" filepath="O:/OpenServer/domains/jnet2/.idea/jst.iml" />
     </modules>
   </component>
 </project>

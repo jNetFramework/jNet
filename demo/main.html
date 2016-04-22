@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jNet Framework</title>
 
-    <link rel="stylesheet" href="demo/icon.css">
-    <link rel="stylesheet" href="demo/demo.css">
-    <link rel="stylesheet" href="demo/material.indigo-pink.min.css">
-    <script defer src="demo/material.min.js"></script>
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/material.indigo-pink.min.css">
+    <script defer src="js/material.min.js"></script>
 
-    <script type="text/javascript" src="builds/js/jNet.min.js"></script>
+    <script type="text/javascript" src="../dist/jnet.min.js"></script>
 
     <script type="text/javascript">
 
@@ -124,12 +124,12 @@
             $div = $div.append('<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"></div>').find('div');
 
             $div.append('<select size="3" multiple name="hero[]">' +
-                '<option disabled>Выберите героя</option>' +
-                '<option value="Чебурашка">Чебурашка</option>' +
-                '<option selected value="Крокодил Гена">Крокодил Гена</option>' +
-                '<option value="Шапокляк">Шапокляк</option>' +
-                '<option value="Крыса Лариса">Крыса Лариса</option>' +
-            '</select>');
+                    '<option disabled>Выберите героя</option>' +
+                    '<option value="Чебурашка">Чебурашка</option>' +
+                    '<option selected value="Крокодил Гена">Крокодил Гена</option>' +
+                    '<option value="Шапокляк">Шапокляк</option>' +
+                    '<option value="Крыса Лариса">Крыса Лариса</option>' +
+                    '</select>');
 
             $div = $form.append('<div class="mdl-grid"></div>').find('div').last();
             $div = $div.append('<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-phone"></div>').find('div');
@@ -168,7 +168,8 @@
                 });
             });
 
-            $olEvents.find('li').odd().css('background', '#ccc');;
+            $olEvents.find('li').odd().css('background', '#ccc');
+            ;
 
             $main.append('<h3>Keyboard</h3>');
             $main.append('<form id="event-keyboard"></form>');
