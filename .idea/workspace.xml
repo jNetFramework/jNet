@@ -29,11 +29,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Gruntfile.js" pinned="false" current-in-tab="true">
-        <entry file="file://O:/OpenServer/domains/jnet2/Gruntfile.js">
+      <file leaf-file-name="jnet.js" pinned="false" current-in-tab="false">
+        <entry file="file://O:/OpenServer/domains/jnet2/dist/jnet.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+            <state relative-caret-position="136">
+              <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://O:/OpenServer/domains/jnet2/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -73,8 +83,8 @@
         <option value="O:/OpenServer/domains/jnet2/src/js/extended.js" />
         <option value="O:/OpenServer/domains/jnet2/demo/main.html" />
         <option value="O:/OpenServer/domains/jnet2/dist/jnet.js" />
-        <option value="O:/OpenServer/domains/jnet2/.gitignore" />
         <option value="O:/OpenServer/domains/jnet2/Gruntfile.js" />
+        <option value="O:/OpenServer/domains/jnet2/.gitignore" />
       </list>
     </option>
   </component>
@@ -208,15 +218,15 @@
       <option name="presentableId" value="Default" />
       <updated>1461299547537</updated>
       <workItem from="1461299548852" duration="8614000" />
-      <workItem from="1461325435572" duration="4898000" />
+      <workItem from="1461325435572" duration="5108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13512000" />
+    <option name="totallyTimeSpent" value="13722000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -417,14 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://O:/OpenServer/domains/jnet2/dist/jnet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://O:/OpenServer/domains/jnet2/dist/jnet.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -443,18 +445,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://O:/OpenServer/domains/jnet2/.gitignore">
+    <entry file="file://O:/OpenServer/domains/jnet2/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+        <state relative-caret-position="782">
+          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://O:/OpenServer/domains/jnet2/Gruntfile.js">
+    <entry file="file://O:/OpenServer/domains/jnet2/dist/jnet.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="46" column="27" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+        <state relative-caret-position="136">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://O:/OpenServer/domains/jnet2/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
           <folding />
         </state>
       </provider>
