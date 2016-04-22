@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                 ' * @version <%= pkg.version %> \n' +
                 ' * @date <%= grunt.template.today("dd-mm-yyyy") %> \n' +
                 ' **/\n',
-                separator: '\n\n'
+                separator: '\n'
             },
             dist: {
                 src: [
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'concat', 'uglify', 'qunit', 'bump']
+            tasks: ['jshint', 'concat', 'uglify', 'qunit']
         }
     });
 

@@ -61,7 +61,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
 
         },
 
-        _call: function () {
+        domManip: function () {
 
             var args = arguments[0];
             var res = [];
@@ -127,7 +127,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         odd: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if ((obj.docInd & 1) === 1) {
                         return obj.document;
@@ -138,7 +138,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         even: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if ((obj.docInd & 1) === 0) {
                         return obj.document;
@@ -149,7 +149,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         serialize: function (method) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     function toQuery(name, value) {
                         return name + "=" + encodeURIComponent(value).replace(/%20/g, '+');
@@ -189,7 +189,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         files: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.files;
                 },
@@ -198,7 +198,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         parent: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.document.parentNode != "undefined") {
                         obj.document = obj.document.parentNode;
@@ -213,7 +213,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
             if (typeof selector == "undefined") {
                 selector = '*';
             }
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.querySelectorAll(selector);
                 },
@@ -222,7 +222,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         classList: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.classList;
                 },
@@ -231,7 +231,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         hasClass: function (className) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.classList.contains(obj.className);
                 },
@@ -241,7 +241,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         addClass: function (className) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.classList.add(obj.className);
                 },
@@ -250,7 +250,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         removeClass: function (className) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.classList.remove(obj.className);
                 },
@@ -259,7 +259,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         toggleClass: function (className) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.classList.toggle(obj.className);
                 },
@@ -268,7 +268,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         css: function (name, value) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.value == 'undefined') {
                         return obj.document.style.getPropertyValue(obj.name);
@@ -283,7 +283,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         text: function (value) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.value != "undefined") {
                         try {
@@ -302,7 +302,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         append: function (html) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: this._prependAppend,
                 _html: html,
                 type: 'append'
@@ -310,7 +310,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         prepend: function (html) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: this._prependAppend,
                 _html: html,
                 type: 'prepend'
@@ -350,7 +350,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         innerHTML: function (value) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.value != "undefined") {
                         obj.document.innerHTML = obj.value;
@@ -364,7 +364,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         outerHTML: function (value) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.value != "undefined") {
                         obj.document.outerHTML = obj.value;
@@ -380,7 +380,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         data: function (nameAttribute, valueAttribute) {
 
             if (typeof nameAttribute == "undefined") {
-                return this._call.call(this, {
+                return this.domManip.call(this, {
                     callback: function (obj) {
                         return obj.document.dataset;
                     },
@@ -389,7 +389,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
             }
 
             if (typeof valueAttribute == "undefined") {
-                return this._call.call(this, {
+                return this.domManip.call(this, {
                     callback: function (obj) {
                         return obj.document.dataset[obj.nameAttribute];
                     },
@@ -398,7 +398,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
                 });
             }
 
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.document.dataset[obj.nameAttribute] = obj.valueAttribute;
                     return this;
@@ -412,7 +412,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         attr: function (nameAttribute, valueAttribute) {
 
             if (typeof valueAttribute == "undefined") {
-                return this._call.call(this, {
+                return this.domManip.call(this, {
                     callback: function (obj) {
                         return obj.document.getAttribute(obj.nameAttribute);
                     },
@@ -422,7 +422,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
             }
 
             if (valueAttribute === null || valueAttribute === '') {
-                return this._call.call(this, {
+                return this.domManip.call(this, {
                     callback: function (obj) {
                         if (this.hasAttribute(obj.nameAttribute)) {
                             obj.document.removeAttribute(obj.nameAttribute);
@@ -433,7 +433,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
                 });
             }
 
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.document.setAttribute(obj.nameAttribute, obj.valueAttribute);
                     return this;
@@ -445,7 +445,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         width: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.clientWidth;
                 },
@@ -454,7 +454,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         height: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     return obj.document.clientHeight;
                 },
@@ -463,7 +463,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         get: function (options) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.options.method = 'GET';
                     obj.options.data = jNet(this);
@@ -475,7 +475,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         post: function (options) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.options.method = 'POST';
                     obj.options.data = jNet(this);
@@ -487,7 +487,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         remove: function () {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     if (typeof obj.document.parentNode == 'undefined') {
                         this.outerHTML('');
@@ -526,7 +526,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
 
         insertAfter: function (element) {
             element = jNet(element);
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.element[0].parentNode.insertBefore(obj.document, obj.element[0].nextSibling);
                 },
@@ -536,7 +536,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
 
         insertBefore: function (element) {
             element = jNet(element);
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.element[0].parentNode.insertBefore(obj.document, obj.element[0]);
                 },
@@ -569,7 +569,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
         },
 
         submit: function (listener) {
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: function (obj) {
                     obj.document.onsubmit = obj.listener;
                     return this;
@@ -671,7 +671,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
 
         fadeIn: function (options) {
             var self = this;
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: self._fadeUniversal,
                 options: options,
                 to: 0
@@ -680,7 +680,7 @@ jNetRegister(window, document, 'jNet', (function (document, fn) {
 
         fadeOut: function (options) {
             var self = this;
-            return this._call.call(this, {
+            return this.domManip.call(this, {
                 callback: self._fadeUniversal,
                 options: options,
                 to: 1
