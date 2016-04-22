@@ -51,7 +51,7 @@ module.exports = function (grunt) {
                 createTag: true,
                 tagName: 'v%VERSION%',
                 tagMessage: 'Version %VERSION%',
-                push: true,
+                push: false,
                 pushTo: 'upstream',
                 gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
                 globalReplace: false,
@@ -65,7 +65,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'concat', 'uglify', 'qunit']
+            tasks: ['jshint', 'concat', 'uglify', 'qunit', 'bump']
         }
     });
 
