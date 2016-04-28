@@ -4,9 +4,9 @@
 
     var jNetPrivate = function () {
     };
-    
+
     jNetPrivate.prototype = {
-        
+
         isHTML: function (string) {
             var elementObject = document.createElement('div');
             elementObject.innerHTML = string;
@@ -17,19 +17,19 @@
             }
             return false;
         },
-        
+
         parseXML: function (string) {
             var domParser = new DOMParser();
             return domParser.parseFromString(string, "text/xml");
         },
-        
+
         trim: function (string, regex) {
             if (typeof regex == 'undefined') {
                 return string.trim();
             }
             return string.replace(new RegExp('/^' + regex + '|' + regex + '$/gm'), '');
         },
-        
+
         parseHTML: function (string) {
 
             var rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
@@ -61,7 +61,7 @@
                 while (j--) {
                     tmp = tmp.lastChild;
                 }
-                
+
                 fragment.removeChild(fragment.firstChild);
                 while (tmp.firstChild) {
                     fragment.appendChild(tmp.firstChild);
@@ -349,6 +349,50 @@
     }
 
     /**
+     * Append in prototype new methods for working jNet Framework, jNetObject
+     */
+    jNet.each([
+        'click', 'contextmenu', 'dblclick',
+        'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove',
+        'keyup', 'keydown', 'keypress',
+        'copy',
+        'selectstart', 'selectionchange', 'select'
+    ], function (iterator, property) {
+        jNet.oFn[property] = function (listener, useCapture) {
+            return this.on(property, listener, useCapture);
+        };
+    });
+
+    /**
+     * included extended-jNet file
+     */
+    if (typeof require === "function") {
+
+        /**
+         *  jNet Framework used:
+         *
+         *    superagent framework for working in network
+         *      Project in GitHub:
+         *          @link https://github.com/visionmedia/superagent
+         *
+         *    js-cookie framework for working with cookies
+         *      Project in GitHub:
+         *          @link https://github.com/js-cookie/js-cookie
+         */
+
+        /**
+         * included superagent
+         */
+        jNet.fetch = require('superagent');
+
+        /**
+         * included js-cookie
+         */
+        jNet.cookies = require('js-cookie');
+
+    }
+
+    /**
      * check exists window and
      *  set jNet in window
      */
@@ -371,7 +415,5 @@
     if (typeof exports !== "undefined") {
         exports.jNet = jNet;
     }
-
-    require('./extended.jnet');
 
 })();

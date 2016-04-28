@@ -88,7 +88,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-browserify');
-
+    
     // this would be run by typing "grunt test" on the command line
     grunt.registerTask('test', ['jshint', 'qunit']);
 
