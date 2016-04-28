@@ -1,4 +1,5 @@
 .idea/
 node_modules/
+cache/
 url.json
 .DS_Store

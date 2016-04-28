@@ -53,3 +53,15 @@ Array.prototype.remove = function (item) {
 Array.prototype.contains = function (item) {
     return this.indexOf(item) !== -1;
 };
+
+Array.prototype.odd = function () {
+    return this.filter(function (value, iterator) {
+        return iterator & 1;
+    });
+};
+
+Array.prototype.even = function () {
+    return this.filter(function (value, iterator) {
+        return (iterator & 1) === 0;
+    });
+};

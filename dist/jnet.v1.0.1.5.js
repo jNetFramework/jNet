@@ -3,7 +3,7 @@
  * @email <info@babichev.net> 
  * @project jNet 
  * @version 0.1.5 
- * @date 22-04-2016 
+ * @date 28-04-2016 
  **/
 jNetRegister(window, document, 'jNet', (function (document, fn) {
 
@@ -906,6 +906,18 @@ Array.prototype.remove = function (item) {
 
 Array.prototype.contains = function (item) {
     return this.indexOf(item) !== -1;
+};
+
+Array.prototype.odd = function () {
+    return this.filter(function (value, iterator) {
+        return iterator & 1;
+    });
+};
+
+Array.prototype.even = function () {
+    return this.filter(function (value, iterator) {
+        return (iterator & 1) === 0;
+    });
 };
 window.requestAnimationFrame = window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||

@@ -13,12 +13,16 @@ module.exports = function (grunt) {
                 ' **/\n',
                 separator: '\n'
             },
-            dist: {
+            v1: {
                 src: [
-                    'src/js/main.js',
-                    'src/**/*.js'
+                    'src/js/v1/main.js',
+                    'src/js/v1/*.js'
                 ],
-                dest: 'dist/<%= pkg.name %>.js'
+                dest: 'dist/<%= pkg.name %>.v1.<%= pkg.version %>.js'
+            },
+            v2: {
+                src: ['cache/js/<%= pkg.name %>.v2.js'],
+                dest: 'dist/<%= pkg.name %>.v2.<%= pkg.version %>.js'
             }
         },
         uglify: {
@@ -29,7 +33,8 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'dist/<%= pkg.name %>.v1.<%= pkg.version %>.min.js': ['<%= concat.v1.dest %>'],
+                    'dist/<%= pkg.name %>.v2.<%= pkg.version %>.min.js': ['<%= concat.v2.dest %>']
                 }
             }
         },
@@ -38,6 +43,13 @@ module.exports = function (grunt) {
             options: {
                 globals: {
                     jQuery: true
+                }
+            }
+        },
+        browserify: {
+            dist: {
+                files: {
+                    'cache/js/<%= pkg.name %>.v2.js': ['src/js/v2/core.jnet.js']
                 }
             }
         },
@@ -65,7 +77,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'concat', 'uglify', 'qunit']
+            tasks: ['browserify', 'jshint', 'concat', 'uglify', 'qunit']
         }
     });
 
@@ -75,6 +87,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-browserify');
 
     // this would be run by typing "grunt test" on the command line
     grunt.registerTask('test', ['jshint', 'qunit']);
