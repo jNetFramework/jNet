@@ -395,4 +395,5 @@ jNet.each([
         return this.on(property, listener, useCapture);
     };
 });
+
 },{}]},{},[1]);
