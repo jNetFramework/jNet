@@ -115,8 +115,7 @@ jNetObject = (object) ->
 jNetObject.prototype = jNetObject.fn =
 
   eq: (index) ->
-    if index < 0
-      index += @length
+    index += @length if index < 0
     jNet @[index]
 
   first: ->
@@ -162,6 +161,7 @@ jNetObject.prototype = jNetObject.fn =
       list.push object
 
     else if typeof object == 'string'
+
       if @length
         @each (iterator, element) ->
           Array::push.apply list, element.querySelectorAll(object)
