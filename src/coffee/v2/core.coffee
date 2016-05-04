@@ -5,7 +5,7 @@ jNetPrivate = ->
 jNetPrivate.prototype =
 
   isHTML: (string) ->
-    elementObject = document.createElement("div")
+    elementObject = document.createElement('div')
     elementObject.innerHTML = string
     iteratorChildNodes = elementObject.childNodes
     i = iteratorChildNodes.length
@@ -136,8 +136,9 @@ jNetObject.prototype = jNetObject.fn =
   last: ->
     @eq @length - 1
 
-  odd: (iterator = 1) ->
+  odd: (iterator) ->
     list = []
+    iterator = 1 if typeof iterator is "undefined"
     while iterator < @length
       list.push @[iterator]
       iterator += 2
@@ -147,7 +148,7 @@ jNetObject.prototype = jNetObject.fn =
     return @odd(0)
 
   clone: (object) ->
-    object = this if !object
+    object = this if typeof object is "undefined"
     Object.create object
 
   toString: ->
@@ -156,7 +157,7 @@ jNetObject.prototype = jNetObject.fn =
   ###*
   # cycle implement in jNetFramework for objects jNet
   #
-  # First parameter callback is Key
+  # First parameter callback is Iterator
   #   Next parameter callback is Value
   #     Next parameter callback is this (array)
   #
@@ -189,11 +190,20 @@ jNetObject.prototype = jNetObject.fn =
       elements = if @length then this else [document]
       iterator = 0
       while iterator < elements.length
-        Array::push.apply list, elements[iterator].querySelectorAll(object)
+        Array::push.apply list, elements[iterator].querySelectorAll object
         ++iterator
 
     new jNetObject(list)
 
+  ###*
+  # current method append event on
+  #   element's domtree
+  #     type -- name event
+  #     listener -- callback for event
+  #     useCapture
+  #
+  # @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/addEventListener
+  ###
   on: (type, listener, useCapture) ->
     @each (iterator, element) ->
       if element.addEventListener
@@ -201,10 +211,21 @@ jNetObject.prototype = jNetObject.fn =
       else
         element.attachEvent "on" + type, ->
           listener.call element
+          return
+      return
     this
 
+  ###*
+  # current method remove event on
+  #   element's domtree
+  #     type -- name event
+  #     listener -- callback for event
+  #     useCapture
+  #
+  # @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/removeEventListener
+  ###
   off: (type, listener, useCapture) ->
-    @each (iterator, element) ->
+    @each iterator, element ->
       if element.removeEventListener
         element.removeEventListener type, listener, useCapture
       else if element.detachEvent
@@ -212,6 +233,10 @@ jNetObject.prototype = jNetObject.fn =
       return
     this
 
+  ###*
+  # the browser has completely loaded HTML,
+  # and has constructed a DOM tree.
+  ###
   ready: (listener, useCapture) ->
     @on "DOMContentLoaded", listener, useCapture
 
@@ -227,18 +252,18 @@ jNet = (object) ->
 
   if typeof object is "function"
 
-    jnObject = jNet(document)
+    jnObject = jNet document
     if document.readyState is "complete"
       object()
       return jnObject
 
-    return jnObject.ready(object)
+    return jnObject.ready object
 
   else if typeof object is "string"
-    return new jNetObject(object)
+    return new jNetObject object
 
   else if typeof object is "object"
-    return new jNetObject(object)
+    return new jNetObject object
 
   return
 
@@ -350,13 +375,13 @@ if typeof require is "function"
   # included superagent
   # @link https://github.com/visionmedia/superagent
   ###
-  jNet.fetch = require("superagent")
+  jNet.fetch = require "superagent"
 
   ###*
   # included js-cookie
   # @link https://github.com/js-cookie/js-cookie
   ###
-  jNet.cookies = require("js-cookie")
+  jNet.cookies = require "js-cookie"
 
 ###*
 # check exists window and

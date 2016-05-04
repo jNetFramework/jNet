@@ -1669,13 +1669,13 @@ module.exports = function(arr, fn, initial){
     parseXML: function(string) {
       var domParser;
       domParser = new DOMParser();
-      return domParser.parseFromString(string, 'text/xml');
+      return domParser.parseFromString(string, "text/xml");
     },
     trim: function(string, regex) {
-      if (regex) {
+      if (typeof regex === "undefined") {
         return string.trim();
       }
-      return string.replace(new RegExp('/^' + regex + '|' + regex + '$/gm'), '');
+      return string.replace(new RegExp("/^" + regex + "|" + regex + "$/gm"), "");
     },
     parseHTML: function(string) {
       var fragment, j, rhtml, rtagName, rxhtmlTag, tag, tmp, wrap, wrapMap;
@@ -1683,12 +1683,12 @@ module.exports = function(arr, fn, initial){
       rtagName = /<([\w:]+)/;
       rhtml = /<|&#?\w+;/;
       wrapMap = {
-        option: [1, '<select multiple=\'multiple\'>', '</select>'],
-        thead: [1, '<table>', '</table>'],
-        col: [2, '<table><colgroup>', '</colgroup></table>'],
-        tr: [2, '<table><tbody>', '</tbody></table>'],
-        td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
-        _default: [0, '', '']
+        option: [1, "<select multiple='multiple'>", "</select>"],
+        thead: [1, "<table>", "</table>"],
+        col: [2, "<table><colgroup>", "</colgroup></table>"],
+        tr: [2, "<table><tbody>", "</tbody></table>"],
+        td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+        _default: [0, "", ""]
       };
       tmp = void 0;
       tag = void 0;
@@ -1698,10 +1698,10 @@ module.exports = function(arr, fn, initial){
       if (!rhtml.test(string)) {
         fragment.appendChild(document.createTextNode(string));
       } else {
-        tmp = fragment.appendChild(document.createElement('div'));
+        tmp = fragment.appendChild(document.createElement("div"));
         tag = (rtagName.exec(string) || ['', ''])[1].toLowerCase();
         wrap = wrapMap[tag] || wrapMap._default;
-        tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, '<$1></$2>') + wrap[2];
+        tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2];
         j = wrap[0];
         while (j--) {
           tmp = tmp.lastChild;
@@ -1788,8 +1788,8 @@ module.exports = function(arr, fn, initial){
     odd: function(iterator) {
       var list;
       list = [];
-      if (!iterator) {
-        iterator = 0;
+      if (typeof iterator === "undefined") {
+        iterator = 1;
       }
       while (iterator < this.length) {
         list.push(this[iterator]);
@@ -1801,19 +1801,19 @@ module.exports = function(arr, fn, initial){
       return this.odd(0);
     },
     clone: function(object) {
-      if (!object) {
+      if (typeof object === "undefined") {
         object = this;
       }
       return Object.create(object);
     },
     toString: function() {
-      return 'jNetObject';
+      return "jNetObject";
     },
 
     /**
      * cycle implement in jNetFramework for objects jNet
      *
-     * First parameter callback is Key
+     * First parameter callback is Iterator
      *   Next parameter callback is Value
      *     Next parameter callback is this (array)
      *
@@ -1840,7 +1840,7 @@ module.exports = function(arr, fn, initial){
         list.push(document);
       } else if (object && object.nodeType) {
         list.push(object);
-      } else if (typeof object === 'string') {
+      } else if (typeof object === "string") {
         elements = this.length ? this : [document];
         iterator = 0;
         while (iterator < elements.length) {
@@ -1850,30 +1850,55 @@ module.exports = function(arr, fn, initial){
       }
       return new jNetObject(list);
     },
+
+    /**
+     * current method append event on
+     *   element's domtree
+     *     type -- name event
+     *     listener -- callback for event
+     *     useCapture
+     *
+     * @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/addEventListener
+     */
     on: function(type, listener, useCapture) {
       this.each(function(iterator, element) {
         if (element.addEventListener) {
-          return element.addEventListener(type, listener, useCapture);
+          element.addEventListener(type, listener, useCapture);
         } else {
-          return element.attachEvent('on' + type, function() {
-            return listener.call(element);
+          element.attachEvent("on" + type, function() {
+            listener.call(element);
           });
         }
       });
       return this;
     },
+
+    /**
+     * current method remove event on
+     *   element's domtree
+     *     type -- name event
+     *     listener -- callback for event
+     *     useCapture
+     *
+     * @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/removeEventListener
+     */
     off: function(type, listener, useCapture) {
-      this.each(function(iterator, element) {
+      this.each(iterator, element(function() {
         if (element.removeEventListener) {
           element.removeEventListener(type, listener, useCapture);
         } else if (element.detachEvent) {
-          element.detachEvent('on' + type, listener);
+          element.detachEvent("on" + type, listener);
         }
-      });
+      }));
       return this;
     },
+
+    /**
+     * the browser has completely loaded HTML,
+     * and has constructed a DOM tree.
+     */
     ready: function(listener, useCapture) {
-      return this.on('DOMContentLoaded', listener, useCapture);
+      return this.on("DOMContentLoaded", listener, useCapture);
     }
   };
 
@@ -1889,16 +1914,16 @@ module.exports = function(arr, fn, initial){
 
   jNet = function(object) {
     var jnObject;
-    if (typeof object === 'function') {
+    if (typeof object === "function") {
       jnObject = jNet(document);
-      if (document.readyState === 'complete') {
+      if (document.readyState === "complete") {
         object();
         return jnObject;
       }
       return jnObject.ready(object);
-    } else if (typeof object === 'string') {
+    } else if (typeof object === "string") {
       return new jNetObject(object);
-    } else if (typeof object === 'object') {
+    } else if (typeof object === "object") {
       return new jNetObject(object);
     }
   };
@@ -1915,7 +1940,7 @@ module.exports = function(arr, fn, initial){
           callback(iterator, object[iterator], object);
           ++iterator;
         }
-      } else if (typeof object === 'object') {
+      } else if (typeof object === "object") {
         Object.keys(object).forEach(function(key, value) {
           return callback(key, value, object);
         });
@@ -1923,7 +1948,7 @@ module.exports = function(arr, fn, initial){
       return this;
     },
     toString: function() {
-      return 'jNetFramework';
+      return "jNetFramework";
     }
   };
 
@@ -1972,10 +1997,10 @@ module.exports = function(arr, fn, initial){
    * #1 - fixed AMD
    */
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define(function() {
       return {
-        'jNet': jNet
+        "jNet": jNet
       };
     });
   }
@@ -1985,7 +2010,7 @@ module.exports = function(arr, fn, initial){
    * Append in prototype new methods for working jNet Framework, jNetObject
    */
 
-  jNet.each(['click', 'contextmenu', 'dblclick', 'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove', 'keyup', 'keydown', 'keypress', 'copy', 'selectstart', 'selectionchange', 'select'], function(iterator, property) {
+  jNet.each(["click", "contextmenu", "dblclick", "mouseup", "mousedown", "mouseout", "mouseover", "mousemove", "keyup", "keydown", "keypress", "copy", "selectstart", "selectionchange", "select"], function(iterator, property) {
     jNet.oFn[property] = function(listener, useCapture) {
       return this.on(property, listener, useCapture);
     };
@@ -1996,7 +2021,7 @@ module.exports = function(arr, fn, initial){
    * included extended-jNet file
    */
 
-  if (typeof require === 'function') {
+  if (typeof require === "function") {
 
     /**
      *  jNet Framework used:
@@ -2014,13 +2039,13 @@ module.exports = function(arr, fn, initial){
      * included superagent
      * @link https://github.com/visionmedia/superagent
      */
-    jNet.fetch = require('superagent');
+    jNet.fetch = require("superagent");
 
     /**
      * included js-cookie
      * @link https://github.com/js-cookie/js-cookie
      */
-    jNet.cookies = require('js-cookie');
+    jNet.cookies = require("js-cookie");
   }
 
 

@@ -8,7 +8,7 @@
   jNetPrivate.prototype = {
     isHTML: function(string) {
       var elementObject, i, iteratorChildNodes;
-      elementObject = document.createElement("div");
+      elementObject = document.createElement('div');
       elementObject.innerHTML = string;
       iteratorChildNodes = elementObject.childNodes;
       i = iteratorChildNodes.length;
@@ -140,10 +140,10 @@
     },
     odd: function(iterator) {
       var list;
-      if (iterator == null) {
+      list = [];
+      if (typeof iterator === "undefined") {
         iterator = 1;
       }
-      list = [];
       while (iterator < this.length) {
         list.push(this[iterator]);
         iterator += 2;
@@ -154,7 +154,7 @@
       return this.odd(0);
     },
     clone: function(object) {
-      if (!object) {
+      if (typeof object === "undefined") {
         object = this;
       }
       return Object.create(object);
@@ -166,7 +166,7 @@
     /**
      * cycle implement in jNetFramework for objects jNet
      *
-     * First parameter callback is Key
+     * First parameter callback is Iterator
      *   Next parameter callback is Value
      *     Next parameter callback is this (array)
      *
@@ -203,28 +203,53 @@
       }
       return new jNetObject(list);
     },
+
+    /**
+     * current method append event on
+     *   element's domtree
+     *     type -- name event
+     *     listener -- callback for event
+     *     useCapture
+     *
+     * @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/addEventListener
+     */
     on: function(type, listener, useCapture) {
       this.each(function(iterator, element) {
         if (element.addEventListener) {
-          return element.addEventListener(type, listener, useCapture);
+          element.addEventListener(type, listener, useCapture);
         } else {
-          return element.attachEvent("on" + type, function() {
-            return listener.call(element);
+          element.attachEvent("on" + type, function() {
+            listener.call(element);
           });
         }
       });
       return this;
     },
+
+    /**
+     * current method remove event on
+     *   element's domtree
+     *     type -- name event
+     *     listener -- callback for event
+     *     useCapture
+     *
+     * @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/removeEventListener
+     */
     off: function(type, listener, useCapture) {
-      this.each(function(iterator, element) {
+      this.each(iterator, element(function() {
         if (element.removeEventListener) {
           element.removeEventListener(type, listener, useCapture);
         } else if (element.detachEvent) {
           element.detachEvent("on" + type, listener);
         }
-      });
+      }));
       return this;
     },
+
+    /**
+     * the browser has completely loaded HTML,
+     * and has constructed a DOM tree.
+     */
     ready: function(listener, useCapture) {
       return this.on("DOMContentLoaded", listener, useCapture);
     }
