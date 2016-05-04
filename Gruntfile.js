@@ -49,7 +49,7 @@ module.exports = function (grunt) {
         browserify: {
             dist: {
                 files: {
-                    'cache/js/<%= pkg.name %>.v2.js': ['src/js/v2/core.jnet.js']
+                    'cache/js/<%= pkg.name %>.v2.js': ['src/js/v2/core.js']
                 }
             }
         },
