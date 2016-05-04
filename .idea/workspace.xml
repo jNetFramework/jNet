@@ -3,11 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.js" afterPath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/core.coffee" afterPath="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js" afterPath="$PROJECT_DIR$/src/js/v2/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js.map" afterPath="$PROJECT_DIR$/src/js/v2/core.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/js/test1.js" afterPath="$PROJECT_DIR$/test/js/test1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test1.html" afterPath="$PROJECT_DIR$/test/test1.html" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,38 +40,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2958">
-              <caret line="174" column="39" selection-start-line="174" selection-start-column="39" selection-end-line="174" selection-end-column="39" />
+            <state relative-caret-position="4419">
+              <caret line="303" column="0" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
               <folding>
-                <marker date="1462394170715" expanded="true" signature="801:879" placeholder="[...]" />
-                <marker date="1462394170715" expanded="true" signature="849:860" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="849:869" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="893:949" placeholder="[...]" />
-                <marker date="1462394170715" expanded="true" signature="920:939" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="961:1038" placeholder="[...]" />
-                <marker date="1462394170715" expanded="true" signature="988:1028" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="998:1020" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="1049:1120" placeholder="[...]" />
-                <marker date="1462394170715" expanded="true" signature="1076:1110" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="1083:1102" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="1131:1211" placeholder="[...]" />
-                <marker date="1462394170715" expanded="true" signature="1158:1201" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="1165:1193" placeholder="..." />
-                <marker date="1462394170715" expanded="true" signature="1169:1185" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="801:879" placeholder="[...]" />
+                <marker date="1462395031437" expanded="true" signature="849:860" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="849:869" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="893:949" placeholder="[...]" />
+                <marker date="1462395031437" expanded="true" signature="920:939" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="961:1038" placeholder="[...]" />
+                <marker date="1462395031437" expanded="true" signature="988:1028" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="998:1020" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="1049:1120" placeholder="[...]" />
+                <marker date="1462395031437" expanded="true" signature="1076:1110" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="1083:1102" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="1131:1211" placeholder="[...]" />
+                <marker date="1462395031437" expanded="true" signature="1158:1201" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="1165:1193" placeholder="..." />
+                <marker date="1462395031437" expanded="true" signature="1169:1185" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3789">
-              <caret line="185" column="9" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="9" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +102,6 @@
         <option value="$PROJECT_DIR$/src/js/main.js" />
         <option value="$PROJECT_DIR$/url.json" />
         <option value="$PROJECT_DIR$/src/js/jnet.core.js" />
-        <option value="$PROJECT_DIR$/test/js/test1.js" />
         <option value="$PROJECT_DIR$/src/js/array.js" />
         <option value="$PROJECT_DIR$/src/js/array.jnet.js" />
         <option value="$PROJECT_DIR$/src/js/extended.jnet.js" />
@@ -116,7 +109,6 @@
         <option value="$PROJECT_DIR$/src/js/core.jnet.js" />
         <option value="$PROJECT_DIR$/src/js/dev/core.jnet.js" />
         <option value="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" />
-        <option value="$PROJECT_DIR$/test/test1.html" />
         <option value="$PROJECT_DIR$/cache/js/v2/jnet.js" />
         <option value="$PROJECT_DIR$/src/js/v2/extended.jnet.js" />
         <option value="$PROJECT_DIR$/demo/p.html" />
@@ -132,6 +124,8 @@
         <option value="$PROJECT_DIR$/src/js/v2/test.js" />
         <option value="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
         <option value="$PROJECT_DIR$/src/js/v2/core.js" />
+        <option value="$PROJECT_DIR$/test/test1.html" />
+        <option value="$PROJECT_DIR$/test/js/test1.js" />
       </list>
     </option>
   </component>
@@ -191,6 +185,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jnet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jnet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jnet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jnet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jnet" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,16 +409,16 @@
       <workItem from="1461930292802" duration="3673000" />
       <workItem from="1461949347464" duration="8000" />
       <workItem from="1462377483983" duration="8311000" />
-      <workItem from="1462389050776" duration="4358000" />
+      <workItem from="1462389050776" duration="6147000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73725000" />
+    <option name="totallyTimeSpent" value="75514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2473525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -541,25 +567,11 @@
     <entry file="file://$PROJECT_DIR$/demo/animate.html" />
     <entry file="file://$PROJECT_DIR$/demo/hello-world.html" />
     <entry file="file://$PROJECT_DIR$/npm-debug.log" />
-    <entry file="file://$PROJECT_DIR$/test/js/test1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/v2/extended.jnet.js" />
     <entry file="file://$PROJECT_DIR$/demo/p.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -670,35 +682,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
+    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="174" column="39" selection-start-line="174" selection-start-column="39" selection-end-line="174" selection-end-column="39" />
+        <state relative-caret-position="137">
+          <caret line="356" column="8" selection-start-line="356" selection-start-column="8" selection-end-line="356" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/js/test1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="76" selection-start-line="6" selection-start-column="76" selection-end-line="6" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
           <folding>
-            <marker date="1462394170715" expanded="true" signature="801:879" placeholder="[...]" />
-            <marker date="1462394170715" expanded="true" signature="849:860" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="849:869" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="893:949" placeholder="[...]" />
-            <marker date="1462394170715" expanded="true" signature="920:939" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="961:1038" placeholder="[...]" />
-            <marker date="1462394170715" expanded="true" signature="988:1028" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="998:1020" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="1049:1120" placeholder="[...]" />
-            <marker date="1462394170715" expanded="true" signature="1076:1110" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="1083:1102" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="1131:1211" placeholder="[...]" />
-            <marker date="1462394170715" expanded="true" signature="1158:1201" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="1165:1193" placeholder="..." />
-            <marker date="1462394170715" expanded="true" signature="1169:1185" placeholder="..." />
+            <element signature="n#style#0;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
+    <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3789">
-          <caret line="185" column="9" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="9" />
-          <folding />
+        <state relative-caret-position="4419">
+          <caret line="303" column="0" selection-start-line="303" selection-start-column="0" selection-end-line="303" selection-end-column="0" />
+          <folding>
+            <marker date="1462395031437" expanded="true" signature="801:879" placeholder="[...]" />
+            <marker date="1462395031437" expanded="true" signature="849:860" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="849:869" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="893:949" placeholder="[...]" />
+            <marker date="1462395031437" expanded="true" signature="920:939" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="961:1038" placeholder="[...]" />
+            <marker date="1462395031437" expanded="true" signature="988:1028" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="998:1020" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="1049:1120" placeholder="[...]" />
+            <marker date="1462395031437" expanded="true" signature="1076:1110" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="1083:1102" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="1131:1211" placeholder="[...]" />
+            <marker date="1462395031437" expanded="true" signature="1158:1201" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="1165:1193" placeholder="..." />
+            <marker date="1462395031437" expanded="true" signature="1169:1185" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

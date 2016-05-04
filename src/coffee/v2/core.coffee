@@ -171,7 +171,6 @@ jNetObject.prototype = jNetObject.fn =
     this
 
   find: (object) ->
-
     if object.toString() is @toString()
       return object
 
@@ -249,7 +248,6 @@ jNetObject.prototype = jNetObject.fn =
 # @returns {*}
 ###
 jNet = (object) ->
-
   if typeof object is "function"
 
     jnObject = jNet document
@@ -270,7 +268,6 @@ jNet = (object) ->
 jNet.fn = jNet.prototype =
 
   each: (object, callback) ->
-
     if object.toString() is jNetObject.fn.toString()
       object.each callback
 
@@ -332,56 +329,39 @@ if typeof define is "function" and define.amd
 # Append in prototype new methods for working jNet Framework, jNetObject
 ###
 jNet.each [
-  "click"
-  "contextmenu"
-  "dblclick"
-  "mouseup"
-  "mousedown"
-  "mouseout"
-  "mouseover"
-  "mousemove"
-  "keyup"
-  "keydown"
-  "keypress"
-  "copy"
-  "selectstart"
-  "selectionchange"
-  "select"
+  "click", "contextmenu", "dblclick",
+  "mouseup", "mousedown", "mouseout",
+  "mouseover", "mousemove", "keyup",
+  "keydown", "keypress", "copy",
+  "selectstart", "selectionchange", "select"
 ], (iterator, property) ->
-
   jNet.oFn[property] = (listener, useCapture) ->
     @on property, listener, useCapture
-
   return
 
 ###*
-# included extended-jNet file
+#  jNet Framework used:
+#
+#    superagent framework for working in network
+#      Project in GitHub:
+#          @link https://github.com/visionmedia/superagent
+#
+#    js-cookie framework for working with cookies
+#      Project in GitHub:
+#          @link https://github.com/js-cookie/js-cookie
 ###
-if typeof require is "function"
 
-  ###*
-  #  jNet Framework used:
-  #
-  #    superagent framework for working in network
-  #      Project in GitHub:
-  #          @link https://github.com/visionmedia/superagent
-  #
-  #    js-cookie framework for working with cookies
-  #      Project in GitHub:
-  #          @link https://github.com/js-cookie/js-cookie
-  ###
+###*
+# included superagent
+# @link https://github.com/visionmedia/superagent
+###
+jNet.fetch = require? "superagent"
 
-  ###*
-  # included superagent
-  # @link https://github.com/visionmedia/superagent
-  ###
-  jNet.fetch = require "superagent"
-
-  ###*
-  # included js-cookie
-  # @link https://github.com/js-cookie/js-cookie
-  ###
-  jNet.cookies = require "js-cookie"
+###*
+# included js-cookie
+# @link https://github.com/js-cookie/js-cookie
+###
+jNet.cookies = require? "js-cookie"
 
 ###*
 # check exists window and

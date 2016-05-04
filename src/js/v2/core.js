@@ -371,35 +371,32 @@
 
 
   /**
-   * included extended-jNet file
+   *  jNet Framework used:
+   *
+   *    superagent framework for working in network
+   *      Project in GitHub:
+   *          @link https://github.com/visionmedia/superagent
+   *
+   *    js-cookie framework for working with cookies
+   *      Project in GitHub:
+   *          @link https://github.com/js-cookie/js-cookie
    */
 
-  if (typeof require === "function") {
 
-    /**
-     *  jNet Framework used:
-     *
-     *    superagent framework for working in network
-     *      Project in GitHub:
-     *          @link https://github.com/visionmedia/superagent
-     *
-     *    js-cookie framework for working with cookies
-     *      Project in GitHub:
-     *          @link https://github.com/js-cookie/js-cookie
-     */
+  /**
+   * included superagent
+   * @link https://github.com/visionmedia/superagent
+   */
 
-    /**
-     * included superagent
-     * @link https://github.com/visionmedia/superagent
-     */
-    jNet.fetch = require("superagent");
+  jNet.fetch = typeof require === "function" ? require("superagent") : void 0;
 
-    /**
-     * included js-cookie
-     * @link https://github.com/js-cookie/js-cookie
-     */
-    jNet.cookies = require("js-cookie");
-  }
+
+  /**
+   * included js-cookie
+   * @link https://github.com/js-cookie/js-cookie
+   */
+
+  jNet.cookies = typeof require === "function" ? require("js-cookie") : void 0;
 
 
   /**

@@ -3,7 +3,7 @@
  * @email <info@babichev.net> 
  * @project jNet 
  * @version 0.1.5 
- * @date 04-05-2016 
+ * @date 05-05-2016 
  **/
 jNetRegister(window, document, 'jNet', (function (document, fn) {
 

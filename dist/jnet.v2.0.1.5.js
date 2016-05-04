@@ -3,7 +3,7 @@
  * @email <info@babichev.net> 
  * @project jNet 
  * @version 0.1.5 
- * @date 04-05-2016 
+ * @date 05-05-2016 
  **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*!
@@ -2018,35 +2018,32 @@ module.exports = function(arr, fn, initial){
 
 
   /**
-   * included extended-jNet file
+   *  jNet Framework used:
+   *
+   *    superagent framework for working in network
+   *      Project in GitHub:
+   *          @link https://github.com/visionmedia/superagent
+   *
+   *    js-cookie framework for working with cookies
+   *      Project in GitHub:
+   *          @link https://github.com/js-cookie/js-cookie
    */
 
-  if (typeof require === "function") {
 
-    /**
-     *  jNet Framework used:
-     *
-     *    superagent framework for working in network
-     *      Project in GitHub:
-     *          @link https://github.com/visionmedia/superagent
-     *
-     *    js-cookie framework for working with cookies
-     *      Project in GitHub:
-     *          @link https://github.com/js-cookie/js-cookie
-     */
+  /**
+   * included superagent
+   * @link https://github.com/visionmedia/superagent
+   */
 
-    /**
-     * included superagent
-     * @link https://github.com/visionmedia/superagent
-     */
-    jNet.fetch = require("superagent");
+  jNet.fetch = typeof require === "function" ? require("superagent") : void 0;
 
-    /**
-     * included js-cookie
-     * @link https://github.com/js-cookie/js-cookie
-     */
-    jNet.cookies = require("js-cookie");
-  }
+
+  /**
+   * included js-cookie
+   * @link https://github.com/js-cookie/js-cookie
+   */
+
+  jNet.cookies = typeof require === "function" ? require("js-cookie") : void 0;
 
 
   /**
