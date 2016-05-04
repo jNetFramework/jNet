@@ -8,7 +8,7 @@
   jNetPrivate.prototype = {
     isHTML: function(string) {
       var elementObject, i, iteratorChildNodes;
-      elementObject = document.createElement('div');
+      elementObject = document.createElement("div");
       elementObject.innerHTML = string;
       iteratorChildNodes = elementObject.childNodes;
       i = iteratorChildNodes.length;
@@ -22,13 +22,13 @@
     parseXML: function(string) {
       var domParser;
       domParser = new DOMParser();
-      return domParser.parseFromString(string, 'text/xml');
+      return domParser.parseFromString(string, "text/xml");
     },
     trim: function(string, regex) {
-      if (typeof regex === 'undefined') {
+      if (typeof regex === "undefined") {
         return string.trim();
       }
-      return string.replace(new RegExp('/^' + regex + '|' + regex + '$/gm'), '');
+      return string.replace(new RegExp("/^" + regex + "|" + regex + "$/gm"), "");
     },
     parseHTML: function(string) {
       var fragment, j, rhtml, rtagName, rxhtmlTag, tag, tmp, wrap, wrapMap;
@@ -36,12 +36,12 @@
       rtagName = /<([\w:]+)/;
       rhtml = /<|&#?\w+;/;
       wrapMap = {
-        option: [1, '<select multiple=\'multiple\'>', '</select>'],
-        thead: [1, '<table>', '</table>'],
-        col: [2, '<table><colgroup>', '</colgroup></table>'],
-        tr: [2, '<table><tbody>', '</tbody></table>'],
-        td: [3, '<table><tbody><tr>', '</tr></tbody></table>'],
-        _default: [0, '', '']
+        option: [1, "<select multiple='multiple'>", "</select>"],
+        thead: [1, "<table>", "</table>"],
+        col: [2, "<table><colgroup>", "</colgroup></table>"],
+        tr: [2, "<table><tbody>", "</tbody></table>"],
+        td: [3, "<table><tbody><tr>", "</tr></tbody></table>"],
+        _default: [0, "", ""]
       };
       tmp = void 0;
       tag = void 0;
@@ -51,10 +51,10 @@
       if (!rhtml.test(string)) {
         fragment.appendChild(document.createTextNode(string));
       } else {
-        tmp = fragment.appendChild(document.createElement('div'));
+        tmp = fragment.appendChild(document.createElement("div"));
         tag = (rtagName.exec(string) || ['', ''])[1].toLowerCase();
         wrap = wrapMap[tag] || wrapMap._default;
-        tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, '<$1></$2>') + wrap[2];
+        tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2];
         j = wrap[0];
         while (j--) {
           tmp = tmp.lastChild;
@@ -111,24 +111,39 @@
    */
 
   jNetObject.prototype = jNetObject.fn = {
+
+    /**
+     * get element with index DOMTree as jNetObject
+     * @returns jNetObject
+     */
     eq: function(index) {
       if (index < 0) {
         index += this.length;
       }
       return jNet(this[index]);
     },
+
+    /**
+     * get first element DOMTree as jNetObject
+     * @returns jNetObject
+     */
     first: function() {
       return this.eq(0);
     },
+
+    /**
+     * get last element DOMTree as jNetObject
+     * @returns jNetObject
+     */
     last: function() {
       return this.eq(this.length - 1);
     },
     odd: function(iterator) {
       var list;
-      list = [];
-      if (typeof iterator === 'undefined') {
+      if (iterator == null) {
         iterator = 1;
       }
+      list = [];
       while (iterator < this.length) {
         list.push(this[iterator]);
         iterator += 2;
@@ -139,11 +154,24 @@
       return this.odd(0);
     },
     clone: function(object) {
-      return Object.create(object ? object : this);
+      if (!object) {
+        object = this;
+      }
+      return Object.create(object);
     },
     toString: function() {
-      return 'jNetObject';
+      return "jNetObject";
     },
+
+    /**
+     * cycle implement in jNetFramework for objects jNet
+     *
+     * First parameter callback is Key
+     *   Next parameter callback is Value
+     *     Next parameter callback is this (array)
+     *
+     * @returns {*}
+     */
     each: function(callback) {
       var iterator;
       iterator = 0;
@@ -154,22 +182,23 @@
       return this;
     },
     find: function(object) {
-      var list;
+      var elements, iterator, list;
       if (object.toString() === this.toString()) {
         return object;
       }
       list = [];
       if (object === window) {
         list.push(object);
+      } else if (object === document) {
+        list.push(document);
       } else if (object && object.nodeType) {
         list.push(object);
-      } else if (typeof object === 'string') {
-        if (this.length) {
-          this.each(function(iterator, element) {
-            Array.prototype.push.apply(list, element.querySelectorAll(object));
-          });
-        } else {
-          Array.prototype.push.apply(list, document.querySelectorAll(object));
+      } else if (typeof object === "string") {
+        elements = this.length ? this : [document];
+        iterator = 0;
+        while (iterator < elements.length) {
+          Array.prototype.push.apply(list, elements[iterator].querySelectorAll(object));
+          ++iterator;
         }
       }
       return new jNetObject(list);
@@ -179,7 +208,7 @@
         if (element.addEventListener) {
           return element.addEventListener(type, listener, useCapture);
         } else {
-          return element.attachEvent('on' + type, function() {
+          return element.attachEvent("on" + type, function() {
             return listener.call(element);
           });
         }
@@ -191,13 +220,13 @@
         if (element.removeEventListener) {
           element.removeEventListener(type, listener, useCapture);
         } else if (element.detachEvent) {
-          element.detachEvent('on' + type, listener);
+          element.detachEvent("on" + type, listener);
         }
       });
       return this;
     },
     ready: function(listener, useCapture) {
-      return this.on('DOMContentLoaded', listener, useCapture);
+      return this.on("DOMContentLoaded", listener, useCapture);
     }
   };
 
@@ -213,16 +242,16 @@
 
   jNet = function(object) {
     var jnObject;
-    if (typeof object === 'function') {
+    if (typeof object === "function") {
       jnObject = jNet(document);
-      if (document.readyState === 'complete') {
+      if (document.readyState === "complete") {
         object();
         return jnObject;
       }
-      return jnObject.on('DOMContentLoaded', object);
-    } else if (typeof object === 'string') {
+      return jnObject.ready(object);
+    } else if (typeof object === "string") {
       return new jNetObject(object);
-    } else if (typeof object === 'object') {
+    } else if (typeof object === "object") {
       return new jNetObject(object);
     }
   };
@@ -239,15 +268,15 @@
           callback(iterator, object[iterator], object);
           ++iterator;
         }
-      } else if (typeof object === 'object') {
+      } else if (typeof object === "object") {
         Object.keys(object).forEach(function(key, value) {
-          callback(key, value, object);
+          return callback(key, value, object);
         });
       }
       return this;
     },
     toString: function() {
-      return 'jNetFramework';
+      return "jNetFramework";
     }
   };
 
@@ -296,10 +325,10 @@
    * #1 - fixed AMD
    */
 
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === "function" && define.amd) {
     define(function() {
       return {
-        'jNet': jNet
+        "jNet": jNet
       };
     });
   }
@@ -309,7 +338,7 @@
    * Append in prototype new methods for working jNet Framework, jNetObject
    */
 
-  jNet.each(['click', 'contextmenu', 'dblclick', 'mouseup', 'mousedown', 'mouseout', 'mouseover', 'mousemove', 'keyup', 'keydown', 'keypress', 'copy', 'selectstart', 'selectionchange', 'select'], function(iterator, property) {
+  jNet.each(["click", "contextmenu", "dblclick", "mouseup", "mousedown", "mouseout", "mouseover", "mousemove", "keyup", "keydown", "keypress", "copy", "selectstart", "selectionchange", "select"], function(iterator, property) {
     jNet.oFn[property] = function(listener, useCapture) {
       return this.on(property, listener, useCapture);
     };
@@ -320,7 +349,7 @@
    * included extended-jNet file
    */
 
-  if (typeof require === 'function') {
+  if (typeof require === "function") {
 
     /**
      *  jNet Framework used:
@@ -336,13 +365,15 @@
 
     /**
      * included superagent
+     * @link https://github.com/visionmedia/superagent
      */
-    jNet.fetch = require('superagent');
+    jNet.fetch = require("superagent");
 
     /**
      * included js-cookie
+     * @link https://github.com/js-cookie/js-cookie
      */
-    jNet.cookies = require('js-cookie');
+    jNet.cookies = require("js-cookie");
   }
 
 
@@ -351,7 +382,7 @@
    *  set jNet in window
    */
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined" && window !== null) {
     window.jNet = jNet;
   }
 
@@ -361,7 +392,7 @@
    *  set jNet in document
    */
 
-  if (typeof document !== 'undefined') {
+  if (typeof document !== "undefined" && document !== null) {
     document.jNet = jNet;
   }
 
@@ -371,7 +402,7 @@
    *  set jNet in exports
    */
 
-  if (typeof exports !== 'undefined') {
+  if (typeof exports !== "undefined" && exports !== null) {
     exports.jNet = jNet;
   }
 

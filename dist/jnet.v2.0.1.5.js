@@ -1672,7 +1672,7 @@ module.exports = function(arr, fn, initial){
       return domParser.parseFromString(string, 'text/xml');
     },
     trim: function(string, regex) {
-      if (typeof regex === 'undefined') {
+      if (regex) {
         return string.trim();
       }
       return string.replace(new RegExp('/^' + regex + '|' + regex + '$/gm'), '');
@@ -1758,23 +1758,38 @@ module.exports = function(arr, fn, initial){
    */
 
   jNetObject.prototype = jNetObject.fn = {
+
+    /**
+     * get element with index DOMTree as jNetObject
+     * @returns jNetObject
+     */
     eq: function(index) {
       if (index < 0) {
         index += this.length;
       }
       return jNet(this[index]);
     },
+
+    /**
+     * get first element DOMTree as jNetObject
+     * @returns jNetObject
+     */
     first: function() {
       return this.eq(0);
     },
+
+    /**
+     * get last element DOMTree as jNetObject
+     * @returns jNetObject
+     */
     last: function() {
       return this.eq(this.length - 1);
     },
     odd: function(iterator) {
       var list;
       list = [];
-      if (typeof iterator === 'undefined') {
-        iterator = 1;
+      if (!iterator) {
+        iterator = 0;
       }
       while (iterator < this.length) {
         list.push(this[iterator]);
@@ -1786,11 +1801,24 @@ module.exports = function(arr, fn, initial){
       return this.odd(0);
     },
     clone: function(object) {
-      return Object.create(object ? object : this);
+      if (!object) {
+        object = this;
+      }
+      return Object.create(object);
     },
     toString: function() {
       return 'jNetObject';
     },
+
+    /**
+     * cycle implement in jNetFramework for objects jNet
+     *
+     * First parameter callback is Key
+     *   Next parameter callback is Value
+     *     Next parameter callback is this (array)
+     *
+     * @returns {*}
+     */
     each: function(callback) {
       var iterator;
       iterator = 0;
@@ -1801,22 +1829,23 @@ module.exports = function(arr, fn, initial){
       return this;
     },
     find: function(object) {
-      var list;
+      var elements, iterator, list;
       if (object.toString() === this.toString()) {
         return object;
       }
       list = [];
       if (object === window) {
         list.push(object);
+      } else if (object === document) {
+        list.push(document);
       } else if (object && object.nodeType) {
         list.push(object);
       } else if (typeof object === 'string') {
-        if (this.length) {
-          this.each(function(iterator, element) {
-            Array.prototype.push.apply(list, element.querySelectorAll(object));
-          });
-        } else {
-          Array.prototype.push.apply(list, document.querySelectorAll(object));
+        elements = this.length ? this : [document];
+        iterator = 0;
+        while (iterator < elements.length) {
+          Array.prototype.push.apply(list, elements[iterator].querySelectorAll(object));
+          ++iterator;
         }
       }
       return new jNetObject(list);
@@ -1866,7 +1895,7 @@ module.exports = function(arr, fn, initial){
         object();
         return jnObject;
       }
-      return jnObject.on('DOMContentLoaded', object);
+      return jnObject.ready(object);
     } else if (typeof object === 'string') {
       return new jNetObject(object);
     } else if (typeof object === 'object') {
@@ -1888,7 +1917,7 @@ module.exports = function(arr, fn, initial){
         }
       } else if (typeof object === 'object') {
         Object.keys(object).forEach(function(key, value) {
-          callback(key, value, object);
+          return callback(key, value, object);
         });
       }
       return this;
@@ -1983,11 +2012,13 @@ module.exports = function(arr, fn, initial){
 
     /**
      * included superagent
+     * @link https://github.com/visionmedia/superagent
      */
     jNet.fetch = require('superagent');
 
     /**
      * included js-cookie
+     * @link https://github.com/js-cookie/js-cookie
      */
     jNet.cookies = require('js-cookie');
   }
@@ -1998,7 +2029,7 @@ module.exports = function(arr, fn, initial){
    *  set jNet in window
    */
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined" && window !== null) {
     window.jNet = jNet;
   }
 
@@ -2008,7 +2039,7 @@ module.exports = function(arr, fn, initial){
    *  set jNet in document
    */
 
-  if (typeof document !== 'undefined') {
+  if (typeof document !== "undefined" && document !== null) {
     document.jNet = jNet;
   }
 
@@ -2018,7 +2049,7 @@ module.exports = function(arr, fn, initial){
    *  set jNet in exports
    */
 
-  if (typeof exports !== 'undefined') {
+  if (typeof exports !== "undefined" && exports !== null) {
     exports.jNet = jNet;
   }
 

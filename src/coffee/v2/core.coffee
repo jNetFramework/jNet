@@ -5,23 +5,23 @@ jNetPrivate = ->
 jNetPrivate.prototype =
 
   isHTML: (string) ->
-    elementObject = document.createElement('div')
+    elementObject = document.createElement("div")
     elementObject.innerHTML = string
     iteratorChildNodes = elementObject.childNodes
     i = iteratorChildNodes.length
     while i--
-      if iteratorChildNodes[i].nodeType == 1
+      if iteratorChildNodes[i].nodeType is 1
         return true
     false
 
   parseXML: (string) ->
     domParser = new DOMParser()
-    domParser.parseFromString string, 'text/xml'
+    domParser.parseFromString string, "text/xml"
 
   trim: (string, regex) ->
-    if typeof regex == 'undefined'
+    if typeof regex is "undefined"
       return string.trim()
-    string.replace new RegExp('/^' + regex + '|' + regex + '$/gm'), ''
+    string.replace new RegExp("/^" + regex + "|" + regex + "$/gm"), ""
 
   parseHTML: (string) ->
     rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi
@@ -30,30 +30,30 @@ jNetPrivate.prototype =
     wrapMap =
       option: [
         1
-        '<select multiple=\'multiple\'>'
-        '</select>'
+        "<select multiple='multiple'>"
+        "</select>"
       ]
       thead: [
         1
-        '<table>'
-        '</table>'
+        "<table>"
+        "</table>"
       ]
       col: [
         2
-        '<table><colgroup>'
-        '</colgroup></table>'
+        "<table><colgroup>"
+        "</colgroup></table>"
       ]
       tr: [
         2
-        '<table><tbody>'
-        '</tbody></table>'
+        "<table><tbody>"
+        "</tbody></table>"
       ]
       td: [
         3
-        '<table><tbody><tr>'
-        '</tr></tbody></table>'
+        "<table><tbody><tr>"
+        "</tr></tbody></table>"
       ]
-      _default: [0, '', '']
+      _default: [0, "", ""]
 
     tmp = undefined
     tag = undefined
@@ -64,10 +64,10 @@ jNetPrivate.prototype =
     if !rhtml.test(string)
       fragment.appendChild document.createTextNode(string)
     else
-      tmp = fragment.appendChild(document.createElement('div'))
+      tmp = fragment.appendChild(document.createElement("div"))
       tag = (rtagName.exec(string) or ['', ''])[1].toLowerCase()
       wrap = wrapMap[tag] or wrapMap._default
-      tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, '<$1></$2>') + wrap[2]
+      tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2]
       j = wrap[0]
       while j--
         tmp = tmp.lastChild
@@ -114,19 +114,30 @@ jNetObject = (object) ->
 ###
 jNetObject.prototype = jNetObject.fn =
 
+  ###*
+  # get element with index DOMTree as jNetObject
+  # @returns jNetObject
+  ###
   eq: (index) ->
     index += @length if index < 0
     jNet @[index]
 
+  ###*
+  # get first element DOMTree as jNetObject
+  # @returns jNetObject
+  ###
   first: ->
     @eq 0
 
+  ###*
+  # get last element DOMTree as jNetObject
+  # @returns jNetObject
+  ###
   last: ->
     @eq @length - 1
 
-  odd: (iterator) ->
+  odd: (iterator = 1) ->
     list = []
-    iterator = 1 if typeof iterator == 'undefined'
     while iterator < @length
       list.push @[iterator]
       iterator += 2
@@ -136,11 +147,21 @@ jNetObject.prototype = jNetObject.fn =
     return @odd(0)
 
   clone: (object) ->
-    Object.create if object then object else this
+    object = this if !object
+    Object.create object
 
   toString: ->
-    'jNetObject'
+    "jNetObject"
 
+  ###*
+  # cycle implement in jNetFramework for objects jNet
+  #
+  # First parameter callback is Key
+  #   Next parameter callback is Value
+  #     Next parameter callback is this (array)
+  #
+  # @returns {*}
+  ###
   each: (callback) ->
     iterator = 0
     while iterator < @length
@@ -150,25 +171,26 @@ jNetObject.prototype = jNetObject.fn =
 
   find: (object) ->
 
-    if object.toString() == @toString()
+    if object.toString() is @toString()
       return object
 
     list = []
-    if object == window
+    if object is window
       list.push object
+
+    else if object is document
+      list.push document
 
     else if object and object.nodeType
       list.push object
 
-    else if typeof object == 'string'
+    else if typeof object is "string"
 
-      if @length
-        @each (iterator, element) ->
-          Array::push.apply list, element.querySelectorAll(object)
-          return
-
-      else
-        Array::push.apply list, document.querySelectorAll(object)
+      elements = if @length then this else [document]
+      iterator = 0
+      while iterator < elements.length
+        Array::push.apply list, elements[iterator].querySelectorAll(object)
+        ++iterator
 
     new jNetObject(list)
 
@@ -177,7 +199,7 @@ jNetObject.prototype = jNetObject.fn =
       if element.addEventListener
         element.addEventListener type, listener, useCapture
       else
-        element.attachEvent 'on' + type, ->
+        element.attachEvent "on" + type, ->
           listener.call element
     this
 
@@ -186,12 +208,12 @@ jNetObject.prototype = jNetObject.fn =
       if element.removeEventListener
         element.removeEventListener type, listener, useCapture
       else if element.detachEvent
-        element.detachEvent 'on' + type, listener
+        element.detachEvent "on" + type, listener
       return
     this
 
   ready: (listener, useCapture) ->
-    @on 'DOMContentLoaded', listener, useCapture
+    @on "DOMContentLoaded", listener, useCapture
 
 ###*
 # Main Object of a Framework.
@@ -203,17 +225,19 @@ jNetObject.prototype = jNetObject.fn =
 ###
 jNet = (object) ->
 
-  if typeof object == 'function'
+  if typeof object is "function"
+
     jnObject = jNet(document)
-    if document.readyState == 'complete'
+    if document.readyState is "complete"
       object()
       return jnObject
-    return jnObject.on('DOMContentLoaded', object)
 
-  else if typeof object == 'string'
+    return jnObject.ready(object)
+
+  else if typeof object is "string"
     return new jNetObject(object)
 
-  else if typeof object == 'object'
+  else if typeof object is "object"
     return new jNetObject(object)
 
   return
@@ -222,7 +246,7 @@ jNet.fn = jNet.prototype =
 
   each: (object, callback) ->
 
-    if object.toString() == jNetObject.fn.toString()
+    if object.toString() is jNetObject.fn.toString()
       object.each callback
 
     else if Array.isArray(object)
@@ -232,15 +256,14 @@ jNet.fn = jNet.prototype =
         callback iterator, object[iterator], object
         ++iterator
 
-    else if typeof object == 'object'
+    else if typeof object is "object"
       Object.keys(object).forEach (key, value) ->
         callback key, value, object
-        return
 
     this
 
   toString: ->
-    'jNetFramework'
+    "jNetFramework"
 
 ###*
 # set pointer in jNetObject.prototype
@@ -276,30 +299,31 @@ jNet.each = jNet.fn.each
 #
 # #1 - fixed AMD
 ###
-if typeof define == 'function' and define.amd
+if typeof define is "function" and define.amd
   define ->
-    {'jNet': jNet}
+    {"jNet": jNet}
 
 ###*
 # Append in prototype new methods for working jNet Framework, jNetObject
 ###
 jNet.each [
-  'click'
-  'contextmenu'
-  'dblclick'
-  'mouseup'
-  'mousedown'
-  'mouseout'
-  'mouseover'
-  'mousemove'
-  'keyup'
-  'keydown'
-  'keypress'
-  'copy'
-  'selectstart'
-  'selectionchange'
-  'select'
+  "click"
+  "contextmenu"
+  "dblclick"
+  "mouseup"
+  "mousedown"
+  "mouseout"
+  "mouseover"
+  "mousemove"
+  "keyup"
+  "keydown"
+  "keypress"
+  "copy"
+  "selectstart"
+  "selectionchange"
+  "select"
 ], (iterator, property) ->
+
   jNet.oFn[property] = (listener, useCapture) ->
     @on property, listener, useCapture
 
@@ -308,7 +332,7 @@ jNet.each [
 ###*
 # included extended-jNet file
 ###
-if typeof require == 'function'
+if typeof require is "function"
 
   ###*
   #  jNet Framework used:
@@ -324,31 +348,30 @@ if typeof require == 'function'
 
   ###*
   # included superagent
+  # @link https://github.com/visionmedia/superagent
   ###
-  jNet.fetch = require('superagent')
+  jNet.fetch = require("superagent")
 
   ###*
   # included js-cookie
+  # @link https://github.com/js-cookie/js-cookie
   ###
-  jNet.cookies = require('js-cookie')
+  jNet.cookies = require("js-cookie")
 
 ###*
 # check exists window and
 #  set jNet in window
 ###
-if typeof window != 'undefined'
-  window.jNet = jNet
+window.jNet = jNet if window?
 
 ###*
 # check exists document and
 #  set jNet in document
 ###
-if typeof document != 'undefined'
-  document.jNet = jNet
+document.jNet = jNet if document?
 
 ###*
 # check exists exports and
 #  set jNet in exports
 ###
-if typeof exports != 'undefined'
-  exports.jNet = jNet
+exports.jNet = jNet if exports?
