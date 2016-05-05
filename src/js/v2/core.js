@@ -259,13 +259,51 @@
     ready: function(listener, useCapture) {
       return this.on("DOMContentLoaded", listener, useCapture);
     },
+    remove: function() {
+      return this.each(function(iterator, element) {
+        element.remove();
+      });
+    },
+    closest: function(selector) {
+      var closest, list;
+      closest = function(node, selector) {
+        return node.closest(selector);
+      };
+      if (typeof Element.prototype.closest === "undefined") {
+        closest = function(node, selector) {
+          while (node) {
+            if (node.matches(css)) {
+              return node;
+            } else {
+              node = node.parentElement;
+            }
+          }
+          return null;
+        };
+      }
+      list = [];
+      this.each(function(iterator, element) {
+        var isExists, newElement;
+        newElement = closest(element, selector);
+        isExists = false;
+        jNet.each(list, function(key, value) {
+          if (value === newElement) {
+            isExists = true;
+          }
+        });
+        if (!isExists) {
+          list.push(newElement);
+        }
+      });
+      return new jNetObject(list);
+    },
     show: function(interval) {
       var items;
       if (typeof interval === "undefined") {
         interval = 1000;
       }
       this.each(function(iterator, element) {
-        return jNet.dynamics.animate(element, {
+        jNet.dynamics.animate(element, {
           opacity: 1,
           scale: 1
         }, {
@@ -277,12 +315,12 @@
         });
       });
       items = this.find('*');
-      return jNet.each(items, function(iterator, element) {
+      jNet.each(items, function(iterator, element) {
         jNet.dynamics.css(element, {
           opacity: 0,
           translateY: 20
         });
-        return jNet.dynamics.animate(element, {
+        jNet.dynamics.animate(element, {
           opacity: 1,
           translateY: 0
         }, {
@@ -298,8 +336,8 @@
       if (typeof interval === "undefined") {
         interval = 1000;
       }
-      return this.each(function(iterator, element) {
-        return jNet.dynamics.animate(element, {
+      this.each(function(iterator, element) {
+        jNet.dynamics.animate(element, {
           opacity: 0,
           scale: 0.1
         }, {
@@ -340,22 +378,31 @@
 
   jNet.fn = jNet.prototype = {
     each: function(object, callback) {
-      var iterator, length;
+      var iterator, key, length, objects, results, results1, value;
       if (object.toString() === jNetObject.fn.toString()) {
-        object.each(callback);
+        return object.each(callback);
       } else if (Array.isArray(object)) {
         length = object.length;
         iterator = 0;
+        results = [];
         while (iterator < length) {
           callback(iterator, object[iterator], object);
-          ++iterator;
+          results.push(++iterator);
         }
+        return results;
       } else if (typeof object === "object") {
-        Object.keys(object).forEach(function(key, value) {
-          return callback(key, value, object);
-        });
+        objects = Object.keys(object);
+        length = object.length;
+        iterator = 0;
+        results1 = [];
+        while (iterator < length) {
+          key = objects[iterator];
+          value = object[key];
+          callback(key, value, object);
+          results1.push(++iterator);
+        }
+        return results1;
       }
-      return this;
     },
     toString: function() {
       return "jNetFramework";
@@ -414,6 +461,18 @@
       };
     });
   }
+
+
+  /**
+   * current method extend jNetObject
+   *   with helped fn
+   */
+
+  jNet.extend = function(object) {
+    return this.each(object, function(prototype, value) {
+      jNet.oFn[prototype] = value;
+    });
+  };
 
 
   /**

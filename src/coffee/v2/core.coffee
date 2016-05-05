@@ -244,6 +244,50 @@ jNetObject.prototype = jNetObject.fn =
   ready: (listener, useCapture) ->
     @on "DOMContentLoaded", listener, useCapture
 
+  remove: ->
+    @each (iterator, element) ->
+      element.remove()
+      return
+
+  closest: (selector) ->
+
+    closest = (node, selector) ->
+      node.closest selector
+
+    if typeof Element.prototype.closest is "undefined"
+      closest = (node, selector) ->
+        while node
+          if node.matches(css)
+            return node
+          else
+            node = node.parentElement
+        return null
+
+    list = []
+    @each (iterator, element) ->
+
+      newElement = closest element, selector
+      isExists = false
+
+      jNet.each list, (key, value) ->
+        if value is newElement
+          isExists = true
+          return
+
+      if !isExists
+        list.push newElement
+
+      return
+    return new jNetObject list
+
+#  parent: (selector) -> # todo: development parent
+#    list = []
+#    elements = document.querySelectorAll(selector)
+#    @each (iterator, element) ->
+#
+#      return
+#    return
+
   show: (interval) ->
 
     interval = 1000 if typeof interval is "undefined"
@@ -259,13 +303,16 @@ jNetObject.prototype = jNetObject.fn =
         duration: 800,
         delay: interval + iterator * 40
       }
+      return
 
     items = @find('*')
     jNet.each items, (iterator, element) ->
+
       jNet.dynamics.css element, {
         opacity: 0,
         translateY: 20
       }
+
       jNet.dynamics.animate element, {
         opacity: 1,
         translateY: 0
@@ -276,6 +323,9 @@ jNetObject.prototype = jNetObject.fn =
         duration: 1000,
         delay: interval + 100 + iterator * 40
       }
+
+      return
+    return
 
   hide: (interval) ->
 
@@ -291,6 +341,8 @@ jNetObject.prototype = jNetObject.fn =
         friction: 100,
         delay: interval + iterator * 40
       }
+      return
+    return
 
 ###*
 # Main Object of a Framework.
@@ -301,8 +353,8 @@ jNetObject.prototype = jNetObject.fn =
 # @returns {*}
 ###
 jNet = (object) ->
-  if typeof object is "function"
 
+  if typeof object is "function"
     jnObject = jNet document
     if document.readyState is "complete"
       object()
@@ -315,8 +367,6 @@ jNet = (object) ->
 
   else if typeof object is "object"
     return new jNetObject object
-
-  return
 
 jNet.fn = jNet.prototype =
 
@@ -332,10 +382,14 @@ jNet.fn = jNet.prototype =
         ++iterator
 
     else if typeof object is "object"
-      Object.keys(object).forEach (key, value) ->
+      objects = Object.keys(object)
+      length = object.length
+      iterator = 0
+      while iterator < length
+        key = objects[iterator]
+        value = object[key]
         callback key, value, object
-
-    this
+        ++iterator
 
   toString: ->
     "jNetFramework"
@@ -377,6 +431,15 @@ jNet.each = jNet.fn.each
 if typeof define is "function" and define.amd
   define ->
     {"jNet": jNet}
+
+###*
+# current method extend jNetObject
+#   with helped fn
+###
+jNet.extend = (object) ->
+  @each object, (prototype, value) ->
+    jNet.oFn[prototype] = value
+    return
 
 ###*
 # Append in prototype new methods for working jNet Framework, jNetObject
