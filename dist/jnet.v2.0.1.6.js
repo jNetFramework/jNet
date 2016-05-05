@@ -3995,6 +3995,37 @@ module.exports = request;
         });
       }
     },
+    outerHTML: function(value, prototype) {
+      var list;
+      if (typeof prototype === "undefined") {
+        prototype = "outerHTML";
+      }
+      if (typeof value === "undefined") {
+        list = [];
+        this.each(function(iterator, element) {
+          value = element[prototype];
+          list.push(value);
+        });
+        return returnList(list);
+      } else {
+        return this.each(function(iterator, element) {
+          var result;
+          result = value;
+          if (typeof value === "function") {
+            result = value(jNet(element)[prototype](), element);
+          }
+          if (result) {
+            element[prototype] = result;
+          }
+        });
+      }
+    },
+    innerHTML: function(value) {
+      return this.html(value);
+    },
+    html: function(value) {
+      return this.outerHTML(value, "innerHTML");
+    },
     attr: function(name, value) {
       var list;
       if (typeof value === "undefined") {

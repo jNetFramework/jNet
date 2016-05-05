@@ -282,6 +282,30 @@ jNetObject.prototype = jNetObject.fn =
         element.style.setProperty name, value
         return
 
+  outerHTML: (value, prototype) ->
+    prototype = "outerHTML" if typeof prototype is "undefined"
+    if typeof value is "undefined"
+      list = []
+      @each (iterator, element) ->
+        value = element[prototype]
+        list.push value
+        return
+      returnList list
+    else
+      @each (iterator, element) ->
+        result = value
+        if typeof value is "function"
+          result = value jNet(element)[prototype](), element
+        if result
+          element[prototype] = result
+        return
+
+  innerHTML: (value) ->
+    @html value
+
+  html: (value) ->
+    @outerHTML value, "innerHTML"
+
   attr: (name, value) ->
 
     if typeof value is "undefined"

@@ -39,12 +39,37 @@ var dynamics = jNet.dynamics;
 - [ ] appendTo
 - [ ] prepend
 - [ ] prependTo
-- [ ] innerHTML (alias html)
-- [ ] outerHTML
+- [x] innerHTML (alias html)
+- [x] outerHTML
 - [ ] insertAfter ?
 - [ ] insertBefore ?
 
 ### Changelog
+
+#### 5/5/16, 22:25
+
+Implement innerHTML (alias html), outerHTML (Feature #9)
+
+Example:
+
+```JavaScript
+// ["<a href="">1</a>", "<a href="">2</a>", "<a href="">3</a>"]
+jNet('li').html()
+
+//["<li><a href="">1</a></li>", "<li><a href="">2</a></li>", "<li><a href="">3</a></li>"]
+jNet('li').outerHTML()
+
+// console.log 1
+// console.log 2
+// console.log 3
+// jNetObject [li, li, li], values (3, 6, 9)
+jNet('li').html(function (html, element) {
+  var newObject = jNet(html).find('*');
+  var integer = newObject[0].innerText;
+  console.log(integer);
+  return integer * 3;
+});
+```
 
 #### 5/5/16, 21:55
 
