@@ -1,80 +1,81 @@
 'use strict'
 
-jNetPrivate = ->
+isHTML = (string) ->
+  elementObject = document.createElement('div')
+  elementObject.innerHTML = string
+  iteratorChildNodes = elementObject.childNodes
+  i = iteratorChildNodes.length
+  while i--
+    if iteratorChildNodes[i].nodeType is 1
+      return true
+  false
 
-jNetPrivate.prototype =
+returnList = (list) ->
+  if list.length is 1
+    return list.pop()
+  return list
 
-  isHTML: (string) ->
-    elementObject = document.createElement('div')
-    elementObject.innerHTML = string
-    iteratorChildNodes = elementObject.childNodes
-    i = iteratorChildNodes.length
-    while i--
-      if iteratorChildNodes[i].nodeType is 1
-        return true
-    false
+parseXML = (string) ->
+  domParser = new DOMParser()
+  domParser.parseFromString string, "text/xml"
 
-  parseXML: (string) ->
-    domParser = new DOMParser()
-    domParser.parseFromString string, "text/xml"
+trim = (string, regex) ->
+  if typeof regex is "undefined"
+    return string.trim()
+  string.replace new RegExp("/^" + regex + "|" + regex + "$/gm"), ""
 
-  trim: (string, regex) ->
-    if typeof regex is "undefined"
-      return string.trim()
-    string.replace new RegExp("/^" + regex + "|" + regex + "$/gm"), ""
+parseHTML = (string) ->
+  rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi
+  rtagName = /<([\w:]+)/
+  rhtml = /<|&#?\w+;/
+  wrapMap =
+    option: [
+      1
+      "<select multiple='multiple'>"
+      "</select>"
+    ]
+    thead: [
+      1
+      "<table>"
+      "</table>"
+    ]
+    col: [
+      2
+      "<table><colgroup>"
+      "</colgroup></table>"
+    ]
+    tr: [
+      2
+      "<table><tbody>"
+      "</tbody></table>"
+    ]
+    td: [
+      3
+      "<table><tbody><tr>"
+      "</tr></tbody></table>"
+    ]
+    _default: [0, "", ""]
 
-  parseHTML: (string) ->
-    rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi
-    rtagName = /<([\w:]+)/
-    rhtml = /<|&#?\w+;/
-    wrapMap =
-      option: [
-        1
-        "<select multiple='multiple'>"
-        "</select>"
-      ]
-      thead: [
-        1
-        "<table>"
-        "</table>"
-      ]
-      col: [
-        2
-        "<table><colgroup>"
-        "</colgroup></table>"
-      ]
-      tr: [
-        2
-        "<table><tbody>"
-        "</tbody></table>"
-      ]
-      td: [
-        3
-        "<table><tbody><tr>"
-        "</tr></tbody></table>"
-      ]
-      _default: [0, "", ""]
+  tmp = undefined
+  tag = undefined
+  wrap = undefined
+  j = undefined
+  fragment = document.createDocumentFragment()
 
-    tmp = undefined
-    tag = undefined
-    wrap = undefined
-    j = undefined
-    fragment = document.createDocumentFragment()
-
-    if !rhtml.test(string)
-      fragment.appendChild document.createTextNode(string)
-    else
-      tmp = fragment.appendChild(document.createElement("div"))
-      tag = (rtagName.exec(string) or ['', ''])[1].toLowerCase()
-      wrap = wrapMap[tag] or wrapMap._default
-      tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2]
-      j = wrap[0]
-      while j--
-        tmp = tmp.lastChild
-      fragment.removeChild fragment.firstChild
-      while tmp.firstChild
-        fragment.appendChild tmp.firstChild
-    fragment
+  if !rhtml.test(string)
+    fragment.appendChild document.createTextNode(string)
+  else
+    tmp = fragment.appendChild(document.createElement("div"))
+    tag = (rtagName.exec(string) or ['', ''])[1].toLowerCase()
+    wrap = wrapMap[tag] or wrapMap._default
+    tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2]
+    j = wrap[0]
+    while j--
+      tmp = tmp.lastChild
+    fragment.removeChild fragment.firstChild
+    while tmp.firstChild
+      fragment.appendChild tmp.firstChild
+  fragment
 
 ###*
 # Object for working with DOMTree
@@ -255,13 +256,47 @@ jNetObject.prototype = jNetObject.fn =
     @each (iterator, element) ->
       list.push element[prototype]
       return
-    if list.length is 1
-      return list.pop()
-    list
+    returnList list
 
   height: ->
     return @width "clientHeight"
+
+  css: (name, value) ->
+    if typeof value is "undefined"
+      list = []
+      @each (iterator, element) ->
+        value = element.style.getPropertyValue name
+        list.push value
+        return
+      returnList list
+
+    else
+      @each (iterator, element) ->
+        element.style.setProperty name, value
+        return
+
+  attr: (name, value) ->
     
+    if typeof value is "undefined"
+      list = []
+      @each (iterator, element) ->
+        value = element.getAttribute name
+        list.push value
+        return
+      returnList list
+
+    else if value is null
+
+      @each (iterator, element) ->
+        if element.hasAttribute name
+          element.removeAttribute name
+        return
+
+    else
+      @each (iterator, element) ->
+        element.setAttribute name, value
+        return
+
   closest: (selector) ->
 
     closest = (node, selector) ->

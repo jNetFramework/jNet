@@ -7,10 +7,7 @@ methods:
         * toggleClass
 
     middle:
-        * css (todo: style)
-
         * data
-        * attr (without data)
 
         //* selection (cleanSelection/getSelection)
 
@@ -33,6 +30,16 @@ changelog:
 
 ===== 2.0.1.5 =====
 
+--- 5/5/16, 13:56
+    * css (todo: style)
+    * attr (without data)
+    * remove 'class' jNetPrivate
+    * methods jNetPrivate moved in global namespace
+        - jNetPrivate.isHTML to isHTML
+        - jNetPrivate.parseXML to parseXML
+        - jNetPrivate.trim to trim
+        - jNetPrivate.parseHTML to parseHTML
+
 --- 5/5/16, 12:40
     * width
     * height
@@ -48,12 +55,15 @@ changelog:
 --- 4/5/2016
     * rewrite js to cs
     * jNetPrivate
+
     * jNetPrivate.fn
         - isHTML
         - parseXML
         - trim
         - parseHTML
+
     * jNetObject
+
     * jNetObject.fn 
         - eq
         - first
@@ -67,10 +77,13 @@ changelog:
         - on
         - off
         - ready
+
     * jNet (jNetFramework)
+
     * jNet.fn
         - each
         - toString
+
     * jNet.oFn [alias] jNetObject.fn
     * jNet -- public
     * jNetObject -- private
@@ -78,6 +91,7 @@ changelog:
     * jNet.toString = jNet.fn.toString
     * jNet.clone = jNet.oFn.clone
     * jNet.each = jNet.fn.each
+
     * event's
         + click
         + contextmenu
@@ -94,6 +108,7 @@ changelog:
         + selectstart
         + selectionchange
         + select
+
     * jNet.fetch = require? "superagent"
     * jNet.fetch = require? "js-cookie"
     * jNet.fetch = require? "dynamics.js"
