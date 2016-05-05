@@ -13,16 +13,18 @@ isHTML = (string) ->
 returnList = (list) ->
   if list.length is 1
     return list.pop()
-  return list
+  list
 
-parseXML = (string) ->
-  domParser = new DOMParser()
-  domParser.parseFromString string, "text/xml"
+#parseXML = (string) ->
+#  domParser = new DOMParser()
+#  domParser.parseFromString string, "text/xml"
 
-trim = (string, regex) ->
-  if typeof regex is "undefined"
-    return string.trim()
-  string.replace new RegExp("/^" + regex + "|" + regex + "$/gm"), ""
+#trim = (string, regex) ->
+#  if typeof regex is "undefined"
+#    if typeof string.trim is "function"
+#      return string.trim()
+#    regex = "\s+"
+#  string.replace new RegExp("/^" + regex + "|" + regex + "$/gm"), ""
 
 parseHTML = (string) ->
   rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi
@@ -56,17 +58,13 @@ parseHTML = (string) ->
     ]
     _default: [0, "", ""]
 
-  tmp = undefined
-  tag = undefined
-  wrap = undefined
-  j = undefined
   fragment = document.createDocumentFragment()
 
   if !rhtml.test(string)
     fragment.appendChild document.createTextNode(string)
   else
     tmp = fragment.appendChild(document.createElement("div"))
-    tag = (rtagName.exec(string) or ['', ''])[1].toLowerCase()
+    tag = (rtagName.exec(string) or ["", ""])[1].toLowerCase()
     wrap = wrapMap[tag] or wrapMap._default
     tmp.innerHTML = wrap[1] + string.replace(rxhtmlTag, "<$1></$2>") + wrap[2]
     j = wrap[0]
@@ -75,6 +73,7 @@ parseHTML = (string) ->
     fragment.removeChild fragment.firstChild
     while tmp.firstChild
       fragment.appendChild tmp.firstChild
+
   fragment
 
 ###*
@@ -177,6 +176,7 @@ jNetObject.prototype = jNetObject.fn =
     this
 
   find: (object) ->
+
     if object.toString() is @toString()
       return object
 
@@ -192,11 +192,14 @@ jNetObject.prototype = jNetObject.fn =
 
     else if typeof object is "string"
 
-      elements = if @length then this else [document]
-      iterator = 0
-      while iterator < elements.length
-        Array::push.apply list, elements[iterator].querySelectorAll object
-        ++iterator
+      if isHTML object # parse html
+        list.push parseHTML object
+      else # if object is not html then
+        elements = if @length then this else [document]
+        iterator = 0
+        while iterator < elements.length
+          Array::push.apply list, elements[iterator].querySelectorAll object
+          ++iterator
 
     new jNetObject(list)
 
@@ -276,6 +279,7 @@ jNetObject.prototype = jNetObject.fn =
         return
 
   attr: (name, value) ->
+
     if typeof value is "undefined"
       list = []
       @each (iterator, element) ->
@@ -290,7 +294,14 @@ jNetObject.prototype = jNetObject.fn =
         return
     else
       @each (iterator, element) ->
-        element.setAttribute name, value
+        
+        result = value
+        if typeof value is "function"
+          result = value jNet(element).attr(name), element
+
+        if result
+          element.setAttribute name, result
+
         return
 
   hasClass: (classname) ->
@@ -315,6 +326,8 @@ jNetObject.prototype = jNetObject.fn =
   closest: (selector) ->
 
     closest = (node, selector) ->
+      # Element.closest
+      # @link https://developer.mozilla.org/ru/docs/Web/API/Element/closest
       node.closest selector
 
     if typeof Element.prototype.closest is "undefined"
@@ -341,6 +354,7 @@ jNetObject.prototype = jNetObject.fn =
         list.push newElement
 
       return
+
     return new jNetObject list
 
 #  parent: (selector) -> # todo: development parent

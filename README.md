@@ -46,6 +46,11 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 5/5/16, 20:33
+
+the new feature is added in Implement attributes (attr) (Feature #5),
+an opportunity to transfer callback by the second parameter
+
 #### 5/5/16, 16:42
 
 Implement closest (Feature #8)
@@ -92,7 +97,7 @@ closest   ++
 - [x] forEach rewrite on while
 - [x] fixed more bugs
 
-#### 4/5/2016
+#### 4/5/16
 
 rewrite js to cs
 
