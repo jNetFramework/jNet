@@ -1,0 +1,41 @@
+methods:
+
+    simple:
+        * hasClass
+        * addClass
+        * removeClass
+        * toggleClass
+
+        * width
+        * height
+
+    middle:
+        * css (todo: style)
+
+        * data
+        * attr (without data)
+
+        //* selection (cleanSelection/getSelection)
+
+    hard:
+        * parent
+        * parents
+
+        * text
+
+        * append
+        * prepend
+
+        * innerHTML
+        * outerHTML
+
+        * insertAfter ?
+        * insertBefore ?
+
+--- 5/5/16, 11:21
+    * show/hide (with dymanics.js) ++
+    * remove    ++ used standard method remove for elements
+    * closest   ++
+
+    + forEach rewrite on while
+    + fixed more bugs
