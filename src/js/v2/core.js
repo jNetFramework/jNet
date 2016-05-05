@@ -353,7 +353,7 @@
       if (typeof Element.prototype.closest === "undefined") {
         closest = function(node, selector) {
           while (node) {
-            if (node.matches(css)) {
+            if (node.matches(selector)) {
               return node;
             } else {
               node = node.parentElement;

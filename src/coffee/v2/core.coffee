@@ -320,7 +320,7 @@ jNetObject.prototype = jNetObject.fn =
     if typeof Element.prototype.closest is "undefined"
       closest = (node, selector) ->
         while node
-          if node.matches(css)
+          if node.matches(selector)
             return node
           else
             node = node.parentElement
