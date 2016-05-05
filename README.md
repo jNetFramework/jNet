@@ -51,6 +51,15 @@ var dynamics = jNet.dynamics;
 the new feature is added in Implement attributes (attr) (Feature #5),
 an opportunity to transfer callback by the second parameter
 
+Example:
+
+```JavaScript
+jNet('a:not([alt])').attr("alt", function (altText, element) {
+   console.log([altText, element]);
+   return 'hello';
+});
+```
+
 #### 5/5/16, 16:42
 
 Implement closest (Feature #8)
@@ -63,6 +72,26 @@ Implement hasClass, addClass, removeClass, toggleClass (Feature #7)
 - [x] addClass
 - [x] removeClass
 - [x] toggleClass
+
+Example:
+
+```JavaScript
+jNet('p').addClass('hello') // p.hello
+
+jNet('p').toggleClass('world') // p.hello.world
+jNet('p').toggleClass('hello') // p.world
+
+jNet('p').hasClass('hello') // false
+jNet('p').hasClass('world') // true
+
+jNet('p').removeClass('world') // p
+
+jNet('li').hasClass('hello') // [false, false, false]
+
+jNet('li').addClass('hello') // [li.hello, li.hello, li.hello]
+
+jNet('li').hasClass('hello') // [true, true, true]
+```
 
 #### 5/5/16, 13:56
 
@@ -79,12 +108,36 @@ methods jNetPrivate moved in global namespace
 - [x] jNetPrivate.trim to trim
 - [x] jNetPrivate.parseHTML to parseHTML
 
+Example (css):
+
+```JavaScript
+jNet('li').css('color', null) // remove
+jNet('li').css('color', 'yellow') // set
+jNet('li').css('color') // get
+```
+
+Example (attr):
+
+```JavaScript
+jNet('li').attr('style', null) // remove
+jNet('li').attr('style', 'color: blue;') // set
+jNet('li').attr('style') // get
+```
+
 #### 5/5/16, 12:40
 
 Implement width, height (Feature #4)
 
 - [x] width
 - [x] height
+
+Example:
+
+```JavaScript
+jNet('div').width() // 100
+jNet('div').height() // 100
+jNet('li').height() // [20, 20]
+```
 
 #### 5/5/16, 11:21
 
@@ -171,4 +224,3 @@ jNet.fetch = require? "superagent"
 jNet.cookies = require? "js-cookie"
 
 jNet.dynamics = require? "dynamics.js"
-        
