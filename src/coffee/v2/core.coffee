@@ -82,12 +82,14 @@ parseHTML = (string) ->
 # @param object
 # @returns {*}
 ###
-jNetObject = (object) ->
+jNetObject = (object, doc) ->
+
+  doc = document if typeof doc is "undefined"
 
   ###*
   # If parameter object is not Array
   ###
-  if !Array.isArray(object)
+  if !Array.isArray object
 
     ###*
     # Find element from DOMTree
@@ -95,7 +97,7 @@ jNetObject = (object) ->
     #
     # @returns jNetObject
     ###
-    return @find(object)
+    return @find object, doc
 
   ###*
   # With helped prototype Array, method's
@@ -175,10 +177,12 @@ jNetObject.prototype = jNetObject.fn =
       ++iterator
     this
 
-  find: (object) ->
+  find: (object, doc) ->
 
     if object.toString() is @toString()
       return object
+
+    doc = document if typeof doc is "undefined"
 
     list = []
     if object is window
@@ -195,7 +199,7 @@ jNetObject.prototype = jNetObject.fn =
       if isHTML object # parse html
         list.push parseHTML object
       else # if object is not html then
-        elements = if @length then this else [document]
+        elements = if @length then this else [doc]
         iterator = 0
         while iterator < elements.length
           Array::push.apply list, elements[iterator].querySelectorAll object
@@ -294,7 +298,7 @@ jNetObject.prototype = jNetObject.fn =
         return
     else
       @each (iterator, element) ->
-        
+
         result = value
         if typeof value is "function"
           result = value jNet(element).attr(name), element
@@ -429,21 +433,23 @@ jNetObject.prototype = jNetObject.fn =
 # @param object
 # @returns {*}
 ###
-jNet = (object) ->
+jNet = (object, doc) ->
+
+  doc = document if typeof doc is "undefined"
 
   if typeof object is "function"
-    jnObject = jNet document
-    if document.readyState is "complete"
+    jnObject = jNet doc
+    if doc.readyState is "complete"
       object()
       return jnObject
 
     return jnObject.ready object
 
   else if typeof object is "string"
-    return new jNetObject object
+    return new jNetObject object, doc
 
   else if typeof object is "object"
-    return new jNetObject object
+    return new jNetObject object, doc
 
 jNet.fn = jNet.prototype =
 

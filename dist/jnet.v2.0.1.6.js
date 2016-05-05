@@ -3768,7 +3768,10 @@ module.exports = request;
    * @returns {*}
    */
 
-  jNetObject = function(object) {
+  jNetObject = function(object, doc) {
+    if (typeof doc === "undefined") {
+      doc = document;
+    }
 
     /**
      * If parameter object is not Array
@@ -3781,7 +3784,7 @@ module.exports = request;
        *
        * @returns jNetObject
        */
-      return this.find(object);
+      return this.find(object, doc);
     }
 
     /**
@@ -3879,10 +3882,13 @@ module.exports = request;
       }
       return this;
     },
-    find: function(object) {
+    find: function(object, doc) {
       var elements, iterator, list;
       if (object.toString() === this.toString()) {
         return object;
+      }
+      if (typeof doc === "undefined") {
+        doc = document;
       }
       list = [];
       if (object === window) {
@@ -3895,7 +3901,7 @@ module.exports = request;
         if (isHTML(object)) {
           list.push(parseHTML(object));
         } else {
-          elements = this.length ? this : [document];
+          elements = this.length ? this : [doc];
           iterator = 0;
           while (iterator < elements.length) {
             Array.prototype.push.apply(list, elements[iterator].querySelectorAll(object));
@@ -4138,19 +4144,22 @@ module.exports = request;
    * @returns {*}
    */
 
-  jNet = function(object) {
+  jNet = function(object, doc) {
     var jnObject;
+    if (typeof doc === "undefined") {
+      doc = document;
+    }
     if (typeof object === "function") {
-      jnObject = jNet(document);
-      if (document.readyState === "complete") {
+      jnObject = jNet(doc);
+      if (doc.readyState === "complete") {
         object();
         return jnObject;
       }
       return jnObject.ready(object);
     } else if (typeof object === "string") {
-      return new jNetObject(object);
+      return new jNetObject(object, doc);
     } else if (typeof object === "object") {
-      return new jNetObject(object);
+      return new jNetObject(object, doc);
     }
   };
 

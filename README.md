@@ -46,6 +46,17 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 5/5/16, 21:55
+
+possibilities of selection are expanded.
+at the moment doesn't support: string, jNetObject...
+
+Example:
+
+```JavaScript
+jNet('*', document.body)
+```
+
 #### 5/5/16, 20:33
 
 the new feature is added in Implement attributes (attr) (Feature #5),
