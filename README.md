@@ -3,7 +3,7 @@
 JavaScript Framework
 
 ```JavaScript
-// todo: discription jNetFramework
+// todo: description jNetFramework
 ```
 
 jNetFramework includes others frameworks
