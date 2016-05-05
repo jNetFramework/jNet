@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.5.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.min.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/core.coffee" afterPath="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/todo.list" afterPath="$PROJECT_DIR$/src/coffee/v2/todo.list" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js" afterPath="$PROJECT_DIR$/src/js/v2/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test1.html" afterPath="$PROJECT_DIR$/test/test1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js.map" afterPath="$PROJECT_DIR$/src/js/v2/core.js.map" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,18 +39,18 @@
       <file leaf-file-name="core.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="285" column="25" selection-start-line="285" selection-start-column="25" selection-end-line="285" selection-end-column="25" />
+            <state relative-caret-position="305">
+              <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
+      <file leaf-file-name="todo.list" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state relative-caret-position="118">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -62,8 +59,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="409" column="10" selection-start-line="409" selection-start-column="10" selection-end-line="409" selection-end-column="10" />
+            <state relative-caret-position="783">
+              <caret line="264" column="18" selection-start-line="264" selection-start-column="18" selection-end-line="264" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -131,9 +128,9 @@
         <option value="$PROJECT_DIR$/demo/dynamics.html" />
         <option value="$PROJECT_DIR$/test/test1.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/coffee/v2/todo.list" />
-        <option value="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
         <option value="$PROJECT_DIR$/src/js/v2/core.js" />
+        <option value="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
+        <option value="$PROJECT_DIR$/src/coffee/v2/todo.list" />
       </list>
     </option>
   </component>
@@ -411,12 +408,12 @@
       <workItem from="1462396674969" duration="534000" />
       <workItem from="1462397771103" duration="22000" />
       <workItem from="1462422645425" duration="4663000" />
-      <workItem from="1462427735297" duration="15836000" />
+      <workItem from="1462427735297" duration="16537000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96569000" />
+    <option name="totallyTimeSpent" value="97270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -670,14 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="409" column="10" selection-start-line="409" selection-start-column="10" selection-end-line="409" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -710,26 +699,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
+    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="264" column="18" selection-start-line="264" selection-start-column="18" selection-end-line="264" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="285" column="25" selection-start-line="285" selection-start-column="25" selection-end-line="285" selection-end-column="25" />
+        <state relative-caret-position="305">
+          <caret line="301" column="0" selection-start-line="301" selection-start-column="0" selection-end-line="301" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
+    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state relative-caret-position="118">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
           <folding />
         </state>
       </provider>

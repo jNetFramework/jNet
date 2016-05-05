@@ -1,10 +1,7 @@
 methods:
 
     simple:
-        * hasClass
-        * addClass
-        * removeClass
-        * toggleClass
+
 
     hard:
         * parent
@@ -27,6 +24,12 @@ methods:
 changelog:
 
 ===== 2.0.1.6 =====
+
+--- 5/5/16, 15:15
+    * hasClass
+    * addClass
+    * removeClass
+    * toggleClass
 
 --- 5/5/16, 13:56
     * css (todo: style)

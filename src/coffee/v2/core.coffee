@@ -293,6 +293,25 @@ jNetObject.prototype = jNetObject.fn =
         element.setAttribute name, value
         return
 
+  hasClass: (classname) ->
+    list = []
+    @each (iterator, element) ->
+      value = element.classList.contains classname
+      list.push value
+    returnList list
+
+  addClass: (classname) ->
+    @each (iterator, element) ->
+      element.classList.add classname
+
+  removeClass: (classname) ->
+    @each (iterator, element) ->
+      element.classList.remove classname
+
+  toggleClass: (classname) ->
+    @each (iterator, element) ->
+      element.classList.toggle classname
+
   closest: (selector) ->
 
     closest = (node, selector) ->
