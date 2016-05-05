@@ -82,9 +82,7 @@ parseHTML = (string) ->
 # @param object
 # @returns {*}
 ###
-jNetObject = (object, doc) ->
-
-  doc = document if typeof doc is "undefined"
+jNetObject = (object) ->
 
   ###*
   # If parameter object is not Array
@@ -97,7 +95,7 @@ jNetObject = (object, doc) ->
     #
     # @returns jNetObject
     ###
-    return @find object, doc
+    return @find object
 
   ###*
   # With helped prototype Array, method's
@@ -177,12 +175,10 @@ jNetObject.prototype = jNetObject.fn =
       ++iterator
     this
 
-  find: (object, doc) ->
+  find: (object) ->
 
     if object.toString() is @toString()
       return object
-
-    doc = document if typeof doc is "undefined"
 
     list = []
     if object is window
@@ -199,7 +195,7 @@ jNetObject.prototype = jNetObject.fn =
       if isHTML object # parse html
         list.push parseHTML object
       else # if object is not html then
-        elements = if @length then this else [doc]
+        elements = if @length then this else [document]
         iterator = 0
         while iterator < elements.length
           Array::push.apply list, elements[iterator].querySelectorAll object
@@ -459,21 +455,22 @@ jNetObject.prototype = jNetObject.fn =
 ###
 jNet = (object, doc) ->
 
-  doc = document if typeof doc is "undefined"
+  if typeof doc isnt "undefined"
+    return jNet(doc).find(object)
 
   if typeof object is "function"
-    jnObject = jNet doc
-    if doc.readyState is "complete"
+    jnObject = jNet document
+    if document.readyState is "complete"
       object()
       return jnObject
 
     return jnObject.ready object
 
   else if typeof object is "string"
-    return new jNetObject object, doc
+    return new jNetObject object
 
   else if typeof object is "object"
-    return new jNetObject object, doc
+    return new jNetObject object
 
 jNet.fn = jNet.prototype =
 

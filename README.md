@@ -46,6 +46,10 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+### 6/5/16, 00:05
+
+Optimization jNet(selector, dom) (Feature #10)
+
 #### 5/5/16, 22:25
 
 Implement innerHTML (alias html), outerHTML (Feature #9)

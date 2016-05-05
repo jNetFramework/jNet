@@ -65,10 +65,7 @@
    * @returns {*}
    */
 
-  jNetObject = function(object, doc) {
-    if (typeof doc === "undefined") {
-      doc = document;
-    }
+  jNetObject = function(object) {
 
     /**
      * If parameter object is not Array
@@ -81,7 +78,7 @@
        *
        * @returns jNetObject
        */
-      return this.find(object, doc);
+      return this.find(object);
     }
 
     /**
@@ -179,13 +176,10 @@
       }
       return this;
     },
-    find: function(object, doc) {
+    find: function(object) {
       var elements, iterator, list;
       if (object.toString() === this.toString()) {
         return object;
-      }
-      if (typeof doc === "undefined") {
-        doc = document;
       }
       list = [];
       if (object === window) {
@@ -198,7 +192,7 @@
         if (isHTML(object)) {
           list.push(parseHTML(object));
         } else {
-          elements = this.length ? this : [doc];
+          elements = this.length ? this : [document];
           iterator = 0;
           while (iterator < elements.length) {
             Array.prototype.push.apply(list, elements[iterator].querySelectorAll(object));
@@ -474,20 +468,20 @@
 
   jNet = function(object, doc) {
     var jnObject;
-    if (typeof doc === "undefined") {
-      doc = document;
+    if (typeof doc !== "undefined") {
+      return jNet(doc).find(object);
     }
     if (typeof object === "function") {
-      jnObject = jNet(doc);
-      if (doc.readyState === "complete") {
+      jnObject = jNet(document);
+      if (document.readyState === "complete") {
         object();
         return jnObject;
       }
       return jnObject.ready(object);
     } else if (typeof object === "string") {
-      return new jNetObject(object, doc);
+      return new jNetObject(object);
     } else if (typeof object === "object") {
-      return new jNetObject(object, doc);
+      return new jNetObject(object);
     }
   };
 

@@ -3,7 +3,7 @@
  * @email <info@babichev.net> 
  * @project jNet 
  * @version 0.1.6 
- * @date 05-05-2016 
+ * @date 06-05-2016 
  **/
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
@@ -3768,10 +3768,7 @@ module.exports = request;
    * @returns {*}
    */
 
-  jNetObject = function(object, doc) {
-    if (typeof doc === "undefined") {
-      doc = document;
-    }
+  jNetObject = function(object) {
 
     /**
      * If parameter object is not Array
@@ -3784,7 +3781,7 @@ module.exports = request;
        *
        * @returns jNetObject
        */
-      return this.find(object, doc);
+      return this.find(object);
     }
 
     /**
@@ -3882,13 +3879,10 @@ module.exports = request;
       }
       return this;
     },
-    find: function(object, doc) {
+    find: function(object) {
       var elements, iterator, list;
       if (object.toString() === this.toString()) {
         return object;
-      }
-      if (typeof doc === "undefined") {
-        doc = document;
       }
       list = [];
       if (object === window) {
@@ -3901,7 +3895,7 @@ module.exports = request;
         if (isHTML(object)) {
           list.push(parseHTML(object));
         } else {
-          elements = this.length ? this : [doc];
+          elements = this.length ? this : [document];
           iterator = 0;
           while (iterator < elements.length) {
             Array.prototype.push.apply(list, elements[iterator].querySelectorAll(object));
@@ -4177,20 +4171,20 @@ module.exports = request;
 
   jNet = function(object, doc) {
     var jnObject;
-    if (typeof doc === "undefined") {
-      doc = document;
+    if (typeof doc !== "undefined") {
+      return jNet(doc).find(object);
     }
     if (typeof object === "function") {
-      jnObject = jNet(doc);
-      if (doc.readyState === "complete") {
+      jnObject = jNet(document);
+      if (document.readyState === "complete") {
         object();
         return jnObject;
       }
       return jnObject.ready(object);
     } else if (typeof object === "string") {
-      return new jNetObject(object, doc);
+      return new jNetObject(object);
     } else if (typeof object === "object") {
-      return new jNetObject(object, doc);
+      return new jNetObject(object);
     }
   };
 
