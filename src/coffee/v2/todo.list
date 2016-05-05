@@ -6,11 +6,6 @@ methods:
         * removeClass
         * toggleClass
 
-    middle:
-        * data
-
-        //* selection (cleanSelection/getSelection)
-
     hard:
         * parent
         * parents
@@ -18,9 +13,12 @@ methods:
         * text
 
         * append
-        * prepend
+        * appendTo
 
-        * innerHTML
+        * prepend
+        * prependTo
+
+        * innerHTML (alias html)
         * outerHTML
 
         * insertAfter ?

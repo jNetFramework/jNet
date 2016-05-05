@@ -276,7 +276,6 @@ jNetObject.prototype = jNetObject.fn =
         return
 
   attr: (name, value) ->
-    
     if typeof value is "undefined"
       list = []
       @each (iterator, element) ->
@@ -284,14 +283,11 @@ jNetObject.prototype = jNetObject.fn =
         list.push value
         return
       returnList list
-
     else if value is null
-
       @each (iterator, element) ->
         if element.hasAttribute name
           element.removeAttribute name
         return
-
     else
       @each (iterator, element) ->
         element.setAttribute name, value
