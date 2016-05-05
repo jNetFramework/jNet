@@ -159,6 +159,12 @@
       }
       return Object.create(object);
     },
+
+    /**
+     * current method returns name this object
+     *
+     * @returns string
+     */
     toString: function() {
       return "jNetObject";
     },
@@ -252,6 +258,57 @@
      */
     ready: function(listener, useCapture) {
       return this.on("DOMContentLoaded", listener, useCapture);
+    },
+    show: function(interval) {
+      var items;
+      if (typeof interval === "undefined") {
+        interval = 1000;
+      }
+      this.each(function(iterator, element) {
+        return jNet.dynamics.animate(element, {
+          opacity: 1,
+          scale: 1
+        }, {
+          type: jNet.dynamics.spring,
+          frequency: 200,
+          friction: 270,
+          duration: 800,
+          delay: interval + iterator * 40
+        });
+      });
+      items = this.find('*');
+      return jNet.each(items, function(iterator, element) {
+        jNet.dynamics.css(element, {
+          opacity: 0,
+          translateY: 20
+        });
+        return jNet.dynamics.animate(element, {
+          opacity: 1,
+          translateY: 0
+        }, {
+          type: jNet.dynamics.spring,
+          frequency: 300,
+          friction: 435,
+          duration: 1000,
+          delay: interval + 100 + iterator * 40
+        });
+      });
+    },
+    hide: function(interval) {
+      if (typeof interval === "undefined") {
+        interval = 1000;
+      }
+      return this.each(function(iterator, element) {
+        return jNet.dynamics.animate(element, {
+          opacity: 0,
+          scale: 0.1
+        }, {
+          type: jNet.dynamics.easeInOut,
+          duration: 300,
+          friction: 100,
+          delay: interval + iterator * 40
+        });
+      });
     }
   };
 
@@ -380,6 +437,10 @@
    *    js-cookie framework for working with cookies
    *      Project in GitHub:
    *          @link https://github.com/js-cookie/js-cookie
+   *
+   *    dynamics.js framework for working with 'animation'
+   *       Project in GitHub
+   *          @link https://github.com/michaelvillar/dynamics.js
    */
 
 
@@ -397,6 +458,14 @@
    */
 
   jNet.cookies = typeof require === "function" ? require("js-cookie") : void 0;
+
+
+  /**
+   * included dynamics.js
+   * @link https://github.com/michaelvillar/dynamics.js
+   */
+
+  jNet.dynamics = typeof require === "function" ? require("dynamics.js") : void 0;
 
 
   /**

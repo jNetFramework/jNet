@@ -7,6 +7,7 @@
   "license": "MIT",
   "version": "0.1.5",
   "devDependencies": {
+    "dynamics.js": "^1.0.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-bump": "^0.8.0",
@@ -16,6 +17,8 @@
     "grunt-contrib-qunit": "^1.2.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "qunitjs": "^2.0.0-rc1"
+    "js-cookie": "^2.1.1",
+    "qunitjs": "^2.0.0-rc1",
+    "superagent": "^1.8.3"
   }
 }

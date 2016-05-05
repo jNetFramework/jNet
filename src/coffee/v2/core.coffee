@@ -151,6 +151,11 @@ jNetObject.prototype = jNetObject.fn =
     object = this if typeof object is "undefined"
     Object.create object
 
+  ###*
+  # current method returns name this object
+  #
+  # @returns string
+  ###
   toString: ->
     "jNetObject"
 
@@ -238,6 +243,54 @@ jNetObject.prototype = jNetObject.fn =
   ###
   ready: (listener, useCapture) ->
     @on "DOMContentLoaded", listener, useCapture
+
+  show: (interval) ->
+
+    interval = 1000 if typeof interval is "undefined"
+
+    @each (iterator, element) ->
+      jNet.dynamics.animate element, {
+        opacity: 1,
+        scale: 1
+      }, {
+        type: jNet.dynamics.spring,
+        frequency: 200,
+        friction: 270,
+        duration: 800,
+        delay: interval + iterator * 40
+      }
+
+    items = @find('*')
+    jNet.each items, (iterator, element) ->
+      jNet.dynamics.css element, {
+        opacity: 0,
+        translateY: 20
+      }
+      jNet.dynamics.animate element, {
+        opacity: 1,
+        translateY: 0
+      }, {
+        type: jNet.dynamics.spring,
+        frequency: 300,
+        friction: 435,
+        duration: 1000,
+        delay: interval + 100 + iterator * 40
+      }
+
+  hide: (interval) ->
+
+    interval = 1000 if typeof interval is "undefined"
+
+    @each (iterator, element) ->
+      jNet.dynamics.animate element, {
+        opacity: 0,
+        scale: 0.1
+      }, {
+        type: jNet.dynamics.easeInOut,
+        duration: 300,
+        friction: 100,
+        delay: interval + iterator * 40
+      }
 
 ###*
 # Main Object of a Framework.
@@ -349,6 +402,10 @@ jNet.each [
 #    js-cookie framework for working with cookies
 #      Project in GitHub:
 #          @link https://github.com/js-cookie/js-cookie
+#
+#    dynamics.js framework for working with 'animation'
+#       Project in GitHub
+#          @link https://github.com/michaelvillar/dynamics.js
 ###
 
 ###*
@@ -362,6 +419,12 @@ jNet.fetch = require? "superagent"
 # @link https://github.com/js-cookie/js-cookie
 ###
 jNet.cookies = require? "js-cookie"
+
+###*
+# included dynamics.js
+# @link https://github.com/michaelvillar/dynamics.js
+###
+jNet.dynamics = require? "dynamics.js"
 
 ###*
 # check exists window and
