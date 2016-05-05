@@ -47,50 +47,68 @@ var dynamics = jNet.dynamics;
 ### Changelog
 
 #### 5/5/16, 16:42
-##### Implement closest (Feature #8)
+
+Implement closest (Feature #8)
 
 #### 5/5/16, 15:15
-##### Implement hasClass, addClass, removeClass, toggleClass (Feature #7)
+
+Implement hasClass, addClass, removeClass, toggleClass (Feature #7)
+
 - [x] hasClass
 - [x] addClass
 - [x] removeClass
 - [x] toggleClass
 
 #### 5/5/16, 13:56
-##### css (todo: style), Implement css (Feature #6)
-##### attr (without data), Implement attributes (attr) (Feature #5)
-##### remove 'class' jNetPrivate
-##### methods jNetPrivate moved in global namespace
+
+css (todo: style), Implement css (Feature #6)
+
+attr (without data), Implement attributes (attr) (Feature #5)
+
+remove 'class' jNetPrivate
+
+methods jNetPrivate moved in global namespace
+
 - [x] jNetPrivate.isHTML to isHTML
 - [x] jNetPrivate.parseXML to parseXML
 - [x] jNetPrivate.trim to trim
 - [x] jNetPrivate.parseHTML to parseHTML
 
 #### 5/5/16, 12:40
-##### Implement width, height (Feature #4)
+
+Implement width, height (Feature #4)
+
 - [x] width
 - [x] height
 
 #### 5/5/16, 11:21
-##### show/hide (with dymanics.js) ++
-##### remove    ++ used standard method remove for elements
-##### closest   ++
+
+show/hide (with dymanics.js) ++
+
+remove    ++ used standard method remove for elements
+
+closest   ++
+
 - [x] forEach rewrite on while
 - [x] fixed more bugs
 
 #### 4/5/2016
-##### rewrite js to cs
-##### jNetPrivate
 
-##### jNetPrivate.fn
+rewrite js to cs
+
+jNetPrivate
+
+jNetPrivate.fn
+
 - [x] isHTML
 - [x] parseXML
 - [x] trim
 - [x] parseHTML
 
-##### jNetObject
+jNetObject
 
-##### jNetObject.fn 
+jNetObject.fn 
+
 - [x] eq
 - [x] first
 - [x] last
@@ -104,21 +122,29 @@ var dynamics = jNet.dynamics;
 - [x] off
 - [x] ready
 
-##### jNet (jNetFramework)
+jNet (jNetFramework)
 
-##### jNet.fn
+jNet.fn
+
 - [x] each
 - [x] toString
 
-##### jNet.oFn [alias] jNetObject.fn
-##### jNet -- public
-##### jNetObject -- private
-##### jNetPrivate -- private
-##### jNet.toString = jNet.fn.toString
-##### jNet.clone = jNet.oFn.clone
-##### jNet.each = jNet.fn.each
+jNet.oFn [alias] jNetObject.fn
 
-##### event's
+jNet -- public
+
+jNetObject -- private
+
+jNetPrivate -- private
+
+jNet.toString = jNet.fn.toString
+
+jNet.clone = jNet.oFn.clone
+
+jNet.each = jNet.fn.each
+
+event's
+
 - [x] click
 - [x] contextmenu
 - [x] dblclick
@@ -135,7 +161,9 @@ var dynamics = jNet.dynamics;
 - [x] selectionchange
 - [x] select
 
-##### jNet.fetch = require? "superagent"
-##### jNet.fetch = require? "js-cookie"
-##### jNet.fetch = require? "dynamics.js"
+jNet.fetch = require? "superagent"
+
+jNet.fetch = require? "js-cookie"
+
+jNet.fetch = require? "dynamics.js"
         
