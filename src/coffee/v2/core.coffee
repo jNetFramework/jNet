@@ -249,6 +249,19 @@ jNetObject.prototype = jNetObject.fn =
       element.remove()
       return
 
+  width: (prototype) ->
+    list = []
+    prototype = "clientWidth" if typeof prototype is "undefined"
+    @each (iterator, element) ->
+      list.push element[prototype]
+      return
+    if list.length is 1
+      return list.pop()
+    list
+
+  height: ->
+    return @width "clientHeight"
+    
   closest: (selector) ->
 
     closest = (node, selector) ->

@@ -6,9 +6,6 @@ methods:
         * removeClass
         * toggleClass
 
-        * width
-        * height
-
     middle:
         * css (todo: style)
 
@@ -35,6 +32,10 @@ methods:
 changelog:
 
 ===== 2.0.1.5 =====
+
+--- 5/5/16, 12:40
+    * width
+    * height
 
 --- 5/5/16, 11:21
     * show/hide (with dymanics.js) ++

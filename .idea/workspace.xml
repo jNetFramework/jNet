@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.5.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/core.coffee" afterPath="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/todo.list" afterPath="$PROJECT_DIR$/src/coffee/v2/todo.list" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js" afterPath="$PROJECT_DIR$/src/js/v2/core.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js.map" afterPath="$PROJECT_DIR$/src/js/v2/core.js.map" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,32 +37,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="968">
-              <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
+            <state relative-caret-position="526">
+              <caret line="263" column="2" selection-start-line="263" selection-start-column="2" selection-end-line="263" selection-end-column="2" />
               <folding>
-                <marker date="1462436379250" expanded="true" signature="849:860" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="849:869" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="920:939" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="988:1028" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="998:1020" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="1076:1110" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="1083:1102" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="1158:1201" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="1165:1193" placeholder="..." />
-                <marker date="1462436379250" expanded="true" signature="1169:1185" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="849:860" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="849:869" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="920:939" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="988:1028" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="998:1020" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="1076:1110" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="1083:1102" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="1158:1201" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="1165:1193" placeholder="..." />
+                <marker date="1462441054329" expanded="true" signature="1169:1185" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.list" pinned="false" current-in-tab="false">
+      <file leaf-file-name="todo.list" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="323">
+              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -66,8 +71,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="495" column="47" selection-start-line="495" selection-start-column="24" selection-end-line="495" selection-end-column="47" />
+            <state relative-caret-position="188">
+              <caret line="446" column="13" selection-start-line="446" selection-start-column="8" selection-end-line="446" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -425,15 +430,15 @@
       <workItem from="1462396674969" duration="534000" />
       <workItem from="1462397771103" duration="22000" />
       <workItem from="1462422645425" duration="4663000" />
-      <workItem from="1462427735297" duration="8792000" />
+      <workItem from="1462427735297" duration="11316000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89525000" />
+    <option name="totallyTimeSpent" value="92049000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -714,14 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="495" column="47" selection-start-line="495" selection-start-column="24" selection-end-line="495" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/jnet.v2.0.1.5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-748">
@@ -730,30 +727,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
+    <entry file="file://$PROJECT_DIR$/src/js/v1/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state relative-caret-position="188">
+          <caret line="446" column="13" selection-start-line="446" selection-start-column="8" selection-end-line="446" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
+        <state relative-caret-position="526">
+          <caret line="263" column="2" selection-start-line="263" selection-start-column="2" selection-end-line="263" selection-end-column="2" />
           <folding>
-            <marker date="1462436379250" expanded="true" signature="849:860" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="849:869" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="920:939" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="988:1028" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="998:1020" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="1076:1110" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="1083:1102" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="1158:1201" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="1165:1193" placeholder="..." />
-            <marker date="1462436379250" expanded="true" signature="1169:1185" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="849:860" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="849:869" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="920:939" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="988:1028" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="998:1020" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="1076:1110" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="1083:1102" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="1158:1201" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="1165:1193" placeholder="..." />
+            <marker date="1462441054329" expanded="true" signature="1169:1185" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

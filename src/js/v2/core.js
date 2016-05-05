@@ -264,6 +264,23 @@
         element.remove();
       });
     },
+    width: function(prototype) {
+      var list;
+      list = [];
+      if (typeof prototype === "undefined") {
+        prototype = "clientWidth";
+      }
+      this.each(function(iterator, element) {
+        list.push(element[prototype]);
+      });
+      if (list.length === 1) {
+        return list.pop();
+      }
+      return list;
+    },
+    height: function() {
+      return this.width("clientHeight");
+    },
     closest: function(selector) {
       var closest, list;
       closest = function(node, selector) {
