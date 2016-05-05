@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/todo.list" afterPath="$PROJECT_DIR$/src/coffee/v2/todo.list" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="core.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="288" column="11" selection-start-line="288" selection-start-column="11" selection-end-line="288" selection-end-column="11" />
+            <state relative-caret-position="968">
+              <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
               <folding>
                 <marker date="1462436379250" expanded="true" signature="849:860" placeholder="..." />
                 <marker date="1462436379250" expanded="true" signature="849:869" placeholder="..." />
@@ -52,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todo.list" pinned="false" current-in-tab="true">
+      <file leaf-file-name="todo.list" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-188">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="595">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -424,15 +425,15 @@
       <workItem from="1462396674969" duration="534000" />
       <workItem from="1462397771103" duration="22000" />
       <workItem from="1462422645425" duration="4663000" />
-      <workItem from="1462427735297" duration="7017000" />
+      <workItem from="1462427735297" duration="8792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87750000" />
+    <option name="totallyTimeSpent" value="89525000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -723,16 +724,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/jnet.v2.0.1.5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="4137" column="27" selection-start-line="4137" selection-start-column="27" selection-end-line="4137" selection-end-column="27" />
+        <state relative-caret-position="-748">
+          <caret line="175" column="23" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="288" column="11" selection-start-line="288" selection-start-column="11" selection-end-line="288" selection-end-column="11" />
+        <state relative-caret-position="968">
+          <caret line="496" column="0" selection-start-line="496" selection-start-column="0" selection-end-line="496" selection-end-column="0" />
           <folding>
             <marker date="1462436379250" expanded="true" signature="849:860" placeholder="..." />
             <marker date="1462436379250" expanded="true" signature="849:869" placeholder="..." />
@@ -745,14 +754,6 @@
             <marker date="1462436379250" expanded="true" signature="1165:1193" placeholder="..." />
             <marker date="1462436379250" expanded="true" signature="1169:1185" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coffee/v2/todo.list">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-188">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
