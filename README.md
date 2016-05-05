@@ -163,7 +163,7 @@ event's
 
 jNet.fetch = require? "superagent"
 
-jNet.fetch = require? "js-cookie"
+jNet.cookies = require? "js-cookie"
 
-jNet.fetch = require? "dynamics.js"
+jNet.dynamics = require? "dynamics.js"
         
