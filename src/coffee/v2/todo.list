@@ -1,8 +1,5 @@
 methods:
 
-    simple:
-
-
     hard:
         * parent
         * parents
@@ -26,14 +23,15 @@ changelog:
 ===== 2.0.1.6 =====
 
 --- 5/5/16, 15:15
-    * hasClass
-    * addClass
-    * removeClass
-    * toggleClass
+    * Implement hasClass, addClass, removeClass, toggleClass (Feature #7)
+        - hasClass
+        - addClass
+        - removeClass
+        - toggleClass
 
 --- 5/5/16, 13:56
-    * css (todo: style)
-    * attr (without data)
+    * css (todo: style), Implement css (Feature #6)
+    * attr (without data), Implement attributes (attr) (Feature #5)
     * remove 'class' jNetPrivate
     * methods jNetPrivate moved in global namespace
         - jNetPrivate.isHTML to isHTML
@@ -42,8 +40,9 @@ changelog:
         - jNetPrivate.parseHTML to parseHTML
 
 --- 5/5/16, 12:40
-    * width
-    * height
+    * Implement width, height (Feature #4)
+        - width
+        - height
 
 --- 5/5/16, 11:21
     * show/hide (with dymanics.js) ++
