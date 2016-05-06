@@ -50,6 +50,9 @@ var dynamics = jNet.dynamics;
 
 Implement clientHeight, clientWidth (Feature #21)
 
+- [x] clientHeight
+- [x] clientWidth
+
 fixed height, width (Feature #20)
 
 fixed off (Feature #19)
@@ -81,6 +84,12 @@ Implement append (Feature #15)
 Implement text (Feature #13)
 
 Implement insertAfter, insertBefore (Feature #14)
+
+- [x] prepend
+- [x] append
+- [x] text
+- [x] after (old name is insertAfter)
+- [x] before (old name is insertBefore)
 
 rename insertAfter to after
 
@@ -217,6 +226,9 @@ jNet('li').before('<li>' + jNet('ul').outerHTML() + '</li>')
 
 fixed bug hide/show (Feature #12)
 
+- [x] hide
+- [x] show
+
 #### 6/6/16, 11:12
 
 Implement valid 
@@ -232,6 +244,9 @@ Optimization jNet(selector, dom) (Feature #10)
 #### 5/5/16, 22:25
 
 Implement innerHTML (alias html), outerHTML (Feature #9)
+
+- [x] innerHTML [alias] html
+- [x] outerHTML
 
 Example:
 
@@ -282,6 +297,8 @@ jNet('a:not([alt])').attr("alt", function (altText, element) {
 #### 5/5/16, 16:42
 
 Implement closest (Feature #8)
+
+- [x] clisest
 
 #### 5/5/16, 15:15
 
