@@ -4143,7 +4143,7 @@ module.exports = request;
     },
     hide: function(interval) {
       if (typeof interval === "undefined") {
-        interval = 100;
+        interval = 1000;
       }
       this.each(function(iterator, element) {
         jNet.dynamics.animate(element, {
