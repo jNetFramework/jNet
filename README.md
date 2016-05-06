@@ -49,6 +49,7 @@ var dynamics = jNet.dynamics;
 #### 6/6/16, 22:55
 
 Implement appendTo (Feature #18)
+
 Implement prepend (Feature #17)
 
 Example (appendTo):
