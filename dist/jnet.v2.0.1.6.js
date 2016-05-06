@@ -3757,7 +3757,7 @@ module.exports = request;
         fragment.appendChild(tmp.firstChild);
       }
     }
-    return fragment;
+    return fragment.childNodes;
   };
 
 
@@ -3893,7 +3893,7 @@ module.exports = request;
         list.push(object);
       } else if (typeof object === "string") {
         if (isHTML(object)) {
-          list.push(parseHTML(object));
+          Array.prototype.push.apply(list, parseHTML(object));
         } else {
           elements = this.length ? this : [document];
           iterator = 0;

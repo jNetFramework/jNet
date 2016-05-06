@@ -46,7 +46,11 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
-### 6/5/16, 00:05
+#### 6/6/16, 11:12
+
+Implement valid jNet('<ul></ul>') with find, and preview element (without document-fragment) (Feature #11)
+
+#### 6/5/16, 00:05
 
 Optimization jNet(selector, dom) (Feature #10)
 

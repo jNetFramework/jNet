@@ -74,7 +74,7 @@ parseHTML = (string) ->
     while tmp.firstChild
       fragment.appendChild tmp.firstChild
 
-  fragment
+  fragment.childNodes
 
 ###*
 # Object for working with DOMTree
@@ -193,7 +193,7 @@ jNetObject.prototype = jNetObject.fn =
     else if typeof object is "string"
 
       if isHTML object # parse html
-        list.push parseHTML object
+        Array::push.apply list, parseHTML object
       else # if object is not html then
         elements = if @length then this else [document]
         iterator = 0
