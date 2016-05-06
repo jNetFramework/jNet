@@ -4073,6 +4073,68 @@ module.exports = request;
         return element.classList.toggle(classname);
       });
     },
+    append: function(selector) {
+      return this.each(function(iterator, element) {
+        return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
+          return element.appendChild(elementSelector);
+        });
+      });
+    },
+    prepend: function(selector) {
+      return this.each(function(iterator, element) {
+        return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
+          if (typeof element.childNodes[0] !== "undefined") {
+            return element.insertBefore(elementSelector, element.childNodes[0]);
+          }
+        });
+      });
+    },
+    after: function(selector) {
+      return this.each(function(iterator, element) {
+        return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
+          var nextSibling, parentNode;
+          parentNode = element.parentNode;
+          nextSibling = element.nextSibling;
+          if (nextSibling) {
+            return parentNode.insertBefore(elementSelector, nextSibling);
+          } else {
+            return parentNode.appendChild(elementSelector);
+          }
+        });
+      });
+    },
+    before: function(selector) {
+      return this.each(function(iterator, element) {
+        return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
+          return element.parentNode.insertBefore(elementSelector, element);
+        });
+      });
+    },
+    text: function(content) {
+      var list;
+      if (typeof content !== "undefined") {
+        return this.each(function(iterator, element) {
+          var prototype, result;
+          prototype = "innerText";
+          if (typeof element[prototype] === "undefined") {
+            prototype = "value";
+          }
+          result = content;
+          if (typeof content === "function") {
+            result = content(jNet(element).text(), element);
+          }
+          if (result) {
+            element[prototype] = result;
+          }
+        });
+      } else {
+        list = [];
+        this.each(function(iterator, element) {
+          return list.push(element.innerText || element.value);
+        });
+        return returnList(list);
+      }
+    },
     closest: function(selector) {
       var closest, list;
       closest = function(node, selector) {

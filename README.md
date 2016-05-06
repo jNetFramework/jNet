@@ -41,10 +41,147 @@ var dynamics = jNet.dynamics;
 - [ ] prependTo
 - [x] innerHTML (alias html)
 - [x] outerHTML
-- [ ] insertAfter ?
-- [ ] insertBefore ?
+- [ ] insertAfter ? rename to after
+- [ ] insertBefore ? rename to before
 
 ### Changelog
+
+#### 6/6/16, 19:49
+
+Implement prepend (Feature #16)
+Implement append (Feature #15)
+Implement text (Feature #13)
+
+Implement insertAfter, insertBefore (Feature #14)
+rename insertAfter to after
+rename insertBefore to before
+
+Example (prepend):
+
+```html
+<div id="myProjects">
+    <a href="https://fktpm.ru">fktpm.ru</a>
+</div>
+```
+
+```JavaScript
+jNet('#myProjects').prepend('<a href="https://babichev.net">Babichev</a>');
+```
+
+```html
+<div id="myProjects">
+    <a href="https://babichev.net">Babichev</a>
+    <a href="https://fktpm.ru">fktpm.ru</a>
+</div>
+```
+
+Example (text):
+
+```html
+<div id="myProjects">
+    <a href="https://babichev.net">Babichev</a>
+    <a href="https://fktpm.ru">fktpm.ru</a>
+</div>
+```
+
+```JavaScript
+jNet('#myProjects').text(); // Babichev fktpm.ru
+jNet('#myProjects a').text(); // ["Babichev", "fktpm.ru"]
+
+jNet('#myProjects a').text(function (content, element) {
+  console.log([content, element]); // no modification text in element a
+});
+
+jNet('#myProjects a').text(function (content, element) {
+  return content + '!'; // result: "Babichev!", "fktpm.ru!"
+});
+```
+
+Example (after):
+
+```html
+<ul id="test1">
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+</ul>
+```
+
+```JavaScript
+jNet('li').after('<li>' + jNet('ul').outerHTML() + '</li>')
+```
+
+```html
+<ul id="test1">
+    <li><a href="">1</a></li>
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+    <li><a href="">2</a></li>
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+    <li><a href="">3</a></li>
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+</ul>
+```
+
+Example (before):
+
+```html
+<ul id="test1">
+    <li><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+</ul>
+```
+
+```JavaScript
+jNet('li').before('<li>' + jNet('ul').outerHTML() + '</li>')
+```
+
+```html
+<ul id="test1">
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+    <li><a href="">1</a></li>
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+    <li><a href="">2</a></li>
+    <li>
+        <ul id="test1">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </li>
+    <li><a href="">3</a></li>
+</ul>
+```
 
 #### 6/6/16, 11:12
 

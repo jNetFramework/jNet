@@ -347,6 +347,49 @@ jNetObject.prototype = jNetObject.fn =
     @each (iterator, element) ->
       element.classList.toggle classname
 
+  append: (selector) ->
+    @each (iterator, element) ->
+      jNet.each jNet(selector), (iteratorSelector, elementSelector) ->
+        element.appendChild elementSelector
+
+  prepend: (selector) ->
+    @each (iterator, element) ->
+      jNet.each jNet(selector), (iteratorSelector, elementSelector) ->
+        if typeof element.childNodes[0] isnt "undefined"
+          element.insertBefore elementSelector, element.childNodes[0]
+
+  after: (selector) ->
+    @each (iterator, element) ->
+      jNet.each jNet(selector), (iteratorSelector, elementSelector) ->
+        parentNode = element.parentNode
+        nextSibling = element.nextSibling
+        if nextSibling
+          parentNode.insertBefore elementSelector, nextSibling
+        else
+          parentNode.appendChild elementSelector
+
+  before: (selector) ->
+    @each (iterator, element) ->
+      jNet.each jNet(selector), (iteratorSelector, elementSelector) ->
+        element.parentNode.insertBefore elementSelector, element
+
+  text: (content) ->
+    if typeof content isnt "undefined"
+      @each (iterator, element) ->
+        prototype = "innerText"
+        prototype = "value" if typeof element[prototype] is "undefined"
+        result = content
+        if typeof content is "function"
+          result = content jNet(element).text(), element
+        if result
+          element[prototype] = result
+        return
+    else
+      list = []
+      @each (iterator, element) ->
+        list.push element.innerText || element.value
+      returnList list
+
   closest: (selector) ->
 
     closest = (node, selector) ->
