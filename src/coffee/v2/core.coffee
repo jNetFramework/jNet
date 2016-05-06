@@ -15,9 +15,9 @@ returnList = (list) ->
     return list.pop()
   list
 
-ucFirst = (str) ->
-  f = str[0].toUpperCase
-  f + str.substr 1, str.length - 1
+#ucFirst = (str) ->
+#  f = str[0].toUpperCase
+#  f + str.substr 1, str.length - 1
 
 #parseXML = (string) ->
 #  domParser = new DOMParser()
@@ -181,7 +181,7 @@ jNetObject.prototype = jNetObject.fn =
 
   find: (object) ->
 
-    if object.toString() is @toString()
+    if object instanceof jNetObject
       return object
 
     list = []
@@ -534,7 +534,8 @@ jNet = (object, doc) ->
 jNet.fn = jNet.prototype =
 
   each: (object, callback) ->
-    if object.toString() is jNetObject.fn.toString()
+
+    if object instanceof jNetObject
       object.each callback
 
     else if Array.isArray(object)
