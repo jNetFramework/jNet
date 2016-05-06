@@ -34,15 +34,15 @@ var dynamics = jNet.dynamics;
 ## todo list
 - [ ] parent
 - [ ] parents
-- [ ] text
-- [ ] append
+- [x] text
+- [x] append
 - [ ] appendTo
-- [ ] prepend
+- [x] prepend
 - [ ] prependTo
 - [x] innerHTML (alias html)
 - [x] outerHTML
-- [ ] insertAfter ? rename to after
-- [ ] insertBefore ? rename to before
+- [x] after
+- [x] before
 
 ### Changelog
 
