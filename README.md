@@ -36,15 +36,86 @@ var dynamics = jNet.dynamics;
 - [ ] parents
 - [x] text
 - [x] append
-- [ ] appendTo
+- [x] appendTo
 - [x] prepend
-- [ ] prependTo
+- [x] prependTo
 - [x] innerHTML (alias html)
 - [x] outerHTML
 - [x] after
 - [x] before
 
 ### Changelog
+
+#### 6/6/16, 22:55
+
+Implement appendTo (Feature #18)
+Implement prepend (Feature #17)
+
+Example (appendTo):
+
+```haml
+%ul
+    %li 1
+    %li 2
+    %li 3
+```
+
+```JavaScript
+jNet('body').append('<hr/>')
+// jNetObject {0: body, length: 1}
+
+jNet('body').append('<ul/>')
+// jNetObject {0: body, length: 1}
+
+jNet('li').appendTo(jNet('ul').last())
+// jNetObject {0: ul, length: 1}
+```
+
+```haml
+%ul
+%hr
+%ul
+    %li 1
+    %li 2
+    %li 3
+```
+
+```JavaScript
+jNet('<li>4</li>').appendTo(jNet('ul').last())
+// jNetObject {0: ul, length: 1}
+```
+
+```haml
+%ul
+%hr
+%ul
+    %li 1
+    %li 2
+    %li 3
+    %li 4
+```
+
+Example (prependTo):
+
+```haml
+%ul
+    %li 1
+    %li 2
+    %li 3
+```
+
+```JavaScript
+jNet('<li>0</li>').prependTo(jNet('ul'))
+// jNetObject {0: ul, length: 1}
+```
+
+```haml
+%ul
+    %li 0
+    %li 1
+    %li 2
+    %li 3
+```
 
 #### 6/6/16, 22:15
 

@@ -363,6 +363,14 @@ jNetObject.prototype = jNetObject.fn =
     @each (iterator, element) ->
       element.classList.toggle classname
 
+  appendTo: (selector) ->
+    object = jNet(selector)
+    object.append(@)
+
+  prependTo: (selector) ->
+    object = jNet(selector)
+    object.prepend(@)
+
   append: (selector) ->
     @each (iterator, element) ->
       jNet.each jNet(selector), (iteratorSelector, elementSelector) ->

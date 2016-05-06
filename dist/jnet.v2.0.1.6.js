@@ -4089,6 +4089,16 @@ module.exports = request;
         return element.classList.toggle(classname);
       });
     },
+    appendTo: function(selector) {
+      var object;
+      object = jNet(selector);
+      return object.append(this);
+    },
+    prependTo: function(selector) {
+      var object;
+      object = jNet(selector);
+      return object.prepend(this);
+    },
     append: function(selector) {
       return this.each(function(iterator, element) {
         return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
