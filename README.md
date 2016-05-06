@@ -52,6 +52,9 @@ Implement appendTo (Feature #18)
 
 Implement prepend (Feature #17)
 
+- [x] appendTo
+- [x] prependTo
+
 Example (appendTo):
 
 ```haml
