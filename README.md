@@ -48,6 +48,10 @@ var dynamics = jNet.dynamics;
 
 #### 6/6/16, 11:12
 
+fixed bug hide/show (Feature #12)
+
+#### 6/6/16, 11:12
+
 Implement valid jNet('<ul></ul>') with find, and preview element (without document-fragment) (Feature #11)
 
 #### 6/5/16, 00:05

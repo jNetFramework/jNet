@@ -401,8 +401,8 @@ jNetObject.prototype = jNetObject.fn =
         type: jNet.dynamics.spring,
         frequency: 200,
         friction: 270,
-        duration: 800,
-        delay: interval + iterator * 40
+        duration: interval * 4 / 5,
+        delay: iterator * 40
       }
       return
 
@@ -421,8 +421,8 @@ jNetObject.prototype = jNetObject.fn =
         type: jNet.dynamics.spring,
         frequency: 300,
         friction: 435,
-        duration: 1000,
-        delay: interval + 100 + iterator * 40
+        duration: interval,
+        delay: 100 + iterator * 40
       }
 
       return
@@ -438,9 +438,9 @@ jNetObject.prototype = jNetObject.fn =
         scale: 0.1
       }, {
         type: jNet.dynamics.easeInOut,
-        duration: 300,
+        duration: interval,
         friction: 100,
-        delay: interval + iterator * 40
+        delay: iterator * 40
       }
       return
     return
