@@ -49,11 +49,15 @@ var dynamics = jNet.dynamics;
 #### 6/6/16, 19:49
 
 Implement prepend (Feature #16)
+
 Implement append (Feature #15)
+
 Implement text (Feature #13)
 
 Implement insertAfter, insertBefore (Feature #14)
+
 rename insertAfter to after
+
 rename insertBefore to before
 
 Example (prepend):
