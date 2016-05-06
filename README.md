@@ -46,6 +46,32 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 6/6/16, 22:15
+
+Implement clientHeight, clientWidth (Feature #21)
+
+fixed height, width (Feature #20)
+
+fixed off (Feature #19)
+
+Example (clientHeight, clientWidth):
+
+```haml
+%nav
+  %ul
+    %li 1
+    %li 2
+    %li 3
+```
+
+```JavaScript
+jNet('nav').clientHeight(); // element
+jNet('nav').clientWidth(); // element
+
+jNet('li').clientHeight(); // returns array
+jNet('li').clientWidth(); // returns array
+```
+
 #### 6/6/16, 19:49
 
 Implement prepend (Feature #16)

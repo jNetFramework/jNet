@@ -15,6 +15,10 @@ returnList = (list) ->
     return list.pop()
   list
 
+ucFirst = (str) ->
+  f = str[0].toUpperCase
+  f + str.substr 1, str.length - 1
+
 #parseXML = (string) ->
 #  domParser = new DOMParser()
 #  domParser.parseFromString string, "text/xml"
@@ -233,10 +237,10 @@ jNetObject.prototype = jNetObject.fn =
   # @link https://developer.mozilla.org/ru/docs/Web/API/EventTarget/removeEventListener
   ###
   off: (type, listener, useCapture) ->
-    @each iterator, element ->
-      if element.removeEventListener
+    @each (iterator, element) ->
+      if typeof element.removeEventListener isnt "undefined"
         element.removeEventListener type, listener, useCapture
-      else if element.detachEvent
+      else if typeof element.detachEvent isnt "undefined"
         element.detachEvent "on" + type, listener
       return
     this
@@ -255,13 +259,25 @@ jNetObject.prototype = jNetObject.fn =
 
   width: (prototype) ->
     list = []
+    prototype = "width" if typeof prototype is "undefined"
+    @each (iterator, element) ->
+      clientRect = element.getBoundingClientRect()
+      list.push clientRect[prototype]
+      return
+    returnList list
+
+  height: ->
+    return @width "height"
+
+  clientWidth: (prototype) ->
+    list = []
     prototype = "clientWidth" if typeof prototype is "undefined"
     @each (iterator, element) ->
       list.push element[prototype]
       return
     returnList list
 
-  height: ->
+  clientHeight: ->
     return @width "clientHeight"
 
   css: (name, value) ->
