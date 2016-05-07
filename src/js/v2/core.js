@@ -349,11 +349,7 @@
           parent = element.parentNode;
           if (typeof parent.children !== "undefined") {
             children = parent.children;
-            return jNet.each(children, function(index, childrenElement) {
-              if (childrenElement === element) {
-                return list.push(+index);
-              }
-            });
+            return list.push(Array.prototype.indexOf.apply(children, element));
           }
         }
       });

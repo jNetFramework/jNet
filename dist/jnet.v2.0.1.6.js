@@ -4052,11 +4052,7 @@ module.exports = request;
           parent = element.parentNode;
           if (typeof parent.children !== "undefined") {
             children = parent.children;
-            return jNet.each(children, function(index, childrenElement) {
-              if (childrenElement === element) {
-                return list.push(+index);
-              }
-            });
+            return list.push(Array.prototype.indexOf.apply(children, element));
           }
         }
       });
@@ -4284,10 +4280,16 @@ module.exports = request;
    */
 
   jNet = function(object, doc) {
+    var jnObject;
     if (typeof doc !== "undefined") {
       return jNet(doc).find(object);
     }
     if (typeof object === "function") {
+      jnObject = jNet(document);
+      if (document.readyState === "complete") {
+        object();
+        return jnObject;
+      }
       return jnObject.ready(object);
     } else if (typeof object === "string") {
       return new jNetObject(object);

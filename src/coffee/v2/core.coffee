@@ -331,9 +331,7 @@ jNetObject.prototype = jNetObject.fn =
         parent = element.parentNode
         if typeof parent.children isnt "undefined"
           children = parent.children
-          jNet.each children, (index, childrenElement) ->
-            if childrenElement is element
-              list.push +index
+          list.push Array::indexOf.apply children, element
     returnList list
 
   attr: (name, value) ->

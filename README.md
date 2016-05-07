@@ -46,6 +46,10 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 7/6/16, 16:45
+
+Optimization indexOf
+
 #### 7/6/16, 13:08
 
 add method get
