@@ -46,6 +46,11 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 7/6/16, 13:08
+
+add method get
+fixed small bugs
+
 #### 7/6/16, 12:56
 
 Implement index (Feature #22)

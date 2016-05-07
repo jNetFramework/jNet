@@ -3805,14 +3805,21 @@ module.exports = request;
   jNetObject.prototype = jNetObject.fn = {
 
     /**
+     * returns element DOMTree with index, without jNetObject
+     */
+    get: function(index) {
+      if (index < 0) {
+        index += this.length;
+      }
+      return this[index];
+    },
+
+    /**
      * get element with index DOMTree as jNetObject
      * @returns jNetObject
      */
     eq: function(index) {
-      if (index < 0) {
-        index += this.length;
-      }
-      return jNet(this[index]);
+      return jNet(this.get(index));
     },
 
     /**
@@ -3917,11 +3924,11 @@ module.exports = request;
      */
     on: function(type, listener, useCapture) {
       this.each(function(iterator, element) {
-        if (element.addEventListener) {
+        if (typeof element.addEventListener !== "undefined") {
           element.addEventListener(type, listener, useCapture);
-        } else {
+        } else if (typeof element.attachEvent !== "undefined") {
           element.attachEvent("on" + type, function() {
-            listener.call(element);
+            return listener.call(element);
           });
         }
       });
@@ -4277,16 +4284,10 @@ module.exports = request;
    */
 
   jNet = function(object, doc) {
-    var jnObject;
     if (typeof doc !== "undefined") {
       return jNet(doc).find(object);
     }
     if (typeof object === "function") {
-      jnObject = jNet(document);
-      if (document.readyState === "complete") {
-        object();
-        return jnObject;
-      }
       return jnObject.ready(object);
     } else if (typeof object === "string") {
       return new jNetObject(object);

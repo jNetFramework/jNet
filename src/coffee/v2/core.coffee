@@ -119,12 +119,18 @@ jNetObject = (object) ->
 jNetObject.prototype = jNetObject.fn =
 
   ###*
+  # returns element DOMTree with index, without jNetObject
+  ###
+  get: (index) ->
+    index += @length if index < 0
+    @[index]
+
+  ###*
   # get element with index DOMTree as jNetObject
   # @returns jNetObject
   ###
   eq: (index) ->
-    index += @length if index < 0
-    jNet @[index]
+    jNet @get index
 
   ###*
   # get first element DOMTree as jNetObject
@@ -198,6 +204,7 @@ jNetObject.prototype = jNetObject.fn =
 
       if isHTML object # parse html
         Array::push.apply list, parseHTML object
+
       else # if object is not html then
         elements = if @length then this else [document]
         iterator = 0
@@ -218,12 +225,11 @@ jNetObject.prototype = jNetObject.fn =
   ###
   on: (type, listener, useCapture) ->
     @each (iterator, element) ->
-      if element.addEventListener
+      if typeof element.addEventListener isnt "undefined"
         element.addEventListener type, listener, useCapture
-      else
+      else if typeof element.attachEvent isnt "undefined"
         element.attachEvent "on" + type, ->
           listener.call element
-          return
       return
     this
 
