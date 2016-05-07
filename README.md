@@ -50,6 +50,8 @@ var dynamics = jNet.dynamics;
 
 Implement index (Feature #22)
 
+- [x] index
+
 Example:
 
 ```haml
