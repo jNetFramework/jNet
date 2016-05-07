@@ -1,3 +1,10 @@
-/**
- * Created by REZ1DENT3 on 5/7/2016.
- */
+QUnit.test("Equal", function (assert) {
+
+    var sum = 0, result = 10;
+    jNet('ul').first().find('li').each(function (iterator, element) {
+        sum += +element.innerText;
+    });
+
+    assert.ok(sum === result, "Passed!");
+
+});

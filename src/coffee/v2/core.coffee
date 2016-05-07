@@ -291,6 +291,8 @@ jNetObject.prototype = jNetObject.fn =
       list = []
       @each (iterator, element) ->
         value = element.style.getPropertyValue name
+        if value is '' || typeof value is "undefined"
+          value = null
         list.push value
         return
       returnList list
@@ -331,7 +333,13 @@ jNetObject.prototype = jNetObject.fn =
         parent = element.parentNode
         if typeof parent.children isnt "undefined"
           children = parent.children
-          list.push Array::indexOf.apply children, element
+          index = 0
+          length = children.length
+          while index < length
+            if children[index] is element
+              list.push +index
+              break
+            index++
     returnList list
 
   attr: (name, value) ->
@@ -601,6 +609,12 @@ jNet.clone = jNet.oFn.clone
 # method each in global Object
 ###
 jNet.each = jNet.fn.each
+
+###*
+# the current method checks whether it is
+#  possible to transform a line to html-object
+###
+jNet.isHTML = isHTML
 
 ###*
 # Export framework to :

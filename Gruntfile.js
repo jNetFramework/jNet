@@ -77,7 +77,7 @@ module.exports = function (grunt) {
         },
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['browserify', 'jshint', 'concat', 'uglify', 'qunit']
+            tasks: ['browserify', 'jshint', 'concat', 'uglify']
         }
     });
 

@@ -4003,6 +4003,9 @@ module.exports = request;
         list = [];
         this.each(function(iterator, element) {
           value = element.style.getPropertyValue(name);
+          if (value === '' || typeof value === "undefined") {
+            value = null;
+          }
           list.push(value);
         });
         return returnList(list);
@@ -4047,12 +4050,22 @@ module.exports = request;
       var list;
       list = [];
       this.each(function(iterator, element) {
-        var children, parent;
+        var children, index, length, parent, results;
         if (typeof element.parentNode !== "undefined") {
           parent = element.parentNode;
           if (typeof parent.children !== "undefined") {
             children = parent.children;
-            return list.push(Array.prototype.indexOf.apply(children, element));
+            index = 0;
+            length = children.length;
+            results = [];
+            while (index < length) {
+              if (children[index] === element) {
+                list.push(+index);
+                break;
+              }
+              results.push(index++);
+            }
+            return results;
           }
         }
       });
@@ -4358,6 +4371,14 @@ module.exports = request;
    */
 
   jNet.each = jNet.fn.each;
+
+
+  /**
+   * the current method checks whether it is
+   *  possible to transform a line to html-object
+   */
+
+  jNet.isHTML = isHTML;
 
 
   /**

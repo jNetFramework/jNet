@@ -1,3 +1,9 @@
-/**
- * Created by REZ1DENT3 on 5/7/2016.
- */
+QUnit.test("Equal", function (assert) {
+
+    assert.ok(jNet(jNet('ul')[0]).hasClass('hello') === true, "Passed!");
+
+    jNet(jNet('ul')[0]).removeClass('hello');
+
+    assert.ok(jNet(jNet('ul')[0]).hasClass('hello') === false, "Passed!");
+
+});

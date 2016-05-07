@@ -1,3 +1,6 @@
-/**
- * Created by REZ1DENT3 on 5/7/2016.
- */
+QUnit.test("Equal", function (assert) {
+
+    var ul = document.querySelector('ul');
+    assert.ok(jNet('ul').first().clientWidth() === ul.clientWidth, "Passed!");
+
+});
