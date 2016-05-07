@@ -51,6 +51,8 @@ var dynamics = jNet.dynamics;
 add method get
 fixed small bugs
 
+- [x] get
+
 #### 7/6/16, 12:56
 
 Implement index (Feature #22)
