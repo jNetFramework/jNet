@@ -46,6 +46,24 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 7/6/16, 12:56
+
+Implement index (Feature #22)
+
+Example:
+
+```haml
+%ul
+  %li 1
+  %li.foo 2
+  %li 3
+```
+
+```JavaScript
+jNet('.foo').index() // 1
+jNet('li').index() // [0, 1, 2]
+```
+
 #### 6/6/16, 22:55
 
 Implement appendTo (Feature #18)

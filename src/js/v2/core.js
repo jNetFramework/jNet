@@ -333,6 +333,25 @@
     html: function(value) {
       return this.outerHTML(value, "innerHTML");
     },
+    index: function() {
+      var list;
+      list = [];
+      this.each(function(iterator, element) {
+        var children, parent;
+        if (typeof element.parentNode !== "undefined") {
+          parent = element.parentNode;
+          if (typeof parent.children !== "undefined") {
+            children = parent.children;
+            return jNet.each(children, function(index, childrenElement) {
+              if (childrenElement === element) {
+                return list.push(+index);
+              }
+            });
+          }
+        }
+      });
+      return returnList(list);
+    },
     attr: function(name, value) {
       var list;
       if (typeof value === "undefined") {

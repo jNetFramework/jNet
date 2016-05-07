@@ -318,6 +318,18 @@ jNetObject.prototype = jNetObject.fn =
   html: (value) ->
     @outerHTML value, "innerHTML"
 
+  index: ->
+    list = []
+    @each (iterator, element) ->
+      if typeof element.parentNode isnt "undefined"
+        parent = element.parentNode
+        if typeof parent.children isnt "undefined"
+          children = parent.children
+          jNet.each children, (index, childrenElement) ->
+            if childrenElement is element
+              list.push +index
+    returnList list
+
   attr: (name, value) ->
 
     if typeof value is "undefined"
