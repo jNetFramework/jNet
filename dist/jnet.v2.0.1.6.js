@@ -3995,7 +3995,7 @@ module.exports = request;
       return returnList(list);
     },
     clientHeight: function() {
-      return this.width("clientHeight");
+      return this.clientWidth("clientHeight");
     },
     css: function(name, value) {
       var list;

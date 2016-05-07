@@ -284,7 +284,7 @@ jNetObject.prototype = jNetObject.fn =
     returnList list
 
   clientHeight: ->
-    return @width "clientHeight"
+    return @clientWidth "clientHeight"
 
   css: (name, value) ->
     if typeof value is "undefined"
