@@ -49,6 +49,7 @@ var dynamics = jNet.dynamics;
 #### 7/6/16, 13:08
 
 add method get
+
 fixed small bugs
 
 - [x] get
