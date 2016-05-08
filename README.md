@@ -46,7 +46,15 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
-#### 8/6/16, 8:51
+#### 8/6/16, 09:33
+
+the method prepend is fixed
+
+the method prependTo is fixed
+
+new build
+
+#### 8/6/16, 08:51
 
 Implement offsetHeight, offsetWidth
 

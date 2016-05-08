@@ -2,49 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/html/appendTo.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/html/prependTo.html" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/after.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/append.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/before.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/clisest.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/prepend.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/core.coffee" afterPath="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js" afterPath="$PROJECT_DIR$/src/js/v2/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js.map" afterPath="$PROJECT_DIR$/src/js/v2/core.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/addClass.html" afterPath="$PROJECT_DIR$/test/html/addClass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/attr.html" afterPath="$PROJECT_DIR$/test/html/attr.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/clientHeight.html" afterPath="$PROJECT_DIR$/test/html/clientHeight.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/clientWidth.html" afterPath="$PROJECT_DIR$/test/html/clientWidth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/clone.html" afterPath="$PROJECT_DIR$/test/html/clone.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/css.html" afterPath="$PROJECT_DIR$/test/html/css.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/each.html" afterPath="$PROJECT_DIR$/test/html/each.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/eq.html" afterPath="$PROJECT_DIR$/test/html/eq.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/even.html" afterPath="$PROJECT_DIR$/test/html/even.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/find.html" afterPath="$PROJECT_DIR$/test/html/find.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/first.html" afterPath="$PROJECT_DIR$/test/html/first.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/get.html" afterPath="$PROJECT_DIR$/test/html/get.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/hasClass.html" afterPath="$PROJECT_DIR$/test/html/hasClass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/height.html" afterPath="$PROJECT_DIR$/test/html/height.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/hide.html" afterPath="$PROJECT_DIR$/test/html/hide.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/html.html" afterPath="$PROJECT_DIR$/test/html/html.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/index.html" afterPath="$PROJECT_DIR$/test/html/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/isHTML.html" afterPath="$PROJECT_DIR$/test/html/isHTML.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/jNet.each.html" afterPath="$PROJECT_DIR$/test/html/jNet.each.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/last.html" afterPath="$PROJECT_DIR$/test/html/last.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/odd.html" afterPath="$PROJECT_DIR$/test/html/odd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/outerHTML.html" afterPath="$PROJECT_DIR$/test/html/outerHTML.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/removeClass.html" afterPath="$PROJECT_DIR$/test/html/removeClass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/show.html" afterPath="$PROJECT_DIR$/test/html/show.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/text.html" afterPath="$PROJECT_DIR$/test/html/text.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/toString.html" afterPath="$PROJECT_DIR$/test/html/toString.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/toggleClass.html" afterPath="$PROJECT_DIR$/test/html/toggleClass.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/html/width.html" afterPath="$PROJECT_DIR$/test/html/width.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/js/appendTo.js" afterPath="$PROJECT_DIR$/test/js/appendTo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/js/prependTo.js" afterPath="$PROJECT_DIR$/test/js/prependTo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,11 +36,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="appendTo.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="appendTo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/js/appendTo.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -142,7 +118,6 @@
         <option value="$PROJECT_DIR$/test/html/show.html" />
         <option value="$PROJECT_DIR$/test/js/show.js" />
         <option value="$PROJECT_DIR$/test/js/hide.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/test/html/prependTo.html" />
         <option value="$PROJECT_DIR$/test/html/addClass.html" />
         <option value="$PROJECT_DIR$/test/html/attr.html" />
@@ -151,6 +126,7 @@
         <option value="$PROJECT_DIR$/test/js/prependTo.js" />
         <option value="$PROJECT_DIR$/test/html/appendTo.html" />
         <option value="$PROJECT_DIR$/test/js/appendTo.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -452,12 +428,12 @@
       <workItem from="1462613212950" duration="2606000" />
       <workItem from="1462628382168" duration="15809000" />
       <workItem from="1462656318224" duration="216000" />
-      <workItem from="1462684824037" duration="4244000" />
+      <workItem from="1462684824037" duration="4435000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148373000" />
+    <option name="totallyTimeSpent" value="148564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -828,17 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/coffee/v2/core.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -875,6 +840,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
