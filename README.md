@@ -46,6 +46,12 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 8/6/16, 10:15
+
+closest is fixed bug
+
+added method matchesSelector 
+
 #### 8/6/16, 09:33
 
 the method prepend is fixed

@@ -10,6 +10,13 @@ isHTML = (string) ->
       return true
   false
 
+matchesSelector = (element, selector) ->
+  allElements = document.querySelectorAll(selector)
+  for currentElement in allElements
+    if currentElement is element
+      return true
+  false
+
 ###*
 # the method is used for the
 #  majority of methods which
@@ -493,10 +500,17 @@ jNetObject.prototype = jNetObject.fn =
       # @link https://developer.mozilla.org/ru/docs/Web/API/Element/closest
       node.closest selector
 
+    matches = (node, selector) ->
+        node.matches(selector)
+
+    if typeof Element.prototype.matches is "undefined"
+      matches = (node, selector) ->
+        matchesSelector(node, selector)
+
     if typeof Element.prototype.closest is "undefined"
       closest = (node, selector) ->
         while node
-          if node.matches(selector)
+          if matches(node, selector)
             return node
           else
             node = node.parentElement
@@ -518,7 +532,12 @@ jNetObject.prototype = jNetObject.fn =
 
       return
 
-    return new jNetObject list
+    list = returnList list
+
+    if list
+      return new jNetObject list
+
+    list
 
 #  parent: (selector) -> # todo: development parent
 #    list = []
