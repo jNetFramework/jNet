@@ -46,6 +46,40 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 8/6/16, 8:51
+
+Implement offsetHeight, offsetWidth
+
+Implement isHidden (used offsetHeight, offsetWidth)
+
+add test for hide method (used isHidden)
+
+add test for show method (used isHidden, css)
+
+returnList is fixed
+
+- [x] offsetHidden
+- [x] offsetWidth
+- [x] isHidden
+
+Example (offsetHeight):
+
+```JavaScript
+jNet('div').offsetHeight() // int or array [10, 10, 10..]..
+```
+
+Example (offsetWidth):
+
+```JavaScript
+jNet('div').offsetWidth() // int or array [10, 10, 10..]..
+```
+
+Example (isHidden):
+
+```JavaScript
+jNet('div').isHidden() // true or false, or array [true, false, false]...
+```
+
 #### 7/6/16, 16:45
 
 Optimization indexOf
