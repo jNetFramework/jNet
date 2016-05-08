@@ -9,7 +9,6 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/clisest.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/prepend.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/test/js/prependTo.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="jnet.iws" />
@@ -55,8 +54,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="67" column="59" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
+            <state relative-caret-position="38">
+              <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -431,12 +430,12 @@
       <workItem from="1462613212950" duration="2606000" />
       <workItem from="1462628382168" duration="15809000" />
       <workItem from="1462656318224" duration="216000" />
-      <workItem from="1462684824037" duration="2942000" />
+      <workItem from="1462684824037" duration="2972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147071000" />
+    <option name="totallyTimeSpent" value="147101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -842,8 +841,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="67" column="59" selection-start-line="67" selection-start-column="59" selection-end-line="67" selection-end-column="59" />
+        <state relative-caret-position="38">
+          <caret line="60" column="18" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
           <folding />
         </state>
       </provider>

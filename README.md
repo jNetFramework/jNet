@@ -58,7 +58,7 @@ add test for show method (used isHidden, css)
 
 returnList is fixed
 
-- [x] offsetHidden
+- [x] offsetHeight
 - [x] offsetWidth
 - [x] isHidden
 
