@@ -8,14 +8,14 @@ JavaScript Framework
 
 jNetFramework includes others frameworks
 
-1. https://github.com/visionmedia/superagent
+1. https://github.com/undozen/fetch
 1. https://github.com/js-cookie/js-cookie
 1. https://github.com/michaelvillar/dynamics.js
 
 Used [1] framework in jNet Framework can with halped constraction 
 
 ```JavaScript
-var superagent = jNet.fetch;
+var fetch = jNet.fetch;
 ```
 
 Used [2] ...
@@ -45,6 +45,13 @@ var dynamics = jNet.dynamics;
 - [x] before
 
 ### Changelog
+
+#### 8/6/16, 22:20
+
+I have replaced "superagent" with "fetch-polyfill" as there 
+was a naydna a big mistake in work of a framework
+
+https://github.com/undozen/fetch
 
 #### 8/6/16, 10:15
 
@@ -610,7 +617,7 @@ event's
 - [x] selectionchange
 - [x] select
 
-jNet.fetch = require? "superagent"
+jNet.fetch = require? "fetch-polyfill"
 
 jNet.cookies = require? "js-cookie"
 

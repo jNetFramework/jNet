@@ -805,9 +805,9 @@
   /**
    *  jNet Framework used:
    *
-   *    superagent framework for working in network
+   *    fetch framework for working in network
    *      Project in GitHub:
-   *          @link https://github.com/visionmedia/superagent
+   *          @link https://github.com/undozen/fetch
    *
    *    js-cookie framework for working with cookies
    *      Project in GitHub:
@@ -821,10 +821,10 @@
 
   /**
    * included superagent
-   * @link https://github.com/visionmedia/superagent
+   * @link https://github.com/undozen/fetch
    */
 
-  jNet.fetch = typeof require === "function" ? require("superagent") : void 0;
+  jNet.fetch = typeof require === "function" ? require("fetch-polyfill") : void 0;
 
 
   /**

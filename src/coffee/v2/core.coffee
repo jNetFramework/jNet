@@ -728,9 +728,9 @@ jNet.each [
 ###*
 #  jNet Framework used:
 #
-#    superagent framework for working in network
+#    fetch framework for working in network
 #      Project in GitHub:
-#          @link https://github.com/visionmedia/superagent
+#          @link https://github.com/undozen/fetch
 #
 #    js-cookie framework for working with cookies
 #      Project in GitHub:
@@ -743,9 +743,9 @@ jNet.each [
 
 ###*
 # included superagent
-# @link https://github.com/visionmedia/superagent
+# @link https://github.com/undozen/fetch
 ###
-jNet.fetch = require? "superagent"
+jNet.fetch = require? "fetch-polyfill"
 
 ###*
 # included js-cookie
