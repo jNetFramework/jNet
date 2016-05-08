@@ -490,6 +490,8 @@
         return jNet.each(jNet(selector), function(iteratorSelector, elementSelector) {
           if (typeof element.childNodes[0] !== "undefined") {
             return element.insertBefore(elementSelector, element.childNodes[0]);
+          } else {
+            return element.appendChild(elementSelector);
           }
         });
       });

@@ -451,6 +451,8 @@ jNetObject.prototype = jNetObject.fn =
       jNet.each jNet(selector), (iteratorSelector, elementSelector) ->
         if typeof element.childNodes[0] isnt "undefined"
           element.insertBefore elementSelector, element.childNodes[0]
+        else
+          element.appendChild elementSelector
 
   after: (selector) ->
     @each (iterator, element) ->
