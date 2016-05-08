@@ -10,9 +10,31 @@ isHTML = (string) ->
       return true
   false
 
+###*
+# the method is used for the
+#  majority of methods which
+#    return value or the array
+###
 returnList = (list) ->
+
+  ###*
+  # if length equal zero
+  #  then the return null
+  ###
+  if list.length is 0
+    return null
+
+  ###*
+  # if length equal 1
+  #  then return mixed without
+  #   array, one element(int,string..)
+  ###
   if list.length is 1
     return list.pop()
+
+  ###*
+  # return array
+  ###
   list
 
 #ucFirst = (str) ->
@@ -286,6 +308,30 @@ jNetObject.prototype = jNetObject.fn =
   clientHeight: ->
     return @clientWidth "clientHeight"
 
+  offsetWidth: ->
+    return @clientWidth "offsetWidth"
+
+  offsetHeight: ->
+    return @clientHeight "offsetHeight"
+
+  isHidden: ->
+
+    offsetHeight = @offsetHeight()
+    offsetWidth = @offsetWidth()
+
+    list = []
+
+    if offsetHeight isnt null
+
+      if !Array.isArray(offsetHeight)
+        offsetHeight = [offsetHeight]
+        offsetWidth = [offsetWidth]
+
+      jNet.each offsetHeight, (index, height) ->
+        list.push !height && !offsetWidth[index]
+
+    returnList list
+
   css: (name, value) ->
     if typeof value is "undefined"
       list = []
@@ -483,6 +529,7 @@ jNetObject.prototype = jNetObject.fn =
   show: (interval) ->
 
     interval = 1000 if typeof interval is "undefined"
+    interval = 1 if interval < 1
 
     @each (iterator, element) ->
       jNet.dynamics.animate element, {

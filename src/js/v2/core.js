@@ -17,10 +17,35 @@
     return false;
   };
 
+
+  /**
+   * the method is used for the
+   *  majority of methods which
+   *    return value or the array
+   */
+
   returnList = function(list) {
+
+    /**
+     * if length equal zero
+     *  then the return null
+     */
+    if (list.length === 0) {
+      return null;
+    }
+
+    /**
+     * if length equal 1
+     *  then return mixed without
+     *   array, one element(int,string..)
+     */
     if (list.length === 1) {
       return list.pop();
     }
+
+    /**
+     * return array
+     */
     return list;
   };
 
@@ -294,6 +319,28 @@
     clientHeight: function() {
       return this.clientWidth("clientHeight");
     },
+    offsetWidth: function() {
+      return this.clientWidth("offsetWidth");
+    },
+    offsetHeight: function() {
+      return this.clientHeight("offsetHeight");
+    },
+    isHidden: function() {
+      var list, offsetHeight, offsetWidth;
+      offsetHeight = this.offsetHeight();
+      offsetWidth = this.offsetWidth();
+      list = [];
+      if (offsetHeight !== null) {
+        if (!Array.isArray(offsetHeight)) {
+          offsetHeight = [offsetHeight];
+          offsetWidth = [offsetWidth];
+        }
+        jNet.each(offsetHeight, function(index, height) {
+          return list.push(!height && !offsetWidth[index]);
+        });
+      }
+      return returnList(list);
+    },
     css: function(name, value) {
       var list;
       if (typeof value === "undefined") {
@@ -530,6 +577,9 @@
       var items;
       if (typeof interval === "undefined") {
         interval = 1000;
+      }
+      if (interval < 1) {
+        interval = 1;
       }
       this.each(function(iterator, element) {
         jNet.dynamics.animate(element, {
