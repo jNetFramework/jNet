@@ -13,13 +13,13 @@ module.exports = function (grunt) {
                 ' **/\n',
                 separator: '\n'
             },
-            v1: {
-                src: [
-                    'src/js/v1/main.js',
-                    'src/js/v1/*.js'
-                ],
-                dest: 'dist/<%= pkg.name %>.v1.<%= pkg.version %>.js'
-            },
+            // v1: {
+            //     src: [
+            //         'src/js/v1/main.js',
+            //         'src/js/v1/*.js'
+            //     ],
+            //     dest: 'dist/<%= pkg.name %>.v1.<%= pkg.version %>.js'
+            // },
             v2: {
                 src: ['cache/js/<%= pkg.name %>.v2.js'],
                 dest: 'dist/<%= pkg.name %>.v2.<%= pkg.version %>.js'
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/<%= pkg.name %>.v1.<%= pkg.version %>.min.js': ['<%= concat.v1.dest %>'],
+                    // 'dist/<%= pkg.name %>.v1.<%= pkg.version %>.min.js': ['<%= concat.v1.dest %>'],
                     'dist/<%= pkg.name %>.v2.<%= pkg.version %>.min.js': ['<%= concat.v2.dest %>']
                 }
             }
