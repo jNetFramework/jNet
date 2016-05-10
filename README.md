@@ -58,6 +58,9 @@ now the get method at the undefined index returns array
 
 Fixed more bugs
 
+- [x] parent
+- [x] parents
+
 Example (parents):
 
 ```html
