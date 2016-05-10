@@ -4,22 +4,60 @@
     <meta charset="UTF-8">
     <title>jNet Core v2.0</title>
     <script type="text/javascript" src="dist/jnet.v2.0.1.6.js"></script>
+    <script type="text/javascript" src="src/js/v2/event.js"></script>
     <script type="text/javascript">
         'use strict';
         var $ = jNet;
         $(function () {
-            console.log('hello');
+
+            console.info('Have fun code!');
+
+            var Model = jNet.Event(function (options) {
+
+                this.id = 0;
+                this.firstname = null;
+                this.lastname = null;
+
+                if (typeof options !== "undefined") {
+                    var self = this;
+                    jNet.each(options, function (key, value) {
+                        self[key] = value;
+                    });
+                }
+
+                return this;
+
+            });
+
+            var model = new Model({
+                changeId: function (id) {
+                    this.id = id;
+                    this.trigger('change:id', id);
+                }
+            });
+
+            console.log(model);
+
+            model.bind('change:id', function (id) {
+                console.log('id changed to: ' + id);
+            });
+
+            model.changeId(1);
+            model.changeId(2);
+            model.changeId(3);
+            model.changeId(4);
 
             // fixed
             $('[target="_blank"]').attr('rel', 'noopener noreferrer');
+
         });
     </script>
 </head>
 <body>
-    <ul id="test1">
-        <li class="boo"><a href="">1</a></li>
-        <li class="foo"><a href="">2</a></li>
-        <li class="bar"><a href="">3</a></li>
-    </ul>
+<ul id="test1">
+    <li class="boo"><a href="">1</a></li>
+    <li class="foo"><a href="">2</a></li>
+    <li class="bar"><a href="">3</a></li>
+</ul>
 </body>
 </html>

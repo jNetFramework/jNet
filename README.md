@@ -46,6 +46,20 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 10/6/16, 15:40
+
+jNet.each is Fixed for Object's. { a: "hello", b: "world" }
+if key in object is finite, then callback in first parameter
+get number, else string
+
+start developer box
+
+start developer laoder
+
+start developer event (bind, unbind, trigger, one)
+
+test jNet.each added
+
 #### 8/6/16, 22:20
 
 I have replaced "superagent" with "fetch-polyfill" as there 

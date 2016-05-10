@@ -142,6 +142,9 @@
      * returns element DOMTree with index, without jNetObject
      */
     get: function(index) {
+      if (index >= this.length) {
+        return null;
+      }
       if (index < 0) {
         index += this.length;
       }
@@ -153,7 +156,12 @@
      * @returns jNetObject
      */
     eq: function(index) {
-      return jNet(this.get(index));
+      var result;
+      result = this.get(index);
+      if (result) {
+        return jNet(result);
+      }
+      return jNet([]);
     },
 
     /**
@@ -700,12 +708,15 @@
         return results;
       } else if (typeof object === "object") {
         objects = Object.keys(object);
-        length = object.length;
+        length = objects.length;
         iterator = 0;
         results1 = [];
         while (iterator < length) {
           key = objects[iterator];
           value = object[key];
+          if (isFinite(key)) {
+            key = +key;
+          }
           callback(key, value, object);
           results1.push(++iterator);
         }
@@ -784,9 +795,15 @@
    *   with helped fn
    */
 
-  jNet.extend = function(object) {
-    return this.each(object, function(prototype, value) {
-      jNet.oFn[prototype] = value;
+  jNet.extend = function(object, options) {
+    if (typeof options === "undefined") {
+      options = object;
+      object = jNet.oFn;
+    } else {
+      object = object.prototype;
+    }
+    return this.each(options, function(prototype, value) {
+      object[prototype] = value;
     });
   };
 

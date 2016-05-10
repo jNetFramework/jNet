@@ -151,6 +151,8 @@ jNetObject.prototype = jNetObject.fn =
   # returns element DOMTree with index, without jNetObject
   ###
   get: (index) ->
+    if index >= @length
+      return null
     index += @length if index < 0
     @[index]
 
@@ -159,7 +161,10 @@ jNetObject.prototype = jNetObject.fn =
   # @returns jNetObject
   ###
   eq: (index) ->
-    jNet @get index
+    result = @get index
+    if result
+      return jNet result
+    jNet([])
 
   ###*
   # get first element DOMTree as jNetObject
@@ -647,11 +652,12 @@ jNet.fn = jNet.prototype =
 
     else if typeof object is "object"
       objects = Object.keys(object)
-      length = object.length
+      length = objects.length
       iterator = 0
       while iterator < length
         key = objects[iterator]
         value = object[key]
+        key = +key if isFinite key
         callback key, value, object
         ++iterator
 
@@ -706,9 +712,16 @@ if typeof define is "function" and define.amd
 # current method extend jNetObject
 #   with helped fn
 ###
-jNet.extend = (object) ->
-  @each object, (prototype, value) ->
-    jNet.oFn[prototype] = value
+jNet.extend = (object, options) ->
+
+  if typeof options is "undefined"
+    options = object
+    object = jNet.oFn
+  else
+    object = object.prototype
+
+  @each options, (prototype, value) ->
+    object[prototype] = value
     return
 
 ###*
