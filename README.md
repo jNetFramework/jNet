@@ -172,7 +172,7 @@ jNetObject.fn.append = (function () {
 
 var $ul = $('ul');
 
-var index = $ul.find('li').length + 1;
+var index = $ul.find('li').length;
 
 $ul.bind('append:selector', (function () {
     var consoleMethods = ['info', 'warn'];
