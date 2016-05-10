@@ -17,6 +17,12 @@ matchesSelector = (element, selector) ->
       return true
   false
 
+childOf = (element, allegedAncestor) ->
+  while(element = element.parentNode)
+    if element is allegedAncestor
+      break
+  return !!element
+
 ###*
 # the method is used for the
 #  majority of methods which
@@ -151,6 +157,8 @@ jNetObject.prototype = jNetObject.fn =
   # returns element DOMTree with index, without jNetObject
   ###
   get: (index) ->
+    if typeof index is "undefined"
+      return Array::slice.call this, 0, @length
     if index >= @length
       return null
     index += @length if index < 0
@@ -357,7 +365,7 @@ jNetObject.prototype = jNetObject.fn =
 
     else
       @each (iterator, element) ->
-        element.style.setProperty name, value
+        element.style.setProperty name, value, null
         return
 
   outerHTML: (value, prototype) ->
@@ -544,13 +552,30 @@ jNetObject.prototype = jNetObject.fn =
 
     list
 
-#  parent: (selector) -> # todo: development parent
-#    list = []
-#    elements = document.querySelectorAll(selector)
-#    @each (iterator, element) ->
-#
-#      return
-#    return
+  parents: (selector, iteration) ->
+
+    list = []
+    selector = '*' if typeof selector is "undefined"
+
+    iteration = Infinity if typeof iteration is "undefined"
+
+    @each (iterator, node) ->
+      parent = node.parentNode
+      index = 0
+      while parent && parent.nodeType isnt 11 && index < iteration
+        if matchesSelector(parent, selector) && list.indexOf(parent) is -1
+          list.push parent
+        parent = parent.parentNode
+        index++
+
+    if iteration isnt 1
+      list.sort (a, b) ->
+        return !childOf a, b
+
+    jNet list
+
+  parent: (selector) ->
+    @parents selector, 1
 
   show: (interval) ->
 

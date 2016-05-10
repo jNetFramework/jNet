@@ -4,43 +4,15 @@
     <meta charset="UTF-8">
     <title>jNet Core v2.0</title>
     <script type="text/javascript" src="dist/jnet.v2.0.1.6.js"></script>
-    <script type="text/javascript" src="src/js/v2/event.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
+    <!--<script type="text/javascript" src="src/js/v2/event.js"></script>-->
     <script type="text/javascript">
         'use strict';
-        var $ = jNet;
-        $(function () {
+        jNet(function () {
 
             console.info('Have fun code!');
 
-            $.Event(jNetObject); // modification
-
-            jNetObject.fn.append = (function () {
-                var parentMethod = jNetObject.fn.append;
-                return function (selector) {
-                    this.trigger('append:selector', selector);
-                    return parentMethod.call(this, selector);
-                };
-            })();
-
-            var $ul = $('ul');
-
-            var index = $ul.find('li').length + 1;
-
-            $ul.bind('append:selector', (function () {
-                var consoleMethods = ['info', 'warn'];
-                return function (selector) {
-                    console[consoleMethods[index % consoleMethods.length]](
-                        'the element "' + selector + '" has been added to the "ul" element'
-                    );
-                }
-            })());
-
-            setInterval(function () {
-                var newLi = $('<li>' + ++index + '</li>');
-                newLi.hide(0);
-                newLi.show(450);
-                $ul.append(newLi);
-            }, 900);
+            console.log($('li').parent());
 
             // fixed
             $('[target="_blank"]').attr('rel', 'noopener noreferrer');
@@ -49,10 +21,21 @@
     </script>
 </head>
 <body>
-<ul id="test1">
-    <li class="boo"><a href="">1</a></li>
-    <li class="foo"><a href="">2</a></li>
-    <li class="bar"><a href="">3</a></li>
-</ul>
+<div>
+    <p>hello</p>
+    <ul id="test1">
+        <li class="boo"><a href="">1</a></li>
+        <li class="foo"><a href="">2</a></li>
+        <li class="bar"><a href="">3</a></li>
+    </ul>
+    <div>
+        <p>hello</p>
+        <ul id="test2">
+            <li class="boo"><a href="">1</a></li>
+            <li class="foo"><a href="">2</a></li>
+            <li class="bar"><a href="">3</a></li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

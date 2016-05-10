@@ -32,8 +32,8 @@ var dynamics = jNet.dynamics;
 ```
 
 ## todo list
-- [ ] parent
-- [ ] parents
+- [x] parent
+- [x] parents
 - [x] text
 - [x] append
 - [x] appendTo
@@ -45,6 +45,80 @@ var dynamics = jNet.dynamics;
 - [x] before
 
 ### Changelog
+
+#### 10/6/16, 18:15
+
+Implement tests for methods jNetObject/jNet (Feature #23)
+
+Implement parents (Feature #3)
+
+Implement parent (Feature #2)
+
+now the get method at the undefined index returns array
+
+Fixed more bugs
+
+Example (parents):
+
+```html
+<div>
+    <p>hello</p>
+    <ul id="test1">
+        <li class="boo"><a href="">1</a></li>
+        <li class="foo"><a href="">2</a></li>
+        <li class="bar"><a href="">3</a></li>
+    </ul>
+    <div>
+        <p>hello</p>
+        <ul id="test2">
+            <li class="boo"><a href="">1</a></li>
+            <li class="foo"><a href="">2</a></li>
+            <li class="bar"><a href="">3</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+```JavaScript
+jNet('li').parents('ul'); // #test1, #test2
+jNet('li').parents('div'); // div, div 
+
+jNet('li').parents(); // ul#test2, div, ul#test1, div, body, html
+
+jNet('li').parents('*', 2); // ul#test2, div, ul#test1, div
+jNet('li').parents('*', 3); // ul#test2, div, ul#test1, div, body
+jNet('li').parents('*', 4); // ul#test2, div, ul#test1, div, body, html
+
+jNet('div').parents(); // div, body, html
+```
+
+Example (parent):
+
+```html
+<div>
+    <p>hello</p>
+    <ul id="test1">
+        <li class="boo"><a href="">1</a></li>
+        <li class="foo"><a href="">2</a></li>
+        <li class="bar"><a href="">3</a></li>
+    </ul>
+    <div>
+        <p>hello</p>
+        <ul id="test2">
+            <li class="boo"><a href="">1</a></li>
+            <li class="foo"><a href="">2</a></li>
+            <li class="bar"><a href="">3</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+```JavaScript
+jNet('li').parent(); // #test1, #test2
+jNet('li').parent('p'); // jNetObject {length: 0}
+jNet('div').parent(); // body, div
+jNet('div').parent('div'); // div
+```
 
 #### 10/6/16, 16:40
 
