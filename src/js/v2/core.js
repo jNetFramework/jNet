@@ -730,13 +730,6 @@
 
 
   /**
-   * set pointer in jNetObject.prototype
-   */
-
-  jNet.oFn = jNetObject.fn;
-
-
-  /**
    * method toString override in global object
    */
 
@@ -747,7 +740,7 @@
    * method clone in global Object
    */
 
-  jNet.clone = jNet.oFn.clone;
+  jNet.clone = jNetObject.fn.clone;
 
 
   /**
@@ -763,6 +756,29 @@
    */
 
   jNet.isHTML = isHTML;
+
+
+  /**
+   * addMethod - By John Resig (MIT Licensed)
+   *
+   * @link http://ejohn.org/blog/javascript-method-overloading/
+   */
+
+  jNet.addMethod = function(object, name, fn) {
+    var old;
+    old = object[name];
+    if (old) {
+      object[name] = function() {
+        if (fn.length === arguments.length) {
+          return fn.apply(this, arguments);
+        } else if (typeof old === 'function') {
+          return old.apply(this, arguments);
+        }
+      };
+    } else {
+      object[name] = fn;
+    }
+  };
 
 
   /**
@@ -798,7 +814,7 @@
   jNet.extend = function(object, options) {
     if (typeof options === "undefined") {
       options = object;
-      object = jNet.oFn;
+      object = jNetObject.fn;
     } else {
       object = object.prototype;
     }
@@ -813,7 +829,7 @@
    */
 
   jNet.each(["click", "contextmenu", "dblclick", "mouseup", "mousedown", "mouseout", "mouseover", "mousemove", "keyup", "keydown", "keypress", "copy", "selectstart", "selectionchange", "select"], function(iterator, property) {
-    jNet.oFn[property] = function(listener, useCapture) {
+    jNetObject.fn[property] = function(listener, useCapture) {
       return this.on(property, listener, useCapture);
     };
   });
@@ -887,6 +903,36 @@
 
   if (typeof exports !== "undefined" && exports !== null) {
     exports.jNet = jNet;
+  }
+
+
+  /**
+   * check exists window and
+   *  set jNetObject in window
+   */
+
+  if (typeof window !== "undefined" && window !== null) {
+    window.jNetObject = jNetObject;
+  }
+
+
+  /**
+   * check exists document and
+   *  set jNetObject in document
+   */
+
+  if (typeof document !== "undefined" && document !== null) {
+    document.jNetObject = jNetObject;
+  }
+
+
+  /**
+   * check exists exports and
+   *  set jNetObject in exports
+   */
+
+  if (typeof exports !== "undefined" && exports !== null) {
+    exports.jNetObject = jNetObject;
   }
 
 }).call(this);

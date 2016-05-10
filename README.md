@@ -46,6 +46,115 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 10/6/16, 16:40
+
+remove alias jNet.oFn
+
+add global jNetObject
+
+add new method jNet.addMethod 
+(author: John Resig, http://ejohn.org/blog/javascript-method-overloading/)
+
+test toString is fixed
+
+Example (Overload method jNetObject):
+
+```JavaScript
+jNetObject.fn.append = (function () {
+    var parentMethod = jNetObject.fn.append;
+    return function (selector) {
+        console.log([this, selector]);
+        return parentMethod.call(this, selector);
+    };
+})();
+```
+
+Example (jNet.Event):
+
+```html
+<ul id="test1">
+    <li class="boo"><a href="">1</a></li>
+    <li class="foo"><a href="">2</a></li>
+    <li class="bar"><a href="">3</a></li>
+</ul>
+```
+
+```JavaScript
+var $ = jNet;
+
+// modification, add method from jNet.Event
+$.Event(jNetObject); 
+
+jNetObject.fn.append = (function () {
+    var parentMethod = jNetObject.fn.append;
+    return function (selector) {
+        this.trigger('append:selector', selector);
+        return parentMethod.call(this, selector);
+    };
+})();
+
+var $ul = $('ul');
+
+var index = $ul.find('li').length + 1;
+
+$ul.bind('append:selector', (function () {
+    var consoleMethods = ['info', 'warn'];
+    return function (selector) {
+        console[consoleMethods[index % consoleMethods.length]](
+            'the element "' + selector + '" has been added to the "ul" element'
+        );
+    }
+})());
+
+setInterval(function () {
+    var newLi = $('<li>' + ++index + '</li>');
+    newLi.hide(0);
+    newLi.show(450);
+    $ul.append(newLi);
+}, 900);
+```
+
+Example (jNet.addMethod):
+
+```JavaScript
+// Here’s the function in question:
+
+jNet.addMethod
+
+// and here is how you might use it:
+
+function Users(){
+  jNet.addMethod(this, "find", function(){
+    // Find all users...
+  });
+  jNet.addMethod(this, "find", function(name){
+    // Find a user by name
+  });
+  jNet.addMethod(this, "find", function(first, last){
+    // Find a user by first and last name
+  });
+}
+
+// Or, if you wanted to use it with an object prototype:
+
+function Users(){}
+jNet.addMethod(Users.prototype, "find", function(){
+  // Find all users...
+});
+jNet.addMethod(Users.prototype, "find", function(name){
+  // Find a user by name
+});
+jNet.addMethod(Users.prototype, "find", function(first, last){
+  // Find a user by first and last name
+});
+
+var users = new Users();
+users.find(); // Finds all
+users.find("John"); // Finds users by name
+users.find("John", "Resig"); // Finds users by first and last name
+users.find("John", "E", "Resig"); // Does nothing
+```
+
 #### 10/6/16, 15:44
 
 Implement jNet.Event

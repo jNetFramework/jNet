@@ -12,42 +12,35 @@
 
             console.info('Have fun code!');
 
-            var Model = jNet.Event(function (options) {
+            $.Event(jNetObject); // modification
 
-                this.id = null;
-                this.firstname = null;
-                this.lastname = null;
+            jNetObject.fn.append = (function () {
+                var parentMethod = jNetObject.fn.append;
+                return function (selector) {
+                    this.trigger('append:selector', selector);
+                    return parentMethod.call(this, selector);
+                };
+            })();
 
-                if (typeof options !== "undefined") {
-                    var self = this;
-                    jNet.each(options, function (key, value) {
-                        self[key] = value;
-                    });
+            var $ul = $('ul');
+
+            var index = $ul.find('li').length + 1;
+
+            $ul.bind('append:selector', (function () {
+                var consoleMethods = ['info', 'warn'];
+                return function (selector) {
+                    console[consoleMethods[index % consoleMethods.length]](
+                        'the element "' + selector + '" has been added to the "ul" element'
+                    );
                 }
+            })());
 
-                return this;
-
-            });
-
-            var man = new Model({
-                firstname: 'Alex',
-                lastname: 'Ivanov',
-                changeId: function (id) {
-                    this.id = id;
-                    this.trigger('change:id', id);
-                }
-            });
-
-            man.bind('change:id', function (id) {
-                console.warn('ID changed to: ' + id);
-            });
-
-            man.changeId(1);
-            man.changeId(2);
-            man.changeId(3);
-            man.changeId(4);
-
-            console.info(man);
+            setInterval(function () {
+                var newLi = $('<li>' + ++index + '</li>');
+                newLi.hide(0);
+                newLi.show(450);
+                $ul.append(newLi);
+            }, 900);
 
             // fixed
             $('[target="_blank"]').attr('rel', 'noopener noreferrer');

@@ -665,11 +665,6 @@ jNet.fn = jNet.prototype =
     "jNetFramework"
 
 ###*
-# set pointer in jNetObject.prototype
-###
-jNet.oFn = jNetObject.fn
-
-###*
 # method toString override in global object
 ###
 jNet.toString = jNet.fn.toString
@@ -677,7 +672,7 @@ jNet.toString = jNet.fn.toString
 ###*
 # method clone in global Object
 ###
-jNet.clone = jNet.oFn.clone
+jNet.clone = jNetObject.fn.clone
 
 ###*
 # method each in global Object
@@ -689,6 +684,24 @@ jNet.each = jNet.fn.each
 #  possible to transform a line to html-object
 ###
 jNet.isHTML = isHTML
+
+###*
+# addMethod - By John Resig (MIT Licensed)
+#
+# @link http://ejohn.org/blog/javascript-method-overloading/
+###
+jNet.addMethod = (object, name, fn) ->
+  old = object[name]
+  if old
+    object[name] = ->
+      if fn.length == arguments.length
+        return fn.apply(this, arguments)
+      else if typeof old == 'function'
+        return old.apply(this, arguments)
+      return
+  else
+    object[name] = fn
+  return
 
 ###*
 # Export framework to :
@@ -716,7 +729,7 @@ jNet.extend = (object, options) ->
 
   if typeof options is "undefined"
     options = object
-    object = jNet.oFn
+    object = jNetObject.fn
   else
     object = object.prototype
 
@@ -734,7 +747,7 @@ jNet.each [
   "keydown", "keypress", "copy",
   "selectstart", "selectionchange", "select"
 ], (iterator, property) ->
-  jNet.oFn[property] = (listener, useCapture) ->
+  jNetObject.fn[property] = (listener, useCapture) ->
     @on property, listener, useCapture
   return
 
@@ -789,3 +802,21 @@ document.jNet = jNet if document?
 #  set jNet in exports
 ###
 exports.jNet = jNet if exports?
+
+###*
+# check exists window and
+#  set jNetObject in window
+###
+window.jNetObject = jNetObject if window?
+
+###*
+# check exists document and
+#  set jNetObject in document
+###
+document.jNetObject = jNetObject if document?
+
+###*
+# check exists exports and
+#  set jNetObject in exports
+###
+exports.jNetObject = jNetObject if exports?
