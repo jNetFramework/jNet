@@ -14,7 +14,7 @@
 
             var Model = jNet.Event(function (options) {
 
-                this.id = 0;
+                this.id = null;
                 this.firstname = null;
                 this.lastname = null;
 
@@ -29,23 +29,25 @@
 
             });
 
-            var model = new Model({
+            var man = new Model({
+                firstname: 'Alex',
+                lastname: 'Ivanov',
                 changeId: function (id) {
                     this.id = id;
                     this.trigger('change:id', id);
                 }
             });
 
-            console.log(model);
-
-            model.bind('change:id', function (id) {
-                console.log('id changed to: ' + id);
+            man.bind('change:id', function (id) {
+                console.warn('ID changed to: ' + id);
             });
 
-            model.changeId(1);
-            model.changeId(2);
-            model.changeId(3);
-            model.changeId(4);
+            man.changeId(1);
+            man.changeId(2);
+            man.changeId(3);
+            man.changeId(4);
+
+            console.info(man);
 
             // fixed
             $('[target="_blank"]').attr('rel', 'noopener noreferrer');

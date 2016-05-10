@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/coffee/v2/box.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/coffee/v2/event.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/coffee/v2/loader.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.6.js" afterPath="$PROJECT_DIR$/dist/jnet.v1.0.1.6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v1.0.1.6.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v1.0.1.6.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" afterPath="$PROJECT_DIR$/dist/jnet.v2.0.1.6.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coffee/v2/core.coffee" afterPath="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js" afterPath="$PROJECT_DIR$/src/js/v2/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/v2/core.js.map" afterPath="$PROJECT_DIR$/src/js/v2/core.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/js/jNet.each.js" afterPath="$PROJECT_DIR$/test/js/jNet.each.js" />
     </list>
     <ignored path="jnet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,24 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+            <state relative-caret-position="-265">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="49" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
-          </provider>
+      <file leaf-file-name="event.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/coffee/v2/event.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="60" selection-end-column="20" />
+            <state relative-caret-position="266">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -150,11 +134,11 @@
         <option value="$PROJECT_DIR$/src/coffee/v2/loader.coffee" />
         <option value="$PROJECT_DIR$/src/js/v2/event.js" />
         <option value="$PROJECT_DIR$/src/coffee/v2/event.coffee" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/js/v2/core.js" />
         <option value="$PROJECT_DIR$/src/coffee/v2/core.coffee" />
         <option value="$PROJECT_DIR$/test/js/jNet.each.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -434,15 +418,15 @@
       <workItem from="1462724976139" duration="4000" />
       <workItem from="1462735144564" duration="6699000" />
       <workItem from="1462795534572" duration="599000" />
-      <workItem from="1462877694038" duration="5135000" />
+      <workItem from="1462877694038" duration="5622000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164152000" />
+    <option name="totallyTimeSpent" value="164639000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2927383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -781,14 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coffee/v2/event.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/js/each.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -801,22 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
           <caret line="658" column="27" selection-start-line="658" selection-start-column="27" selection-end-line="658" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="718" column="11" selection-start-line="718" selection-start-column="11" selection-end-line="718" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="22" column="57" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -842,8 +802,32 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="60" selection-end-column="20" />
+        <state relative-caret-position="404">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/v2/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="718" column="11" selection-start-line="718" selection-start-column="11" selection-end-line="718" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/coffee/v2/event.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="49" selection-end-column="30" />
           <folding />
         </state>
       </provider>
