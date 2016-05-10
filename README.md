@@ -46,6 +46,51 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 10/6/16, 15:44
+
+Implement jNet.Event
+
+Example:
+
+```JavaScript
+var Model = jNet.Event(function (options) {
+
+    this.id = null;
+    this.firstname = null;
+    this.lastname = null;
+    
+    if (typeof options !== "undefined") {
+        var self = this;
+        jNet.each(options, function (key, value) {
+            self[key] = value;
+        });
+    }
+    
+    return this;
+
+});
+
+var man = new Model({
+    firstname: 'Alex',
+    lastname: 'Ivanov',
+    changeId: function (id) {
+        this.id = id;
+        this.trigger('change:id', id);
+    }
+});
+
+man.bind('change:id', function (id) {
+    console.warn('ID changed to: ' + id);
+});
+
+man.changeId(1); // ID changed to: 1
+man.changeId(2); // ID changed to: 2
+man.changeId(3); // ID changed to: 3
+man.changeId(4); // ID changed to: 4
+
+console.info(man);
+```
+
 #### 10/6/16, 15:40
 
 jNet.each is Fixed for Object's. { a: "hello", b: "world" }
