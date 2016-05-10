@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "box.js",
+  "sourceRoot": "..\\..\\coffee\\v2",
+  "sources": [
+    "box.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA;;AAAA"
+}
