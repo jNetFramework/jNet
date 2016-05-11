@@ -329,7 +329,14 @@
       }
       this.each(function(iterator, element) {
         var clientRect;
-        clientRect = element.getBoundingClientRect();
+        if (typeof element.getBoundingClientRect !== "undefined") {
+          clientRect = element.getBoundingClientRect();
+        } else {
+          clientRect = {
+            width: element.innerWidth,
+            height: element.innerHeight
+          };
+        }
         list.push(clientRect[prototype]);
       });
       return returnList(list);
@@ -355,7 +362,13 @@
       return this.clientWidth("offsetWidth");
     },
     offsetHeight: function() {
-      return this.clientHeight("offsetHeight");
+      return this.clientWidth("offsetHeight");
+    },
+    innerWidth: function() {
+      return this.clientWidth("innerWidth");
+    },
+    innerHeight: function() {
+      return this.clientWidth("innerHeight");
     },
     isHidden: function() {
       var list, offsetHeight, offsetWidth;

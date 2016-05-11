@@ -46,6 +46,15 @@ var dynamics = jNet.dynamics;
 
 ### Changelog
 
+#### 11/6/16, 13:53
+
+width is fixed 
+height is fixed 
+offsetHeight is fixed
+
+- [x] innerWidth
+- [x] innerHeight
+
 #### 10/6/16, 18:15
 
 Implement tests for methods jNetObject/jNet (Feature #23)

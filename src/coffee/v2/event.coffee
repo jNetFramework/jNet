@@ -1,3 +1,5 @@
+'use strict'
+
 jNet.Event = (model) ->
 
   model.prototype.bind = (event, fn) ->

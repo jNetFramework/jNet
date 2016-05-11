@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "particles.js",
+  "sourceRoot": "..\\..\\coffee\\v2",
+  "sources": [
+    "particles.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA;EAEA,IAAI,CAAC,SAAL,GAAiB,SAAC,QAAD;IAEf,IAAC,CAAA,MAAD,GAAU,IAAA,CAAK,QAAL;EAFK;AAFjB"
+}

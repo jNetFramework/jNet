@@ -1,6 +1,12 @@
-<div id="introR" class="super_back">
-    <canvas id="pollyfill-canvas"></canvas>
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/plugins/CSSPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/easing/EasePack.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenLite.min.js"></script>
+<script src="../dist/jnet.v2.0.1.6.js"></script>
+
+<canvas id="pollyfill-canvas"></canvas>
+
+<!--<div id="introR" class="super_back">-->
+<!--</div>-->
 
 <!--https://toster.ru/q/310262-->
 
@@ -18,8 +24,8 @@
 
         height = window.innerHeight;
         target = {x: width / 2, y: height / 2};
-        largeHeader = document.getElementById('introR');
-        largeHeader.style.height = height + 'px';
+//        largeHeader = document.getElementById('introR');
+//        largeHeader.style.height = height + 'px';
         canvas = document.getElementById('pollyfill-canvas');
         canvas.width = width;
         canvas.height = height;
@@ -95,14 +101,13 @@
     }
 
     function scrollCheck() {
-        if (document.body.scrollTop > height * 500) animateHeader = false;
-        else animateHeader = true;
+        animateHeader = !(document.body.scrollTop > height * 500);
     }
 
     function resize() {
         width = window.innerWidth;
         height = window.innerHeight;
-        largeHeader.style.height = height + 'px';
+//        largeHeader.style.height = height + 'px';
         canvas.width = width;
         canvas.height = height;
     }
@@ -144,14 +149,87 @@
         requestAnimationFrame(animate);
     }
 
+    function animateFrame(opts) {
+
+        var start = new Date;
+
+        var id = setInterval(function () {
+
+            var timePassed = new Date - start;
+            var progress = timePassed / opts.duration;
+
+            if (progress > 1) progress = 1;
+
+            var delta = opts.delta(progress);
+
+            opts.step(delta);
+
+            if (progress == 1) {
+                opts.complate = opts.complate || function () {
+                        };
+                opts.complate();
+                clearInterval(id);
+            }
+
+        }, opts.delay || 10)
+
+    }
+
+    function bounce(progress) {
+        for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
+            if (progress >= (7 - 4 * a) / 11) {
+                return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
+            }
+        }
+    }
+
+    function circ(progress) {
+        return 1 - Math.sin(Math.acos(progress));
+    }
+
+    function linear(progress) {
+        return progress
+    }
+
+    function makeEaseInOut(delta) {
+        return function (progress) {
+            if (progress < .5)
+                return delta(2 * progress) / 2;
+            else
+                return (2 - delta(2 * (1 - progress))) / 2;
+        }
+    }
+
     function shiftPoint(p) {
-        TweenLite.to(p, 1 + 1 * Math.random(), {
-            x: p.originX - 50 + Math.random() * 100,
-            y: p.originY - 50 + Math.random() * 100, ease: Circ.easeInOut,
-            onComplete: function () {
-                shiftPoint(p);
+
+        // remove code
+
+        var oldPx = p.originX;
+        var newPx = Math.random() * 100 - 50;
+
+        var oldPy = p.originY;
+        var newPy = Math.random() * 100 - 50;
+
+        animateFrame({
+            duration: 6100 * Math.random(),
+            delta: makeEaseInOut(circ),
+            step: function (delta) {
+                p.x = oldPx + newPx * delta;
+                p.y = oldPy + newPy * delta;
+            },
+            complate: function () {
+                shiftPoint(p)
             }
         });
+
+//        new TweenLite(p, 1 + Math.random(), {
+//            x: p.originX - 50 + Math.random() * 100,
+//            y: p.originY - 50 + Math.random() * 100, ease: Circ.easeInOut,
+//            onComplete: function () {
+//                shiftPoint(p);
+//            }
+//        });
+
     }
 
     // Canvas manipulation

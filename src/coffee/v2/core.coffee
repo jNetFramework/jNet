@@ -309,7 +309,12 @@ jNetObject.prototype = jNetObject.fn =
     list = []
     prototype = "width" if typeof prototype is "undefined"
     @each (iterator, element) ->
-      clientRect = element.getBoundingClientRect()
+
+      if typeof element.getBoundingClientRect isnt "undefined"
+        clientRect = element.getBoundingClientRect()
+      else
+        clientRect = width: element.innerWidth, height: element.innerHeight
+
       list.push clientRect[prototype]
       return
     returnList list
@@ -332,7 +337,13 @@ jNetObject.prototype = jNetObject.fn =
     return @clientWidth "offsetWidth"
 
   offsetHeight: ->
-    return @clientHeight "offsetHeight"
+    return @clientWidth "offsetHeight"
+
+  innerWidth: ->
+    return @clientWidth "innerWidth"
+
+  innerHeight: ->
+    return @clientWidth "innerHeight"
 
   isHidden: ->
 
