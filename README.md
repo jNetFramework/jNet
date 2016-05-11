@@ -49,7 +49,9 @@ var dynamics = jNet.dynamics;
 #### 11/6/16, 13:53
 
 width is fixed 
+
 height is fixed 
+
 offsetHeight is fixed
 
 - [x] innerWidth

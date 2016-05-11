@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fb4f0df5-606e-4081-9526-1be2141b4bf2" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/coffee/v2/particles.coffee" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/v2/particles.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/js/v2/particles.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/p.html" afterPath="$PROJECT_DIR$/demo/p.html" />
@@ -98,8 +100,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+            <state relative-caret-position="263">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="57" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -418,12 +420,12 @@
       <workItem from="1462735144564" duration="6699000" />
       <workItem from="1462795534572" duration="599000" />
       <workItem from="1462877694038" duration="24760000" />
-      <workItem from="1462962054174" duration="1844000" />
+      <workItem from="1462962054174" duration="1857000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185621000" />
+    <option name="totallyTimeSpent" value="185634000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -822,8 +824,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="55" column="17" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
+        <state relative-caret-position="263">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="57" selection-end-column="17" />
           <folding />
         </state>
       </provider>
