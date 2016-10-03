@@ -1,0 +1,886 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jnet by jNetFramework</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Jnet</h1>
+        <p>JavaScript Framework</p>
+
+        <p class="view"><a href="https://github.com/jNetFramework/jNet">View the Project on GitHub <small>jNetFramework/jNet</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/jNetFramework/jNet/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/jNetFramework/jNet/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/jNetFramework/jNet">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="jnet" class="anchor" href="#jnet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>jNet</h1>
+
+<p>JavaScript Framework</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// todo: description jNetFramework</span></pre></div>
+
+<p>jNetFramework includes others frameworks</p>
+
+<ol>
+<li><a href="https://github.com/undozen/fetch">https://github.com/undozen/fetch</a></li>
+<li><a href="https://github.com/js-cookie/js-cookie">https://github.com/js-cookie/js-cookie</a></li>
+<li><a href="https://github.com/michaelvillar/dynamics.js">https://github.com/michaelvillar/dynamics.js</a></li>
+</ol>
+
+<p>Used [1] framework in jNet Framework can with halped constraction </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> fetch <span class="pl-k">=</span> <span class="pl-smi">jNet</span>.<span class="pl-smi">fetch</span>;</pre></div>
+
+<p>Used [2] ...</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> cookies <span class="pl-k">=</span> <span class="pl-smi">jNet</span>.<span class="pl-smi">cookies</span>;</pre></div>
+
+<p>Used [3] ...</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> dynamics <span class="pl-k">=</span> <span class="pl-smi">jNet</span>.<span class="pl-smi">dynamics</span>;</pre></div>
+
+<h2>
+<a id="todo-list" class="anchor" href="#todo-list" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>todo list</h2>
+
+<ul>
+<li>[x] parent</li>
+<li>[x] parents</li>
+<li>[x] text</li>
+<li>[x] append</li>
+<li>[x] appendTo</li>
+<li>[x] prepend</li>
+<li>[x] prependTo</li>
+<li>[x] innerHTML (alias html)</li>
+<li>[x] outerHTML</li>
+<li>[x] after</li>
+<li>[x] before</li>
+</ul>
+
+<h3>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Changelog</h3>
+
+<h4>
+<a id="10616-1815" class="anchor" href="#10616-1815" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10/6/16, 18:15</h4>
+
+<p>Implement tests for methods jNetObject/jNet (Feature #23)</p>
+
+<p>Implement parents (Feature #3)</p>
+
+<p>Implement parent (Feature #2)</p>
+
+<p>now the get method at the undefined index returns array</p>
+
+<p>Fixed more bugs</p>
+
+<ul>
+<li>[x] parent</li>
+<li>[x] parents</li>
+</ul>
+
+<p>Example (parents):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;hello&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>boo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">p</span>&gt;hello&lt;/<span class="pl-ent">p</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test2<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>boo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>); <span class="pl-c">// #test1, #test2</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>); <span class="pl-c">// div, div </span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(); <span class="pl-c">// ul#test2, div, ul#test1, div, body, html</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, <span class="pl-c1">2</span>); <span class="pl-c">// ul#test2, div, ul#test1, div</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, <span class="pl-c1">3</span>); <span class="pl-c">// ul#test2, div, ul#test1, div, body</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, <span class="pl-c1">4</span>); <span class="pl-c">// ul#test2, div, ul#test1, div, body, html</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-en">parents</span>(); <span class="pl-c">// div, body, html</span></pre></div>
+
+<p>Example (parent):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">p</span>&gt;hello&lt;/<span class="pl-ent">p</span>&gt;
+    &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>boo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">p</span>&gt;hello&lt;/<span class="pl-ent">p</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test2<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>boo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">parent</span>(); <span class="pl-c">// #test1, #test2</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">parent</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>); <span class="pl-c">// jNetObject {length: 0}</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-c1">parent</span>(); <span class="pl-c">// body, div</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-c1">parent</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>); <span class="pl-c">// div</span></pre></div>
+
+<h4>
+<a id="10616-1640" class="anchor" href="#10616-1640" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10/6/16, 16:40</h4>
+
+<p>remove alias jNet.oFn</p>
+
+<p>add global jNetObject</p>
+
+<p>add new method jNet.addMethod 
+(author: John Resig, <a href="http://ejohn.org/blog/javascript-method-overloading/">http://ejohn.org/blog/javascript-method-overloading/</a>)</p>
+
+<p>test toString is fixed</p>
+
+<p>Example (Overload method jNetObject):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">jNetObject</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">append</span> <span class="pl-k">=</span> (<span class="pl-k">function</span> () {
+    <span class="pl-k">var</span> parentMethod <span class="pl-k">=</span> <span class="pl-smi">jNetObject</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">append</span>;
+    <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">selector</span>) {
+        <span class="pl-en">console</span>.<span class="pl-c1">log</span>([<span class="pl-v">this</span>, selector]);
+        <span class="pl-k">return</span> <span class="pl-smi">parentMethod</span>.<span class="pl-c1">call</span>(<span class="pl-v">this</span>, selector);
+    };
+})();</pre></div>
+
+<p>Example (jNet.Event):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>boo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> $ <span class="pl-k">=</span> jNet;
+
+<span class="pl-c">// modification, add method from jNet.Event</span>
+<span class="pl-smi">$</span>.<span class="pl-en">Event</span>(jNetObject); 
+
+<span class="pl-smi">jNetObject</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">append</span> <span class="pl-k">=</span> (<span class="pl-k">function</span> () {
+    <span class="pl-k">var</span> parentMethod <span class="pl-k">=</span> <span class="pl-smi">jNetObject</span>.<span class="pl-smi">fn</span>.<span class="pl-smi">append</span>;
+    <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">selector</span>) {
+        <span class="pl-v">this</span>.<span class="pl-en">trigger</span>(<span class="pl-s"><span class="pl-pds">'</span>append:selector<span class="pl-pds">'</span></span>, selector);
+        <span class="pl-k">return</span> <span class="pl-smi">parentMethod</span>.<span class="pl-c1">call</span>(<span class="pl-v">this</span>, selector);
+    };
+})();
+
+<span class="pl-k">var</span> $ul <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">var</span> index <span class="pl-k">=</span> <span class="pl-smi">$ul</span>.<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">length</span> <span class="pl-k">+</span> <span class="pl-c1">1</span>;
+
+<span class="pl-smi">$ul</span>.<span class="pl-en">bind</span>(<span class="pl-s"><span class="pl-pds">'</span>append:selector<span class="pl-pds">'</span></span>, (<span class="pl-k">function</span> () {
+    <span class="pl-k">var</span> consoleMethods <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>info<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>warn<span class="pl-pds">'</span></span>];
+    <span class="pl-k">return</span> <span class="pl-k">function</span> (<span class="pl-smi">selector</span>) {
+        <span class="pl-en">console</span>[consoleMethods[index <span class="pl-k">%</span> <span class="pl-smi">consoleMethods</span>.<span class="pl-c1">length</span>]](
+            <span class="pl-s"><span class="pl-pds">'</span>the element "<span class="pl-pds">'</span></span> <span class="pl-k">+</span> selector <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>" has been added to the "ul" element<span class="pl-pds">'</span></span>
+        );
+    }
+})());
+
+<span class="pl-c1">setInterval</span>(<span class="pl-k">function</span> () {
+    <span class="pl-k">var</span> newLi <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;li&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-k">++</span>index <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/li&gt;<span class="pl-pds">'</span></span>);
+    <span class="pl-smi">newLi</span>.<span class="pl-en">hide</span>(<span class="pl-c1">0</span>);
+    <span class="pl-smi">newLi</span>.<span class="pl-en">show</span>(<span class="pl-c1">450</span>);
+    <span class="pl-smi">$ul</span>.<span class="pl-c1">append</span>(newLi);
+}, <span class="pl-c1">900</span>);</pre></div>
+
+<p>Example (jNet.addMethod):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// Here’s the function in question:</span>
+
+<span class="pl-smi">jNet</span>.<span class="pl-smi">addMethod</span>
+
+<span class="pl-c">// and here is how you might use it:</span>
+
+<span class="pl-k">function</span> <span class="pl-en">Users</span>(){
+  <span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(){
+    <span class="pl-c">// Find all users...</span>
+  });
+  <span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">name</span>){
+    <span class="pl-c">// Find a user by name</span>
+  });
+  <span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-v">this</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">first</span>, <span class="pl-smi">last</span>){
+    <span class="pl-c">// Find a user by first and last name</span>
+  });
+}
+
+<span class="pl-c">// Or, if you wanted to use it with an object prototype:</span>
+
+<span class="pl-k">function</span> <span class="pl-en">Users</span>(){}
+<span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-smi">Users</span>.<span class="pl-c1">prototype</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(){
+  <span class="pl-c">// Find all users...</span>
+});
+<span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-smi">Users</span>.<span class="pl-c1">prototype</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">name</span>){
+  <span class="pl-c">// Find a user by name</span>
+});
+<span class="pl-smi">jNet</span>.<span class="pl-en">addMethod</span>(<span class="pl-smi">Users</span>.<span class="pl-c1">prototype</span>, <span class="pl-s"><span class="pl-pds">"</span>find<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">first</span>, <span class="pl-smi">last</span>){
+  <span class="pl-c">// Find a user by first and last name</span>
+});
+
+<span class="pl-k">var</span> users <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Users</span>();
+<span class="pl-smi">users</span>.<span class="pl-c1">find</span>(); <span class="pl-c">// Finds all</span>
+<span class="pl-smi">users</span>.<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span>); <span class="pl-c">// Finds users by name</span>
+<span class="pl-smi">users</span>.<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Resig<span class="pl-pds">"</span></span>); <span class="pl-c">// Finds users by first and last name</span>
+<span class="pl-smi">users</span>.<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>E<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Resig<span class="pl-pds">"</span></span>); <span class="pl-c">// Does nothing</span></pre></div>
+
+<h4>
+<a id="10616-1544" class="anchor" href="#10616-1544" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10/6/16, 15:44</h4>
+
+<p>Implement jNet.Event</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> Model <span class="pl-k">=</span> <span class="pl-smi">jNet</span>.<span class="pl-en">Event</span>(<span class="pl-k">function</span> (<span class="pl-smi">options</span>) {
+
+    <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+    <span class="pl-v">this</span>.<span class="pl-smi">firstname</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+    <span class="pl-v">this</span>.<span class="pl-smi">lastname</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+
+    <span class="pl-k">if</span> (<span class="pl-k">typeof</span> options <span class="pl-k">!==</span> <span class="pl-s"><span class="pl-pds">"</span>undefined<span class="pl-pds">"</span></span>) {
+        <span class="pl-k">var</span> self <span class="pl-k">=</span> <span class="pl-v">this</span>;
+        <span class="pl-smi">jNet</span>.<span class="pl-en">each</span>(options, <span class="pl-k">function</span> (<span class="pl-smi">key</span>, <span class="pl-smi">value</span>) {
+            self[key] <span class="pl-k">=</span> value;
+        });
+    }
+
+    <span class="pl-k">return</span> <span class="pl-v">this</span>;
+
+});
+
+<span class="pl-k">var</span> man <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Model</span>({
+    firstname<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Alex<span class="pl-pds">'</span></span>,
+    lastname<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Ivanov<span class="pl-pds">'</span></span>,
+    <span class="pl-en">changeId</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">id</span>) {
+        <span class="pl-v">this</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> id;
+        <span class="pl-v">this</span>.<span class="pl-en">trigger</span>(<span class="pl-s"><span class="pl-pds">'</span>change:id<span class="pl-pds">'</span></span>, id);
+    }
+});
+
+<span class="pl-smi">man</span>.<span class="pl-en">bind</span>(<span class="pl-s"><span class="pl-pds">'</span>change:id<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">id</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">warn</span>(<span class="pl-s"><span class="pl-pds">'</span>ID changed to: <span class="pl-pds">'</span></span> <span class="pl-k">+</span> id);
+});
+
+<span class="pl-smi">man</span>.<span class="pl-en">changeId</span>(<span class="pl-c1">1</span>); <span class="pl-c">// ID changed to: 1</span>
+<span class="pl-smi">man</span>.<span class="pl-en">changeId</span>(<span class="pl-c1">2</span>); <span class="pl-c">// ID changed to: 2</span>
+<span class="pl-smi">man</span>.<span class="pl-en">changeId</span>(<span class="pl-c1">3</span>); <span class="pl-c">// ID changed to: 3</span>
+<span class="pl-smi">man</span>.<span class="pl-en">changeId</span>(<span class="pl-c1">4</span>); <span class="pl-c">// ID changed to: 4</span>
+
+<span class="pl-en">console</span>.<span class="pl-c1">info</span>(man);</pre></div>
+
+<h4>
+<a id="10616-1540" class="anchor" href="#10616-1540" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10/6/16, 15:40</h4>
+
+<p>jNet.each is Fixed for Object's. { a: "hello", b: "world" }
+if key in object is finite, then callback in first parameter
+get number, else string</p>
+
+<p>start developer box</p>
+
+<p>start developer laoder</p>
+
+<p>start developer event (bind, unbind, trigger, one)</p>
+
+<p>test jNet.each added</p>
+
+<h4>
+<a id="8616-2220" class="anchor" href="#8616-2220" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8/6/16, 22:20</h4>
+
+<p>I have replaced "superagent" with "fetch-polyfill" as there 
+was a naydna a big mistake in work of a framework</p>
+
+<p><a href="https://github.com/undozen/fetch">https://github.com/undozen/fetch</a></p>
+
+<h4>
+<a id="8616-1015" class="anchor" href="#8616-1015" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8/6/16, 10:15</h4>
+
+<p>closest is fixed bug</p>
+
+<p>added method matchesSelector </p>
+
+<h4>
+<a id="8616-0933" class="anchor" href="#8616-0933" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8/6/16, 09:33</h4>
+
+<p>the method prepend is fixed</p>
+
+<p>the method prependTo is fixed</p>
+
+<p>new build</p>
+
+<h4>
+<a id="8616-0851" class="anchor" href="#8616-0851" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8/6/16, 08:51</h4>
+
+<p>Implement offsetHeight, offsetWidth</p>
+
+<p>Implement isHidden (used offsetHeight, offsetWidth)</p>
+
+<p>add test for hide method (used isHidden)</p>
+
+<p>add test for show method (used isHidden, css)</p>
+
+<p>returnList is fixed</p>
+
+<ul>
+<li>[x] offsetHeight</li>
+<li>[x] offsetWidth</li>
+<li>[x] isHidden</li>
+</ul>
+
+<p>Example (offsetHeight):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-en">offsetHeight</span>() <span class="pl-c">// int or array [10, 10, 10..]..</span></pre></div>
+
+<p>Example (offsetWidth):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-en">offsetWidth</span>() <span class="pl-c">// int or array [10, 10, 10..]..</span></pre></div>
+
+<p>Example (isHidden):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-en">isHidden</span>() <span class="pl-c">// true or false, or array [true, false, false]...</span></pre></div>
+
+<h4>
+<a id="7616-1645" class="anchor" href="#7616-1645" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7/6/16, 16:45</h4>
+
+<p>Optimization indexOf</p>
+
+<h4>
+<a id="7616-1308" class="anchor" href="#7616-1308" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7/6/16, 13:08</h4>
+
+<p>add method get</p>
+
+<p>fixed small bugs</p>
+
+<ul>
+<li>[x] get</li>
+</ul>
+
+<h4>
+<a id="7616-1256" class="anchor" href="#7616-1256" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7/6/16, 12:56</h4>
+
+<p>Implement index (Feature #22)</p>
+
+<ul>
+<li>[x] index</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+  %<span class="pl-ent">li</span> 1
+  %<span class="pl-ent">li</span><span class="pl-ent">.foo</span> 2
+  %<span class="pl-ent">li</span> 3</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>).<span class="pl-c1">index</span>() <span class="pl-c">// 1</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">index</span>() <span class="pl-c">// [0, 1, 2]</span></pre></div>
+
+<h4>
+<a id="6616-2255" class="anchor" href="#6616-2255" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/6/16, 22:55</h4>
+
+<p>Implement appendTo (Feature #18)</p>
+
+<p>Implement prepend (Feature #17)</p>
+
+<ul>
+<li>[x] appendTo</li>
+<li>[x] prependTo</li>
+</ul>
+
+<p>Example (appendTo):</p>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>).<span class="pl-c1">append</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;hr/&gt;<span class="pl-pds">'</span></span>)
+<span class="pl-c">// jNetObject {0: body, length: 1}</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>body<span class="pl-pds">'</span></span>).<span class="pl-c1">append</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;ul/&gt;<span class="pl-pds">'</span></span>)
+<span class="pl-c">// jNetObject {0: body, length: 1}</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">appendTo</span>(<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>).<span class="pl-en">last</span>())
+<span class="pl-c">// jNetObject {0: ul, length: 1}</span></pre></div>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+%<span class="pl-ent">hr</span>
+%<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;li&gt;4&lt;/li&gt;<span class="pl-pds">'</span></span>).<span class="pl-en">appendTo</span>(<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>).<span class="pl-en">last</span>())
+<span class="pl-c">// jNetObject {0: ul, length: 1}</span></pre></div>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+%<span class="pl-ent">hr</span>
+%<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3
+    %<span class="pl-ent">li</span> 4</pre></div>
+
+<p>Example (prependTo):</p>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;li&gt;0&lt;/li&gt;<span class="pl-pds">'</span></span>).<span class="pl-en">prependTo</span>(<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>))
+<span class="pl-c">// jNetObject {0: ul, length: 1}</span></pre></div>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 0
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3</pre></div>
+
+<h4>
+<a id="6616-2215" class="anchor" href="#6616-2215" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/6/16, 22:15</h4>
+
+<p>Implement clientHeight, clientWidth (Feature #21)</p>
+
+<ul>
+<li>[x] clientHeight</li>
+<li>[x] clientWidth</li>
+</ul>
+
+<p>fixed height, width (Feature #20)</p>
+
+<p>fixed off (Feature #19)</p>
+
+<p>Example (clientHeight, clientWidth):</p>
+
+<div class="highlight highlight-text-haml"><pre>%<span class="pl-ent">nav</span>
+  %<span class="pl-ent">ul</span>
+    %<span class="pl-ent">li</span> 1
+    %<span class="pl-ent">li</span> 2
+    %<span class="pl-ent">li</span> 3</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>nav<span class="pl-pds">'</span></span>).<span class="pl-en">clientHeight</span>(); <span class="pl-c">// element</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>nav<span class="pl-pds">'</span></span>).<span class="pl-en">clientWidth</span>(); <span class="pl-c">// element</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">clientHeight</span>(); <span class="pl-c">// returns array</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">clientWidth</span>(); <span class="pl-c">// returns array</span></pre></div>
+
+<h4>
+<a id="6616-1949" class="anchor" href="#6616-1949" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/6/16, 19:49</h4>
+
+<p>Implement prepend (Feature #16)</p>
+
+<p>Implement append (Feature #15)</p>
+
+<p>Implement text (Feature #13)</p>
+
+<p>Implement insertAfter, insertBefore (Feature #14)</p>
+
+<ul>
+<li>[x] prepend</li>
+<li>[x] append</li>
+<li>[x] text</li>
+<li>[x] after (old name is insertAfter)</li>
+<li>[x] before (old name is insertBefore)</li>
+</ul>
+
+<p>rename insertAfter to after</p>
+
+<p>rename insertBefore to before</p>
+
+<p>Example (prepend):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myProjects<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://fktpm.ru<span class="pl-pds">"</span></span>&gt;fktpm.ru&lt;/<span class="pl-ent">a</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>#myProjects<span class="pl-pds">'</span></span>).<span class="pl-c1">prepend</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;a href="https://babichev.net"&gt;Babichev&lt;/a&gt;<span class="pl-pds">'</span></span>);</pre></div>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myProjects<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://babichev.net<span class="pl-pds">"</span></span>&gt;Babichev&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://fktpm.ru<span class="pl-pds">"</span></span>&gt;fktpm.ru&lt;/<span class="pl-ent">a</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>Example (text):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myProjects<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://babichev.net<span class="pl-pds">"</span></span>&gt;Babichev&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://fktpm.ru<span class="pl-pds">"</span></span>&gt;fktpm.ru&lt;/<span class="pl-ent">a</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>#myProjects<span class="pl-pds">'</span></span>).<span class="pl-c1">text</span>(); <span class="pl-c">// Babichev fktpm.ru</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>#myProjects a<span class="pl-pds">'</span></span>).<span class="pl-c1">text</span>(); <span class="pl-c">// ["Babichev", "fktpm.ru"]</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>#myProjects a<span class="pl-pds">'</span></span>).<span class="pl-c1">text</span>(<span class="pl-k">function</span> (<span class="pl-smi">content</span>, <span class="pl-smi">element</span>) {
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>([content, element]); <span class="pl-c">// no modification text in element a</span>
+});
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>#myProjects a<span class="pl-pds">'</span></span>).<span class="pl-c1">text</span>(<span class="pl-k">function</span> (<span class="pl-smi">content</span>, <span class="pl-smi">element</span>) {
+  <span class="pl-k">return</span> content <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>!<span class="pl-pds">'</span></span>; <span class="pl-c">// result: "Babichev!", "fktpm.ru!"</span>
+});</pre></div>
+
+<p>Example (after):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">after</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;li&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>).<span class="pl-en">outerHTML</span>() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/li&gt;<span class="pl-pds">'</span></span>)</pre></div>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<p>Example (before):</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">before</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;li&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>ul<span class="pl-pds">'</span></span>).<span class="pl-en">outerHTML</span>() <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/li&gt;<span class="pl-pds">'</span></span>)</pre></div>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;
+        &lt;<span class="pl-ent">ul</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>test1<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;1&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;2&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+        &lt;/<span class="pl-ent">ul</span>&gt;
+    &lt;/<span class="pl-ent">li</span>&gt;
+    &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;3&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+&lt;/<span class="pl-ent">ul</span>&gt;</pre></div>
+
+<h4>
+<a id="6616-1112" class="anchor" href="#6616-1112" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/6/16, 11:12</h4>
+
+<p>fixed bug hide/show (Feature #12)</p>
+
+<ul>
+<li>[x] hide</li>
+<li>[x] show</li>
+</ul>
+
+<h4>
+<a id="6616-1112-1" class="anchor" href="#6616-1112-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/6/16, 11:12</h4>
+
+<p>Implement valid </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;ul&gt;&lt;/ul&gt;<span class="pl-pds">'</span></span>)</pre></div>
+
+<p>with find, and preview element (without document-fragment) (Feature #11)</p>
+
+<h4>
+<a id="6516-0005" class="anchor" href="#6516-0005" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6/5/16, 00:05</h4>
+
+<p>Optimization jNet(selector, dom) (Feature #10)</p>
+
+<h4>
+<a id="5516-2225" class="anchor" href="#5516-2225" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 22:25</h4>
+
+<p>Implement innerHTML (alias html), outerHTML (Feature #9)</p>
+
+<ul>
+<li>[x] innerHTML [alias] html</li>
+<li>[x] outerHTML</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// ["&lt;a href=""&gt;1&lt;/a&gt;", "&lt;a href=""&gt;2&lt;/a&gt;", "&lt;a href=""&gt;3&lt;/a&gt;"]</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">html</span>()
+
+<span class="pl-c">//["&lt;li&gt;&lt;a href=""&gt;1&lt;/a&gt;&lt;/li&gt;", "&lt;li&gt;&lt;a href=""&gt;2&lt;/a&gt;&lt;/li&gt;", "&lt;li&gt;&lt;a href=""&gt;3&lt;/a&gt;&lt;/li&gt;"]</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">outerHTML</span>()
+
+<span class="pl-c">// console.log 1</span>
+<span class="pl-c">// console.log 2</span>
+<span class="pl-c">// console.log 3</span>
+<span class="pl-c">// jNetObject [li, li, li], values (3, 6, 9)</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">html</span>(<span class="pl-k">function</span> (<span class="pl-smi">html</span>, <span class="pl-smi">element</span>) {
+  <span class="pl-k">var</span> newObject <span class="pl-k">=</span> <span class="pl-en">jNet</span>(html).<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>);
+  <span class="pl-k">var</span> integer <span class="pl-k">=</span> newObject[<span class="pl-c1">0</span>].<span class="pl-smi">innerText</span>;
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(integer);
+  <span class="pl-k">return</span> integer <span class="pl-k">*</span> <span class="pl-c1">3</span>;
+});</pre></div>
+
+<h4>
+<a id="5516-2155" class="anchor" href="#5516-2155" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 21:55</h4>
+
+<p>possibilities of selection are expanded.
+at the moment doesn't support: string, jNetObject...</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>*<span class="pl-pds">'</span></span>, <span class="pl-c1">document</span>.<span class="pl-c1">body</span>)</pre></div>
+
+<h4>
+<a id="5516-2033" class="anchor" href="#5516-2033" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 20:33</h4>
+
+<p>the new feature is added in Implement attributes (attr) (Feature #5),
+an opportunity to transfer callback by the second parameter</p>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>a:not([alt])<span class="pl-pds">'</span></span>).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">"</span>alt<span class="pl-pds">"</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">altText</span>, <span class="pl-smi">element</span>) {
+   <span class="pl-en">console</span>.<span class="pl-c1">log</span>([altText, element]);
+   <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>;
+});</pre></div>
+
+<h4>
+<a id="5516-1642" class="anchor" href="#5516-1642" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 16:42</h4>
+
+<p>Implement closest (Feature #8)</p>
+
+<ul>
+<li>[x] clisest</li>
+</ul>
+
+<h4>
+<a id="5516-1515" class="anchor" href="#5516-1515" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 15:15</h4>
+
+<p>Implement hasClass, addClass, removeClass, toggleClass (Feature #7)</p>
+
+<ul>
+<li>[x] hasClass</li>
+<li>[x] addClass</li>
+<li>[x] removeClass</li>
+<li>[x] toggleClass</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">addClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// p.hello</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">toggleClass</span>(<span class="pl-s"><span class="pl-pds">'</span>world<span class="pl-pds">'</span></span>) <span class="pl-c">// p.hello.world</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">toggleClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// p.world</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">hasClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// false</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">hasClass</span>(<span class="pl-s"><span class="pl-pds">'</span>world<span class="pl-pds">'</span></span>) <span class="pl-c">// true</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>p<span class="pl-pds">'</span></span>).<span class="pl-en">removeClass</span>(<span class="pl-s"><span class="pl-pds">'</span>world<span class="pl-pds">'</span></span>) <span class="pl-c">// p</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">hasClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// [false, false, false]</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">addClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// [li.hello, li.hello, li.hello]</span>
+
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">hasClass</span>(<span class="pl-s"><span class="pl-pds">'</span>hello<span class="pl-pds">'</span></span>) <span class="pl-c">// [true, true, true]</span></pre></div>
+
+<h4>
+<a id="5516-1356" class="anchor" href="#5516-1356" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 13:56</h4>
+
+<p>css (todo: style), Implement css (Feature #6)</p>
+
+<p>attr (without data), Implement attributes (attr) (Feature #5)</p>
+
+<p>remove 'class' jNetPrivate</p>
+
+<p>methods jNetPrivate moved in global namespace</p>
+
+<ul>
+<li>[x] jNetPrivate.isHTML to isHTML</li>
+<li>[x] jNetPrivate.parseXML to parseXML</li>
+<li>[x] jNetPrivate.trim to trim</li>
+<li>[x] jNetPrivate.parseHTML to parseHTML</li>
+</ul>
+
+<p>Example (css):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>, <span class="pl-c1">null</span>) <span class="pl-c">// remove</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>yellow<span class="pl-pds">'</span></span>) <span class="pl-c">// set</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">css</span>(<span class="pl-s"><span class="pl-pds">'</span>color<span class="pl-pds">'</span></span>) <span class="pl-c">// get</span></pre></div>
+
+<p>Example (attr):</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>, <span class="pl-c1">null</span>) <span class="pl-c">// remove</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>color: blue;<span class="pl-pds">'</span></span>) <span class="pl-c">// set</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>) <span class="pl-c">// get</span></pre></div>
+
+<h4>
+<a id="5516-1240" class="anchor" href="#5516-1240" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 12:40</h4>
+
+<p>Implement width, height (Feature #4)</p>
+
+<ul>
+<li>[x] width</li>
+<li>[x] height</li>
+</ul>
+
+<p>Example:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-c1">width</span>() <span class="pl-c">// 100</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>div<span class="pl-pds">'</span></span>).<span class="pl-c1">height</span>() <span class="pl-c">// 100</span>
+<span class="pl-en">jNet</span>(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>).<span class="pl-c1">height</span>() <span class="pl-c">// [20, 20]</span></pre></div>
+
+<h4>
+<a id="5516-1121" class="anchor" href="#5516-1121" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5/5/16, 11:21</h4>
+
+<p>show/hide (with dymanics.js) ++</p>
+
+<p>remove    ++ used standard method remove for elements</p>
+
+<p>closest   ++</p>
+
+<ul>
+<li>[x] forEach rewrite on while</li>
+<li>[x] fixed more bugs</li>
+</ul>
+
+<h4>
+<a id="4516" class="anchor" href="#4516" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4/5/16</h4>
+
+<p>rewrite js to cs</p>
+
+<p>jNetPrivate</p>
+
+<p>jNetPrivate.fn</p>
+
+<ul>
+<li>[x] isHTML</li>
+<li>[x] parseXML</li>
+<li>[x] trim</li>
+<li>[x] parseHTML</li>
+</ul>
+
+<p>jNetObject</p>
+
+<p>jNetObject.fn </p>
+
+<ul>
+<li>[x] eq</li>
+<li>[x] first</li>
+<li>[x] last</li>
+<li>[x] odd</li>
+<li>[x] even</li>
+<li>[x] clone</li>
+<li>[x] toString</li>
+<li>[x] each</li>
+<li>[x] find</li>
+<li>[x] on</li>
+<li>[x] off</li>
+<li>[x] ready</li>
+</ul>
+
+<p>jNet (jNetFramework)</p>
+
+<p>jNet.fn</p>
+
+<ul>
+<li>[x] each</li>
+<li>[x] toString</li>
+</ul>
+
+<p>jNet.oFn [alias] jNetObject.fn</p>
+
+<p>jNet -- public</p>
+
+<p>jNetObject -- private</p>
+
+<p>jNetPrivate -- private</p>
+
+<p>jNet.toString = jNet.fn.toString</p>
+
+<p>jNet.clone = jNet.oFn.clone</p>
+
+<p>jNet.each = jNet.fn.each</p>
+
+<p>event's</p>
+
+<ul>
+<li>[x] click</li>
+<li>[x] contextmenu</li>
+<li>[x] dblclick</li>
+<li>[x] mouseup</li>
+<li>[x] mousedown</li>
+<li>[x] mouseout</li>
+<li>[x] mouseover</li>
+<li>[x] mousemove</li>
+<li>[x] keyup</li>
+<li>[x] keydown</li>
+<li>[x] keypress</li>
+<li>[x] copy</li>
+<li>[x] selectstart</li>
+<li>[x] selectionchange</li>
+<li>[x] select</li>
+</ul>
+
+<p>jNet.fetch = require? "fetch-polyfill"</p>
+
+<p>jNet.cookies = require? "js-cookie"</p>
+
+<p>jNet.dynamics = require? "dynamics.js"</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/jNetFramework">jNetFramework</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
