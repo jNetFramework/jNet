@@ -8,16 +8,40 @@ JavaScript Framework
 npm i jnet
 ```
 
-## Example
+## Include Script
 
 ```html
 <script src="/node_modules/jnet/dist/jnet.v2.0.1.6.js"></script>
 ```
+
+## Example 1
+
 ```javascript
 jNet(function () {
     // Have fun coding...
     jNet('[target="_blank"]').attr('rel', 'noopener noreferrer');
 });
+```
+
+## Example 2
+
+```javascript
+(function ($) {
+    
+    $(function () {
+        // Have fun coding...
+        $('a').remove();
+    });
+    
+})(jNet);
+```
+
+## Example 3
+
+```javascript
+let $ = jNet;
+
+$('a').hide();
 ```
 
 ## Info
