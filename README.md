@@ -8,22 +8,12 @@ JavaScript Framework
 npm i jnet
 ```
 
+## Example
+
 ```html
 <script src="/node_modules/jnet/dist/jnet.v2.0.1.6.js"></script>
 ```
-
 ```javascript
-// without jQuery
-let $ = jNet;
-
-$(function () {
-    // Have fun coding...
-    $('[target="_blank"]').attr('rel', 'noopener noreferrer');
-});
-```
-
-```javascript
-// with jQuery
 jNet(function () {
     // Have fun coding...
     jNet('[target="_blank"]').attr('rel', 'noopener noreferrer');
